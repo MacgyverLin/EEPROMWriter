@@ -1,4 +1,4 @@
-C51 COMPILER V9.01   SERIAL                                                                02/28/2019 17:51:41 PAGE 1   
+C51 COMPILER V9.01   SERIAL                                                                02/28/2019 18:16:59 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE SERIAL
@@ -62,7 +62,7 @@ line level    source
   52          void serialInitSendBuffer()
   53          {
   54   1              unsigned int i = 0;
-C51 COMPILER V9.01   SERIAL                                                                02/28/2019 17:51:41 PAGE 2   
+C51 COMPILER V9.01   SERIAL                                                                02/28/2019 18:16:59 PAGE 2   
 
   55   1              
   56   1              while(TI);
@@ -126,7 +126,7 @@ line level    source
  114   1              rxDone = 1;
  115   1      }
  116          
-C51 COMPILER V9.01   SERIAL                                                                02/28/2019 17:51:41 PAGE 3   
+C51 COMPILER V9.01   SERIAL                                                                02/28/2019 18:16:59 PAGE 3   
 
  117          void serialReceiveDataAsync(unsigned int size)
  118          {
@@ -190,7 +190,7 @@ line level    source
  176          {
  177                  va_list argptr;
  178                  int cnt;
-C51 COMPILER V9.01   SERIAL                                                                02/28/2019 17:51:41 PAGE 4   
+C51 COMPILER V9.01   SERIAL                                                                02/28/2019 18:16:59 PAGE 4   
 
  179          
  180                  //char buffer[16];

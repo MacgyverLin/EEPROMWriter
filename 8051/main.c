@@ -199,8 +199,11 @@ char verifyPage(unsigned int startAddress, unsigned char* dat, unsigned int size
 
 void main()
 {
+	int a = sizeof(unsigned int);
+	int b = sizeof(unsigned long);
+	
 	State state = INITIAL;
-	unsigned char rxBuffer[128];
+	char rxBuffer[128];
 	
 	CONNECTED_LED   = 0;
 	PROGRAM_LED     = 0;
@@ -268,17 +271,17 @@ void main()
 				
 			case PROGRAM_EEPROM_PAGE:
 			{
-				unsigned int address;
-				unsigned int size;
+				unsigned long address;
+				unsigned long size;
 				
 				serialReceiveData(rxBuffer, 1+4+4, -1); // wait for command P or V
 				if(*rxBuffer == 'P')
 				{
-					address = *((unsigned int*)(rxBuffer+1));
-					size    = *((unsigned int*)(rxBuffer+1+4));
+					address = *((unsigned long*)(rxBuffer+1));
+					size    = *((unsigned long*)(rxBuffer+1+4));
 					
 					assert(size<=128);
-					serialReceiveData(rxBuffer, size, -1); // wait for command P or V
+					serialReceiveData(rxBuffer+1+4+4, size, -1); // wait for command P or V
 					
 					PROGRAM_LED     = 1;
 					
@@ -304,17 +307,17 @@ void main()
 			
 			case VERIFY_EEPROM_PAGE:
 			{
-				unsigned int address;
-				unsigned int size;
+				unsigned long address;
+				unsigned long size;
 				
 				serialReceiveData(rxBuffer, 1+4+4, -1); // wait for command P or V
 				if(*rxBuffer == 'S')
 				{
-					address = *((unsigned int*)(rxBuffer+1));
-					size    = *((unsigned int*)(rxBuffer+1+4));
+					address = *((unsigned long*)(rxBuffer+1));
+					size    = *((unsigned long*)(rxBuffer+1+4));
 					
 					assert(size<=128);
-					serialReceiveData(rxBuffer, size, -1); // wait for command P or V
+					serialReceiveData(rxBuffer+1+4+4, size, -1); // wait for command P or V
 					
 					VERIFY_LED     = 1;
 					
@@ -340,7 +343,6 @@ void main()
 			
 			case FAILED:
 			{
-				delayMS(250);
 				VERIFY_LED      = VERIFY_LED;
 			}
 			break;
