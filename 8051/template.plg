@@ -1,0 +1,1335 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\Project\DOS\VGMPlayer\template.uvproj
+Project File Date:  02/28/2019
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(137): warning C206: 'strlen': missing function-prototype
+SERIAL.C(137): error C267: 'strlen': requires ANSI-style prototype
+SERIAL.C(145): error C208: '_receiveData': too many actual parameters
+SERIAL.C(147): error C141: syntax error near 'va_list'
+SERIAL.C(147): error C202: 'argptr': undefined identifier
+SERIAL.C(148): error C141: syntax error near 'int'
+SERIAL.C(148): error C202: 'cnt': undefined identifier
+SERIAL.C(149): error C202: 'argptr': undefined identifier
+SERIAL.C(151): error C202: 'cnt': undefined identifier
+SERIAL.C(156): error C202: 'cnt': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(146): error C208: '_receiveData': too many actual parameters
+SERIAL.C(148): error C141: syntax error near 'va_list'
+SERIAL.C(148): error C202: 'argptr': undefined identifier
+SERIAL.C(149): error C141: syntax error near 'int'
+SERIAL.C(149): error C202: 'cnt': undefined identifier
+SERIAL.C(150): error C202: 'argptr': undefined identifier
+SERIAL.C(152): error C202: 'cnt': undefined identifier
+SERIAL.C(157): error C202: 'cnt': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(148): error C141: syntax error near 'va_list'
+SERIAL.C(148): error C202: 'argptr': undefined identifier
+SERIAL.C(149): error C141: syntax error near 'int'
+SERIAL.C(149): error C202: 'cnt': undefined identifier
+SERIAL.C(150): error C202: 'argptr': undefined identifier
+SERIAL.C(152): error C202: 'cnt': undefined identifier
+SERIAL.C(157): error C202: 'cnt': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(149): error C141: syntax error near 'va_list'
+SERIAL.C(149): error C202: 'argptr': undefined identifier
+SERIAL.C(150): error C141: syntax error near 'int'
+SERIAL.C(150): error C202: 'cnt': undefined identifier
+SERIAL.C(151): error C202: 'argptr': undefined identifier
+SERIAL.C(153): error C202: 'cnt': undefined identifier
+SERIAL.C(158): error C202: 'cnt': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(162): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISTRANSMITDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISRECEIVEDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INITSERIAL?SERIAL
+Program Size: data=23.1 xdata=347 code=6170
+creating hex file from "template"...
+"template" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling serial.c...
+SERIAL.C(162): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISTRANSMITDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISRECEIVEDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_PRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_SCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INITSERIAL?SERIAL
+Program Size: data=25.6 xdata=433 code=6031
+creating hex file from "template"...
+"template" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+linking...
+Program Size: data=9.0 xdata=0 code=16
+creating hex file from "template"...
+"template" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=9.0 xdata=0 code=16
+creating hex file from "template"...
+"template" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(162): warning C280: 'baud': unreferenced local variable
+compiling vsscanf.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISTRANSMITDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISRECEIVEDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_PRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_SCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INITSERIAL?SERIAL
+Program Size: data=25.6 xdata=433 code=6031
+Global register optimization - pass #1
+compiling vsscanf.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISTRANSMITDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISRECEIVEDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_PRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_SCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INITSERIAL?SERIAL
+Program Size: data=25.6 xdata=433 code=6014
+creating hex file from "template"...
+"template" - 0 Error(s), 11 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISTRANSMITDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISRECEIVEDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_PRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_SCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INITSERIAL?SERIAL
+Program Size: data=25.6 xdata=433 code=6014
+creating hex file from "template"...
+"template" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling serial.c...
+SERIAL.C(13): error C141: syntax error near 'char'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(13): error C141: syntax error near 'char'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(31): error C183: unmodifiable lvalue
+SERIAL.C(104): error C183: unmodifiable lvalue
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(162): warning C280: 'baud': unreferenced local variable
+SERIAL.C(185): error C249: 'DATA': SEGMENT TOO LARGE
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(162): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISTRANSMITDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISRECEIVEDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_PRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_SCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INITSERIAL?SERIAL
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05A2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05AEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05BAH
+Program Size: data=23.1 xdata=439 code=1693
+creating hex file from "template"...
+"template" - 0 Error(s), 11 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(162): warning C280: 'baud': unreferenced local variable
+SERIAL.C(185): error C249: 'DATA': SEGMENT TOO LARGE
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(162): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISTRANSMITDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ISRECEIVEDONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_PRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL_SCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_INITSERIAL?SERIAL
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05A2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05AEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05BAH
+Program Size: data=23.1 xdata=439 code=1693
+creating hex file from "template"...
+"template" - 0 Error(s), 11 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(136): warning C206: 'transmitData': missing function-prototype
+SERIAL.C(136): error C267: 'transmitData': requires ANSI-style prototype
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(158): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISRECEIVEDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALPRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALINITIALIZE?SERIAL
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05A2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05AEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05BAH
+Program Size: data=23.1 xdata=431 code=1693
+creating hex file from "template"...
+"template" - 0 Error(s), 11 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISRECEIVEDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALPRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALINITIALIZE?SERIAL
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05A2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05AEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05BAH
+Program Size: data=23.1 xdata=431 code=1693
+creating hex file from "template"...
+"template" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(28): error C202: 'rxByte': undefined identifier
+SERIAL.C(29): error C202: 'rxByte': undefined identifier
+SERIAL.C(41): error C202: 'txByte': undefined identifier
+SERIAL.C(42): error C202: 'txByte': undefined identifier
+SERIAL.C(63): error C202: 'txByte': undefined identifier
+SERIAL.C(79): error C202: 'txByte': undefined identifier
+SERIAL.C(103): error C202: 'rxByte': undefined identifier
+SERIAL.C(112): error C202: 'rxByte': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(29): error C202: 'rxByte': undefined identifier
+SERIAL.C(42): error C202: 'txByte': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(158): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISRECEIVEDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALPRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALINITIALIZE?SERIAL
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05A2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05AEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05BAH
+Program Size: data=23.1 xdata=431 code=1693
+creating hex file from "template"...
+"template" - 0 Error(s), 11 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISRECEIVEDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALPRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALINITIALIZE?SERIAL
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05A2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05AEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05BAH
+Program Size: data=23.1 xdata=431 code=1693
+creating hex file from "template"...
+"template" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISRECEIVEDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALPRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALINITIALIZE?SERIAL
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05A2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05AEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 05BAH
+Program Size: data=23.1 xdata=431 code=1693
+creating hex file from "template"...
+"template" - 0 Error(s), 10 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(22): warning C206: 'serialInitialize': missing function-prototype
+MAIN.C(22): error C267: 'serialInitialize': requires ANSI-style prototype
+compiling delay.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(25): error C202: 'state': undefined identifier
+MAIN.C(56): error C202: 'State': undefined identifier
+MAIN.C(56): error C141: syntax error near 'state'
+MAIN.C(60): error C202: 'state': undefined identifier
+MAIN.C(80): error C202: 'SUCCESS': undefined identifier
+compiling serial.c...
+SERIAL.C(158): warning C280: 'baud': unreferenced local variable
+compiling delay.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Build target 'Target 1'
+compiling main.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Build target 'Target 1'
+compiling main.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Clean started: Project: 'template'
+   deleting intermediate output files for target 'Target 1'
+Build target 'Target 1'
+compiling main.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Build target 'Target 1'
+compiling main.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Build target 'Target 1'
+compiling main.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Build target 'Target 1'
+compiling main.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Clean started: Project: 'template'
+   deleting intermediate output files for target 'Target 1'
+Build target 'Target 1'
+compiling main.c...
+C51 FATAL-ERROR -
+  ACTION:  PARSING SOURCE-FILE
+  ERROR:    PREPROCESSOR: MACROS TOO NESTED
+C51 TERMINATED.
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(16): error C129: missing ';' before 'state'
+compiling serial.c...
+SERIAL.C(158): warning C280: 'baud': unreferenced local variable
+compiling delay.c...
+DELAY.C(9): error C202: 'u8': undefined identifier
+DELAY.C(9): error C141: syntax error near 'a'
+DELAY.C(10): error C202: 'b': undefined identifier
+DELAY.C(11): error C202: 'a': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(16): error C129: missing ';' before 'state'
+compiling delay.c...
+DELAY.C(9): error C202: 'u8': undefined identifier
+DELAY.C(9): error C141: syntax error near 'a'
+DELAY.C(10): error C202: 'b': undefined identifier
+DELAY.C(11): error C202: 'a': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(75): error C202: 'SUCCESS': undefined identifier
+compiling delay.c...
+DELAY.C(9): error C202: 'u8': undefined identifier
+DELAY.C(9): error C141: syntax error near 'a'
+DELAY.C(10): error C202: 'b': undefined identifier
+DELAY.C(11): error C202: 'a': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling delay.c...
+DELAY.C(9): error C202: 'u8': undefined identifier
+DELAY.C(9): error C141: syntax error near 'a'
+DELAY.C(10): error C202: 'b': undefined identifier
+DELAY.C(11): error C202: 'a': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISRECEIVEDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALPRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 066EH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 067AH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 0686H
+Program Size: data=23.1 xdata=432 code=2040
+Global register optimization - pass #1
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISRECEIVEDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALPRINTF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSCANF?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 066EH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  ?_VSSCANF?BYTE
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 067AH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _VSSCANF
+    MODULE:  serial.obj (SERIAL)
+    ADDRESS: 0686H
+Program Size: data=23.1 xdata=432 code=2040
+creating hex file from "template"...
+"template" - 0 Error(s), 22 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(160): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISRECEIVEDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=17.0 xdata=286 code=788
+creating hex file from "template"...
+"template" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(31): warning C206: 'serialisReceiveDataDone': missing function-prototype
+MAIN.C(33): error C141: syntax error near 'unsigned'
+compiling serial.c...
+SERIAL.C(135): warning C173: missing return-expression
+SERIAL.C(173): warning C280: 'baud': unreferenced local variable
+SERIAL.C(135): warning C290: missing return value
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(41): error C202: 'CONNECT_STATUS': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=17.0 xdata=285 code=931
+Global register optimization - pass #1
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SERIALISSENDDATADONE?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=17.0 xdata=285 code=929
+creating hex file from "template"...
+"template" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(23): warning C209: '_serialInitialize': too few actual parameters
+MAIN.C(25): warning C209: '_serialReceiveData': too few actual parameters
+compiling serial.c...
+SERIAL.C(97): error C237: '_serialSendDataAsync': function already has a body
+SERIAL.C(132): error C208: '_serialReceiveDataAsync': too many actual parameters
+SERIAL.C(196): error C236: '_serialInitialize': different length of parameter lists
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(132): error C208: '_serialReceiveDataAsync': too many actual parameters
+SERIAL.C(196): error C236: '_serialInitialize': different length of parameter lists
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(196): error C236: '_serialInitialize': different length of parameter lists
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(25): warning C209: '_serialReceiveData': too few actual parameters
+compiling serial.c...
+SERIAL.C(195): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** APPLICATION REQUIRES RE-TRANSLATIONS! ***
+Program Size: data=17.0 xdata=290 code=1005
+Global register optimization - pass #1
+compiling main.c...
+MAIN.C(25): warning C209: '_serialReceiveData': too few actual parameters
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=17.0 xdata=290 code=1005
+creating hex file from "template"...
+"template" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(25): warning C209: '_serialReceiveData': too few actual parameters
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RXBUFFER
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ONINITIALSTATEUPDATE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ONCONNECTINGSTATEUPDATE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ONREADYSTATEUPDATE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ONWRITINGEEROMPAGESTATEUPDATE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ONVERIFYINGEEROMPAGESTATEUPDATE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ONFAILEDSTATEUPDATE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ONSUCCESSSTATEUPDATE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=17.0 xdata=424 code=968
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling serial.c...
+SERIAL.C(85): error C202: 'blocking': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(189): warning C280: 'baud': unreferenced local variable
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RXBUFFER
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=17.0 xdata=422 code=750
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(189): warning C280: 'baud': unreferenced local variable
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  RXBUFFER
+    MODULE:  serial.obj (SERIAL)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+*** APPLICATION REQUIRES RE-TRANSLATIONS! ***
+Program Size: data=17.0 xdata=422 code=773
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=17.0 xdata=422 code=773
+creating hex file from "template"...
+"template" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling serial.c...
+SERIAL.C(189): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=17.0 xdata=431 code=812
+creating hex file from "template"...
+"template" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=17.0 xdata=421 code=893
+creating hex file from "template"...
+"template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling serial.c...
+SERIAL.C(136): error C202: 'time': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling serial.c...
+SERIAL.C(136): error C202: 'time': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(193): warning C280: 'baud': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+*** APPLICATION REQUIRES RE-TRANSLATIONS! ***
+Program Size: data=17.0 xdata=421 code=1024
+Global register optimization - pass #1
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=17.0 xdata=421 code=1024
+creating hex file from "template"...
+"template" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=17.0 xdata=421 code=1024
+creating hex file from "template"...
+"template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(20): error C141: syntax error near ','
+MAIN.C(24): error C141: syntax error near ','
+MAIN.C(99): error C141: syntax error near 'size'
+MAIN.C(101): error C141: syntax error near 'assert'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(20): error C141: syntax error near ','
+MAIN.C(24): error C141: syntax error near ','
+MAIN.C(99): error C141: syntax error near 'size'
+MAIN.C(101): error C141: syntax error near 'assert'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(20): error C141: syntax error near ','
+MAIN.C(24): error C141: syntax error near ','
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(20): error C141: syntax error near ','
+MAIN.C(24): error C141: syntax error near ','
+Target not created
+Clean started: Project: 'template'
+   deleting intermediate output files for target 'Target 1'
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(20): error C141: syntax error near ','
+MAIN.C(24): error C141: syntax error near ','
+compiling serial.c...
+SERIAL.C(193): warning C280: 'baud': unreferenced local variable
+compiling delay.c...
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(20): warning C280: 'address': unreferenced local variable
+MAIN.C(20): warning C280: 'dat': unreferenced local variable
+MAIN.C(20): warning C280: 'size': unreferenced local variable
+MAIN.C(24): warning C280: 'address': unreferenced local variable
+MAIN.C(24): warning C280: 'dat': unreferenced local variable
+MAIN.C(24): warning C280: 'size': unreferenced local variable
+MAIN.C(101): warning C206: 'assert': missing function-prototype
+MAIN.C(101): error C267: 'assert': requires ANSI-style prototype
+MAIN.C(124): error C141: syntax error near 'size'
+MAIN.C(126): error C141: syntax error near 'assert'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(21): warning C280: 'address': unreferenced local variable
+MAIN.C(21): warning C280: 'dat': unreferenced local variable
+MAIN.C(21): warning C280: 'size': unreferenced local variable
+MAIN.C(25): warning C280: 'address': unreferenced local variable
+MAIN.C(25): warning C280: 'dat': unreferenced local variable
+MAIN.C(25): warning C280: 'size': unreferenced local variable
+MAIN.C(125): error C141: syntax error near 'size'
+MAIN.C(127): error C141: syntax error near 'if'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(21): warning C280: 'address': unreferenced local variable
+MAIN.C(21): warning C280: 'dat': unreferenced local variable
+MAIN.C(21): warning C280: 'size': unreferenced local variable
+MAIN.C(25): warning C280: 'address': unreferenced local variable
+MAIN.C(25): warning C280: 'dat': unreferenced local variable
+MAIN.C(25): warning C280: 'size': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=23.1 xdata=451 code=2363
+Global register optimization - pass #1
+compiling main.c...
+MAIN.C(21): warning C280: 'address': unreferenced local variable
+MAIN.C(21): warning C280: 'dat': unreferenced local variable
+MAIN.C(21): warning C280: 'size': unreferenced local variable
+MAIN.C(25): warning C280: 'address': unreferenced local variable
+MAIN.C(25): warning C280: 'dat': unreferenced local variable
+MAIN.C(25): warning C280: 'size': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=23.1 xdata=451 code=2363
+creating hex file from "template"...
+"template" - 0 Error(s), 16 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(21): warning C280: 'address': unreferenced local variable
+MAIN.C(21): warning C280: 'dat': unreferenced local variable
+MAIN.C(21): warning C280: 'size': unreferenced local variable
+MAIN.C(25): warning C280: 'address': unreferenced local variable
+MAIN.C(25): warning C280: 'dat': unreferenced local variable
+MAIN.C(25): warning C280: 'size': unreferenced local variable
+compiling serial.c...
+SERIAL.C(193): warning C280: 'baud': unreferenced local variable
+SERIAL.C(216): error C249: 'PDATA': SEGMENT TOO LARGE
+compiling delay.c...
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(21): warning C280: 'address': unreferenced local variable
+MAIN.C(21): warning C280: 'dat': unreferenced local variable
+MAIN.C(21): warning C280: 'size': unreferenced local variable
+MAIN.C(25): warning C280: 'address': unreferenced local variable
+MAIN.C(25): warning C280: 'dat': unreferenced local variable
+MAIN.C(25): warning C280: 'size': unreferenced local variable
+compiling serial.c...
+SERIAL.C(193): warning C280: 'baud': unreferenced local variable
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYMS?DELAY
+Program Size: data=23.1 xdata=451 code=2363
+creating hex file from "template"...
+"template" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(85): warning C206: 'delay1us': missing function-prototype
+MAIN.C(259): warning C206: 'programPage': missing function-prototype
+MAIN.C(259): error C267: 'programPage': requires ANSI-style prototype
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(85): warning C206: 'delay1us': missing function-prototype
+MAIN.C(284): warning C206: 'verifyPage': missing function-prototype
+MAIN.C(284): error C267: 'verifyPage': requires ANSI-style prototype
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(85): warning C206: 'delay1us': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 000CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0011H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0016H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 001BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0020H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0ACAH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 095FH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0964H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0969H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0974H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0979H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 097EH
+Program Size: data=23.1 xdata=451 code=2845
+creating hex file from "template"...
+"template" - 0 Error(s), 16 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(85): warning C206: 'delay1us': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 000CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0011H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0016H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 001BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0020H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0ACAH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 095FH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0964H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0969H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0974H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0979H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 097EH
+Program Size: data=23.1 xdata=451 code=2845
+creating hex file from "template"...
+"template" - 0 Error(s), 16 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(85): warning C206: 'delay1us': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 000CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0011H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0016H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 001BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0020H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0ADFH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 095FH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0964H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0969H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0974H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0979H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 097EH
+Program Size: data=23.1 xdata=451 code=2868
+creating hex file from "template"...
+"template" - 0 Error(s), 16 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(85): warning C206: 'delay1us': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 000CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0011H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0016H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 001BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0020H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0ADFH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 095FH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0964H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0969H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0974H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0979H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 097EH
+Program Size: data=23.1 xdata=451 code=2868
+creating hex file from "template"...
+"template" - 0 Error(s), 16 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(85): warning C206: 'delay1us': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 000CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0011H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0016H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 001BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0020H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0AF7H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0977H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 097CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0981H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0991H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0996H
+Program Size: data=23.1 xdata=451 code=2892
+creating hex file from "template"...
+"template" - 0 Error(s), 16 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 000CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0011H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0016H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 001BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0020H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0AF7H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0977H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 097CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0981H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 098CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0991H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  DELAY1US
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0996H
+Program Size: data=23.1 xdata=451 code=2892
+creating hex file from "template"...
+"template" - 0 Error(s), 15 Warning(s).
