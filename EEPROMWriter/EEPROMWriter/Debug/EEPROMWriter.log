@@ -1,2 +1,6 @@
-﻿  EEPROMWriter.cpp
+﻿  main.cpp
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(338): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(388): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(405): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(466): warning C4305: 'initializing': truncation from 'double' to 'float'
   EEPROMWriter.vcxproj -> E:\Project\EEPROMWriter\EEPROMWriter\Debug\EEPROMWriter.exe
