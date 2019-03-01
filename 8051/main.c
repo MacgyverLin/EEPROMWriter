@@ -14,10 +14,23 @@ typedef enum
 	DONE
 }State;
 
-sbit CONNECTED_LED   = P3^0;
-sbit PROGRAM_LED     = P3^1;
-sbit VERIFY_LED      = P3^2;
+sbit CONNECTED_LED   = P3^2;
+sbit PROGRAM_LED     = P3^3;
+sbit VERIFY_LED      = P3^4;
 
+void displayState(int state)
+{					
+	CONNECTED_LED = (state & 0x01) ? 0 : 1;
+	PROGRAM_LED = (state & 0x02) ? 0 : 1;
+	VERIFY_LED = (state & 0x04) ? 0 : 1;
+}
+
+void delay()
+{
+	unsigned int i = 0;
+
+	while(i++<10000);
+}
 
 ////////////////////////////////////////////////////////////////////
 #define EEPROM_ADDRESS_L P0
@@ -198,36 +211,32 @@ char verifyPage(unsigned int startAddress, unsigned char* dat, unsigned int size
 }
 
 void main()
-{
-	int a = sizeof(unsigned int);
-	int b = sizeof(unsigned long);
-	
+{	
 	State state = INITIAL;
-	char rxBuffer[128];
-	
-	CONNECTED_LED   = 0;
-	PROGRAM_LED     = 0;
-	VERIFY_LED      = 0;
-	
+	char* rxBuffer;
+
 	while(1)
 	{
+		displayState(state);
 		switch(state)
 		{
 			case INITIAL:
+			{
 				serialInitialize(9600);
-			
 				state = CONNECTING;
-				break;
+			}
+			break;
 
 			case CONNECTING:
 			{
-				serialReceiveData(rxBuffer, 1, 500); // wait for command C
+				serialReceiveData(1, 500); // wait for command C
 
-				CONNECTED_LED = ~CONNECTED_LED;
+				//CONNECTED_LED = ~CONNECTED_LED;
 				
+				rxBuffer = serialGetReceivedData(0);
 				if(*rxBuffer == 'C')
 				{
-					serialSendData('c', 1, 500); // ack
+					serialSendData("c", 1, 500); // ack
 					
 					state = CONNECTED;	 // connected
 				}
@@ -240,19 +249,20 @@ void main()
 				
 			case CONNECTED:
 			{
-				CONNECTED_LED = 1;		
+				// CONNECTED_LED = 1;		
 			
-				serialReceiveData(rxBuffer, 1, -1); // wait for command P or V
+				serialReceiveData(1, -1); // wait for command P or V
 
+				rxBuffer = serialGetReceivedData(0);
 				if(*rxBuffer == 'P')
 				{
-					serialSendData('p', 1, 500);	 // ack
+					serialSendData("p", 1, 500);	 // ack
 					
 					state = PROGRAM_EEPROM_PAGE;	 // program
 				}
 				else if(*rxBuffer == 'V')
 				{
-					serialSendData('v', 1, 500); 	 // ack
+					serialSendData("v", 1, 500); 	 // ack
 					
 					state = VERIFY_EEPROM_PAGE;	 // verify
 				}	
@@ -274,30 +284,31 @@ void main()
 				unsigned long address;
 				unsigned long size;
 				
-				serialReceiveData(rxBuffer, 1+4+4, -1); // wait for command P or V
+				serialReceiveData(1+4+4, -1); // wait for command P or V
+				rxBuffer = serialGetReceivedData(0);
 				if(*rxBuffer == 'P')
 				{
 					address = *((unsigned long*)(rxBuffer+1));
 					size    = *((unsigned long*)(rxBuffer+1+4));
 					
 					assert(size<=128);
-					serialReceiveData(rxBuffer+1+4+4, size, -1); // wait for command P or V
+					serialReceiveData(size, -1); // wait for command P or V
 					
-					PROGRAM_LED     = 1;
-					
+					//PROGRAM_LED     = 1;
+					rxBuffer = serialGetReceivedData(0);
 					if(programPage(address, rxBuffer, size))
 					{
-						PROGRAM_LED     = 0;
+						//PROGRAM_LED     = 0;
 					
-						serialSendData('s', 1, -1);	 // ack success
+						serialSendData("s", 1, -1);	 // ack success
 						
 						state = CONNECTED; // unknown command, again
 					}
 					else
 					{
-						PROGRAM_LED     = 0;
+						//PROGRAM_LED     = 0;
 					
-						serialSendData('f', 1, -1);	 // ack	failed
+						serialSendData("f", 1, -1);	 // ack	failed
 						
 						state = FAILED; // unknown command, again
 					}
@@ -310,30 +321,31 @@ void main()
 				unsigned long address;
 				unsigned long size;
 				
-				serialReceiveData(rxBuffer, 1+4+4, -1); // wait for command P or V
+				serialReceiveData(1+4+4, -1); // wait for command P or V
+				rxBuffer = serialGetReceivedData(0);
 				if(*rxBuffer == 'S')
 				{
 					address = *((unsigned long*)(rxBuffer+1));
 					size    = *((unsigned long*)(rxBuffer+1+4));
 					
 					assert(size<=128);
-					serialReceiveData(rxBuffer+1+4+4, size, -1); // wait for command P or V
+					serialReceiveData(size, -1); // wait for command P or V
 					
-					VERIFY_LED     = 1;
-					
+					// VERIFY_LED     = 1;
+					rxBuffer = serialGetReceivedData(0);
 					if(verifyPage(address, rxBuffer, size))
 					{
-						VERIFY_LED     = 0;
+						// VERIFY_LED     = 0;
 					
-						serialSendData('s', 1, -1);	 // ack success
+						serialSendData("s", 1, -1);	 // ack success
 
 						state = CONNECTED;
 					}
 					else
 					{
-						VERIFY_LED     = 0;
+						// VERIFY_LED     = 0;
 					
-						serialSendData('f', 1, -1);	 // ack	failed	
+						serialSendData("f", 1, -1);	 // ack	failed	
 						
 						state = FAILED;
 					}					
@@ -343,13 +355,13 @@ void main()
 			
 			case FAILED:
 			{
-				VERIFY_LED      = VERIFY_LED;
+				// VERIFY_LED      = VERIFY_LED;
 			}
 			break;
 			
 			case DONE:
 			{
-				VERIFY_LED      = 1;
+				// VERIFY_LED      = 1;
 			}
 			break;
 		}

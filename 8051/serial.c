@@ -7,41 +7,41 @@
 // #include "vsscanf.h"
 
 #define TXBUF_SIZE 16
-#define RXBUF_SIZE 256
+#define RXBUF_SIZE 128
 
 unsigned char rxIdx;
 unsigned char rxBuffer[RXBUF_SIZE];
 unsigned char byteToRX;
-unsigned char rxDone;
+char rxDone;
 
 unsigned char txIdx;
 unsigned char txBuffer[TXBUF_SIZE];
 unsigned char byteToTX;
-unsigned char txDone;
+char txDone;
 
-void serialISR(void) interrupt 4 using 1  
+void serialISR(void) interrupt 4  
 {
 	if(RI)
 	{
-		if(byteToRX)
+		if(!rxDone)
 		{
 			rxBuffer[rxIdx++] = SBUF;
 			if(rxIdx>=byteToRX)
 			{
-				rxDone = 1;
+				rxDone = -1;
 			}
 		}
 		
 		RI = 0;
 	}
-	else if(TI)
+	if(TI)
 	{
-		if(byteToTX)
+		if(!txDone)
 		{
 			SBUF = txBuffer[txIdx++];
 			if(txIdx>=byteToTX)
 			{
-				txDone = 1;
+				txDone = -1;
 			}
 		}
 		
@@ -62,7 +62,7 @@ void serialInitSendBuffer()
 	}
 	txIdx = 0;
 	byteToTX = 0;
-	txDone = 1;
+	txDone = -1;
 }
 
 void serialSendDataAsync(unsigned char* buffer, unsigned int size)
@@ -111,7 +111,7 @@ void serialInitReceiveBuffer()
 	}
 	rxIdx = 0;
 	byteToRX = 0;
-	rxDone = 1;
+	rxDone = -1;
 }
 
 void serialReceiveDataAsync(unsigned int size)
@@ -130,28 +130,18 @@ char serialIsReceiveDataDone()
 	return rxDone;
 }
 
-void serialReceiveData(unsigned char* buffer, unsigned int size, int timeout)
+void serialReceiveData(unsigned int size, int timeout)
 {
 	int time = 0;
 	
 	serialReceiveDataAsync(size);
 
 	while(!serialIsReceiveDataDone() && (timeout==-1 || time++<timeout));
-	
-	serialGetReceivedData(buffer, size);
 }
 
-void serialGetReceivedData(unsigned char* buffer, unsigned int size)
+char* serialGetReceivedData(int offset)
 {
-	unsigned int i = 0;
-	
-	while(RI);
-	
-	while(i<size)
-	{
-		buffer[i] = rxBuffer[i];
-		i++;
-	}
+	return &rxBuffer[offset];
 }
 
 /*
@@ -196,21 +186,14 @@ int serialInitialize(int baud)
 	serialInitReceiveBuffer();
 		
 	///////////////////////////////
-	TL1   = 0;
-	TH1   = (256-3);
-	
-    RI 	  = 0;
-    TI 	  = 0;
-    RB8   = 0;
-    TB8   = 0;
-    SM2   = 0;
-    SM1   = 1;
-    SM0   = 0;
-	
-	REN	  = 1;
-    TR1	  = 1;
-    ES	  = 1;
-    EA	  = 1;
+	SCON=0X50;			//设置为工作方式1
+	TMOD=0X20;			//设置计数器工作方式2
+	PCON=0X80;			//波特率加倍
+	TH1=0XFA;				//计数器初始值设置，注意波特率是4800的
+	TL1=0XFA;
+	ES=1;						//打开接收中断
+	EA=1;						//打开总中断
+	TR1=1;					//打开计数器
 	
 	return -1;
 }

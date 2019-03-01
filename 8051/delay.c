@@ -2,7 +2,10 @@
 #include "reg52.h"
 #include <intrins.h>
 
-#define delay1us() _nop_()
+void delay1us()
+{
+	_nop_();
+}
 
 void delay10us()
 {

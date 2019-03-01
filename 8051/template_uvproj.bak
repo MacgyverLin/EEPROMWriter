@@ -282,7 +282,7 @@
             </OnChipMemories>
           </Target51Misc>
           <C51>
-            <RegisterColoring>0</RegisterColoring>
+            <RegisterColoring>1</RegisterColoring>
             <VariablesInOrder>0</VariablesInOrder>
             <IntegerPromotion>1</IntegerPromotion>
             <uAregs>0</uAregs>
@@ -356,14 +356,14 @@
               <FilePath>.\main.c</FilePath>
             </File>
             <File>
-              <FileName>vsscanf.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\vsscanf.c</FilePath>
-            </File>
-            <File>
               <FileName>serial.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\serial.c</FilePath>
+            </File>
+            <File>
+              <FileName>delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\delay.c</FilePath>
             </File>
           </Files>
         </Group>
