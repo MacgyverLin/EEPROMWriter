@@ -266,7 +266,7 @@ void main()
 			case CONNECTING:
 			{
 				displayState(state);				
-				rxBuffer = serialReceiveData(1, 500); // wait for command C
+				rxBuffer = serialReceiveData(1, -1); // wait for command C
 
 				//CONNECTED_LED = ~CONNECTED_LED;
 				if(*rxBuffer == 'C') 
@@ -292,15 +292,11 @@ void main()
 				{
 					serialSendData("p", 1, 500);	 // ack
 					
-					displayState(PROGRAM_EEPROM_PAGE);
-					
 					state = PROGRAM_EEPROM_PAGE;	 // program
 				}
 				else if(*rxBuffer == 'V')
 				{
 					serialSendData("v", 1, 500); 	 // ack
-					
-					displayState(VERIFY_EEPROM_PAGE);
 					
 					state = VERIFY_EEPROM_PAGE;	 // verify
 				}	
@@ -322,34 +318,19 @@ void main()
 				unsigned long int address;
 				unsigned long int size;
 				
+				displayState(state);
+				
 				rxBuffer = serialReceiveData(1+4+4, -1); // wait for command P or V
-				if(*rxBuffer == 'P')
+				if(*rxBuffer == 'D')
+				{
+					serialSendData("d", 1, -1);	 // ack	failed
+						
+					state = FAILED; // unknown command, again
+				}				
+				else if(*rxBuffer == 'P')
 				{
 					address = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1))  );
 					size    = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1+4)));
-					/*
-					displayState(1);					 
-
-					sprintf(rxBuffer, "a:%lx", address);
-					serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
-					displayState(2);
-					
-					sprintf(rxBuffer, "s:%lx", size);
-					serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
-					displayState(3);					
-					
-					serialReceiveData(size, -1); // wait for command P or V
-					displayState(4);
-					
-					//serialSendData(rxBuffer, 16, -1);	 // ack success
-					displayState(5);
-					*/
-					
-					//sprintf(rxBuffer, "a:%lx", address);
-					//serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
-					
-					//sprintf(rxBuffer, "s:%lx", size);
-					//serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
 					
 					//PROGRAM_LED     = 1;
 					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
@@ -359,7 +340,7 @@ void main()
 						//PROGRAM_LED     = 0;
 					
 						serialSendData("s", 1, -1);	 // ack success
-						
+
 						state = DONE; // unknown command, again
 					}
 					else
@@ -385,43 +366,29 @@ void main()
 				unsigned long int address;
 				unsigned long int size;
 				
+				displayState(state);
+				
 				rxBuffer = serialReceiveData(1+4+4, -1); // wait for command P or V
-				if(*rxBuffer == 'P')
+				if(*rxBuffer == 'D')
+				{
+					serialSendData("d", 1, -1);	 // ack	failed
+						
+					state = FAILED; // unknown command, again
+				}				
+				else if(*rxBuffer == 'V')
 				{
 					address = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1))  );
 					size    = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1+4)));
-					/*
-					displayState(1);					 
-
-					sprintf(rxBuffer, "a:%lx", address);
-					serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
-					displayState(2);
-					
-					sprintf(rxBuffer, "s:%lx", size);
-					serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
-					displayState(3);					
-					
-					serialReceiveData(size, -1); // wait for command P or V
-					displayState(4);
-					
-					//serialSendData(rxBuffer, 16, -1);	 // ack success
-					displayState(5);
-					*/
-					
-					//sprintf(rxBuffer, "a:%lx", address);
-					//serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
-					
-					//sprintf(rxBuffer, "s:%lx", size);
-					//serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
 					
 					//PROGRAM_LED     = 1;
 					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
+					//programPage(address, rxBuffer, size);
 					if(verifyPage(address, rxBuffer, size))
 					{
 						//PROGRAM_LED     = 0;
 					
 						serialSendData("s", 1, -1);	 // ack success
-						
+
 						state = DONE; // unknown command, again
 					}
 					else
@@ -439,7 +406,6 @@ void main()
 						
 					state = FAILED; // unknown command, again
 				}
-				
 			}
 			break;
 			
