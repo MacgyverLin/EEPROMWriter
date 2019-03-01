@@ -9,9 +9,7 @@ extern void serialSendData(const char* buffer, unsigned int size, int timeout);
 
 extern void serialReceiveDataAsync(unsigned int size);
 extern char serialIsReceiveDataDone();
-extern void serialReceiveData(unsigned int size, int timeout);
-
-extern char* serialGetReceivedData(int offset);
+extern char* serialReceiveData(unsigned int size, int timeout);
 
 extern int serialPrintf(char* buffer, const char *fmt, ...);
 extern int serialScanf(char* buffer, const char *fmt, ...);

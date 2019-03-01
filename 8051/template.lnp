@@ -1,5 +1,5 @@
 "main.obj",
 "serial.obj",
 "delay.obj" 
-TO "template" REGFILE (.\template.ORC) 
+TO "template" 
 RAMSIZE(256) 

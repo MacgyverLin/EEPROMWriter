@@ -69,7 +69,7 @@ void serialSendDataAsync(unsigned char* buffer, unsigned int size)
 {
 	unsigned int i = 0;
 	
-	while(TI);
+	while(!txDone || TI);
 	
 	while(i<size)
 	{
@@ -116,8 +116,14 @@ void serialInitReceiveBuffer()
 
 void serialReceiveDataAsync(unsigned int size)
 {
-	while(RI);
+	unsigned int i = 0;
 	
+	while(!rxDone || RI);
+	
+	while(i<RXBUF_SIZE)
+	{
+		rxBuffer[i++] = 0;
+	}	
 	rxIdx = 0;
 	byteToRX = size;
 	rxDone = 0;
@@ -130,18 +136,15 @@ char serialIsReceiveDataDone()
 	return rxDone;
 }
 
-void serialReceiveData(unsigned int size, int timeout)
+char* serialReceiveData(unsigned int size, int timeout)
 {
 	int time = 0;
 	
 	serialReceiveDataAsync(size);
 
 	while(!serialIsReceiveDataDone() && (timeout==-1 || time++<timeout));
-}
-
-char* serialGetReceivedData(int offset)
-{
-	return &rxBuffer[offset];
+	
+	return rxBuffer;
 }
 
 /*

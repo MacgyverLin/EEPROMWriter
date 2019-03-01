@@ -1,10 +1,9 @@
-C51 COMPILER V9.01   SERIAL                                                                03/01/2019 01:40:21 PAGE 1   
+C51 COMPILER V9.01   SERIAL                                                                03/01/2019 16:59:35 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE SERIAL
 OBJECT MODULE PLACED IN serial.OBJ
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE serial.c COMPACT ROM(COMPACT) OPTIMIZE(9,SIZE) REGFILE(.\template.ORC) BROW
-                    -SE DEBUG OBJECTEXTEND
+COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE serial.c LARGE ROM(COMPACT) OPTIMIZE(9,SIZE) BROWSE DEBUG OBJECTEXTEND
 
 line level    source
 
@@ -62,9 +61,9 @@ line level    source
   52          void serialInitSendBuffer()
   53          {
   54   1              unsigned int i = 0;
-C51 COMPILER V9.01   SERIAL                                                                03/01/2019 01:40:21 PAGE 2   
-
   55   1              
+C51 COMPILER V9.01   SERIAL                                                                03/01/2019 16:59:35 PAGE 2   
+
   56   1              while(TI);
   57   1      
   58   1              while(i<TXBUF_SIZE)
@@ -81,7 +80,7 @@ line level    source
   69          {
   70   1              unsigned int i = 0;
   71   1              
-  72   1              while(TI);
+  72   1              while(!txDone || TI);
   73   1              
   74   1              while(i<size)
   75   1              {
@@ -126,101 +125,104 @@ line level    source
  114   1              rxDone = -1;
  115   1      }
  116          
-C51 COMPILER V9.01   SERIAL                                                                03/01/2019 01:40:21 PAGE 3   
-
  117          void serialReceiveDataAsync(unsigned int size)
- 118          {
- 119   1              while(RI);
- 120   1              
- 121   1              rxIdx = 0;
- 122   1              byteToRX = size;
- 123   1              rxDone = 0;
- 124   1      }
- 125          
- 126          char serialIsReceiveDataDone()
- 127          {
- 128   1              while(RI);
- 129   1      
- 130   1              return rxDone;
- 131   1      }
- 132          
- 133          void serialReceiveData(unsigned int size, int timeout)
- 134          {
- 135   1              int time = 0;
- 136   1              
- 137   1              serialReceiveDataAsync(size);
- 138   1      
- 139   1              while(!serialIsReceiveDataDone() && (timeout==-1 || time++<timeout));
- 140   1      }
- 141          
- 142          char* serialGetReceivedData(int offset)
- 143          {
- 144   1              return &rxBuffer[offset];
- 145   1      }
- 146          
- 147          /*
- 148          int serialPrintf(char* buffer, const char *fmt, ...)
- 149          {
- 150                  //char buffer[16];
- 151          
- 152                  va_list argptr;
- 153                  int cnt;
- 154                  va_start(argptr, fmt);
- 155          
- 156                  cnt = vsprintf(buffer, fmt, argptr);
- 157          
- 158                  va_end(argptr);
- 159                  
- 160                  serialSendData(buffer, strlen(buffer));
- 161          
- 162                  return cnt;
- 163          }
- 164          
- 165          int serialScanf(char* buffer, const char *fmt, ...)
- 166          {
- 167                  va_list argptr;
- 168                  int cnt;
- 169          
- 170                  //char buffer[16];
- 171                  serialReceiveData(strlen(buffer));
- 172          
- 173                  va_start(argptr, fmt);
- 174          
- 175                  cnt = vsscanf(buffer, fmt, argptr);
- 176          
- 177                  va_end(argptr); 
- 178          
-C51 COMPILER V9.01   SERIAL                                                                03/01/2019 01:40:21 PAGE 4   
+C51 COMPILER V9.01   SERIAL                                                                03/01/2019 16:59:35 PAGE 3   
 
- 179                  return cnt;
- 180          }
- 181          */
- 182          
- 183          int serialInitialize(int baud)
- 184          {       
- 185   1              serialInitSendBuffer();
- 186   1              serialInitReceiveBuffer();
- 187   1                      
- 188   1              ///////////////////////////////
- 189   1              SCON=0X50;                      //设置为工作方式1
- 190   1              TMOD=0X20;                      //设置计数器工作方式2
- 191   1              PCON=0X80;                      //波特率加倍
- 192   1              TH1=0XFA;                               //计数器初始值设置，注意波特率是4800的
- 193   1              TL1=0XFA;
- 194   1              ES=1;                                           //打开接收中断
- 195   1              EA=1;                                           //打开总中断
- 196   1              TR1=1;                                  //打开计数器
- 197   1              
- 198   1              return -1;
- 199   1      }
-*** WARNING C280 IN LINE 183 OF SERIAL.C: 'baud': unreferenced local variable
+ 118          {
+ 119   1              unsigned int i = 0;
+ 120   1              
+ 121   1              while(!rxDone || RI);
+ 122   1              
+ 123   1              while(i<RXBUF_SIZE)
+ 124   1              {
+ 125   2                      rxBuffer[i++] = 0;
+ 126   2              }       
+ 127   1              rxIdx = 0;
+ 128   1              byteToRX = size;
+ 129   1              rxDone = 0;
+ 130   1      }
+ 131          
+ 132          char serialIsReceiveDataDone()
+ 133          {
+ 134   1              while(RI);
+ 135   1      
+ 136   1              return rxDone;
+ 137   1      }
+ 138          
+ 139          char* serialReceiveData(unsigned int size, int timeout)
+ 140          {
+ 141   1              int time = 0;
+ 142   1              
+ 143   1              serialReceiveDataAsync(size);
+ 144   1      
+ 145   1              while(!serialIsReceiveDataDone() && (timeout==-1 || time++<timeout));
+ 146   1              
+ 147   1              return rxBuffer;
+ 148   1      }
+ 149          
+ 150          /*
+ 151          int serialPrintf(char* buffer, const char *fmt, ...)
+ 152          {
+ 153                  //char buffer[16];
+ 154          
+ 155                  va_list argptr;
+ 156                  int cnt;
+ 157                  va_start(argptr, fmt);
+ 158          
+ 159                  cnt = vsprintf(buffer, fmt, argptr);
+ 160          
+ 161                  va_end(argptr);
+ 162                  
+ 163                  serialSendData(buffer, strlen(buffer));
+ 164          
+ 165                  return cnt;
+ 166          }
+ 167          
+ 168          int serialScanf(char* buffer, const char *fmt, ...)
+ 169          {
+ 170                  va_list argptr;
+ 171                  int cnt;
+ 172          
+ 173                  //char buffer[16];
+ 174                  serialReceiveData(strlen(buffer));
+ 175          
+ 176                  va_start(argptr, fmt);
+ 177          
+ 178                  cnt = vsscanf(buffer, fmt, argptr);
+ 179          
+C51 COMPILER V9.01   SERIAL                                                                03/01/2019 16:59:35 PAGE 4   
+
+ 180                  va_end(argptr); 
+ 181          
+ 182                  return cnt;
+ 183          }
+ 184          */
+ 185          
+ 186          int serialInitialize(int baud)
+ 187          {       
+ 188   1              serialInitSendBuffer();
+ 189   1              serialInitReceiveBuffer();
+ 190   1                      
+ 191   1              ///////////////////////////////
+ 192   1              SCON=0X50;                      //设置为工作方式1
+ 193   1              TMOD=0X20;                      //设置计数器工作方式2
+ 194   1              PCON=0X80;                      //波特率加倍
+ 195   1              TH1=0XFA;                               //计数器初始值设置，注意波特率是4800的
+ 196   1              TL1=0XFA;
+ 197   1              ES=1;                                           //打开接收中断
+ 198   1              EA=1;                                           //打开总中断
+ 199   1              TR1=1;                                  //打开计数器
+ 200   1              
+ 201   1              return -1;
+ 202   1      }
+*** WARNING C280 IN LINE 186 OF SERIAL.C: 'baud': unreferenced local variable
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    436    ----
+   CODE SIZE        =    534    ----
    CONSTANT SIZE    =   ----    ----
-   XDATA SIZE       =   ----    ----
-   PDATA SIZE       =    150      18
+   XDATA SIZE       =    150      20
+   PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
