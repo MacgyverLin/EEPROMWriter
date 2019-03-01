@@ -1,5 +1,9 @@
 ﻿  main.cpp
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(155): warning C4101: 'dwEventMask': unreferenced local variable
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(208): warning C4018: '<': signed/unsigned mismatch
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(245): warning C4326: return type of 'main' should be 'int' instead of 'void'
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(57): warning C4101: 'status': unreferenced local variable
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(184): warning C4101: 'crc': unreferenced local variable
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(180): warning C4101: 'error': unreferenced local variable
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(183): warning C4101: 'i': unreferenced local variable
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(234): warning C4326: return type of 'main' should be 'int' instead of 'void'
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(341): warning C4305: '=': truncation from 'int' to 'char'
+e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(341): warning C4309: '=': truncation of constant value
   EEPROMWriter.vcxproj -> E:\Project\EEPROMWriter\EEPROMWriter\Debug\EEPROMWriter.exe

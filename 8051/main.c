@@ -217,14 +217,22 @@ code char temp[] = {
 	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
 					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
 	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+	
+					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
+	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
+	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+
+					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
+	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
+					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
+	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,	
 					};
 
 void main()
 {
-	State state = INITIAL;
-	char* rxBuffer = 0;
+	#if 0
 	char test = 0;
-	
 	programPage(0, temp, 128);
 	test = verifyPage(0, temp, 128);
 	while(1)
@@ -239,8 +247,10 @@ void main()
 			EEPROM_CE      = 0;
 		}
 	};
+	#else
+	State state = INITIAL;
+	char* rxBuffer = 0;
 
-	#if 0
 	while(1)
 	{
 		switch(state)
@@ -259,7 +269,7 @@ void main()
 				rxBuffer = serialReceiveData(1, 500); // wait for command C
 
 				//CONNECTED_LED = ~CONNECTED_LED;
-				if(*rxBuffer == 'C')
+				if(*rxBuffer == 'C') 
 				{
 					serialSendData("c", 1, 500); // ack
 					
@@ -335,11 +345,11 @@ void main()
 					displayState(5);
 					*/
 					
-					sprintf(rxBuffer, "a:%lx", address);
-					serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
+					//sprintf(rxBuffer, "a:%lx", address);
+					//serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
 					
-					sprintf(rxBuffer, "s:%lx", size);
-					serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
+					//sprintf(rxBuffer, "s:%lx", size);
+					//serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
 					
 					//PROGRAM_LED     = 1;
 					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
@@ -398,11 +408,11 @@ void main()
 					displayState(5);
 					*/
 					
-					sprintf(rxBuffer, "a:%lx", address);
-					serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
+					//sprintf(rxBuffer, "a:%lx", address);
+					//serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
 					
-					sprintf(rxBuffer, "s:%lx", size);
-					serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
+					//sprintf(rxBuffer, "s:%lx", size);
+					//serialSendData(rxBuffer, strlen(rxBuffer), 500);	 // ack				
 					
 					//PROGRAM_LED     = 1;
 					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
@@ -449,4 +459,4 @@ void main()
 	}
 	
 	#endif
-}
+} 
