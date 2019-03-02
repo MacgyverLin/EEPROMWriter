@@ -26,13 +26,6 @@ void displayState(int state)
 	VERIFY_LED = (state & 0x04) ? 0 : 1;
 }
 
-void delay()
-{
-	unsigned int i = 0;
-
-	while(i++<10000);
-}
-
 ////////////////////////////////////////////////////////////////////
 #define EEPROM_ADDRESS_L P0
 #define EEPROM_ADDRESS_H P1
@@ -80,44 +73,55 @@ void initEEPROWriter()
 	SET_OE();
 	SET_CE();
 	
-	delayMS(10);
+	delayMS(100);
 }
 
 void beginWriteByte()
 {
 	setAddress(0xffff);
 	setData(0xff);
+
 	SET_WR();
+	delay1us();
 	SET_OE();
-	SET_CE();
+	delay1us();
+	CLR_CE();
+	delay1us();
 }
 
 void writeByte(unsigned int address, unsigned char dat)
 {
 	setAddress(address);
 	setData(dat);
-	delay1us();
 
-	CLR_CE();
-	delay1us();
+	//CLR_CE();
+	//delay1us();
 	CLR_WR();
 	delay1us();
 
-	SET_CE();
-	delay1us();
+	//SET_CE();
+	//delay1us();
 	SET_WR();
 	delay1us();
+}
+ 
+void endWriteByte()
+{
+	SET_CE();
+	delayMS(100);
 }
 
 void beginReadByte()
 {
 	setAddress(0xffff);
 	setData(0xff);
-	delay1us();
 
-	SET_CE();
 	SET_WR();
+	delay1us();
 	SET_OE();
+	delay1us();
+	CLR_CE();
+	delay1us();
 }
 
 unsigned char readByte(unsigned int address)
@@ -125,32 +129,32 @@ unsigned char readByte(unsigned int address)
 	unsigned char dat;
 
 	setAddress(address);
-	delay1us();
+	setData(0xff);
 
-	CLR_CE();
-	delay1us();
+	//CLR_CE();
 	CLR_OE();
 	delay1us();
 
 	dat = getData();
-	delay1us();
 
-	SET_CE();
-	delay1us();
+	//SET_CE();
 	SET_OE();
 	delay1us();
 
 	return dat;
 }
 
-void endWriteByte()
-{
-	delayMS(1000);
-}
-
 void endReadByte()
 {
-	delayMS(1000);
+	SET_CE();
+	delayMS(100);
+}
+
+void enableDataProtection()
+{
+	writeByte(0x5555, 0xaa);
+	writeByte(0x2aaa, 0x55);
+	writeByte(0x5555, 0xa0);
 }
 
 void disableDataProtection()
@@ -172,15 +176,14 @@ void programPage(unsigned int startAddress, unsigned char* dat, unsigned int siz
 
 	beginWriteByte();
 	disableDataProtection();
+	//endWriteByte();
 
-	beginWriteByte();
+	//beginWriteByte();
 	for(i=0; i<size; i++)
 	{
 		writeByte(startAddress+i, dat[i]);
 	}
-	endWriteByte();
-	
-	delayMS(100);	
+	endWriteByte();	
 }
 
 char verifyPage(unsigned int startAddress, unsigned char* dat, unsigned int size)
@@ -194,6 +197,8 @@ char verifyPage(unsigned int startAddress, unsigned char* dat, unsigned int size
 	for(i=0; i<size; i++)
 	{
 		d = readByte(startAddress+i);
+		//serialSendData(&d, 1, 500); // ack
+			
 		if(d!=dat[i])
 			return 0;
 	}
@@ -207,34 +212,21 @@ unsigned long int convertToBigEndian32(unsigned long int v)
 	return ((v>>24) & 0x000000ff) | ((v>>8) & 0x0000ff00) | ((v<<8) & 0x00ff0000) | ((v<<24) & 0xff00000);
 }
 
-code char temp[] = {
+code unsigned char temp[] = {
 					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
 	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
 					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
 	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-
-					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
-	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
-	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-	
-					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
-	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
-	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-
-					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
-	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
-	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,	
 					};
 
 void main()
 {
 	#if 0
 	char test = 0;
-	programPage(0, temp, 128);
-	test = verifyPage(0, temp, 128);
+	serialInitialize(9600);
+
+	programPage(0, temp, 32);
+	test = verifyPage(0, temp, 32);
 	while(1)
 	{
 		if(!test)
@@ -271,7 +263,7 @@ void main()
 				//CONNECTED_LED = ~CONNECTED_LED;
 				if(*rxBuffer == 'C') 
 				{
-					serialSendData("c", 1, 500); // ack
+					serialSendData("c", 1, -1); // ack
 					
 					state = CONNECTED;	 // connected
 				}
@@ -325,13 +317,15 @@ void main()
 				{
 					serialSendData("d", 1, -1);	 // ack	failed
 						
-					state = FAILED; // unknown command, again
+					state = DONE; // unknown command, again
 				}				
-				else if(*rxBuffer == 'P')
+				else if(*rxBuffer == 'A')
 				{
 					address = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1))  );
 					size    = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1+4)));
-					
+
+					serialSendData("a", 1, -1);
+
 					//PROGRAM_LED     = 1;
 					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
 					programPage(address, rxBuffer, size);
@@ -341,7 +335,7 @@ void main()
 					
 						serialSendData("s", 1, -1);	 // ack success
 
-						state = DONE; // unknown command, again
+						state = PROGRAM_EEPROM_PAGE; // unknown command, again
 					}
 					else
 					{
@@ -373,13 +367,15 @@ void main()
 				{
 					serialSendData("d", 1, -1);	 // ack	failed
 						
-					state = FAILED; // unknown command, again
+					state = DONE; // unknown command, again
 				}				
-				else if(*rxBuffer == 'V')
+				else if(*rxBuffer == 'A')
 				{
 					address = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1))  );
 					size    = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1+4)));
 					
+					serialSendData("a", 1, -1);
+
 					//PROGRAM_LED     = 1;
 					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
 					//programPage(address, rxBuffer, size);
@@ -389,7 +385,7 @@ void main()
 					
 						serialSendData("s", 1, -1);	 // ack success
 
-						state = DONE; // unknown command, again
+						state = VERIFY_EEPROM_PAGE; // unknown command, again
 					}
 					else
 					{
@@ -410,15 +406,14 @@ void main()
 			break;
 			
 			case FAILED:
-			{
-				delayMS(250);
-				EEPROM_CE      = ~EEPROM_CE;
+			{	
+				displayState(state);
 			}
 			break;
 			
 			case DONE:
 			{
-				EEPROM_CE      = 0;
+				displayState(state);
 			}
 			break;
 		}

@@ -5,6 +5,7 @@
 void delay1us()
 {
 	_nop_();
+	_nop_();
 }
 
 void delay10us()

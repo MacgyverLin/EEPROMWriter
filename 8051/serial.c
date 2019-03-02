@@ -6,7 +6,7 @@
 // #include <stdarg.h>
 // #include "vsscanf.h"
 
-#define TXBUF_SIZE 16
+#define TXBUF_SIZE 32
 #define RXBUF_SIZE 128
 
 unsigned char rxIdx;
@@ -71,6 +71,8 @@ void serialSendDataAsync(unsigned char* buffer, unsigned int size)
 	
 	while(!txDone || TI);
 	
+	if(size>=TXBUF_SIZE)
+		size=TXBUF_SIZE;
 	while(i<size)
 	{
 		txBuffer[i] = buffer[i];
@@ -119,13 +121,16 @@ void serialReceiveDataAsync(unsigned int size)
 	unsigned int i = 0;
 	
 	while(!rxDone || RI);
-	
+
+	if(size>=RXBUF_SIZE)
+		size=RXBUF_SIZE;	
 	while(i<RXBUF_SIZE)
 	{
 		rxBuffer[i++] = 0;
 	}	
 	rxIdx = 0;
 	byteToRX = size;
+
 	rxDone = 0;
 }
 

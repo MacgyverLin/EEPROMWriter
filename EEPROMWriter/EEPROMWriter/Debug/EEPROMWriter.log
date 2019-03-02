@@ -1,7 +1,7 @@
 ﻿  main.cpp
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(57): warning C4101: 'status': unreferenced local variable
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(184): warning C4101: 'crc': unreferenced local variable
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(180): warning C4101: 'error': unreferenced local variable
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(183): warning C4101: 'i': unreferenced local variable
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(234): warning C4326: return type of 'main' should be 'int' instead of 'void'
-  EEPROMWriter.vcxproj -> E:\Project\EEPROMWriter\EEPROMWriter\Debug\EEPROMWriter.exe
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(58): warning C4101: 'status': unreferenced local variable
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(172): warning C4101: 'crc': unreferenced local variable
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(168): warning C4101: 'error': unreferenced local variable
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(171): warning C4101: 'i': unreferenced local variable
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(232): warning C4326: return type of 'main' should be 'int' instead of 'void'
+  EEPROMWriter.vcxproj -> C:\Project\EEPROMWriter\EEPROMWriter\Debug\EEPROMWriter.exe

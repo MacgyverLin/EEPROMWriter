@@ -23,7 +23,7 @@
     <ProjectGuid>{676F0CE4-0204-4C6C-A6FF-D8AC4023C6C2}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>EEPROMWriter</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
