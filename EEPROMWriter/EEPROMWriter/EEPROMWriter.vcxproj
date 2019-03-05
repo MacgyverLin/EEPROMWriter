@@ -155,6 +155,7 @@
     <ClInclude Include="serial.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="hex2bin.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="serial.cpp" />
   </ItemGroup>

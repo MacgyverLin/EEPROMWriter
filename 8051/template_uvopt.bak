@@ -335,10 +335,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>88</ColumnNumber>
+      <ColumnNumber>11</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>135</TopLine>
-      <CurrentLine>137</CurrentLine>
+      <CurrentLine>150</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\main.c</PathWithFileName>
       <FilenameWithoutPath>main.c</FilenameWithoutPath>
@@ -374,9 +374,9 @@
   </Group>
 
   <AlienFiles>
-    <PathWithFilename>C:\Users\Mac\Desktop\EEPROMWriter\8051\DELAY.H</PathWithFilename>
+    <PathWithFilename>C:\KEIL\C51\INC\INTRINS.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>7</CurrentLine>
+    <CurrentLine>21</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -426,9 +426,9 @@
   </AlienFiles>
 
   <AlienFiles>
-    <PathWithFilename>C:\KEIL\C51\INC\INTRINS.H</PathWithFilename>
+    <PathWithFilename>C:\Project\EEPROMWriter\8051\DELAY.H</PathWithFilename>
     <TopLine>1</TopLine>
-    <CurrentLine>21</CurrentLine>
+    <CurrentLine>7</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
       <length>0</length>
@@ -1796,9 +1796,9 @@
       <Documents>
         <Doc>
           <Name>.\main.c</Name>
-          <ColumnNumber>88</ColumnNumber>
+          <ColumnNumber>11</ColumnNumber>
           <TopLine>135</TopLine>
-          <CurrentLine>137</CurrentLine>
+          <CurrentLine>150</CurrentLine>
         </Doc>
         <Doc>
           <Name>DELAY.H</Name>
