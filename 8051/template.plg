@@ -3,7 +3,1585 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-C:\Project\EEPROMWriter\8051\template.uvproj
-Project File Date:  03/02/2019
+E:\Project\EEPROMWriter\8051\template.uvproj
+Project File Date:  03/04/2019
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+SERIAL.H(24): error C141: syntax error near '0'
+SERIAL.H(24): error C141: syntax error near '0'
+SERIAL.H(25): error C129: missing ';' before '1'
+compiling serial.c...
+SERIAL.H(24): error C141: syntax error near '0'
+SERIAL.H(24): error C141: syntax error near '0'
+SERIAL.H(25): error C129: missing ';' before '1'
+compiling delay.c...
+Target not created
+Build target 'Target 1'
+compiling main.c...
+SERIAL.H(34): error C141: syntax error near 'STOPBITS_ONE5'
+SERIAL.H(36): error C141: syntax error near '}'
+compiling serial.c...
+SERIAL.H(34): error C141: syntax error near 'STOPBITS_ONE5'
+SERIAL.H(36): error C141: syntax error near '}'
+SERIAL.C(197): error C141: syntax error near '{'
+SERIAL.C(198): error C231: 'serialInitSendBuffer': redefinition
+SERIAL.C(199): error C231: 'serialInitReceiveBuffer': redefinition
+SERIAL.C(202): error C231: 'SCON': redefinition
+SERIAL.C(202): error C231: 'SCON': redefinition
+SERIAL.C(203): error C231: 'TMOD': redefinition
+SERIAL.C(203): error C231: 'TMOD': redefinition
+SERIAL.C(204): error C231: 'PCON': redefinition
+SERIAL.C(204): error C231: 'PCON': redefinition
+SERIAL.C(205): error C231: 'TH1': redefinition
+SERIAL.C(205): error C231: 'TH1': redefinition
+SERIAL.C(206): error C231: 'TL1': redefinition
+SERIAL.C(206): error C231: 'TL1': redefinition
+SERIAL.C(207): error C231: 'ES': redefinition
+SERIAL.C(207): error C231: 'ES': redefinition
+SERIAL.C(208): error C231: 'EA': redefinition
+SERIAL.C(208): error C231: 'EA': redefinition
+SERIAL.C(209): error C231: 'TR1': redefinition
+SERIAL.C(209): error C231: 'TR1': redefinition
+SERIAL.C(211): error C141: syntax error near 'return'
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+compiling serial.c...
+SERIAL.C(197): error C141: syntax error near '{'
+SERIAL.C(198): error C231: 'serialInitSendBuffer': redefinition
+SERIAL.C(199): error C231: 'serialInitReceiveBuffer': redefinition
+SERIAL.C(202): error C231: 'SCON': redefinition
+SERIAL.C(202): error C231: 'SCON': redefinition
+SERIAL.C(203): error C231: 'TMOD': redefinition
+SERIAL.C(203): error C231: 'TMOD': redefinition
+SERIAL.C(204): error C231: 'PCON': redefinition
+SERIAL.C(204): error C231: 'PCON': redefinition
+SERIAL.C(205): error C231: 'TH1': redefinition
+SERIAL.C(205): error C231: 'TH1': redefinition
+SERIAL.C(206): error C231: 'TL1': redefinition
+SERIAL.C(206): error C231: 'TL1': redefinition
+SERIAL.C(207): error C231: 'ES': redefinition
+SERIAL.C(207): error C231: 'ES': redefinition
+SERIAL.C(208): error C231: 'EA': redefinition
+SERIAL.C(208): error C231: 'EA': redefinition
+SERIAL.C(209): error C231: 'TR1': redefinition
+SERIAL.C(209): error C231: 'TR1': redefinition
+SERIAL.C(211): error C141: syntax error near 'return'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(196): warning C280: 'baud': unreferenced local variable
+SERIAL.C(196): warning C280: 'bits': unreferenced local variable
+SERIAL.C(196): warning C280: 'parity': unreferenced local variable
+SERIAL.C(196): warning C280: 'stopbits': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=9.0 xdata=192 code=1909
+creating hex file from "template"...
+"template" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(109): error C236: '_serialSendData': different length of parameter lists
+SERIAL.C(158): error C236: '_serialReceiveData': different length of parameter lists
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+MAIN.C(261): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(266): error C208: '_serialSendData': too many actual parameters
+MAIN.C(282): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(285): error C208: '_serialSendData': too many actual parameters
+MAIN.C(291): error C208: '_serialSendData': too many actual parameters
+MAIN.C(297): error C208: '_serialSendData': too many actual parameters
+MAIN.C(315): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(318): error C208: '_serialSendData': too many actual parameters
+MAIN.C(327): error C208: '_serialSendData': too many actual parameters
+MAIN.C(330): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(336): error C208: '_serialSendData': too many actual parameters
+MAIN.C(344): error C208: '_serialSendData': too many actual parameters
+MAIN.C(351): error C208: '_serialSendData': too many actual parameters
+MAIN.C(365): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(368): error C208: '_serialSendData': too many actual parameters
+MAIN.C(377): error C208: '_serialSendData': too many actual parameters
+MAIN.C(380): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(386): error C208: '_serialSendData': too many actual parameters
+MAIN.C(394): error C208: '_serialSendData': too many actual parameters
+MAIN.C(401): error C208: '_serialSendData': too many actual parameters
+compiling serial.c...
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+MAIN.C(315): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(318): error C208: '_serialSendData': too many actual parameters
+MAIN.C(327): error C208: '_serialSendData': too many actual parameters
+MAIN.C(330): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(336): error C208: '_serialSendData': too many actual parameters
+MAIN.C(344): error C208: '_serialSendData': too many actual parameters
+MAIN.C(351): error C208: '_serialSendData': too many actual parameters
+MAIN.C(365): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(368): error C208: '_serialSendData': too many actual parameters
+MAIN.C(377): error C208: '_serialSendData': too many actual parameters
+MAIN.C(380): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(386): error C208: '_serialSendData': too many actual parameters
+MAIN.C(394): error C208: '_serialSendData': too many actual parameters
+MAIN.C(401): error C208: '_serialSendData': too many actual parameters
+compiling serial.c...
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+MAIN.C(318): error C208: '_serialSendData': too many actual parameters
+MAIN.C(327): error C208: '_serialSendData': too many actual parameters
+MAIN.C(330): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(336): error C208: '_serialSendData': too many actual parameters
+MAIN.C(344): error C208: '_serialSendData': too many actual parameters
+MAIN.C(351): error C208: '_serialSendData': too many actual parameters
+MAIN.C(365): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(368): error C208: '_serialSendData': too many actual parameters
+MAIN.C(377): error C208: '_serialSendData': too many actual parameters
+MAIN.C(380): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(386): error C208: '_serialSendData': too many actual parameters
+MAIN.C(394): error C208: '_serialSendData': too many actual parameters
+MAIN.C(401): error C208: '_serialSendData': too many actual parameters
+compiling serial.c...
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+MAIN.C(365): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(368): error C208: '_serialSendData': too many actual parameters
+MAIN.C(377): error C208: '_serialSendData': too many actual parameters
+MAIN.C(380): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(386): error C208: '_serialSendData': too many actual parameters
+MAIN.C(394): error C208: '_serialSendData': too many actual parameters
+MAIN.C(401): error C208: '_serialSendData': too many actual parameters
+compiling serial.c...
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+MAIN.C(368): error C208: '_serialSendData': too many actual parameters
+MAIN.C(377): error C208: '_serialSendData': too many actual parameters
+MAIN.C(380): error C208: '_serialReceiveData': too many actual parameters
+MAIN.C(386): error C208: '_serialSendData': too many actual parameters
+MAIN.C(394): error C208: '_serialSendData': too many actual parameters
+MAIN.C(401): error C208: '_serialSendData': too many actual parameters
+compiling serial.c...
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+MAIN.C(386): error C208: '_serialSendData': too many actual parameters
+MAIN.C(394): error C208: '_serialSendData': too many actual parameters
+MAIN.C(401): error C208: '_serialSendData': too many actual parameters
+compiling serial.c...
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+MAIN.C(401): error C208: '_serialSendData': too many actual parameters
+compiling serial.c...
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+compiling serial.c...
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(216): warning C280: 'baud': unreferenced local variable
+SERIAL.C(216): warning C280: 'bits': unreferenced local variable
+SERIAL.C(216): warning C280: 'parity': unreferenced local variable
+SERIAL.C(216): warning C280: 'stopbits': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  000CH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0012H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0036H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+    OFFSET:  0023H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALRECEIVEDATA?SERIAL
+    OFFSET:  001FH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  delay.obj (DELAY)
+    SEGMENT: ?PR?DELAY1MS?DELAY
+    OFFSET:  0003H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  delay.obj (DELAY)
+    SEGMENT: ?PR?DELAY1MS?DELAY
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  delay.obj (DELAY)
+    SEGMENT: ?PR?_DELAYMS?DELAY
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  delay.obj (DELAY)
+    SEGMENT: ?PR?_DELAYMS?DELAY
+    OFFSET:  001CH
+Program Size: data=9.0 xdata=214 code=2093
+Target not created
+Clean started: Project: 'template'
+   deleting intermediate output files for target 'Target 1'
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C259: 'parameter 1': different enumeration types
+MAIN.C(253): warning C209: '_serialInitialize': too few actual parameters
+compiling serial.c...
+SERIAL.C(216): warning C280: 'baud': unreferenced local variable
+SERIAL.C(216): warning C280: 'bits': unreferenced local variable
+SERIAL.C(216): warning C280: 'parity': unreferenced local variable
+SERIAL.C(216): warning C280: 'stopbits': unreferenced local variable
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  000CH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0012H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0036H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+    OFFSET:  0023H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALRECEIVEDATA?SERIAL
+    OFFSET:  001FH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  delay.obj (DELAY)
+    SEGMENT: ?PR?DELAY1MS?DELAY
+    OFFSET:  0003H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  delay.obj (DELAY)
+    SEGMENT: ?PR?DELAY1MS?DELAY
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  delay.obj (DELAY)
+    SEGMENT: ?PR?_DELAYMS?DELAY
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  delay.obj (DELAY)
+    SEGMENT: ?PR?_DELAYMS?DELAY
+    OFFSET:  001CH
+Program Size: data=9.0 xdata=214 code=2093
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  000CH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0012H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0009H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0036H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+    OFFSET:  0023H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALRECEIVEDATA?SERIAL
+    OFFSET:  001FH
+Program Size: data=9.0 xdata=214 code=2101
+Target not created
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  000CH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0012H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0009H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0036H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALSENDDATA?SERIAL
+    OFFSET:  0023H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALRECEIVEDATA?SERIAL
+    OFFSET:  001FH
+Program Size: data=9.0 xdata=214 code=2101
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  000CH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDWRITEBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0012H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_PROGRAMPAGE?MAIN
+    OFFSET:  0033H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0036H
+Program Size: data=9.0 xdata=214 code=2061
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=9.0 xdata=214 code=2200
+creating hex file from "template"...
+"template" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  000CH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDWRITEBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0012H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_PROGRAMPAGE?MAIN
+    OFFSET:  0033H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0036H
+Program Size: data=9.0 xdata=214 code=2061
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=9.0 xdata=214 code=2029
+creating hex file from "template"...
+"template" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=9.0 xdata=214 code=2029
+creating hex file from "template"...
+"template" - 0 Error(s), 4 Warning(s).
+Clean started: Project: 'template'
+   deleting intermediate output files for target 'Target 1'
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(173): warning C280: 'd': unreferenced local variable
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=9.0 xdata=214 code=2029
+creating hex file from "template"...
+"template" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(229): error C202: 'BAUD_9600': undefined identifier
+compiling serial.c...
+SERIAL.C(216): warning C280: 'baud': unreferenced local variable
+SERIAL.C(216): warning C280: 'bits': unreferenced local variable
+SERIAL.C(216): warning C280: 'parity': unreferenced local variable
+SERIAL.C(216): warning C280: 'stopbits': unreferenced local variable
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINWRITEBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_WRITEBYTE?MAIN
+    OFFSET:  000CH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  0006H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?BEGINREADBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0004H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0008H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  000AH
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_READBYTE?MAIN
+    OFFSET:  0012H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0000H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?ENDREADBYTE?MAIN
+    OFFSET:  0002H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  main.obj (MAIN)
+    SEGMENT: ?PR?_VERIFYPAGE?MAIN
+    OFFSET:  0036H
+*** ERROR L121: IMPROPER FIXUP
+    MODULE:  serial.obj (SERIAL)
+    SEGMENT: ?PR?_SERIALRECEIVEDATA?SERIAL
+    OFFSET:  001FH
+Program Size: data=9.0 xdata=214 code=2073
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+compiling serial.c...
+SERIAL.C(216): warning C280: 'baud': unreferenced local variable
+SERIAL.C(216): warning C280: 'bits': unreferenced local variable
+SERIAL.C(216): warning C280: 'parity': unreferenced local variable
+SERIAL.C(216): warning C280: 'stopbits': unreferenced local variable
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=9.0 xdata=214 code=2213
+creating hex file from "template"...
+"template" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(230): warning C206: 'serialTerminate': missing function-prototype
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+SERIAL.C(169): warning C291: not every exit path returns a value
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2271
+creating hex file from "template"...
+"template" - 0 Error(s), 13 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2271
+creating hex file from "template"...
+"template" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2271
+creating hex file from "template"...
+"template" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2271
+creating hex file from "template"...
+"template" - 0 Error(s), 6 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+SERIAL.C(234): error C249: 'PDATA': SEGMENT TOO LARGE
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(230): warning C206: 'serialTerminate': missing function-prototype
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+SERIAL.C(169): warning C291: not every exit path returns a value
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0058H
+Program Size: data=9.0 xdata=310 code=2451
+creating hex file from "template"...
+"template" - 0 Error(s), 13 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(230): warning C206: 'serialTerminate': missing function-prototype
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+SERIAL.C(169): warning C291: not every exit path returns a value
+compiling delay.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2271
+creating hex file from "template"...
+"template" - 0 Error(s), 13 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(230): warning C206: 'serialTerminate': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2271
+creating hex file from "template"...
+"template" - 0 Error(s), 8 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C206: 'serialTerminate': missing function-prototype
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TESTWRITE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2272
+creating hex file from "template"...
+"template" - 0 Error(s), 9 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TESTWRITE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2272
+creating hex file from "template"...
+"template" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(110): error C202: 'timeout': undefined identifier
+SERIAL.C(114): error C202: 'timeout': undefined identifier
+SERIAL.C(161): error C202: 'timeout': undefined identifier
+SERIAL.C(163): error C202: 'timeout': undefined identifier
+SERIAL.C(164): error C202: 'timeout': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(218): warning C280: 'baud': unreferenced local variable
+SERIAL.C(218): warning C280: 'bits': unreferenced local variable
+SERIAL.C(218): warning C280: 'parity': unreferenced local variable
+SERIAL.C(218): warning C280: 'stopbits': unreferenced local variable
+SERIAL.C(169): warning C291: not every exit path returns a value
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TESTWRITE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=214 code=2272
+creating hex file from "template"...
+"template" - 0 Error(s), 12 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): error C202: 'timeout': undefined identifier
+SERIAL.C(32): error C202: 'timeout': undefined identifier
+SERIAL.C(33): error C202: 'timeout': undefined identifier
+SERIAL.C(111): error C202: 'timeout': undefined identifier
+SERIAL.C(115): error C202: 'timeout': undefined identifier
+SERIAL.C(162): error C202: 'timeout': undefined identifier
+SERIAL.C(164): error C202: 'timeout': undefined identifier
+SERIAL.C(165): error C202: 'timeout': undefined identifier
+SERIAL.C(209): error C202: 'readInterval': undefined identifier
+SERIAL.C(218): error C202: 'OSC_FREQ': undefined identifier
+SERIAL.C(219): error C202: 'OSC_FREQ': undefined identifier
+SERIAL.C(238): error C141: syntax error near 'int'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(103): error C202: 'timeout': undefined identifier
+SERIAL.C(107): error C202: 'timeout': undefined identifier
+SERIAL.C(154): error C202: 'timeout': undefined identifier
+SERIAL.C(156): error C202: 'timeout': undefined identifier
+SERIAL.C(157): error C202: 'timeout': undefined identifier
+SERIAL.C(201): error C202: 'readInterval': undefined identifier
+SERIAL.C(210): error C202: 'OSC_FREQ': undefined identifier
+SERIAL.C(211): error C202: 'OSC_FREQ': undefined identifier
+SERIAL.C(230): error C141: syntax error near 'int'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(103): warning C206: 'setTimeout': missing function-prototype
+SERIAL.C(103): error C267: 'setTimeout': requires ANSI-style prototype
+SERIAL.C(154): error C202: 'timeout': undefined identifier
+SERIAL.C(156): error C202: 'timeout': undefined identifier
+SERIAL.C(157): error C202: 'timeout': undefined identifier
+SERIAL.C(201): error C202: 'readInterval': undefined identifier
+SERIAL.C(209): error C231: 'setTimeout': redefinition
+SERIAL.C(210): error C202: 'OSC_FREQ': undefined identifier
+SERIAL.C(211): error C202: 'OSC_FREQ': undefined identifier
+SERIAL.C(213): error C231: 'setTimeout': redefinition
+SERIAL.C(230): error C141: syntax error near 'int'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): error C202: 'OSC_FREQ': undefined identifier
+SERIAL.C(31): error C202: 'OSC_FREQ': undefined identifier
+SERIAL.C(161): error C202: 'timeout': undefined identifier
+SERIAL.C(163): error C202: 'timeout': undefined identifier
+SERIAL.C(164): error C202: 'timeout': undefined identifier
+SERIAL.C(208): error C202: 'readInterval': undefined identifier
+SERIAL.C(230): error C141: syntax error near 'int'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(163): error C202: 'timeout': undefined identifier
+SERIAL.C(165): error C202: 'timeout': undefined identifier
+SERIAL.C(166): error C202: 'timeout': undefined identifier
+SERIAL.C(210): error C202: 'readInterval': undefined identifier
+SERIAL.C(232): error C141: syntax error near 'int'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(163): error C202: 'timeout': undefined identifier
+SERIAL.C(165): error C202: 'timeout': undefined identifier
+SERIAL.C(166): error C202: 'timeout': undefined identifier
+SERIAL.C(210): error C202: 'readInterval': undefined identifier
+SERIAL.C(232): error C141: syntax error near 'int'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(211): error C202: 'readInterval': undefined identifier
+SERIAL.C(233): error C141: syntax error near 'int'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(211): error C202: 'readInterval': undefined identifier
+SERIAL.C(233): error C141: syntax error near 'int'
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(211): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C206: 'serialTerminate': missing function-prototype
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(213): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C206: 'serialTerminate': missing function-prototype
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(84): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(101): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(213): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(174): warning C280: 'd': unreferenced local variable
+MAIN.C(253): warning C206: 'serialTerminate': missing function-prototype
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(84): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(101): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(213): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(252): warning C206: 'serialTerminate': missing function-prototype
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(84): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(101): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(213): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(84): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(101): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(213): error C202: 'readInterval': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(84): error C231: '_serialSendDataAsync': redefinition
+SERIAL.C(101): error C231: '_serialSendDataAsync': redefinition
+Target not created
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(30): warning C280: 'ms': unreferenced local variable
+SERIAL.C(220): warning C280: 'baud': unreferenced local variable
+SERIAL.C(220): warning C280: 'bits': unreferenced local variable
+SERIAL.C(220): warning C280: 'parity': unreferenced local variable
+SERIAL.C(220): warning C280: 'stopbits': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TESTWRITE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=210 code=2236
+creating hex file from "template"...
+"template" - 0 Error(s), 12 Warning(s).
+Build target 'Target 1'
+compiling serial.c...
+SERIAL.C(220): warning C280: 'baud': unreferenced local variable
+SERIAL.C(220): warning C280: 'bits': unreferenced local variable
+SERIAL.C(220): warning C280: 'parity': unreferenced local variable
+SERIAL.C(220): warning C280: 'stopbits': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TESTWRITE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=210 code=2301
+creating hex file from "template"...
+"template" - 0 Error(s), 11 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TESTWRITE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=210 code=2301
+creating hex file from "template"...
+"template" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TESTWRITE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=210 code=2301
+creating hex file from "template"...
+"template" - 0 Error(s), 7 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TESTWRITE?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIALSETTIMEOUT?SERIAL
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  SERIALTERMINATE
+    MODULE:  main.obj (MAIN)
+    ADDRESS: 0056H
+Program Size: data=9.0 xdata=210 code=2301
+creating hex file from "template"...
+"template" - 0 Error(s), 7 Warning(s).

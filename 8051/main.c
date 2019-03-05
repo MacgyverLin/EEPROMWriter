@@ -12,15 +12,16 @@ typedef enum
 	PROGRAM_EEPROM_PAGE,
 	VERIFY_EEPROM_PAGE,
 	FAILED,
-	DONE
+	DONE,
+	TIMEOUT
 }State;
 
-sbit CONNECTED_LED   = P3^2;
-sbit PROGRAM_LED     = P3^3;
-sbit VERIFY_LED      = P3^4;
+sbit CONNECTED_LED = P3 ^ 2;
+sbit PROGRAM_LED = P3 ^ 3;
+sbit VERIFY_LED = P3 ^ 4;
 
 void displayState(int state)
-{					
+{
 	CONNECTED_LED = (state & 0x01) ? 0 : 1;
 	PROGRAM_LED = (state & 0x02) ? 0 : 1;
 	VERIFY_LED = (state & 0x04) ? 0 : 1;
@@ -31,9 +32,9 @@ void displayState(int state)
 #define EEPROM_ADDRESS_H P1
 #define EEPROM_DATA P2
 
-sbit EEPROM_WR     = P3^7;
-sbit EEPROM_OE     = P3^6;
-sbit EEPROM_CE     = P3^5;
+sbit EEPROM_WR = P3 ^ 7;
+sbit EEPROM_OE = P3 ^ 6;
+sbit EEPROM_CE = P3 ^ 5;
 
 #define SET_WR() 					EEPROM_WR = 1
 #define SET_OE() 					EEPROM_OE = 1
@@ -72,7 +73,7 @@ void initEEPROWriter()
 	SET_WR();
 	SET_OE();
 	SET_CE();
-	
+
 	delayMS(100);
 }
 
@@ -104,7 +105,7 @@ void writeByte(unsigned int address, unsigned char dat)
 	SET_WR();
 	delay1us();
 }
- 
+
 void endWriteByte()
 {
 	SET_CE();
@@ -170,7 +171,6 @@ void disableDataProtection()
 void programPage(unsigned int startAddress, unsigned char* dat, unsigned int size)
 {
 	int i;
-	unsigned char d;
 	unsigned char failed = 0;
 	unsigned char t = 0;
 
@@ -179,11 +179,11 @@ void programPage(unsigned int startAddress, unsigned char* dat, unsigned int siz
 	//endWriteByte();
 
 	//beginWriteByte();
-	for(i=0; i<size; i++)
+	for (i = 0; i < size; i++)
 	{
-		writeByte(startAddress+i, dat[i]);
+		writeByte(startAddress + i, dat[i]);
 	}
-	endWriteByte();	
+	endWriteByte();
 }
 
 char verifyPage(unsigned int startAddress, unsigned char* dat, unsigned int size)
@@ -194,230 +194,262 @@ char verifyPage(unsigned int startAddress, unsigned char* dat, unsigned int size
 	unsigned char t = 0;
 
 	beginReadByte();
-	for(i=0; i<size; i++)
+	for (i = 0; i < size; i++)
 	{
-		d = readByte(startAddress+i);
+		d = readByte(startAddress + i);
 		//serialSendData(&d, 1, 500); // ack
-			
-		if(d!=dat[i])
+
+		if (d != dat[i])
 			return 0;
 	}
 	endReadByte();
-	
+
 	return -1;
 }
 
 unsigned long int convertToBigEndian32(unsigned long int v)
 {
-	return ((v>>24) & 0x000000ff) | ((v>>8) & 0x0000ff00) | ((v<<8) & 0x00ff0000) | ((v<<24) & 0xff00000);
+	return ((v >> 24) & 0x000000ff) | ((v >> 8) & 0x0000ff00) | ((v << 8) & 0x00ff0000) | ((v << 24) & 0xff00000);
 }
 
-code unsigned char temp[] = {
-					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
-	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-					0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 
-	                0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F,
-					};
-
-void main()
+void testWrite()
 {
-	#if 0
+#if 0
 	char test = 0;
 	serialInitialize(9600);
 
 	programPage(0, temp, 32);
 	test = verifyPage(0, temp, 32);
-	while(1)
+	while (1)
 	{
-		if(!test)
+		if (!test)
 		{
 			delayMS(250);
-			EEPROM_CE      = ~EEPROM_CE;
+			EEPROM_CE = ~EEPROM_CE;
 		}
 		else
 		{
-			EEPROM_CE      = 0;
+			EEPROM_CE = 0;
 		}
 	};
-	#else
+#endif
+}
+	
+
+void main()
+{
 	State state = INITIAL;
 	char* rxBuffer = 0;
 
-	while(1)
+	while (1)
 	{
-		switch(state)
+		switch (state)
 		{
-			case INITIAL:
+		case INITIAL:
+		{
+			displayState(state);
+
+			serialTerminate();
+			if (serialInitialize(SB_9600, 8, SP_NONE, SS_ONE))
 			{
-				displayState(state);				
-				serialInitialize(9600);
 				state = CONNECTING;
 			}
-			break;
+		}
+		break;
 
-			case CONNECTING:
+		case CONNECTING:
+		{
+			displayState(state);
+			rxBuffer = serialReceiveData(1); // wait for command C
+			if (!rxBuffer)
 			{
-				displayState(state);				
-				rxBuffer = serialReceiveData(1, -1); // wait for command C
-
-				//CONNECTED_LED = ~CONNECTED_LED;
-				if(*rxBuffer == 'C') 
+				state = INITIAL;	 		// try next baud rate
+			}
+			else
+			{
+				if (*rxBuffer == 'C')
 				{
-					serialSendData("c", 1, -1); // ack
-					
+					serialSendData("c", 1); // ack
+
 					state = CONNECTED;	 // connected
 				}
 				else
 				{
-					state = INITIAL; 	// set next baud
-				}				
+					state = INITIAL; // try next baud rate
+				}
 			}
-			break;
-				
-			case CONNECTED:
+		}
+		break;
+
+		case CONNECTED:
+		{
+			displayState(state);
+			// CONNECTED_LED = 1;		
+
+			rxBuffer = serialReceiveData(1); // wait for command P or V
+			if (!rxBuffer)
 			{
-				displayState(state);				
-				// CONNECTED_LED = 1;		
-			
-				rxBuffer = serialReceiveData(1, -1); // wait for command P or V
-				if(*rxBuffer == 'P')
+				state = CONNECTED;	 		// try again
+			}
+			else
+			{
+				if (*rxBuffer == 'P')
 				{
-					serialSendData("p", 1, 500);	 // ack
-					
+					serialSendData("p", 1);	 // ack
+
 					state = PROGRAM_EEPROM_PAGE;	 // program
 				}
-				else if(*rxBuffer == 'V')
+				else if (*rxBuffer == 'V')
 				{
-					serialSendData("v", 1, 500); 	 // ack
-					
+					serialSendData("v", 1); 	 // ack
+
 					state = VERIFY_EEPROM_PAGE;	 // verify
-				}	
-				else if(*rxBuffer == 'D')
+				}
+				else if (*rxBuffer == 'D')
 				{
-					serialSendData('d', 1, 500); 	 // ack
-					
+					serialSendData('d', 1); 	 // ack
+
 					state = DONE;	 // verify
-				}					
+				}
 				else
 				{
 					state = CONNECTED; // unknown command, again
 				}
 			}
-			break;
-				
-			case PROGRAM_EEPROM_PAGE:
-			{
-				unsigned long int address;
-				unsigned long int size;
-				
-				displayState(state);
-				
-				rxBuffer = serialReceiveData(1+4+4, -1); // wait for command P or V
-				if(*rxBuffer == 'D')
-				{
-					serialSendData("d", 1, -1);	 // ack	failed
-						
-					state = DONE; // unknown command, again
-				}				
-				else if(*rxBuffer == 'A')
-				{
-					address = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1))  );
-					size    = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1+4)));
+		}
+		break;
 
-					serialSendData("a", 1, -1);
+		case PROGRAM_EEPROM_PAGE:
+		{
+			unsigned long int address;
+			unsigned long int size;
+
+			displayState(state);
+
+			rxBuffer = serialReceiveData(1 + 4 + 4); // wait for command P or V
+			if (!rxBuffer)
+			{
+				state = TIMEOUT;	 		// try again
+			}
+			else
+			{
+				if (*rxBuffer == 'D')
+				{
+					serialSendData("d", 1);	 // ack	failed
+
+					state = DONE; // unknown command, again
+				}
+				else if (*rxBuffer == 'A')
+				{
+					address = convertToBigEndian32(*((unsigned long int*)(rxBuffer + 1)));
+					size = convertToBigEndian32(*((unsigned long int*)(rxBuffer + 1 + 4)));
+
+					serialSendData("a", 1);
 
 					//PROGRAM_LED     = 1;
-					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
+					rxBuffer = serialReceiveData(size); // wait for command P or V					
 					programPage(address, rxBuffer, size);
-					if(verifyPage(address, rxBuffer, size))
+					if (verifyPage(address, rxBuffer, size))
 					{
 						//PROGRAM_LED     = 0;
-					
-						serialSendData("s", 1, -1);	 // ack success
+
+						serialSendData("s", 1);	 // ack success
 
 						state = PROGRAM_EEPROM_PAGE; // unknown command, again
 					}
 					else
 					{
 						//PROGRAM_LED     = 0;
-					
-						serialSendData("f", 1, -1);	 // ack	failed
-						
+
+						serialSendData("f", 1);	 // ack	failed
+
 						state = FAILED; // unknown command, again
 					}
 				}
 				else
 				{
-					serialSendData("f", 1, -1);	 // ack	failed
-						
+					serialSendData("f", 1);	 // ack	failed
+
 					state = FAILED; // unknown command, again
 				}
 			}
-			break;
-			
-			case VERIFY_EEPROM_PAGE:
+		}
+		break;
+
+		case VERIFY_EEPROM_PAGE:
+		{
+			unsigned long int address;
+			unsigned long int size;
+
+			displayState(state);
+
+			rxBuffer = serialReceiveData(1 + 4 + 4); // wait for command P or V
+			if (!rxBuffer)
 			{
-				unsigned long int address;
-				unsigned long int size;
-				
-				displayState(state);
-				
-				rxBuffer = serialReceiveData(1+4+4, -1); // wait for command P or V
-				if(*rxBuffer == 'D')
+				state = TIMEOUT;	 		// try again
+			}
+			else
+			{
+				if (*rxBuffer == 'D')
 				{
-					serialSendData("d", 1, -1);	 // ack	failed
-						
+					serialSendData("d", 1);	 // ack	failed
+
 					state = DONE; // unknown command, again
-				}				
-				else if(*rxBuffer == 'A')
+				}
+				else if (*rxBuffer == 'A')
 				{
-					address = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1))  );
-					size    = convertToBigEndian32(*((unsigned long int*)(rxBuffer+1+4)));
-					
-					serialSendData("a", 1, -1);
+					address = convertToBigEndian32(*((unsigned long int*)(rxBuffer + 1)));
+					size = convertToBigEndian32(*((unsigned long int*)(rxBuffer + 1 + 4)));
+
+					serialSendData("a", 1);
 
 					//PROGRAM_LED     = 1;
-					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
+					rxBuffer = serialReceiveData(size); // wait for command P or V					
 					//programPage(address, rxBuffer, size);
-					if(verifyPage(address, rxBuffer, size))
+					if (verifyPage(address, rxBuffer, size))
 					{
 						//PROGRAM_LED     = 0;
-					
-						serialSendData("s", 1, -1);	 // ack success
+
+						serialSendData("s", 1);	 // ack success
 
 						state = VERIFY_EEPROM_PAGE; // unknown command, again
 					}
 					else
 					{
 						//PROGRAM_LED     = 0;
-					
-						serialSendData("f", 1, -1);	 // ack	failed
-						
+
+						serialSendData("f", 1);	 // ack	failed
+
 						state = FAILED; // unknown command, again
 					}
 				}
 				else
 				{
-					serialSendData("f", 1, -1);	 // ack	failed
-						
+					serialSendData("f", 1);	 // ack	failed
+
 					state = FAILED; // unknown command, again
 				}
 			}
-			break;
-			
-			case FAILED:
-			{	
-				displayState(state);
-			}
-			break;
-			
-			case DONE:
-			{
-				displayState(state);
-			}
-			break;
+		}
+		break;
+
+		case FAILED:
+		{
+			displayState(state);
+		}
+		break;
+
+		case DONE:
+		{
+			displayState(state);
+		}
+		break;
+
+		case TIMEOUT:
+		{
+			displayState(state);
+		}
+		break;
 		}
 	}
-	
-	#endif
-} 
+}
