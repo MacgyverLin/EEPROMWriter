@@ -1,21 +1,67 @@
-/*
-    hex2bin converts an Intel hex file to binary.
-    Copyright (C) 1998,1999  Jacques Pelletier
-
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation; either version 2 of the License, or
-    any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*/
+0000::012345678
+0001::012345678
+0002::012345678
+0003::012345678
+0004::012345678
+0005::012345678
+0006::012345678
+0007::012345678
+0008::012345678
+0009::012345678
+000A::012345678
+000B::012345678
+000C::012345678
+000D::012345678
+000E::012345678
+000F::012345678
+0010::012345678
+0011::012345678
+0012::012345678
+0013::012345678
+0014::012345678
+0015::012345678
+0016::012345678
+0017::012345678
+0018::012345678
+0019::012345678
+001A::012345678
+001B::012345678
+001C::012345678
+001D::012345678
+001E::012345678
+001F::012345678
+0020::012345678
+0021::012345678
+0022::012345678
+0023::012345678
+0024::012345678
+0025::012345678
+0026::012345678
+0027::012345678
+0028::012345678
+0029::012345678
+002A::012345678
+002B::012345678
+002C::012345678
+002D::012345678
+002E::012345678
+002F::012345678
+0030::012345678
+0031::012345678
+0032::012345678
+0033::012345678
+0034::012345678
+0035::012345678
+0036::012345678
+0037::012345678
+0038::012345678
+0039::012345678
+003A::012345678
+003B::012345678
+003C::012345678
+003D::012345678
+003E::012345678
+003F::012345678
 
 #include <stdio.h>
 #include <stdlib.h>
