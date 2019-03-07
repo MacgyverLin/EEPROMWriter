@@ -1,0 +1,366 @@
+/**************************************************************************************
+*		              EEPROM-IIC实验												  *
+实现现象：下载程序后数码管后4位显示0，按K1保存显示的数据，按K2读取上次保存的数据，
+		  按K3显示数据加一，按K4显示数据清零。最大能写入的数据是255.
+注意事项：由于P3.2口跟红外线共用，所以做按键实验时为了不让红外线影响实验效果，最好把红外线先取下来。																				  
+***************************************************************************************/
+#include "reg52.h"			 //此文件中定义了单片机的一些特殊功能寄存器	
+#include <intrins.h>
+#include "MusicDump.h"
+
+typedef unsigned int u16;	  //对数据类型进行声明定义
+typedef unsigned char u8;
+
+sbit SCL=P0^0;
+sbit SDA=P0^1;
+sbit YM_CLK_CS=P0^2;	// try P0^2; try YM_CS //
+sbit SN_CLK_CS=P0^3;	// try P0^3; try SN_WR //
+
+sbit YM_CS=P3^2;
+sbit YM_WR=P3^3;
+sbit YM_RD=P3^4;
+sbit YM_A0=P3^5;
+sbit YM_A1=P3^6;
+sbit YM_IC=P3^7;
+#define YM_DATA P1
+
+sbit SN_WR=P0^2;
+#define SN_DATA P2 // try YM_DATA
+
+void delay10us()
+{
+	u8 a,b;
+	for(b=1;b>0;b--)
+		for(a=2;a>0;a--);
+}
+
+void longDelay()
+{
+	u16 i;
+	for(i = 0; i<30; i++)
+		delay10us();
+}
+
+// OCT[3-0] DAC[0-9] 0 0
+//1011 1111 0110 0000	   4.096
+//BF60
+void LTC6904Write(u16 dat)
+{
+	u8 a=0,b=0;//最大255，一个机器周期为1us，最大延时255us。		
+	for(a=0;a<16;a++)//要发送8位，从最高位开始
+	{
+		SDA=dat>>15;	 //起始信号之后SCL=0，所以可以直接改变SDA信号
+		dat=dat<<1;
+		delay10us();
+		
+		SCL=0;
+		delay10us();//建立时间>4.7us
+		SCL=1;
+		delay10us();//时间大于4us		
+	}		
+}
+
+void initYM2612Clock()
+{
+	//////////////////////////////
+	YM_CLK_CS = 0;
+	delay10us();
+	LTC6904Write(0xBF60);
+	delay10us();
+	
+	YM_CLK_CS = 1;
+	delay10us();
+}
+
+void initSN76489Clock()
+{
+	//////////////////////////////
+	SN_CLK_CS = 0;
+	delay10us();
+	LTC6904Write(0xBCF8);
+	delay10us();
+	
+	SN_CLK_CS = 1;
+	delay10us();
+}
+
+void init()
+{
+	longDelay();
+	
+	YM_CLK_CS = 1;
+	SN_CLK_CS = 1;
+	SDA=1;
+	SCL=1;
+
+   /*
+	YM_CS = 1;
+	YM_WR = 1;
+	YM_RD = 1;
+	YM_A0 = 1;
+	YM_A1 = 1;
+	YM_IC = 1;
+	YM_DATA = 0x00;
+	delay10us();
+	YM_IC = 0;
+	delay10us();
+
+	SN_WR = 1;
+	SN_DATA = 0x00;
+	delay10us();
+*/
+}
+
+void writeYM2612(u8 port, u8 addr, u8 value)
+{
+	YM_CS = 0;
+	delay10us();
+
+	/////////////////////
+	if(port==0)
+	{
+		YM_A0 = 0;
+		YM_A1 = 0;
+	}
+	else
+	{
+		YM_A0 = 0;
+		YM_A1 = 1;
+	}
+	delay10us();
+
+	YM_WR = 0;
+	delay10us();
+
+	YM_DATA = addr;
+	delay10us();
+
+	YM_WR = 1;
+	delay10us();
+
+	//////////////////////
+	if(port==0)
+	{
+		YM_A0 = 1;
+		YM_A1 = 0;
+	}
+	else
+	{
+		YM_A0 = 1;
+		YM_A1 = 1;
+	}
+	delay10us();
+
+	YM_WR = 0;
+	delay10us();
+
+	YM_DATA = value;
+	delay10us();
+
+	YM_WR = 1;
+	delay10us();
+
+	///////////////////////
+	YM_CS = 1;
+	delay10us();
+}
+
+void writeSN76489(u8 value)
+{
+	SN_WR = 0;
+	delay10us();
+
+	SN_DATA = value;
+	delay10us();
+
+	SN_WR = 1;
+	delay10us();
+}
+
+#define wait1Sample() \
+{ \
+_nop_(); _nop_(); _nop_(); _nop_(); _nop_(); \
+_nop_(); _nop_(); _nop_(); _nop_(); _nop_(); \
+_nop_(); _nop_(); _nop_(); _nop_(); _nop_(); \
+}
+
+void wait16Sample()
+{
+	u8 count = 15;
+	while(count--)
+	{
+		wait1Sample();
+	};
+	
+	_nop_(); _nop_(); _nop_(); _nop_(); _nop_();
+}
+
+void wait256Sample()
+{
+	u8 count = 252;
+	while(count--)
+	{
+		wait1Sample();
+	};
+}
+
+void waitNNSample(u8 nn)
+{
+	if(nn<=2)
+	{
+		nn = 0;
+	}
+	else if(nn<=100)
+		nn -= 3;
+	else
+		nn -= 4;
+	while(nn--)
+	{
+		wait1Sample();
+	};	
+}
+
+void waitNNNNSample(u8 ll, u8 hh)
+{
+	while(hh--)
+	{
+		wait256Sample();
+	};
+
+	if(ll<=2)
+		ll = 0;
+	else if(ll<=100)
+		ll -= 3;
+	else
+		ll -= 4;
+	while(ll--)
+	{
+		wait1Sample();
+	};	
+}
+
+void playVGMDump(const unsigned char *musicData)
+{
+	const unsigned char *ptr = musicData;
+	u8 done = 0;
+
+	while(!done)
+	{
+		switch(*ptr++)	// command
+		{
+			case 0x00:
+				done = 1;
+			break;
+	
+			case 0x01:
+				writeYM2612(0, *ptr++, *ptr++); // aa dd
+			break;
+	
+			case 0x02:
+				writeYM2612(1, *ptr++, *ptr++); //aa dd
+			break;
+	
+			case 0x03:
+				writeSN76489(*ptr++); // dd
+			break;
+	
+			case 0x04:
+				waitNNSample(*ptr++); // nn
+			break;
+	
+			case 0x05:
+				waitNNNNSample(*ptr++, *ptr++);	// ll hh
+			break;
+		};
+	};
+}
+
+void test()
+{
+#if 0
+	writeYM2612(0, 0x0f, 0x00); // aa dd
+#endif
+
+#if 0
+	writeYM2612(1, 0xfa, 0x05); //aa dd
+#endif
+
+#if 0
+	writeSN76489(0x05); // dd
+#endif
+
+#if 0
+	YM_IC = 0;
+	wait256Sample(); // nn
+	YM_IC = 1;
+#endif
+
+#if 0
+	YM_IC = 0;
+	waitNNSample(100); // nn
+	YM_IC = 1;
+#endif
+
+#if 0
+	YM_IC = 0;
+	waitNNSample(1); // nn
+	YM_IC = 1;
+#endif
+
+#if 0
+	YM_IC = 0;
+	waitNNNNSample(0, 100);	// ll hh
+	YM_IC = 1;
+#endif
+
+#if 0
+	YM_IC = 0;
+	waitNNNNSample(255, 0);	// ll hh
+	YM_IC = 1;
+#endif
+
+#if 0
+	YM_IC = 0;
+	waitNNNNSample(9, 1);	// ll hh
+	YM_IC = 1;
+#endif
+
+#if 0
+	YM_IC = 0;
+	waitNNNNSample(0, 255);	// ll hh
+	YM_IC = 1;
+#endif
+}
+
+void main()
+{
+	init();
+
+	//while(1)
+	//{
+	//	test();
+	//}
+	initYM2612Clock();
+
+	initSN76489Clock();
+
+
+//	playVGMDump(&musicDump[0]);
+
+	while(1);
+}
+
+/*
+    OCT * 
+f=2       2078 / (2-DAC/1024)
+
+
+4.096*1000*1000 / 2048 = 2078 / (2-DAC/1024)
+
+(2- (2078 * 2048 / (3.579545*1000*1000)))*1024 = DAC 
+
+
+1011 1100 1111 1000
+c
+1011  xxxxxxxxxx 00
+*/

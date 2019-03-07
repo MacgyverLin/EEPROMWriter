@@ -1,0 +1,5 @@
+"main.obj",
+"serial.obj",
+"delay.obj" 
+TO "template" 
+RAMSIZE(256) 
