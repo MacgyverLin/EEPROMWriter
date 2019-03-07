@@ -3,7 +3,20 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Project:</h2>
-E:\Project\EEPROMWriter\8051\template.uvproj
-Project File Date:  03/05/2019
+C:\Users\mac.lian\Desktop\8051\8051\template.uvproj
+Project File Date:  03/06/2019
 
 <h2>Output:</h2>
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?INITEEPROWRITER?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ENABLEDATAPROTECTION?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TEST?MAIN
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAYUS?DELAY
+Program Size: data=9.0 xdata=169 code=2560
+creating hex file from "template"...
+"template" - 0 Error(s), 4 Warning(s).

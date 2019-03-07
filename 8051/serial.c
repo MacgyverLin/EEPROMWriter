@@ -6,33 +6,16 @@
 // #include <stdarg.h>
 // #include "vsscanf.h"
 
-#define TXBUF_SIZE 32
-#define RXBUF_SIZE 128
+#define BUF_SIZE 128
+unsigned char buffer[BUF_SIZE];
 
 unsigned char rxIdx;
-unsigned char rxBuffer[RXBUF_SIZE];
 unsigned char byteToRX;
 char rxDone;
 
 unsigned char txIdx;
-unsigned char txBuffer[TXBUF_SIZE];
 unsigned char byteToTX;
 char txDone;
-
-int readInterval = 1000;
-int readTotalTimeoutConstant = 1000;
-int readTotalTimeoutMultiplier = 50;
-int writeTotalTimeoutConstant = 1000;
-int writeTotalTimeoutMultiplier = 50;
-
-
-#define OSC_FREQ        12000000UL
-void setTimeout(int ms)
-{
-	TH0 = (65536-ms*(OSC_FREQ/12000000)) >> 8;
-	TL0 = (65536-ms*(OSC_FREQ/12000000)) & 0x00FF;
-	TR0 = 1;
-}
 
 void serialISR(void) interrupt 4  
 {
@@ -40,7 +23,7 @@ void serialISR(void) interrupt 4
 	{
 		if(!rxDone)
 		{
-			rxBuffer[rxIdx++] = SBUF;
+			buffer[rxIdx++] = SBUF;
 			if(rxIdx>=byteToRX)
 			{
 				rxDone = -1;
@@ -53,7 +36,7 @@ void serialISR(void) interrupt 4
 	{
 		if(!txDone)
 		{
-			SBUF = txBuffer[txIdx++];
+			SBUF = buffer[txIdx++];
 			if(txIdx>=byteToTX)
 			{
 				txDone = -1;
@@ -70,9 +53,9 @@ void serialInitSendBuffer()
 	
 	while(TI);
 
-	while(i<TXBUF_SIZE)
+	while(i<BUF_SIZE)
 	{
-		txBuffer[i] = 0;
+		buffer[i] = 0;
 		i++;
 	}
 	txIdx = 0;
@@ -80,17 +63,17 @@ void serialInitSendBuffer()
 	txDone = -1;
 }
 
-void serialSendDataAsync(char* buffer, unsigned int size)
+void serialSendDataAsync(unsigned char* dat, unsigned int size)
 {
 	unsigned int i = 0;
 	
 	while(!txDone || TI);
 	
-	if(size>=TXBUF_SIZE)
-		size=TXBUF_SIZE;
+	if(size>=BUF_SIZE)
+		size=BUF_SIZE;
 	while(i<size)
 	{
-		txBuffer[i] = buffer[i];
+		buffer[i] = dat[i];
 		i++;
 	}
 	txIdx = 0;
@@ -107,15 +90,13 @@ char serialIsSendDataDone()
 	return txDone;
 }
 
-char serialSendData(unsigned char* buffer, unsigned int size)
+void serialSendData(unsigned char* dat, unsigned int size, int timeout)
 {
-	setTimeout(writeTotalTimeoutConstant + writeTotalTimeoutMultiplier * size);
+	int time = 0;
 	
-	serialSendDataAsync(buffer, size);
+	serialSendDataAsync(dat, size);
 
-	while(!serialIsSendDataDone() && (!TF0));
-	
-	return (!TF0);
+	while(!serialIsSendDataDone() && (timeout==-1 || time++<timeout));
 }
  
 void serialInitReceiveBuffer()
@@ -124,9 +105,9 @@ void serialInitReceiveBuffer()
 	
 	while(RI);
 	
-	while(i<RXBUF_SIZE)
+	while(i<BUF_SIZE)
 	{
-		rxBuffer[i++] = 0;
+		buffer[i++] = 0;
 	}
 	rxIdx = 0;
 	byteToRX = 0;
@@ -139,11 +120,11 @@ void serialReceiveDataAsync(unsigned int size)
 	
 	while(!rxDone || RI);
 
-	if(size>=RXBUF_SIZE)
-		size=RXBUF_SIZE;	
-	while(i<RXBUF_SIZE)
+	if(size>=BUF_SIZE)
+		size=BUF_SIZE;	
+	while(i<BUF_SIZE)
 	{
-		rxBuffer[i++] = 0;
+		buffer[i++] = 0;
 	}	
 	rxIdx = 0;
 	byteToRX = size;
@@ -158,16 +139,15 @@ char serialIsReceiveDataDone()
 	return rxDone;
 }
 
-char* serialReceiveData(unsigned int size)
+char* serialReceiveData(unsigned int size, int timeout)
 {
-	serialReceiveDataAsync(size);
+	int time = 0;
 	
-	setTimeout(readTotalTimeoutConstant + readTotalTimeoutMultiplier * size);
-	while(!serialIsReceiveDataDone() && (!TF0) );
-	if(!TF0)
-		return rxBuffer;
-	else
-		return 0;
+	serialReceiveDataAsync(size);
+
+	while(!serialIsReceiveDataDone() && (timeout==-1 || time++<timeout));
+	
+	return buffer;
 }
 
 /*
@@ -206,31 +186,20 @@ int serialScanf(char* buffer, const char *fmt, ...)
 }
 */
 
-void serialSetTimeout(unsigned int readInterval_, 
-					  unsigned int readTotalTimeoutConstant_, unsigned int readTotalTimeoutMultiplier_, 
-					  unsigned int writeTotalTimeoutConstant_, unsigned int writeTotalTimeoutMultiplier_)
-{	
-	readInterval = readInterval_;
-	readTotalTimeoutConstant = readTotalTimeoutConstant_;
-	readTotalTimeoutMultiplier = readTotalTimeoutMultiplier_;
-	writeTotalTimeoutConstant = writeTotalTimeoutConstant_;
-	writeTotalTimeoutMultiplier = writeTotalTimeoutMultiplier_;
-}
-
-int serialInitialize(Baud baud, int bits, Parity parity, Stopbits stopbits)
+int serialInitialize(int baud)
 {	
 	serialInitSendBuffer();
 	serialInitReceiveBuffer();
 		
 	///////////////////////////////
 	SCON=0X50;			//设置为工作方式1
-	TMOD=0X20 | 0x01;	//设置计数器工作方式2
+	TMOD=0X20;			//设置计数器工作方式2
 	PCON=0X80;			//波特率加倍
-	TH1=0XFA;			//计数器初始值设置，注意波特率是4800的
+	TH1=0XFA;				//计数器初始值设置，注意波特率是4800的
 	TL1=0XFA;
-	ES=1;				//打开接收中断
-	EA=1;				//打开总中断
-	TR1=1;				//打开计数器
-
+	ES=1;						//打开接收中断
+	EA=1;						//打开总中断
+	TR1=1;					//打开计数器
+	
 	return -1;
 }
