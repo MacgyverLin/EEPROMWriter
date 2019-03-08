@@ -13,7 +13,8 @@ typedef enum
 	VERIFY_EEPROM_PAGE,
 	READ_EEPROM_PAGE,
 	FAILED,
-	DONE
+	DONE, 
+	TIMEOUT
 }State;
 
 sbit CONNECTED_LED   = P3^2;
@@ -104,7 +105,7 @@ void writeByte(unsigned int address, unsigned char dat)
 void endWriteByte()
 {
 	SET_CE();
-	delayMS(100);
+	delayMS(300);
 }
 
 void beginReadByte()
@@ -140,7 +141,7 @@ unsigned char readByte(unsigned int address)
 void endReadByte()
 {
 	SET_CE();
-	delayMS(100);
+	delayMS(300);
 }
 
 void enableDataProtection()
@@ -166,6 +167,7 @@ void programPage(unsigned int startAddress, unsigned char* dat, unsigned int siz
 
 	beginWriteByte();
 	disableDataProtection();
+	delayMS(20);
 	//endWriteByte();
 
 	//beginWriteByte();
@@ -258,20 +260,27 @@ void main()
 			case INITIAL:
 			{
 				displayState(state);				
-				serialInitialize(9600);
-				state = CONNECTING;
+				if(serialInitialize(9600))
+				{
+					state = CONNECTING;
+				}
+				else
+				{
+					delayMS(500);
+					state = INITIAL;
+				}
 			}
 			break;
 
 			case CONNECTING:
 			{
 				displayState(state);				
-				rxBuffer = serialReceiveData(1, -1); // wait for command C
+				rxBuffer = serialReceiveData(1); // wait for command C
 
 				//CONNECTED_LED = ~CONNECTED_LED;
 				if(*rxBuffer == 'C') 
 				{
-					serialSendData("c", 1, -1); // ack
+					serialSendData("c", 1); // ack
 					
 					state = CONNECTED;	 // connected
 				}
@@ -287,30 +296,24 @@ void main()
 				displayState(state);				
 				// CONNECTED_LED = 1;		
 			
-				rxBuffer = serialReceiveData(1, -1); // wait for command P or V
+				rxBuffer = serialReceiveData(1); // wait for command P or V
 				if(*rxBuffer == 'P')
 				{
-					serialSendData("p", 1, 500);	 // ack
+					serialSendData("p", 1);	 // ack
 					
 					state = PROGRAM_EEPROM_PAGE;	 // program
 				}
 				else if(*rxBuffer == 'V')
 				{
-					serialSendData("v", 1, 500); 	 // ack
+					serialSendData("v", 1); 	 // ack
 					
 					state = VERIFY_EEPROM_PAGE;	 // verify
 				}	
 				else if(*rxBuffer == 'R')
 				{
-					serialSendData("r", 1, 500); 	 // ack
+					serialSendData("r", 1); 	 // ack
 					
 					state = READ_EEPROM_PAGE;	 // verify
-				}					
-				else if(*rxBuffer == 'D')
-				{
-					serialSendData('d', 1, 500); 	 // ack
-					
-					state = DONE;	 // verify
 				}					
 				else
 				{
@@ -326,10 +329,10 @@ void main()
 				
 				displayState(state);
 				
-				rxBuffer = serialReceiveData(1+2+2, -1); // wait for command P or V
+				rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
 				if(*rxBuffer == 'D')
 				{
-					serialSendData("d", 1, -1);	 // ack	failed
+					serialSendData("d", 1);	 // ack	failed
 						
 					state = DONE; // unknown command, again
 				}				
@@ -338,20 +341,16 @@ void main()
 					address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
 					size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
 
-					serialSendData("a", 1, -1);
-					// serialSendData(&address, 2, -1);
-					// serialSendData(&size, 2, -1);
+					serialSendData("a", 1);
 					
 					//PROGRAM_LED     = 1;
-					rxBuffer = serialReceiveData(size, -1); // wait for command P or V	
+					rxBuffer = serialReceiveData(size); // wait for command P or V	
 					programPage(address, rxBuffer, size);
-					// serialSendData(rxBuffer, size, -1);	 // ack	failed					
 					if(verifyPage(address, rxBuffer, size))
 					{
-		
 						//PROGRAM_LED     = 0;
 					
-						serialSendData("s", 1, -1);	 // ack success
+						serialSendData("s", 1);	 // ack success
 
 						state = PROGRAM_EEPROM_PAGE; // unknown command, again
 					}
@@ -359,14 +358,14 @@ void main()
 					{
 						//PROGRAM_LED     = 0;
 					
-						serialSendData("f", 1, -1);	 // ack	failed
+						serialSendData("f", 1);	 // ack	failed
 						
 						state = FAILED; // unknown command, again
 					}
 				}
 				else
 				{
-					serialSendData("f", 1, -1);	 // ack	failed
+					serialSendData("f", 1);	 // ack	failed
 
 					state = FAILED; // unknown command, again
 				}
@@ -380,10 +379,10 @@ void main()
 				
 				displayState(state);
 				
-				rxBuffer = serialReceiveData(1+2+2, -1); // wait for command P or V
+				rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
 				if(*rxBuffer == 'D')
 				{
-					serialSendData("d", 1, -1);	 // ack	failed
+					serialSendData("d", 1);	 // ack	failed
 						
 					state = DONE; // unknown command, again
 				}				
@@ -392,16 +391,15 @@ void main()
 					address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
 					size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
 					
-					serialSendData("a", 1, -1);
+					serialSendData("a", 1);
 
 					//PROGRAM_LED     = 1;
-					rxBuffer = serialReceiveData(size, -1); // wait for command P or V					
-					//programPage(address, rxBuffer, size);
+					rxBuffer = serialReceiveData(size); // wait for command P or V					
 					if(verifyPage(address, rxBuffer, size))
 					{
 						//PROGRAM_LED     = 0;
 					
-						serialSendData("s", 1, -1);	 // ack success
+						serialSendData("s", 1);	 // ack success
 
 						state = VERIFY_EEPROM_PAGE; // unknown command, again
 					}
@@ -409,14 +407,14 @@ void main()
 					{
 						//PROGRAM_LED     = 0;
 					
-						serialSendData("f", 1, -1);	 // ack	failed
+						serialSendData("f", 1);	 // ack	failed
 						
 						state = FAILED; // unknown command, again
 					}
 				}
 				else
 				{
-					serialSendData("f", 1, -1);	 // ack	failed
+					serialSendData("f", 1);	 // ack	failed
 						
 					state = FAILED; // unknown command, again
 				}
@@ -430,10 +428,10 @@ void main()
 				
 				displayState(state);
 				
-				rxBuffer = serialReceiveData(1+2+2, -1); // wait for command P or V
+				rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
 				if(*rxBuffer == 'D')
 				{
-					serialSendData("d", 1, -1);	 // ack	failed
+					serialSendData("d", 1);	 // ack	failed
 						
 					state = DONE; // unknown command, again
 				}				
@@ -442,15 +440,15 @@ void main()
 					address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
 					size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
 					
-					serialSendData("a", 1, -1);
+					serialSendData("a", 1);
 
 					readPage(address, rxBuffer, size);
 					
-					serialSendData(rxBuffer, size, -1);
+					serialSendData(rxBuffer, size);
 				}
 				else
 				{
-					serialSendData("f", 1, -1);	 // ack	failed
+					serialSendData("f", 1);	 // ack	failed
 						
 					state = FAILED; // unknown command, again
 				}
@@ -460,14 +458,26 @@ void main()
 			case FAILED:
 			{	
 				displayState(state);
+				
+				state = CONNECTED; 
 			}
 			break;
 			
 			case DONE:
-			{
+			{	
 				displayState(state);
+				
+				state = CONNECTED; 
 			}
 			break;
+			
+			case TIMEOUT:
+			{	
+				displayState(state);
+				
+				state = CONNECTING;
+			}
+			break;			
 		}
 	}
 	

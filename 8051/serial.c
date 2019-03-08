@@ -17,6 +17,41 @@ unsigned char txIdx;
 unsigned char byteToTX;
 char txDone;
 
+int receiveTotalTimeoutConstant = 1000;
+int receiveTotalTimeoutMultiplier = 50;
+int sendTotalTimeoutConstant = 1000;
+int sendTotalTimeoutMultiplier = 50;
+
+#define OSC_FREQ        12000000UL
+
+void setTimer0(unsigned int timeout)
+{
+	TR0 = 0;		// stop timer 0
+	TMOD &= 0xF0;
+	TMOD |= 0x01; // timer 0, mode 1
+	
+	TH0 = (65536-timeout *(OSC_FREQ/12000000)) >> 8;
+	TL0 = (65536-timeout *(OSC_FREQ/12000000)) & 0x00FF;
+
+	TF0 = 0;		// clr overflow	
+	TR0 = 1;
+}
+
+void serialSetReceiveTimeOut(unsigned int size)
+{
+	setTimer0(size * receiveTotalTimeoutMultiplier + receiveTotalTimeoutConstant);
+}
+
+void serialSetSendTimeOut(unsigned int size)
+{
+	setTimer0(size * sendTotalTimeoutMultiplier + sendTotalTimeoutConstant);
+}
+
+char serialIsTimeOut()
+{
+	return TF0;
+}
+
 void serialISR(void) interrupt 4  
 {
 	if(RI)
@@ -81,6 +116,7 @@ void serialSendDataAsync(unsigned char* dat, unsigned int size)
 	txDone = 0;
 
 	TI = 1;
+	serialSetSendTimeOut(size);
 }
 
 char serialIsSendDataDone()
@@ -90,13 +126,13 @@ char serialIsSendDataDone()
 	return txDone;
 }
 
-void serialSendData(unsigned char* dat, unsigned int size, int timeout)
+void serialSendData(unsigned char* dat, unsigned int size)
 {
 	int time = 0;
 	
 	serialSendDataAsync(dat, size);
 
-	while(!serialIsSendDataDone() && (timeout==-1 || time++<timeout));
+	while(!serialIsSendDataDone() /*&& !serialIsTimeOut()*/);
 }
  
 void serialInitReceiveBuffer()
@@ -130,6 +166,8 @@ void serialReceiveDataAsync(unsigned int size)
 	byteToRX = size;
 
 	rxDone = 0;
+	
+	serialSetReceiveTimeOut(size);	
 }
 
 char serialIsReceiveDataDone()
@@ -139,13 +177,13 @@ char serialIsReceiveDataDone()
 	return rxDone;
 }
 
-char* serialReceiveData(unsigned int size, int timeout)
+char* serialReceiveData(unsigned int size)
 {
 	int time = 0;
 	
 	serialReceiveDataAsync(size);
 
-	while(!serialIsReceiveDataDone() && (timeout==-1 || time++<timeout));
+	while(!serialIsReceiveDataDone()/*&& !serialIsTimeOut()*/);
 	
 	return buffer;
 }
@@ -193,7 +231,7 @@ int serialInitialize(int baud)
 		
 	///////////////////////////////
 	SCON=0X50;			//ÉèÖÃÎª¹¤×÷·½Ê½1
-	TMOD=0X20;			//ÉèÖÃ¼ÆÊýÆ÷¹¤×÷·½Ê½2
+	TMOD=0X21;			//É timer 1 mode 2, timer 0 mode1
 	PCON=0X80;			//²¨ÌØÂÊ¼Ó±¶
 	TH1=0XFA;				//¼ÆÊýÆ÷³õÊ¼ÖµÉèÖÃ£¬×¢Òâ²¨ÌØÂÊÊÇ4800µÄ
 	TL1=0XFA;
