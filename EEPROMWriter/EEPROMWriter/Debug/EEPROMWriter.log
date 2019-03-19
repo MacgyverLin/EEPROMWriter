@@ -3,4 +3,10 @@ e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(34): warning C4326: r
 e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(296): warning C4018: '<': signed/unsigned mismatch
 e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(400): warning C4018: '<': signed/unsigned mismatch
 e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(512): warning C4018: '<': signed/unsigned mismatch
+  serial.cpp
+e:\project\eepromwriter\eepromwriter\eepromwriter\serial.cpp(47): warning C4101: 'status': unreferenced local variable
+e:\project\eepromwriter\eepromwriter\eepromwriter\serial.cpp(164): warning C4101: 'crc': unreferenced local variable
+e:\project\eepromwriter\eepromwriter\eepromwriter\serial.cpp(160): warning C4101: 'error': unreferenced local variable
+e:\project\eepromwriter\eepromwriter\eepromwriter\serial.cpp(163): warning C4101: 'i': unreferenced local variable
+  Generating Code...
   EEPROMWriter.vcxproj -> E:\Project\EEPROMWriter\EEPROMWriter\Debug\EEPROMWriter.exe
