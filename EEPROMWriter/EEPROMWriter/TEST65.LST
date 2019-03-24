@@ -1,0 +1,299 @@
+0001   0000             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0002   0000             ; $Id: test65.asm 1.2 1997/11/29 13:07:53 toma Exp $
+0003   0000             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0004   0000             
+0005   0000             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0006   0000             ; TASM  test file
+0007   0000             ; Test all instructions and addressing modes.
+0008   0000             ; Processor: 6502
+0009   0000             ;
+0010   0000             
+0011   0000             
+0012   0000             
+0013   0000             #define FLAG1
+0014   0000             #define TORG    $1234
+0015   0056                     .org    $56
+0016   0056 12          zlabel  .byte   $12
+0017   0057 34 12               .word   $1234
+0018   0059 11 06               .word   $1234/3
+0019   005B 34 12               .word   1234h
+0020   005D 2A 00               .word   %0101010
+0021   005F 2A 00               .word    0101010b
+0022   0061 9C 02               .word   @1234
+0023   0063 9C 02               .word    1234o
+0024   0065 D2 04               .word   1234
+0025   0067 D2 04               .word   1234d
+0026   0069 00 00               .word   0d
+0027   006B 01 00               .word   1d
+0028   006D 02 00               .word   2d
+0029   006F 03 00               .word   3d
+0030   0071 04 00               .word   4d
+0031   0073 0A 00               .word   10d
+0032   0075 14 00               .word   20d
+0033   0077 64 00               .word   100d
+0034   0079 79 00               .word   *
+0035   007B 7B 00               .word   $
+0036   007D 15 00               .word   3 * 7
+0037   007F 0A 00               .word   3 + 7
+0038   0081 FC FF               .word   3 - 7
+0039   0083 03 00               .word   73 % 7
+0040   0085 23 01               .word   $1234 >> 4
+0041   0087 40 23               .word   $1234 << 4
+0042   0089 01 00               .word   1 = 1
+0043   008B 00 00               .word   1 = 0
+0044   008D 01 00               .word   1 >= 1
+0045   008F 00 00               .word   1 >= 2
+0046   0091 01 00               .word   1 >= 0
+0047   0093 01 00               .word   1 <= 1
+0048   0095 01 00               .word   1 <= 2
+0049   0097 00 00               .word   1 <= 0
+0050   0099 00 00               .word   1 <= -1
+0051   009B 34 12               .word   TORG
+0052   009D             
+0053   0234                     .org    $0234
+0054   0234             alabel
+0055   0234 69 56               ADC   #zlabel
+0056   0236 61 56               ADC   (zlabel,X)
+0057   0238 71 56               ADC   (zlabel),Y
+0058   023A 72 56               ADC   (zlabel)
+0059   023C 72 34               ADC   (alabel & $ff)   ; suppress UNUSED DATA error
+0060   023E 75 56               ADC   zlabel,X
+0061   0240 79 56 00            ADC   zlabel,Y
+0062   0243 65 56               ADC   zlabel
+0063   0245 6D 34 02            ADC   alabel
+0064   0248             
+0065   0248 29 56               AND   #zlabel
+0066   024A 21 56               AND   (zlabel,X)
+0067   024C 31 56               AND   (zlabel),Y
+0068   024E 32 56               AND   (zlabel)
+0069   0250 35 56               AND   zlabel,X
+0070   0252 39 56 00            AND   zlabel,Y
+0071   0255 25 56               AND   zlabel
+0072   0257 2D 34 02            AND   alabel
+0073   025A                                                       
+0074   025A 0A                  ASL   A
+0075   025B 16 56               ASL   zlabel,X
+0076   025D 06 56               ASL   zlabel
+0077   025F             loop
+0078   025F 90 FE               BCC   loop
+0079   0261 B0 FC               BCS   loop
+0080   0263 F0 FA               BEQ   loop
+0081   0265 D0 F8               BNE   loop
+0082   0267 30 F6               BMI   loop
+0083   0269 10 F4               BPL   loop
+0084   026B 50 F2               BVC   loop
+0085   026D 70 F0               BVS   loop
+0086   026F             
+0087   026F 89 56               BIT   #zlabel
+0088   0271 34 56               BIT   zlabel,X
+0089   0273 24 56               BIT   zlabel
+0090   0275 2C 34 02            BIT   alabel
+0091   0278             
+0092   0278 00                  BRK   
+0093   0279             
+0094   0279 18                  CLC   
+0095   027A D8                  CLD   
+0096   027B 58                  CLI   
+0097   027C B8                  CLV   
+0098   027D             
+0099   027D C9 56               CMP   #zlabel
+0100   027F C1 56               CMP   (zlabel,X)
+0101   0281 D1 56               CMP   (zlabel),Y
+0102   0283 D2 56               CMP   (zlabel)
+0103   0285 D5 56               CMP   zlabel,X
+0104   0287 D9 56 00            CMP   zlabel,Y
+0105   028A C5 56               CMP   zlabel
+0106   028C CD 34 02            CMP   alabel
+0107   028F             
+0108   028F E0 56               CPX   #zlabel
+0109   0291 E4 56               CPX   zlabel
+0110   0293 EC 34 02            CPX   alabel
+0111   0296             
+0112   0296 C0 56               CPY   #zlabel
+0113   0298 C4 56               CPY   zlabel
+0114   029A CC 34 02            CPY   alabel
+0115   029D                         
+0116   029D 3A                  DEC   A
+0117   029E D6 56               DEC   zlabel,X
+0118   02A0 DE 34 02            DEC   alabel,X
+0119   02A3 C6 56               DEC   zlabel
+0120   02A5 CE 34 02            DEC   alabel
+0121   02A8             
+0122   02A8 CA                  DEX   
+0123   02A9 88                  DEY   
+0124   02AA             
+0125   02AA 49 56               EOR   #zlabel
+0126   02AC 41 56               EOR   (zlabel,X)
+0127   02AE 51 56               EOR   (zlabel),Y
+0128   02B0 52 56               EOR   (zlabel)
+0129   02B2 55 56               EOR   zlabel,X
+0130   02B4 59 56 00            EOR   zlabel,Y
+0131   02B7 45 56               EOR   zlabel
+0132   02B9 4D 34 02            EOR   alabel
+0133   02BC             
+0134   02BC 1A                  INC   A
+0135   02BD F6 56               INC   zlabel,X
+0136   02BF FE 34 02            INC   alabel,X
+0137   02C2 E6 56               INC   zlabel
+0138   02C4 EE 34 02            INC   alabel
+0139   02C7             
+0140   02C7 E8                  INX   
+0141   02C8 C8                  INY   
+0142   02C9                                            
+0143   02C9 7C 56 00            JMP   (zlabel,X)
+0144   02CC 6C 56 00            JMP   (zlabel)
+0145   02CF 4C 56 00            JMP   zlabel
+0146   02D2             
+0147   02D2 20 56 00            JSR   zlabel
+0148   02D5 20 34 02            JSR   alabel
+0149   02D8             
+0150   02D8 A9 56               LDA   #zlabel
+0151   02DA A1 56               LDA   (zlabel,X)
+0152   02DC B1 56               LDA   (zlabel),Y
+0153   02DE B2 56               LDA   (zlabel)
+0154   02E0 B5 56               LDA   zlabel,X
+0155   02E2 B9 56 00            LDA   zlabel,Y
+0156   02E5 A5 56               LDA   zlabel
+0157   02E7 AD 34 02            LDA   alabel
+0158   02EA             
+0159   02EA A2 56               LDX   #zlabel
+0160   02EC B6 56               LDX   zlabel,Y
+0161   02EE A6 56               LDX   zlabel
+0162   02F0 AE 34 02            LDX   alabel
+0163   02F3             
+0164   02F3 A0 56               LDY   #zlabel
+0165   02F5 B4 56               LDY   zlabel,X
+0166   02F7 A4 56               LDY   zlabel
+0167   02F9 AC 34 02            LDY   alabel
+0168   02FC             
+0169   02FC 4A                  LSR   A
+0170   02FD 56 56               LSR   zlabel,X
+0171   02FF 46 56               LSR   zlabel
+0172   0301 4E 34 02            LSR   alabel
+0173   0304             
+0174   0304 EA                  NOP   
+0175   0305             
+0176   0305 09 56               ORA   #zlabel
+0177   0307 01 56               ORA   (zlabel,X)
+0178   0309 11 56               ORA   (zlabel),Y
+0179   030B 12 56               ORA   (zlabel)
+0180   030D 15 56               ORA   zlabel,X
+0181   030F 19 56 00            ORA   zlabel,Y
+0182   0312 05 56               ORA   zlabel
+0183   0314 0D 34 02            ORA   alabel
+0184   0317                                                
+0185   0317 48                  PHA   
+0186   0318 08                  PHP   
+0187   0319 68                  PLA   
+0188   031A 28                  PLP   
+0189   031B             
+0190   031B 2A                  ROL   A
+0191   031C 36 56               ROL   zlabel,X
+0192   031E 26 56               ROL   zlabel
+0193   0320 2E 34 02            ROL   alabel
+0194   0323             
+0195   0323 6A                  ROR   A
+0196   0324 76 56               ROR   zlabel,X
+0197   0326 7E 34 02            ROR   alabel,X
+0198   0329 66 56               ROR   zlabel
+0199   032B 6E 34 02            ROR   alabel
+0200   032E             
+0201   032E 40                  RTI   
+0202   032F 60                  RTS   
+0203   0330             
+0204   0330 E9 56               SBC   #zlabel
+0205   0332 E1 56               SBC   (zlabel,X)
+0206   0334 F1 56               SBC   (zlabel),Y
+0207   0336 F2 56               SBC   (zlabel)
+0208   0338 F5 56               SBC   zlabel,X
+0209   033A F9 56 00            SBC   zlabel,Y
+0210   033D E5 56               SBC   zlabel
+0211   033F ED 34 02            SBC   alabel
+0212   0342                                                  
+0213   0342 38                  SEC   
+0214   0343 F8                  SED   
+0215   0344 78                  SEI   
+0216   0345             
+0217   0345 81 56               STA   (zlabel,X)
+0218   0347 91 56               STA   (zlabel),Y
+0219   0349 92 56               STA   (zlabel)
+0220   034B 95 56               STA   zlabel,X
+0221   034D 99 56 00            STA   zlabel,Y
+0222   0350 85 56               STA   zlabel
+0223   0352 8D 34 02            STA   alabel
+0224   0355             
+0225   0355 96 56               STX   zlabel,Y
+0226   0357 86 56               STX   zlabel
+0227   0359 8E 34 02            STX   alabel
+0228   035C             
+0229   035C 94 56               STY   zlabel,X
+0230   035E 84 56               STY   zlabel
+0231   0360 8C 34 02            STY   alabel
+0232   0363             
+0233   0363 AA                  TAX   
+0234   0364 A8                  TAY   
+0235   0365 BA                  TSX   
+0236   0366 8A                  TXA   
+0237   0367 9A                  TXS   
+0238   0368 98                  TYA   
+0239   0369             
+0240   0369 80 00               BRA   loop2
+0241   036B             loop2
+0242   036B 0F 56 FD            BBR0   zlabel,loop2
+0243   036E 1F 56 FA            BBR1   zlabel,loop2
+0244   0371 2F 56 F7            BBR2   zlabel,loop2
+0245   0374 3F 56 F4            BBR3   zlabel,loop2
+0246   0377 4F 56 F1            BBR4   zlabel,loop2
+0247   037A 5F 56 EE            BBR5   zlabel,loop2
+0248   037D 6F 56 EB            BBR6   zlabel,loop2
+0249   0380 7F 56 E8            BBR7   zlabel,loop2
+0250   0383                     
+0251   0383 8F 56 E5            BBS0   zlabel,loop2
+0252   0386 9F 56 E2            BBS1   zlabel,loop2
+0253   0389 AF 56 DF            BBS2   zlabel,loop2
+0254   038C BF 56 DC            BBS3   zlabel,loop2
+0255   038F CF 56 D9            BBS4   zlabel,loop2
+0256   0392 DF 56 D6            BBS5   zlabel,loop2
+0257   0395 EF 56 D3            BBS6   zlabel,loop2
+0258   0398 FF 56 D0            BBS7   zlabel,loop2
+0259   039B             
+0260   039B 02                  MUL   
+0261   039C             
+0262   039C DA                  PHX   
+0263   039D 5A                  PHY   
+0264   039E FA                  PLX   
+0265   039F 7A                  PLY   
+0266   03A0             
+0267   03A0 07 56               RMB0   zlabel
+0268   03A2 17 56               RMB1   zlabel
+0269   03A4 27 56               RMB2   zlabel
+0270   03A6 37 56               RMB3   zlabel
+0271   03A8 47 56               RMB4   zlabel
+0272   03AA 57 56               RMB5   zlabel
+0273   03AC 67 56               RMB6   zlabel
+0274   03AE 77 56               RMB7   zlabel
+0275   03B0             
+0276   03B0 87 56               SMB0   zlabel
+0277   03B2 97 56               SMB1   zlabel
+0278   03B4 A7 56               SMB2   zlabel
+0279   03B6 B7 56               SMB3   zlabel
+0280   03B8 C7 56               SMB4   zlabel
+0281   03BA D7 56               SMB5   zlabel
+0282   03BC E7 56               SMB6   zlabel
+0283   03BE F7 56               SMB7   zlabel
+0284   03C0             
+0285   03C0              
+0286   03C0 74 56               STZ   zlabel,X
+0287   03C2 64 56               STZ   zlabel
+0288   03C4 9C 34 02            STZ   alabel
+0289   03C7             
+0290   03C7 14 56               TRB   zlabel
+0291   03C9 04 56               TSB   zlabel
+0292   03CB                     .end
+0293   03CB             
+0294   03CB             
+0295   03CB             
+0296   03CB             
+0297   03CB             
+0298   03CB             
+tasm: Number of errors = 0

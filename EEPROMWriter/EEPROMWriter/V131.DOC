@@ -1,0 +1,51 @@
+NEW FEATURES / Fixes
+
+V1.31
+- fixed memory swapping error that occurred occasionally with very
+  large programs
+- fixed I/O output file attached to SBUFL so that it sets TI
+  on each write - NOTE that file must be attached to SBUFL, not SBUF!
+
+V1.30
+- add colour support:
+	use command line switch -c0 for CGA-compatible display
+	                        -c1 for BIOS-compatible display
+
+	eg. AVSIM51 -c0 d
+
+	The utility program SETCOLOR can be used to customize AVSIM colours.
+
+- add COM1/COM2 support for I/O files:
+	by specifying COM1 (or COM2) as the Input File Name for I/O files
+	- for Opcode Access (ie POLLED input), AVSIM will wait for each char -
+	  NOTE that this will 'hang' program execution until a char arrives.
+	- for Cycles Access (ie Interrupt driven), AVSIM will read char if ready,
+	  else continue WITHOUT reading any input.
+
+- add warning messages -'Stack Over/Underflow'
+	since a warning message will trap execution, warnings can be disabled
+	by including '-w' in the command line:
+
+	eg. AVSIM51 -w
+
+- scroll mode / flip key improved:
+	- editing contents no longer advances out of a window - it wraps
+	  to the start, unless the window can be scrolled, in which case
+	  it is. In SCROLL mode, same thing, but beeps when it does it.
+	  This narrows the need for scroll mode to large windows that can
+	  be scrolled (I think). Because overtyping leaves the cursor within
+	  that window, the return (FLIP) key performs more satisfactorily.
+
+- fix: Dump SFR: and B: are (correctly) NOT permitted.
+
+V1.23
+- unrecognized arg in command line handled better
+- fix: MOVC A,@A+PC works for eXecute now
+
+V1.22 additions/fixes
+- fix: IO input file length = 0 doesn't hang AVSIM.
+- fix: IO empty trap - delinks iofile correctly
+- fix: LJMP addr in execute mode doesn't trash Priority IIP.
+- change: Load Menu includes rOm: Load Data to external data space as ROM.
+	Note: to load to Internal Data Space -Load to external & use Memory
+	Move from X: to D:

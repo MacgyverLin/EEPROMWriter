@@ -1,0 +1,304 @@
+0001   0000                                 .include "8051.h"
+0001+  0000             ;*************************************************************
+0002+  0000             ;*  TASM 8051/8052/80154 SFR BIT/BYTE MNEMONIC EQUATES LIST  *
+0003+  0000             ;*************************************************************
+0004+  0000             
+0005+  0000             P0      .equ    080H    ;Port 0
+0006+  0000             SP      .equ    081H    ;Stack pointer
+0007+  0000             DPL     .equ    082H
+0008+  0000             DPH     .equ    083H
+0009+  0000             PCON    .equ    087H
+0010+  0000             TCON    .equ    088H
+0011+  0000             TMOD    .equ    089H
+0012+  0000             TL0     .equ    08AH
+0013+  0000             TL1     .equ    08BH
+0014+  0000             TH0     .equ    08CH
+0015+  0000             TH1     .equ    08DH
+0016+  0000             P1      .equ    090H    ;Port 1
+0017+  0000             SCON    .equ    098H
+0018+  0000             SBUF    .equ    099H
+0019+  0000             P2      .equ    0A0H    ;Port 2
+0020+  0000             IE      .equ    0A8H
+0021+  0000             P3      .equ    0B0H    ;Port 3
+0022+  0000             IP      .equ    0B8H
+0023+  0000             T2CON   .equ    0C8H    ;8052, 80154 only
+0024+  0000             RCAP2L  .equ    0CAH    ;8052, 80154 only
+0025+  0000             RCAP2H  .equ    0CBH    ;8052, 80154 only
+0026+  0000             TL2     .equ    0CCH    ;8052, 80154 only
+0027+  0000             TH2     .equ    0CDH    ;8052, 80154 only
+0028+  0000             PSW     .equ    0D0H
+0029+  0000             ACC     .equ    0E0H    ;Accumulator
+0030+  0000             B       .equ    0F0H    ;Secondary Accumulator
+0031+  0000             IOCON   .equ    0F8H    ;80154 only
+0032+  0000             
+0033+  0000             ;PORT 0 BITS
+0034+  0000             P0.0    .equ    080H    ;Port 0 bit 0
+0035+  0000             P0.1    .equ    081H    ;Port 0 bit 1
+0036+  0000             P0.2    .equ    082H    ;Port 0 bit 2
+0037+  0000             P0.3    .equ    083H    ;Port 0 bit 3
+0038+  0000             P0.4    .equ    084H    ;Port 0 bit 4
+0039+  0000             P0.5    .equ    085H    ;Port 0 bit 5
+0040+  0000             P0.6    .equ    086H    ;Port 0 bit 6
+0041+  0000             P0.7    .equ    087H    ;Port 0 bit 7
+0042+  0000             
+0043+  0000             ;PORT 1 BITS
+0044+  0000             P1.0    .equ    090H    ;Port 1 bit 0
+0045+  0000             P1.1    .equ    091H    ;Port 1 bit 1
+0046+  0000             P1.2    .equ    092H    ;Port 1 bit 2
+0047+  0000             P1.3    .equ    093H    ;Port 1 bit 3
+0048+  0000             P1.4    .equ    094H    ;Port 1 bit 4
+0049+  0000             P1.5    .equ    095H    ;Port 1 bit 5
+0050+  0000             P1.6    .equ    096H    ;Port 1 bit 6
+0051+  0000             P1.7    .equ    097H    ;Port 1 bit 7
+0052+  0000             
+0053+  0000             ;PORT 2 BITS
+0054+  0000             P2.0    .equ    0A0H    ;Port 2 bit 0
+0055+  0000             P2.1    .equ    0A1H    ;Port 2 bit 1
+0056+  0000             P2.2    .equ    0A2H    ;Port 2 bit 2
+0057+  0000             P2.3    .equ    0A3H    ;Port 2 bit 3
+0058+  0000             P2.4    .equ    0A4H    ;Port 2 bit 4
+0059+  0000             P2.5    .equ    0A5H    ;Port 2 bit 5
+0060+  0000             P2.6    .equ    0A6H    ;Port 2 bit 6
+0061+  0000             P2.7    .equ    0A7H    ;Port 2 bit 7
+0062+  0000             
+0063+  0000             ;PORT 3 BITS
+0064+  0000             P3.0    .equ    0B0H    ;Port 3 bit 0
+0065+  0000             P3.1    .equ    0B1H    ;Port 3 bit 1
+0066+  0000             P3.2    .equ    0B2H    ;Port 3 bit 2
+0067+  0000             P3.3    .equ    0B3H    ;Port 3 bit 3
+0068+  0000             P3.4    .equ    0B4H    ;Port 3 bit 4
+0069+  0000             P3.5    .equ    0B5H    ;Port 3 bit 5
+0070+  0000             P3.6    .equ    0B6H    ;Port 3 bit 6
+0071+  0000             P3.7    .equ    0B7H    ;Port 3 bit 7
+0072+  0000             
+0073+  0000             ;ACCUMULATOR BITS
+0074+  0000             ACC.0   .equ    0E0H    ;Acc bit 0
+0075+  0000             ACC.1   .equ    0E1H    ;Acc bit 1
+0076+  0000             ACC.2   .equ    0E2H    ;Acc bit 2
+0077+  0000             ACC.3   .equ    0E3H    ;Acc bit 3
+0078+  0000             ACC.4   .equ    0E4H    ;Acc bit 4
+0079+  0000             ACC.5   .equ    0E5H    ;Acc bit 5
+0080+  0000             ACC.6   .equ    0E6H    ;Acc bit 6
+0081+  0000             ACC.7   .equ    0E7H    ;Acc bit 7
+0082+  0000             
+0083+  0000             ;B REGISTER BITS
+0084+  0000             B.0     .equ    0F0H    ;Breg bit 0
+0085+  0000             B.1     .equ    0F1H    ;Breg bit 1
+0086+  0000             B.2     .equ    0F2H    ;Breg bit 2
+0087+  0000             B.3     .equ    0F3H    ;Breg bit 3
+0088+  0000             B.4     .equ    0F4H    ;Breg bit 4
+0089+  0000             B.5     .equ    0F5H    ;Breg bit 5
+0090+  0000             B.6     .equ    0F6H    ;Breg bit 6
+0091+  0000             B.7     .equ    0F7H    ;Breg bit 7
+0092+  0000             
+0093+  0000             ;PSW REGISTER BITS
+0094+  0000             P       .equ    0D0H    ;Parity flag
+0095+  0000             F1      .equ    0D1H    ;User flag 1
+0096+  0000             OV      .equ    0D2H    ;Overflow flag
+0097+  0000             RS0     .equ    0D3H    ;Register bank select 1
+0098+  0000             RS1     .equ    0D4H    ;Register bank select 0
+0099+  0000             F0      .equ    0D5H    ;User flag 0
+0100+  0000             AC      .equ    0D6H    ;Auxiliary carry flag
+0101+  0000             CY      .equ    0D7H    ;Carry flag
+0102+  0000             
+0103+  0000             ;TCON REGISTER BITS
+0104+  0000             IT0     .equ    088H    ;Intr 0 type control
+0105+  0000             IE0     .equ    089H    ;Intr 0 edge flag
+0106+  0000             IT1     .equ    08AH    ;Intr 1 type control
+0107+  0000             IE1     .equ    08BH    ;Intr 1 edge flag
+0108+  0000             TR0     .equ    08CH    ;Timer 0 run
+0109+  0000             TF0     .equ    08DH    ;Timer 0 overflow
+0110+  0000             TR1     .equ    08EH    ;Timer 1 run
+0111+  0000             TF1     .equ    08FH    ;Timer 1 overflow
+0112+  0000             
+0113+  0000             ;SCON REGISTER BITS
+0114+  0000             RI      .equ    098H    ;RX Intr flag
+0115+  0000             TI      .equ    099H    ;TX Intr flag
+0116+  0000             RB8     .equ    09AH    ;RX 9th bit
+0117+  0000             TB8     .equ    09BH    ;TX 9th bit
+0118+  0000             REN     .equ    09CH    ;Enable RX flag
+0119+  0000             SM2     .equ    09DH    ;8/9 bit select flag
+0120+  0000             SM1     .equ    09EH    ;Serial mode bit 1
+0121+  0000             SM0     .equ    09FH    ;Serial mode bit 0
+0122+  0000             
+0123+  0000             ;IE REGISTER BITS
+0124+  0000             EX0     .equ    0A8H    ;External intr 0
+0125+  0000             ET0     .equ    0A9H    ;Timer 0 intr
+0126+  0000             EX1     .equ    0AAH    ;External intr 1
+0127+  0000             ET1     .equ    0ABH    ;Timer 1 intr
+0128+  0000             ES      .equ    0ACH    ;Serial port intr
+0129+  0000             ET2     .equ    0ADH    ;Timer 2 intr
+0130+  0000             ;Reserved       0AEH    Reserved
+0131+  0000             EA      .equ    0AFH    ;Global intr enable
+0132+  0000             
+0133+  0000             ;IP REGISTER BITS
+0134+  0000             PX0     .equ    0B8H    ;Priority level-External intr 0
+0135+  0000             PT0     .equ    0B9H    ;Priority level-Timer 0 intr
+0136+  0000             PX1     .equ    0BAH    ;Priority level-External intr 1
+0137+  0000             PT1     .equ    0BBH    ;Priority level-Timer 1 intr
+0138+  0000             PS      .equ    0BCH    ;Priority level-Serial port intr
+0139+  0000             PT2     .equ    0BDH    ;Priority level-Timer 2 intr
+0140+  0000             ;Reserved       0BEH    Reserved
+0141+  0000             PCT     .equ    0BFH    ;Global priority level
+0142+  0000             
+0143+  0000             ;IOCON REGISTER BITS  80154 ONLY
+0144+  0000             ALF     .equ    0F8H    ;Power down port condition
+0145+  0000             P1HZ    .equ    0F9H    ;Port 1 control
+0146+  0000             P2HZ    .equ    0FAH    ;Port 2 control
+0147+  0000             P3HZ    .equ    0FBH    ;Port 3 control
+0148+  0000             IZC     .equ    0FCH    ;Pullup select
+0149+  0000             SERR    .equ    0FDH    ;Serial reception error
+0150+  0000             T32     .equ    0FEH    ;32 bit timer config
+0151+  0000             WDT     .equ    0FFH    ;Watchdog config
+0152+  0000             
+0153+  0000             ;T2CON REGISTER BITS  8052/80154 ONLY
+0154+  0000             CP/RL2  .equ    0C8H    ;Timer 2 capture/reload flag
+0155+  0000             C/T2    .equ    0C9H    ;Timer 2 timer/counter select
+0156+  0000             TR2     .equ    0CAH    ;Timer 2 start/stop
+0157+  0000             EXEN2   .equ    0CBH    ;Timer 2 external enable
+0158+  0000             TCLK    .equ    0CCH    ;TX clock flag
+0159+  0000             RCLK    .equ    0CDH    ;RX clock flag
+0160+  0000             EXF2    .equ    0CEH    ;Timer 2 external flag
+0161+  0000             TF2     .equ    0CFH    ;Timer 2 overflow
+0162+  0000             
+0002   0000                                 .AVSYM
+0003   0000             
+0004   0000             RESET_VECTOR        .EQU            0000H
+0005   0000             EXTERNAL0_VECTOR    .EQU            0003H
+0006   0000             TIMER0_VECTOR       .EQU            000BH
+0007   0000             EXTERNAL1_VECTOR    .EQU            0013H
+0008   0000             TIMER1_VECTOR       .EQU            001BH
+0009   0000             SERIAL_VECTOR       .EQU            0023H
+0010   0000             
+0011   0000                                 .ORG            RESET_VECTOR
+0012   0000 02 02 14                        LJMP            RESET
+0013   0003             
+0014   0003                                 .ORG            EXTERNAL0_VECTOR
+0015   0003 02 02 13                        LJMP            EXTERNAL0
+0016   0006             
+0017   000B                                 .ORG            TIMER0_VECTOR
+0018   000B 02 02 13                        LJMP            TIMER0
+0019   000E             
+0020   0013                                 .ORG            EXTERNAL1_VECTOR
+0021   0013 02 02 13                        LJMP            EXTERNAL1
+0022   0016             
+0023   001B                                 .ORG            TIMER1_VECTOR
+0024   001B 02 02 13                        LJMP            TIMER1
+0025   001E             
+0026   0023                                 .ORG            SERIAL_VECTOR
+0027   0023 02 02 13                        LJMP            SERIAL           
+0028   0026             
+0029   0200                                 .ORG            0200h
+0030   0200 78 FF       DELAY:              MOV             R0, #0FFh
+0031   0202 D8 FE       DELAY1:             DJNZ            R0, DELAY1
+0032   0204 22                              RET
+0033   0205             
+0034   0205 51 00       COPY_BIOS_ERR:      ACALL           DELAY
+0035   0207 B2 90                           CPL             P1.0
+0036   0209 02 02 05                        LJMP            COPY_BIOS_ERR
+0037   020C             
+0038   020C 51 00       FLASH_BIOS_ERR:     ACALL           DELAY
+0039   020E B2 91                           CPL             P1.1
+0040   0210 02 02 0C                        LJMP            FLASH_BIOS_ERR
+0041   0213             
+0042   0213             EXTERNAL0:
+0043   0213             TIMER0:
+0044   0213             EXTERNAL1:
+0045   0213             TIMER1:
+0046   0213 32          SERIAL:             RETI
+0047   0214             
+0048   0214             RESET:           
+0049   0214 75 81 7F    INIT:               MOV             SP, #07fH
+0050   0217 D2 A8                           SETB            EX0
+0051   0219 D2 A9                           SETB            ET0
+0052   021B D2 AA                           SETB            EX1
+0053   021D D2 AB                           SETB            ET1
+0054   021F D2 AD                           SETB            ET2
+0055   0221 D2 AC                           SETB            ES
+0056   0223 D2 AF                           SETB            EA
+0057   0225 51 44                           ACALL           FLASH_BIOS
+0058   0227 02 02 5E                        LJMP            MAIN
+0059   022A             
+0060   022A 90 00 00    COPY_BIOS:          MOV             DPTR, #0000
+0061   022D 78 FF                           MOV             R0, #0FFH       ; for j = 0 to 256
+0062   022F C2 92                           CLR             P1.2            ; /BOOTING = 0
+0063   0231 D2 93                           SETB            P1.3            ; /ISP     = 1
+0064   0233 79 FF       COPY_BIOS1:         MOV             R1, #0FFH       ; for i = 0 to 256
+0065   0235 E0          COPY_BIOS2:         MOVX            A, @DPTR        ; move rom to a
+0066   0236 F0                              MOVX            @DPTR, A        ; move a to ram
+0067   0237 FA                              MOV             R2, A           ; save to r2   
+0068   0238 E0                              MOVX            A, @DPTR        ; move rom to a, again
+0069   0239 9A                              SUBB            A, R2           ; if rom ram not same, display error
+0070   023A 70 C9                           JNZ             COPY_BIOS_ERR
+0071   023C             
+0072   023C A3                              INC             DPTR
+0073   023D B2 90                           CPL             P1.0
+0074   023F D9 F4                           DJNZ            R1, COPY_BIOS2
+0075   0241 D8 F0                           DJNZ            R0, COPY_BIOS1
+0076   0243 22                              RET
+0077   0244             
+0078   0244 90 00 00    FLASH_BIOS:         MOV             DPTR, #0000
+0079   0247 78 FF                           MOV             R0, #0FFH       ; for j = 0 to 256
+0080   0249 D2 92                           SETB            P1.2            ; /BOOTING = 1
+0081   024B C2 93                           CLR             P1.3            ; /ISP     = 0                    
+0082   024D 79 FF       FLASH_BIOS1:        MOV             R1, #0FFH       ; for i = 0 to 256
+0083   024F E0          FLASH_BIOS2:        MOVX            A, @DPTR        ; move ram to a
+0084   0250 F0                              MOVX            @DPTR, A        ; move a to rom
+0085   0251 FA                              MOV             R2, A           ; save to r2
+0086   0252 E0                              MOVX            A, @DPTR        ; move ram to a, again
+0087   0253 9A                              SUBB            A, R2           ; if rom ram not same, display error
+0088   0254 70 B6                           JNZ             FLASH_BIOS_ERR
+0089   0256             
+0090   0256 A3                              INC             DPTR
+0091   0257 B2 91                           CPL             P1.1
+0092   0259 D9 F4                           DJNZ            R1, FLASH_BIOS2
+0093   025B D8 F0                           DJNZ            R0, FLASH_BIOS1
+0094   025D 22                              RET
+0095   025E             
+0096   025E 02 02 5E    MAIN:               LJMP            MAIN
+0097   0261             
+0098   0261                                 .END
+ADDR  00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+-----------------------------------------------------
+0000  02 02 14 02 02 13 00 00 00 00 00 02 02 13 00 00
+0010  00 00 00 02 02 13 00 00 00 00 00 02 02 13 00 00
+0020  00 00 00 02 02 13 00 00 00 00 00 00 00 00 00 00
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0040  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0050  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0060  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0070  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0080  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0090  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00A0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00B0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00C0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00D0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00E0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00F0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0100  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0110  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0120  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0130  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0140  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0150  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0160  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0170  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0180  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0190  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+01A0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+01B0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+01C0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+01D0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+01E0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+01F0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0200  78 FF D8 FE 22 51 00 B2 90 02 02 05 51 00 B2 91
+0210  02 02 0C 32 75 81 7F D2 A8 D2 A9 D2 AA D2 AB D2
+0220  AD D2 AC D2 AF 51 44 02 02 5E 90 00 00 78 FF C2
+0230  92 D2 93 79 FF E0 F0 FA E0 9A 70 C9 A3 B2 90 D9
+0240  F4 D8 F0 22 90 00 00 78 FF D2 92 C2 93 79 FF E0
+0250  F0 FA E0 9A 70 B6 A3 B2 91 D9 F4 D8 F0 22 02 02
+0260  5E 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+
+tasm: Number of errors = 0

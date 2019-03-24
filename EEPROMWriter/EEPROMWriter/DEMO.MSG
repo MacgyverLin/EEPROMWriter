@@ -1,0 +1,12 @@
+This text is being loaded
+from an input text file
+via the serial port of 8051.
+The routine which
+performs this function is
+interrupt-driven: Any changes
+to the serial buffer SBUF
+signals the receive interrupt
+bit RI of SCON, causing an
+interrupt. The interrupt
+routine clears this bit before
+finishing.

@@ -1,0 +1,94 @@
+IOTRAN Utility Program V1.0
+------ ------- ------- ----
+
+	IOTRAN is supplied with the AVSIM family of simulator\debuggers
+to facilitate the use of I/O files. I/O files that interface to AVSIM
+must be in a binary format - either byte or word-wide. This is convenient
+for I/O that is ASCII, but less so for handling numerical values from/to
+other programs, such as BASIC, FORTRAN, etc.
+
+	Let's suppose that you have an A/D converter attached to your CPU via
+a parallel port. You are sampling a sine wave and computing its RMS power.
+A D/A converter is also attached, to output the analog RMS power.
+
+	To generate the input file of sine wave samples, use a BASIC routine:
+
+	10 OPEN #1,"SINE.AD"
+	20 FOR S=0 TO 100
+	30   PRINT #1,32767*SIN(6.28*S/10)
+	40 NEXT
+	50 CLOSE #1
+
+	Now you have a file that contains a list of integers in floating point
+format. This cannot be fed to AVSIM directly, as it will appear as a string
+of ASCII values instead of the decimal value itself. ie. "123" will be read
+by AVSIM's I/O facility as 31H,32H,33H instead of 7BH (123 decimal).
+
+	IOTRAN will do the conversion by:
+
+	>IOTRAN db SINE
+
+	This does a decimal-to-byte translation from file SINE.AD to SINE.AB.
+	Decimal values outside the range -128 to 127 are converted to their
+	remainder in modulus 128. Fractions are rounded. 
+	
+	Now suppose the A/D converter is 16-bits, and is configured so that the
+first read provides the upper 8 bits then the second provides the lower 8 bits.
+You need to produce a conversion that is in 16-bit binary format.
+
+	IOTRAN will do a decimal-to-word signed conversion by:
+
+	>IOTRAN dw SINE
+
+	This does a translation from file SINE.AD to SINE.AW.
+
+	If instead, the 16-bit A/D converter is attached to two ports, providing
+the 16-bit word in parallel, you will need 2 files, each one holding the
+upper/lower parts of each 16-bit value.
+
+	IOTRAN will do a decimal-to-2 byte signed conversion by:
+
+	>IOTRAN db2 SINE
+
+	Two files, SINE.AB1 and SINE.AB2, will be generated. SINE.AB1 contains
+the upper byte of each word, and SINE.AB2 contains the lower byte of each word.
+
+	If you are using a 16-bit simulator (TMS32010, 68000) the decimal-to-word
+conversion will be needed for a single port. Similarly, a 32-bit conversion
+can be made by:
+
+	>IOTRAN dw2 SINE
+
+	Now we can run AVSIM and attach files SINE.AB, or SINE.AB1 and SINE.AB2
+to ports with the I/O facility within AVSIM. Since we want to simulate the
+D/A output of RMS power as the program runs, we also attach an output file,"OUTPUT.AB",
+to the D/A port assignment and collect binary data. After exiting from AVSIM,
+however, the output file cannot be used directly for BASIC input, or LOTUS, etc.
+
+	IOTRAN will convert byte-to-decimal by:
+
+	>IOTRAN bd OUTPUT
+
+	It reads file OUTPUT.AB and generates a list of decimal values in file 
+OUTPUT.AD, which can then be printed, or displayed.
+
+	Other conversions include:
+
+wd	- word-to-decimal		file.AW --> file.AD
+b2d 	- 2 byte-to-decimal  		file.AB1 & file.AB2 --> file.AD
+w2d 	- 2 word-to-decimal		file.AW1 & file.AW2 --> file.AD
+
+	Similarly, conversion from hexadecimal-to-byte or word is possible. A hex
+value in ASCII - eg. 1B21 is converted to a binary stream. Use this technique 
+for unsigned conversions. 
+
+	Hex conversions include:
+
+hb	- hex-to-byte			file.AH --> file.AB
+hw	- hex-to-word			file.AH --> file.AW
+hb2	- hex-to-2 byte			file.AH --> file.AB1 & file.AB2
+hw2	- hex-to-2 word			file.AH --> file.AW1 & file.AW2
+bh	- byte-to-hex			file.AB --> file.AH
+wh	- word-to-hex			file.AW --> file.AH
+b2h	- 2 byte-to-hex			file.AB1 & file.AB2 --> file.AH
+w2h	- 2 word-to-hex			file.AW1 & file.AW2 --> file.AH

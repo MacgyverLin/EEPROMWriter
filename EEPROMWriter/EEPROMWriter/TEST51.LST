@@ -1,0 +1,326 @@
+0001   0000             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0002   0000             ; $Id: test51.asm 1.1 1993/08/02 01:24:21 toma Exp $
+0003   0000             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0004   0000             
+0005   0000             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0006   0000             ; TASM  test file
+0007   0000             ; Test all instructions and addressing modes.
+0008   0000             ; Processor: 8051
+0009   0000             ;
+0010   0000             
+0011   0000             
+0012   0000                     .AVSYM
+0013   0000             
+0014   0000             labimm:  .EQU    56h
+0015   0000             lab2:    .EQU    12h
+0016   0000             lab3:    .EQU    1234h
+0017   0000             lab5:    .EQU    0feh
+0018   0000             labbt_1: .EQU    34h
+0019   0000             bit      .equ    81h
+0020   0000             
+0021   0000             
+0022   0000 11 02               ACALL lab4    ;11    2   JMP 1
+0023   0002             lab4:        
+0024   0002 28                  ADD  A,R0     ;28    1   NOP 1
+0025   0003 29                  ADD  A,R1     ;29    1   NOP 1
+0026   0004 2A                  ADD  A,R2     ;2A    1   NOP 1
+0027   0005 2B                  ADD  A,R3     ;2B    1   NOP 1
+0028   0006 2C                  ADD  A,R4     ;2C    1   NOP 1
+0029   0007 2D                  ADD  A,R5     ;2D    1   NOP 1
+0030   0008 2E                  ADD  A,R6     ;2E    1   NOP 1
+0031   0009 2F                  ADD  A,R7     ;2F    1   NOP 1
+0032   000A 26                  ADD  A,@R0    ;26    1   NOP 1
+0033   000B 27                  ADD  A,@R1    ;27    1   NOP 1
+0034   000C 24 56               ADD  A,#labimm   ;24    2   NOP 1
+0035   000E 25 12               ADD  A,lab2      ;25    2   NOP 1
+0036   0010                     
+0037   0010 38                  ADDC A,R0     ;38    1   NOP 1
+0038   0011 39                  ADDC A,R1     ;39    1   NOP 1
+0039   0012 3A                  ADDC A,R2     ;3A    1   NOP 1
+0040   0013 3B                  ADDC A,R3     ;3B    1   NOP 1
+0041   0014 3C                  ADDC A,R4     ;3C    1   NOP 1
+0042   0015 3D                  ADDC A,R5     ;3D    1   NOP 1
+0043   0016 3E                  ADDC A,R6     ;3E    1   NOP 1
+0044   0017 3F                  ADDC A,R7     ;3F    1   NOP 1
+0045   0018 36                  ADDC A,@R0    ;36    1   NOP 1
+0046   0019 37                  ADDC A,@R1    ;37    1   NOP 1
+0047   001A 34 56               ADDC A,#labimm     ;34    2   NOP 1
+0048   001C 35 12               ADDC A,lab2      ;35    2   NOP 1
+0049   001E                     
+0050   001E 01 93               AJMP jlab     ;01    2   JMP 1
+0051   0020                     
+0052   0020 58                  ANL  A,R0     ;58    1   NOP 1
+0053   0021 59                  ANL  A,R1     ;59    1   NOP 1
+0054   0022 5A                  ANL  A,R2     ;5A    1   NOP 1
+0055   0023 5B                  ANL  A,R3     ;5B    1   NOP 1
+0056   0024 5C                  ANL  A,R4     ;5C    1   NOP 1
+0057   0025 5D                  ANL  A,R5     ;5D    1   NOP 1
+0058   0026 5E                  ANL  A,R6     ;5E    1   NOP 1
+0059   0027 5F                  ANL  A,R7     ;5F    1   NOP 1
+0060   0028 56                  ANL  A,@R0    ;56    1   NOP 1
+0061   0029 57                  ANL  A,@R1    ;57    1   NOP 1
+0062   002A 54 56               ANL  A,#labimm
+0063   002C 55 12               ANL  A,lab2
+0064   002E B0 81               ANL  C,/bit
+0065   0030 82 81               ANL  C,bit
+0066   0032 52 12               ANL  lab2,A
+0067   0034 53 12 56            ANL  lab2,#labimm
+0068   0037                     
+0069   0037 B4 56 59            CJNE A,#labimm,jlab   ;b4    3   CR  1
+0070   003A B5 12 56            CJNE A,lab2,jlab      ;b5    3   CR  1
+0071   003D B8 56 53            CJNE R0,#labimm,jlab  ;b8    3   CR  1
+0072   0040 B9 56 50            CJNE R1,#labimm,jlab  ;b9    3   CR  1
+0073   0043 BA 56 4D            CJNE R2,#labimm,jlab  ;ba    3   CR  1
+0074   0046 BB 56 4A            CJNE R3,#labimm,jlab  ;bb    3   CR  1
+0075   0049 BC 56 47            CJNE R4,#labimm,jlab  ;bc    3   CR  1
+0076   004C BD 56 44            CJNE R5,#labimm,jlab  ;bd    3   CR  1
+0077   004F BE 56 41            CJNE R6,#labimm,jlab  ;be    3   CR  1
+0078   0052 BF 56 3E            CJNE R7,#labimm,jlab  ;bf    3   CR  1
+0079   0055 B6 56 3B            CJNE @R0,#labimm,jlab ;b6    3   CR  1
+0080   0058 B7 56 38            CJNE @R1,#labimm,jlab ;b7    3   CR  1
+0081   005B                     
+0082   005B E4                  CLR  A        ;e4    1   NOP 1
+0083   005C C3                  CLR  C        ;c3    1   NOP 1
+0084   005D C2 81               CLR  bit
+0085   005F                     
+0086   005F F4                  CPL  A        ;f4    1   NOP 1
+0087   0060 B3                  CPL  C        ;b3    1   NOP 1
+0088   0061 B2 81               CPL  bit
+0089   0063                     
+0090   0063 D4                  DA   A        ;d4    1   NOP 1
+0091   0064                     
+0092   0064 14                  DEC  A        ;14    1   NOP 1
+0093   0065 18                  DEC  R0       ;18    1   NOP 1
+0094   0066 19                  DEC  R1       ;19    1   NOP 1
+0095   0067 1A                  DEC  R2       ;1A    1   NOP 1
+0096   0068 1B                  DEC  R3       ;1B    1   NOP 1
+0097   0069 1C                  DEC  R4       ;1C    1   NOP 1
+0098   006A 1D                  DEC  R5       ;1D    1   NOP 1
+0099   006B 1E                  DEC  R6       ;1E    1   NOP 1
+0100   006C 1F                  DEC  R7       ;1F    1   NOP 1
+0101   006D 16                  DEC  @R0      ;16    1   NOP 1
+0102   006E 17                  DEC  @R1      ;17    1   NOP 1
+0103   006F 15 12               DEC  lab2     ;15    2   NOP 1
+0104   0071                     
+0105   0071 84                  DIV  AB       ;84    1   NOP 1
+0106   0072                     
+0107   0072 D8 1F               DJNZ R0,jlab     ;d8    2   NOP 1
+0108   0074 D9 1D               DJNZ R1,jlab     ;d9    2   NOP 1
+0109   0076 DA 1B               DJNZ R2,jlab     ;dA    2   NOP 1
+0110   0078 DB 19               DJNZ R3,jlab     ;dB    2   NOP 1
+0111   007A DC 17               DJNZ R4,jlab     ;dC    2   NOP 1
+0112   007C DD 15               DJNZ R5,jlab     ;dD    2   NOP 1
+0113   007E DE 13               DJNZ R6,jlab     ;dE    2   NOP 1
+0114   0080 DF 11               DJNZ R7,jlab     ;dF    2   NOP 1
+0115   0082 D5 12 0E            DJNZ lab2,jlab   ;d5    3   CR  1
+0116   0085                     
+0117   0085 04                  INC  A        ;04    1   NOP 1
+0118   0086 08                  INC  R0       ;08    1   NOP 1
+0119   0087 09                  INC  R1       ;09    1   NOP 1
+0120   0088 0A                  INC  R2       ;0A    1   NOP 1
+0121   0089 0B                  INC  R3       ;0B    1   NOP 1
+0122   008A 0C                  INC  R4       ;0C    1   NOP 1
+0123   008B 0D                  INC  R5       ;0D    1   NOP 1
+0124   008C 0E                  INC  R6       ;0E    1   NOP 1
+0125   008D 0F                  INC  R7       ;0F    1   NOP 1
+0126   008E 06                  INC  @R0      ;06    1   NOP 1
+0127   008F 07                  INC  @R1      ;07    1   NOP 1
+0128   0090 A3                  INC  DPTR     ;a3    1   NOP 1
+0129   0091 05 12               INC  lab2     ;05    2   NOP 1
+0130   0093             
+0131   0093             jlab:        
+0132   0093 20 34 FD            JB   labbt_1,jlab   ;20    3   CR  1
+0133   0096 10 34 FA            JBC  labbt_1,jlab   ;10    3   CR  1
+0134   0099 40 F8               JC   jlab            ;40    2   R1  1
+0135   009B 73                  JMP  @A+DPTR         ;73    1   NOP 1
+0136   009C 30 34 F4            JNB  labbt_1,jlab   ;30    3   CR  1
+0137   009F 50 F2               JNC  jlab            ;50    2   R1  1
+0138   00A1 70 F0               JNZ  jlab            ;70    2   R1  1
+0139   00A3 60 EE               JZ   jlab            ;60    2   R1  1
+0140   00A5                     
+0141   00A5 12 12 34            LCALL lab3       ;12    3   SWAP 1
+0142   00A8                     
+0143   00A8 02 12 34            LJMP lab3        ;02    3   SWAP 1
+0144   00AB                     
+0145   00AB E8                  MOV  A,R0           ;e8    1   NOP 1
+0146   00AC E9                  MOV  A,R1           ;e9    1   NOP 1
+0147   00AD EA                  MOV  A,R2           ;eA    1   NOP 1
+0148   00AE EB                  MOV  A,R3           ;eB    1   NOP 1
+0149   00AF EC                  MOV  A,R4           ;eC    1   NOP 1
+0150   00B0 ED                  MOV  A,R5           ;eD    1   NOP 1
+0151   00B1 EE                  MOV  A,R6           ;eE    1   NOP 1
+0152   00B2 EF                  MOV  A,R7           ;eF    1   NOP 1
+0153   00B3 E6                  MOV  A,@R0          ;e6    1   NOP 1
+0154   00B4 E7                  MOV  A,@R1          ;e7    1   NOP 1
+0155   00B5 74 56               MOV  A,#labimm      ;74    2   NOP 1
+0156   00B7 E5 12               MOV  A,lab2         ;e5    2   NOP 1
+0157   00B9 A2 81               MOV  C,bit          ;a2    2   NOP 1
+0158   00BB 90 00 56            MOV  DPTR,#labimm   ;90    3   SWAP 1
+0159   00BE F8                  MOV  R0,A           ;f8    1   NOP 1
+0160   00BF F9                  MOV  R1,A           ;f9    1   NOP 1
+0161   00C0 FA                  MOV  R2,A           ;fA    1   NOP 1
+0162   00C1 FB                  MOV  R3,A           ;fB    1   NOP 1
+0163   00C2 FC                  MOV  R4,A           ;fC    1   NOP 1
+0164   00C3 FD                  MOV  R5,A           ;fD    1   NOP 1
+0165   00C4 FE                  MOV  R6,A           ;fE    1   NOP 1
+0166   00C5 FF                  MOV  R7,A           ;fF    1   NOP 1
+0167   00C6 78 56               MOV  R0,#labimm     ;78    2   NOP 1
+0168   00C8 79 56               MOV  R1,#labimm     ;79    2   NOP 1
+0169   00CA 7A 56               MOV  R2,#labimm     ;7A    2   NOP 1
+0170   00CC 7B 56               MOV  R3,#labimm     ;7B    2   NOP 1
+0171   00CE 7C 56               MOV  R4,#labimm     ;7C    2   NOP 1
+0172   00D0 7D 56               MOV  R5,#labimm     ;7D    2   NOP 1
+0173   00D2 7E 56               MOV  R6,#labimm     ;7E    2   NOP 1
+0174   00D4 7F 56               MOV  R7,#labimm     ;7F    2   NOP 1
+0175   00D6 A8 12               MOV  R0,lab2        ;a8    2   NOP 1
+0176   00D8 A9 12               MOV  R1,lab2        ;a9    2   NOP 1
+0177   00DA AA 12               MOV  R2,lab2        ;aA    2   NOP 1
+0178   00DC AB 12               MOV  R3,lab2        ;aB    2   NOP 1
+0179   00DE AC 12               MOV  R4,lab2        ;aC    2   NOP 1
+0180   00E0 AD 12               MOV  R5,lab2        ;aD    2   NOP 1
+0181   00E2 AE 12               MOV  R6,lab2        ;aE    2   NOP 1
+0182   00E4 AF 12               MOV  R7,lab2        ;aF    2   NOP 1
+0183   00E6 F6                  MOV  @R0,A          ;f6    1   NOP 1
+0184   00E7 F7                  MOV  @R1,A          ;f7    1   NOP 1
+0185   00E8 76 56               MOV  @R0,#labimm    ;76    2   NOP 1
+0186   00EA 77 56               MOV  @R1,#labimm    ;77    2   NOP 1
+0187   00EC A6 12               MOV  @R0,lab2       ;a6    2   NOP 1
+0188   00EE A7 12               MOV  @R1,lab2       ;a7    2   NOP 1
+0189   00F0 F5 12               MOV  lab2,A         ;f5    2   NOP 1
+0190   00F2 92 81               MOV  bit,C          ;92    2   NOP 1
+0191   00F4 88 12               MOV  lab2,R0        ;88    2   NOP 1
+0192   00F6 89 12               MOV  lab2,R1        ;89    2   NOP 1
+0193   00F8 8A 12               MOV  lab2,R2        ;8A    2   NOP 1
+0194   00FA 8B 12               MOV  lab2,R3        ;8B    2   NOP 1
+0195   00FC 8C 12               MOV  lab2,R4        ;8C    2   NOP 1
+0196   00FE 8D 12               MOV  lab2,R5        ;8D    2   NOP 1
+0197   0100 8E 12               MOV  lab2,R6        ;8E    2   NOP 1
+0198   0102 8F 12               MOV  lab2,R7        ;8F    2   NOP 1
+0199   0104 86 12               MOV  lab2,@R0       ;86    2   NOP 1
+0200   0106 87 12               MOV  lab2,@R1       ;87    2   NOP 1
+0201   0108 75 12 56            MOV  lab2,#labimm   ;75    3   COMBINE	1
+0202   010B 85 12 FE            MOV  lab5,lab2      ;85    3   COMBINE  1
+0203   010E                     
+0204   010E 93                  MOVC A,@A+DPTR ;93   1   NOP 1
+0205   010F 83                  MOVC A,@A+PC   ;83    1   NOP 1
+0206   0110                     
+0207   0110 E2                  MOVX A,@R0    ;e2    1   NOP 1
+0208   0111 E3                  MOVX A,@R1    ;e3    1   NOP 1
+0209   0112 E0                  MOVX A,@DPTR  ;e0    1   NOP 1
+0210   0113 F2                  MOVX @R0,A    ;f2    1   NOP 1
+0211   0114 F3                  MOVX @R1,A    ;f3    1   NOP 1
+0212   0115 F0                  MOVX @DPTR,A  ;f0    1   NOP 1
+0213   0116                     
+0214   0116 A4                  MUL  AB       ;a4    1   NOP 1
+0215   0117                     
+0216   0117 00                  NOP           ;00    1   NOP 1
+0217   0118                     
+0218   0118 48                  ORL  A,R0     ;48    1   NOP 1
+0219   0119 49                  ORL  A,R1     ;49    1   NOP 1
+0220   011A 4A                  ORL  A,R2     ;4A    1   NOP 1
+0221   011B 4B                  ORL  A,R3     ;4B    1   NOP 1
+0222   011C 4C                  ORL  A,R4     ;4C    1   NOP 1
+0223   011D 4D                  ORL  A,R5     ;4D    1   NOP 1
+0224   011E 4E                  ORL  A,R6     ;4E    1   NOP 1
+0225   011F 4F                  ORL  A,R7     ;4F    1   NOP 1
+0226   0120 46                  ORL  A,@R0    ;46    1   NOP 1
+0227   0121 47                  ORL  A,@R1    ;47    1   NOP 1
+0228   0122 44 56               ORL  A,#labimm     ;44    2   NOP 1
+0229   0124 45 12               ORL  A,lab2      ;45    2   NOP 1
+0230   0126 A0 81               ORL  C,/bit      ;a0    2   NOP 1
+0231   0128 72 81               ORL  C,bit       ;72    2   NOP 1
+0232   012A 42 12               ORL  lab2,A      ;42    2   NOP 1
+0233   012C 43 12 56            ORL  lab2,#labimm     ;43    3   COMBINE 1
+0234   012F                     
+0235   012F D0 12               POP  lab2     ;d0    2   NOP 1
+0236   0131 C0 12               PUSH lab2     ;c0    2   NOP 1
+0237   0133                     
+0238   0133 22                  RET           ;22    1   NOP 1
+0239   0134 32                  RETI          ;32    1   NOP 1
+0240   0135                     
+0241   0135 23                  RL   A        ;23    1   NOP 1
+0242   0136 33                  RLC  A        ;33    1   NOP 1
+0243   0137 03                  RR   A        ;03    1   NOP 1
+0244   0138 13                  RRC  A        ;13    1   NOP 1
+0245   0139                     
+0246   0139             jlab5:
+0247   0139 D3                  SETB C        ;d3    1   NOP 1
+0248   013A D2 81               SETB bit      ;d2    2   NOP 1
+0249   013C                     
+0250   013C 80 FB               SJMP jlab5    ;80    2   NOP 1
+0251   013E                     
+0252   013E 98                  SUBB A,R0     ;98    1   NOP 1
+0253   013F 99                  SUBB A,R1     ;99    1   NOP 1
+0254   0140 9A                  SUBB A,R2     ;9A    1   NOP 1
+0255   0141 9B                  SUBB A,R3     ;9B    1   NOP 1
+0256   0142 9C                  SUBB A,R4     ;9C    1   NOP 1
+0257   0143 9D                  SUBB A,R5     ;9D    1   NOP 1
+0258   0144 9E                  SUBB A,R6     ;9E    1   NOP 1
+0259   0145 9F                  SUBB A,R7     ;9F    1   NOP 1
+0260   0146 96                  SUBB A,@R0    ;96    1   NOP 1
+0261   0147 97                  SUBB A,@R1    ;97    1   NOP 1
+0262   0148 94 56               SUBB A,#labimm     ;94    2   NOP 1
+0263   014A 95 12               SUBB A,lab2      ;95    2   NOP 1
+0264   014C                     
+0265   014C C4                  SWAP A        ;c4    1   NOP 1
+0266   014D                     
+0267   014D C8                  XCH  A,R0     ;c8    1   NOP 1
+0268   014E C9                  XCH  A,R1     ;c9    1   NOP 1
+0269   014F CA                  XCH  A,R2     ;cA    1   NOP 1
+0270   0150 CB                  XCH  A,R3     ;cB    1   NOP 1
+0271   0151 CC                  XCH  A,R4     ;cC    1   NOP 1
+0272   0152 CD                  XCH  A,R5     ;cD    1   NOP 1
+0273   0153 CE                  XCH  A,R6     ;cE    1   NOP 1
+0274   0154 CF                  XCH  A,R7     ;cF    1   NOP 1
+0275   0155 C6                  XCH  A,@R0    ;c6    1   NOP 1
+0276   0156 C7                  XCH  A,@R1    ;c7    1   NOP 1
+0277   0157 C5 12               XCH  A,lab2      ;c5    2   NOP 1
+0278   0159                     
+0279   0159 D6                  XCHD A,@R0    ;d6    1   NOP 1
+0280   015A D7                  XCHD A,@R1    ;d7    1   NOP 1
+0281   015B                     
+0282   015B 68                  XRL  A,R0     ;68    1   NOP 1
+0283   015C 69                  XRL  A,R1     ;69    1   NOP 1
+0284   015D 6A                  XRL  A,R2     ;6A    1   NOP 1
+0285   015E 6B                  XRL  A,R3     ;6B    1   NOP 1
+0286   015F 6C                  XRL  A,R4     ;6C    1   NOP 1
+0287   0160 6D                  XRL  A,R5     ;6D    1   NOP 1
+0288   0161 6E                  XRL  A,R6     ;6E    1   NOP 1
+0289   0162 6F                  XRL  A,R7     ;6F    1   NOP 1
+0290   0163 66                  XRL  A,@R0    ;66    1   NOP 1
+0291   0164 67                  XRL  A,@R1    ;67    1   NOP 1
+0292   0165 64 56               XRL  A,#labimm     ;64    2   NOP 1
+0293   0167 65 12               XRL  A,lab2        ;65    2   NOP 1
+0294   0169 62 12               XRL  lab2,A        ;62    2   NOP 1
+0295   016B 63 12 56            XRL  lab2,#labimm  ;63    3   COMBINE 1
+0296   016E             
+0297   016E                     .end
+
+ADDR  00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
+-----------------------------------------------------
+0000  11 02 28 29 2A 2B 2C 2D 2E 2F 26 27 24 56 25 12
+0010  38 39 3A 3B 3C 3D 3E 3F 36 37 34 56 35 12 01 93
+0020  58 59 5A 5B 5C 5D 5E 5F 56 57 54 56 55 12 B0 81
+0030  82 81 52 12 53 12 56 B4 56 59 B5 12 56 B8 56 53
+0040  B9 56 50 BA 56 4D BB 56 4A BC 56 47 BD 56 44 BE
+0050  56 41 BF 56 3E B6 56 3B B7 56 38 E4 C3 C2 81 F4
+0060  B3 B2 81 D4 14 18 19 1A 1B 1C 1D 1E 1F 16 17 15
+0070  12 84 D8 1F D9 1D DA 1B DB 19 DC 17 DD 15 DE 13
+0080  DF 11 D5 12 0E 04 08 09 0A 0B 0C 0D 0E 0F 06 07
+0090  A3 05 12 20 34 FD 10 34 FA 40 F8 73 30 34 F4 50
+00A0  F2 70 F0 60 EE 12 12 34 02 12 34 E8 E9 EA EB EC
+00B0  ED EE EF E6 E7 74 56 E5 12 A2 81 90 00 56 F8 F9
+00C0  FA FB FC FD FE FF 78 56 79 56 7A 56 7B 56 7C 56
+00D0  7D 56 7E 56 7F 56 A8 12 A9 12 AA 12 AB 12 AC 12
+00E0  AD 12 AE 12 AF 12 F6 F7 76 56 77 56 A6 12 A7 12
+00F0  F5 12 92 81 88 12 89 12 8A 12 8B 12 8C 12 8D 12
+0100  8E 12 8F 12 86 12 87 12 75 12 56 85 12 FE 93 83
+0110  E2 E3 E0 F2 F3 F0 A4 00 48 49 4A 4B 4C 4D 4E 4F
+0120  46 47 44 56 45 12 A0 81 72 81 42 12 43 12 56 D0
+0130  12 C0 12 22 32 23 33 03 13 D3 D2 81 80 FB 98 99
+0140  9A 9B 9C 9D 9E 9F 96 97 94 56 95 12 C4 C8 C9 CA
+0150  CB CC CD CE CF C6 C7 C5 12 D6 D7 68 69 6A 6B 6C
+0160  6D 6E 6F 66 67 64 56 65 12 62 12 63 12 56 00 00
+
+
+tasm: Number of errors = 0
