@@ -195,10 +195,10 @@
 0033   0026             
 0034   0026             					.TEXT
 0035   0026             START:
-0036   0026 11 7A       BOOT_SEQUENCE:		ACALL			LED_TEST
-0037   0028             					;ACALL			PIO0_TEST
-0038   0028             					;ACALL			PIO1_TEST
-0039   0028                                 ;ACALL          CF_0_TEST
+0036   0026             BOOT_SEQUENCE:		;ACALL			LED_TEST
+0037   0026             					;ACALL			PIO0_TEST
+0038   0026             					;ACALL			PIO1_TEST
+0039   0026 11 E8                           ACALL          CF_0_TEST
 0040   0028             					;ACALL			CLR_MEMORY
 0041   0028 31 E1       					ACALL           COPYBIOS
 0042   002A 31 F1       					ACALL           CMPBIOS
@@ -726,7 +726,7 @@ ADDR  00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 -----------------------------------------------------
 0000  01 26 00 01 25 00 00 00 00 00 00 01 25 00 00 00
 0010  00 00 00 01 25 00 00 00 00 00 00 01 25 00 00 00
-0020  00 00 00 01 25 22 11 7A 31 E1 31 F1 B4 00 07 51
+0020  00 00 00 01 25 22 11 E8 31 E1 31 F1 B4 00 07 51
 0030  05 75 90 01 01 31 75 90 02 01 36 7D 01 7E 01 7F
 0040  01 DF FE DE FA DD F6 22 78 0A 74 80 11 A2 E4 11
 0050  AC 11 3B 04 11 B1 11 3B 04 11 B6 11 3B 04 D8 EF

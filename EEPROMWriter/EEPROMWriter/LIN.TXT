@@ -1,0 +1,15 @@
+TASM 8051 Assembler.      Version 3.1  February, 1998.
+ Copyright (C) 1998 Squak Valley Software
+tasm: pass 1 complete.
+1.asm line 0450: unrecognized instruction.          (JP)
+1.asm line 0480: Label not found: (A)
+1.asm line 0480: Unused data in MS byte of argument. (200)
+1.asm line 0484: Label not found: (UART_RX_RDY_LP)
+1.asm line 0484: Range of relative branch exceeded. 
+1.asm line 0485: Label not found: (A)
+1.asm line 0485: Unused data in MS byte of argument. (200)
+1.asm line 0492: Label not found: (UART_RX)
+1.asm line 0492: label value misalligned.           (UART_RX)
+1.asm line 0492: unrecognized instruction.          (UART_RX)
+tasm: pass 2 complete.
+tasm: Number of errors = 10

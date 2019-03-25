@@ -33,9 +33,9 @@ SERIAL:             RET
 
 					.TEXT
 START:
-BOOT_SEQUENCE:		ACALL			LED_TEST
-					;ACALL			PIO0_TEST
-					;ACALL			PIO1_TEST
+BOOT_SEQUENCE:		;ACALL			LED_TEST
+					ACALL			PIO0_TEST
+					ACALL			PIO1_TEST
                     ;ACALL          CF_0_TEST
 					;ACALL			CLR_MEMORY
 					ACALL           COPYBIOS
