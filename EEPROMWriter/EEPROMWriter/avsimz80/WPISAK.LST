@@ -1,0 +1,40 @@
+################################################################################
+#                                                                              #
+#    Micro Series Z80 Assembler V1.80/MD2               18/Dec/02  21:27:39    #
+#                                                                              #
+#       Source   =   wpisak.asm                                                #
+#       List     =   wpisak.lst                                                #
+#       Object   =   wpisak.r01                                                #
+#       Options  =                                                             #
+#                                                                              #
+#                                               (c) Copyright IAR Systems 1985 #
+################################################################################
+
+
+    1                 ;Program zapelnianie 1 (FF) i 0 (00) od25H do 3FF
+    2  0000                   ORG 0000h
+    3  0000 212500            ld hl, 25h            ;poczatek pamieci 
+    4  0003 11FF03            ld de, 3ffh     ;koniec pamieci
+    5  0006 23        loo:    inc hl          ;zwieksz adres 
+    6  0007 36FF              ld(hl), 0FFH    ;zapisz pamiec 
+    7  0009 7C                ld a,h          ;zapisz gornego bajtu adresu 
+    8  000A BA                cp d                  ;czy H=D ?
+    9  000B C21300            jp nz, dalej    ;jezeli tak, to sprawdzamy E=L ? 
+   10  000E 7D                ld a,l          ;zapis dolnego bajtu adresu
+   11  000F BB                cp e 
+   12  0010 CA2000            jp z, koniec    ;ostatni adres pamieci 
+   13  0013 23        dalej:inc hl          ; zwieksz adres 
+   14  0014 3600            ld(HL),0        ;zapisz pamiec 
+   15  0016 7C                ld a,h          ;zapis gornego bajtu adresu 
+   16  0017 BA                cp d
+   17  0018 C20600            jp nz, loo      ;czy H=D po wpisaniu 0 ?
+   18  001B 7D                ld a,l          ;zapis dolnego bajtu adresu 
+   19  001C BB                cp e 
+   20  001D C20600            jp nz,loo             ;czy Koniec calkowity ?
+   21  0020           koniec:
+   22  0020                   end             ;koniec 
+
+    Errors:  None          ##########
+    Bytes:   32            # wpisak #
+    CRC:     08D8          ##########
+

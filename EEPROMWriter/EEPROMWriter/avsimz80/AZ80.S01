@@ -1,0 +1,38 @@
+        name    VERIFY
+        titl    '          AZ80 Relocating Macro Assembler by IAR Systems'
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;                                                         ;
+;      Test program for the AZ80 Assembler V1.25          ;
+;                                                         ;
+;      All instructions and operators are used.           ;
+;                                                         ;
+;      Note: This program is not to be processed by       ;
+;                                                         ;
+;      XLINK.                                             ;
+;                                                         ;
+;                #######################                  ;
+;                #   IAR Systems AB    #                  ;
+;                #   POB 23051         #                  ;
+;                #   S-750 23 Uppsala  #                  ;
+;                #   Sweden            #                  ;
+;                #######################                  ;
+;                                                         ;
+;              Phone: +46 18 144314                       ;
+;              Telex: 761 47 UPTRADE S                    ;
+;                                                         ;
+;      Written by: Anders Rundgren                        ;
+;                                                         ;
+;      (c) Copyright IAR Systems 1983, 1984               ;
+;                                                         ;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+        pstitl  '          Operators etc...'
+$az80opr
+        pstitl  '          All the Z80 instructions in alphabetical order'
+$az80ins
+        pstitl  '          A sample macro'
+$az80mac
+        endmod
+        module IAR_Systems___Software_that_works
+        nop
+        end
+

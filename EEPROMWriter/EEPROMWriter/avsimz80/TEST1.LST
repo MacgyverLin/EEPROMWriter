@@ -1,0 +1,54 @@
+################################################################################
+#                                                                              #
+#    Micro Series Z80 Assembler V1.80/MD2               24/Nov/00  17:46:16    #
+#                                                                              #
+#       Source   =   test1.asm                                                 #
+#       List     =   test1.lst                                                 #
+#       Object   =   test1.r01                                                 #
+#       Options  =                                                             #
+#                                                                              #
+#                                               (c) Copyright IAR Systems 1985 #
+################################################################################
+
+
+    1  0050           STOS:   EQU 50H
+    2  0010           BUF1:   EQU 10H
+    3  003F           BUF2:   EQU 3FH
+    4  0040           COUNT:  EQU 40H
+    5                                 
+    6  0000                   ORG  0
+    7                                         
+    8  0000 215000            LD HL,STOS
+    9  0003 E5                PUSH HL 
+   10  0004 214000            LD HL,COUNT
+   11  0007 3600              LD (HL),0H  
+   12  0009 211000            LD HL,BUF1
+   13  000C 113F00            LD DE,BUF2
+   14  000F 01E803            LD BC,1000D
+   15                                 
+   16  0012 7E        NEXT:   LD A,(HL)
+   17  0013 FE2A              CP 2AH      ;2AH- '*'kod gwiazdki 
+Error in 18: Undefined label: DAL
+        JP Z,DAL
+             ^
+   18  0015 CA0000            JP Z,DAL
+   19  0018 3E2A              LD A,2AH
+   20  001A E5                PUSH HL
+   21  001B 214000            LD HL,COUNT
+   22  001E 34                INC (HL)  
+   23  001F E1                POP HL
+   24                                         
+   25  0020 12        DALEJ:  LD (DE),A
+   26  0021 23                INC HL
+   27  0022 13                INC DE
+   28  0023 0B                DEC BC
+   29  0024 78                LD A,B
+   30  0025 B1                OR C
+   31  0026 C21200            JP NZ, NEXT
+   32                                 
+   33  0029                   END             
+
+    Errors:  1             #########
+    Bytes:   41            # test1 #
+    CRC:     95F3          #########
+

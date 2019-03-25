@@ -1,0 +1,5 @@
+;lol
+	LD BC,0005H
+DODAJ	INC BC
+	JP NC, DODAJ
+	END

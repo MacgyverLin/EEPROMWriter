@@ -1,0 +1,7 @@
+        ORG 10H
+        LD A,0AH
+        LD B,0FFH
+start:  DEC B
+        CP B
+        HALT
+        END

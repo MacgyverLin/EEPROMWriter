@@ -1,0 +1,25 @@
+################################################################################
+#                                                                              #
+#    Micro Series Z80 Assembler V1.80/MD2               05/Nov/01  22:10:07    #
+#                                                                              #
+#       Source   =   test81.asm                                                #
+#       List     =   test81.lst                                                #
+#       Object   =   test81.r01                                                #
+#       Options  =                                                             #
+#                                                                              #
+#                                               (c) Copyright IAR Systems 1985 #
+################################################################################
+
+
+    1  0010                   ORG 10H
+    2  0010 3E0A              LD A,0AH
+    3  0012 06FF              LD B,0FFH
+    4  0014 05        start:  DEC B
+    5  0015 B8                CP B
+    6  0016 76                HALT
+    7  0017                   END
+
+    Errors:  None          ##########
+    Bytes:   7             # test81 #
+    CRC:     6A16          ##########
+
