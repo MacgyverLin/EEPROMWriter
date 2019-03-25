@@ -1,0 +1,26 @@
+################################################################################
+#                                                                              #
+#    Micro Series Z80 Assembler V1.80/MD2               17/Oct/02  21:11:02    #
+#                                                                              #
+#       Source   =   licz.asm                                                  #
+#       List     =   licz.lst                                                  #
+#       Object   =   licz.r01                                                  #
+#       Options  =                                                             #
+#                                                                              #
+#                                               (c) Copyright IAR Systems 1985 #
+################################################################################
+
+
+    1                   ;licznik do 20h
+    2  0000                           ORG 0
+    3  0000 3E20                      LD A, 20H       ;do akumulatora stan koncowy licznika
+    4  0002 0600                      LD B, 0H        ;stan poczatkowy licznika w rej.B
+    5  0004 04        LOO:            INC B           ;kolejne zliczenie jedynki
+    6  0005 B8                        CP B            ;czy koniec zliczania?
+    7  0006 C20400                    JP NZ, LOO      ;jezeli nie to licz dalej
+    8  0009                           END
+
+    Errors:  None           ########
+    Bytes:   9              # licz #
+    CRC:     E34A           ########
+

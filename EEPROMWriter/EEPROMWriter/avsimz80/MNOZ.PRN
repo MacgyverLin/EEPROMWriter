@@ -1,0 +1,21 @@
+PROC_MNOZ:			;(mnozy AxC, wynik w HL)
+               LD D, A		
+	       LD E, 0h		
+	       LD H, 0h		
+	       LD A, 0h		
+	       LD B, 8h		
+	LOOP:  SRL C		
+	       JP NC, DALEJ:	
+	       PUSH AF		
+	       LD A, E		
+	       ADD A, H		
+	       LD H, A		
+	       POP AF		
+	       ADD A, D		
+	       JP NC, DALEJ:	
+	       INC H		
+	DALEJ: SLA D		
+	       RL E		
+	       DJNZ LOOP:	
+	       LD L, A		
+	       RET		

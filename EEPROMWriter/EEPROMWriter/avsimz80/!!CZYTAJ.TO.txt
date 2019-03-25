@@ -1,0 +1,8 @@
+Aby skompilowaç program zapisany w pliku *.asm na *.hex naleßy
+podaç jego nazwë BEZ ROZSZERZENIA jako parametr pliku wsadowego
+!ASM2HEX.BAT
+
+Pomoc do symulatora Z80 jest dostëpna wewnÜtrz programu.
+
+
+				Tomasz W¢jcik

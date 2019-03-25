@@ -1,0 +1,27 @@
+        lstexp-         ;Disable expanded lists
+
+        macro   %table
+        lstexp+         ;List next line
+temp?   defl    1
+        lstexp-
+; \l0 - Find parameter length
+len?    defl    \%
+; \l1 - Initiate stringpos to 1
+        %puttab \0
+        endmac
+
+        macro   %puttab
+; \u\u -  Push stringpos (duplicate)
+        if      \.<=len?
+; \l0 - Parameter number 0 is the one
+        lstexp+
+        defb    '\"',temp?
+temp?   defl    temp?+1
+        lstexp-
+; \i
+        %puttab \0
+        endif
+        endmac
+
+        %table  qrstu;The CALL
+

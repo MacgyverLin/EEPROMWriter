@@ -1,0 +1,9 @@
+  ;licznik do 20h
+                ORG 0
+                LD A, 20H       ;do akumulatora stan koncowy licznika
+                LD B, 0H        ;stan poczatkowy licznika w rej.B
+        LOO     INC B           ;kolejne zliczenie jedynki
+                CP B            ;czy koniec zliczania?
+                JP NZ, LOO     ;jezeli nie to licz dalej
+                END
+ 

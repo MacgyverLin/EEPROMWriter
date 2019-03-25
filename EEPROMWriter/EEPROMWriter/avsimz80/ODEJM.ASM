@@ -1,0 +1,19 @@
+;odejmowanie
+                        ORG 10
+                        LD A,00H  ;akumul
+                        LD B,15H  ;w rejestrze B stan licznika
+LOOP
+                        DEC B
+                        JP NZ,LOOP
+                        NOP
+                        NOP
+                        NOP
+                        NOP
+                        NOP
+                        NOP
+                        NOP
+                        NOP
+                        NOP
+                        NOP
+                        END
+

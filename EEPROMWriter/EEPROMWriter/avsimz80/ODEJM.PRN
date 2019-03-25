@@ -1,0 +1,36 @@
+
+
+AVOCET SYSTEMS Z80 ASSEMBLER -  VERSION 1.03M  SERIAL #00613
+
+SOURCE FILE NAME: ODEJM.ASM                                                                                 PAGE  1
+
+
+                ;odejmowanie
+ 0000 3E00                              LD A,00H  ;akumul                                 
+ 0002 0615                              LD B,15H  ;w rejestrze B stan licznika
+ 0004           LOOP                      
+ 0004 05                                DEC B
+ 0005 C20400                            JP NZ,LOOP
+ 0008 00                                NOP
+ 0009 00                                NOP
+ 000A 00                                NOP
+ 000B 00                                NOP
+ 000C 00                                NOP
+ 000D 00                                NOP
+ 000E 00                                NOP
+ 000F 00                                NOP
+ 0010 00                                NOP
+ 0011 00                                NOP
+ 0000                                   END
+
+
+AVOCET SYSTEMS Z80 ASSEMBLER -  VERSION 1.03M  SERIAL #00613
+
+SOURCE FILE NAME: ODEJM.ASM                                                                                 PAGE  2
+---- SYMBOL TABLE ----
+
+LOOP     0004          
+                
+***** NO ERRORS DETECTED *****
+               
+ 0002 0615                              LD B,15H  ;w rejestrze B stan li

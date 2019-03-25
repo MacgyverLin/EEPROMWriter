@@ -1,0 +1,47 @@
+################################################################################
+#                                                                              #
+#    Micro Series Z80 Assembler V1.80/MD2               23/May/94  12:00:02    #
+#                                                                              #
+#       Source   =   test.asm                                                  #
+#       List     =   test.lst                                                  #
+#       Object   =   test.r01                                                  #
+#       Options  =                                                             #
+#                                                                              #
+#                                               (c) Copyright IAR Systems 1985 #
+################################################################################
+
+
+    1  0000 310002            LD SP,200H
+    2  0003 3EAA              LD A, 0AAH
+    3  0005 0608              LD B, 8
+    4  0007 CD6C00            CALL TST
+    5                 
+    6  000A 1F        LOOP:   RRA
+    7  000B 5F                LD E, A
+    8  000C 79                LD A, C
+    9  000D 17                RLA
+   10  000E 4F                LD C, A
+   11  000F 10F9              DJNZ LOOP
+   12  0011 79                LD A,C
+   13  0012 76                HALT
+   14                 
+   15                 
+   16  0066                   ORG 0066H
+   17  0066 E5                PUSH HL
+   18  0067 F5                PUSH AF
+   19  0068 F1                POP AF
+   20  0069 E1                POP HL
+   21  006A ED45              RETN
+   22                 
+   23  006C F5        TST:    PUSH AF
+   24  006D F1                POP AF
+   25  006E C9                RET
+   26                         
+   27  0200                   ORG 0200H
+   28                 
+   29  0200                   END
+
+    Errors:  None           ########
+    Bytes:   28             # test #
+    CRC:     EB7C           ########
+

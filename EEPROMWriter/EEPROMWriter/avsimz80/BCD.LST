@@ -1,0 +1,32 @@
+Error in 1: Invalid instruction
+AZ80 %1.ASM
+     ^
+Error in 2: Invalid instruction
+xlink Z80 %1 / O=%1.hex m
+      ^
+Error in 2: Missing END-statement
+xlink Z80 %1 / O=%1.hex m
+^
+
+    End of pass 1
+
+################################################################################
+#                                                                              #
+#    Micro Series Z80 Assembler V1.80/MD2               15/Apr/07  10:11:53    #
+#                                                                              #
+#       Source   =   !asm2hex.bat                                              #
+#       List     =   bcd.lst                                                   #
+#       Object   =   bcd.r01                                                   #
+#       Options  =                                                             #
+#                                                                              #
+#                                               (c) Copyright IAR Systems 1985 #
+################################################################################
+
+
+    1  0000           AZ80 %1.ASM
+    2  0000           xlink Z80 %1 / O=%1.hex m
+
+    Errors:  3            ############
+    Bytes:   0            # !asm2hex #
+    CRC:     C82D         ############
+

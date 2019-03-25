@@ -177,263 +177,264 @@
 0015   0040             START:
 0016   0040             					
 0017   0040             
-0018   0040             BOOT_SEQUENCE:		; ACALL			TEST_LED
-0019   0040             					; ACALL			TEST_8255_0
-0020   0040             					; ACALL			TEST_8255_1
-0021   0040 11 FE       					ACALL			CLR_MEMORY
-0022   0042 31 0D       					ACALL           COPYBIOS
-0023   0044 31 1D       					ACALL           CMPBIOS
-0024   0046 B4 00 07    					CJNE			A, #0, BOOT_FAILED
-0025   0049             
-0026   0049 31 31       BOOT_SUCCESS:		ACALL			EXIT_BOOT
-0027   004B 75 90 01    BOOT_SUCCESS_1:		MOV				P1, #01h
-0028   004E 01 4B       					AJMP            BOOT_SUCCESS_1
-0029   0050             
-0030   0050 75 90 02    BOOT_FAILED:		MOV				P1, #02h
-0031   0053 01 50                           AJMP            BOOT_FAILED
-0032   0055             
-0033   0055             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0034   0055             ; DELAY FUNCTION
-0035   0055 7D 01       DELAY:				MOV				R5, #01; #50
-0036   0057 7E 01       DELAY1:				MOV				R6, #01; #100
-0037   0059 7F 01       DELAY2:				MOV				R7, #01; #100
-0038   005B DF FE       DELAY3:				DJNZ			R7, DELAY3
-0039   005D DE FA       					DJNZ			R6, DELAY2
-0040   005F DD F6       					DJNZ			R5, DELAY1
-0041   0061 22          					RET
-0042   0062             
-0043   0062             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0044   0062             ; TEST 8255
-0045   0062 7C 0A       TEST_8255_0:		MOV				R4, #10
-0046   0064 74 80       					MOV				A, #080h
-0047   0066 11 B8       					ACALL           INIT_8255_0
-0048   0068 E4          					CLR				A
-0049   0069             
-0050   0069 11 C2       TEST_8255_0_a:		ACALL			SET_8255_0_PA
-0051   006B 11 55       					ACALL			DELAY
-0052   006D 04          					INC				A
-0053   006E             
-0054   006E 11 CC       					ACALL			SET_8255_0_PB
-0055   0070 11 55       					ACALL			DELAY
-0056   0072 04          					INC				A
-0057   0073             
-0058   0073 11 D6       					ACALL			SET_8255_0_PC
-0059   0075 11 55       					ACALL			DELAY
-0060   0077 04          					INC				A
-0061   0078             
-0062   0078 DC EF       					DJNZ			R4, TEST_8255_0_a
-0063   007A 22          					RET
-0064   007B             
-0065   007B 7C 0A       TEST_8255_1:		MOV				R4, #10
-0066   007D 74 80       					MOV				A, #080h
-0067   007F 11 BD       					ACALL           INIT_8255_1
-0068   0081 E4          					CLR				A
-0069   0082             
-0070   0082 11 C7       TEST_8255_1_a:		ACALL			SET_8255_1_PA
-0071   0084 11 55       					ACALL			DELAY
-0072   0086 04          					INC				A
-0073   0087             
-0074   0087 11 D1       					ACALL			SET_8255_1_PB
-0075   0089 11 55       					ACALL			DELAY
-0076   008B 04          					INC				A
-0077   008C             
-0078   008C 11 DB       					ACALL			SET_8255_1_PC
-0079   008E 11 55       					ACALL			DELAY
-0080   0090 04          					INC				A
-0081   0091             
-0082   0091 DC EF       					DJNZ			R4, TEST_8255_1_a
-0083   0093 22          					RET
-0084   0094             
-0085   0094             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0086   0094             ; TEST LED
-0087   0094 75 90 01    TEST_LED:			MOV				P1, #01h
-0088   0097 11 55       					ACALL			DELAY
-0089   0099 75 90 02    					MOV				P1, #02h
-0090   009C 11 55       					ACALL			DELAY
-0091   009E 75 90 04    					MOV				P1, #04h
-0092   00A1 11 55       					ACALL			DELAY
-0093   00A3 75 90 08    					MOV				P1, #08h
-0094   00A6 11 55       					ACALL			DELAY
-0095   00A8 75 90 10    					MOV				P1, #10h
-0096   00AB 11 55       					ACALL			DELAY
-0097   00AD 75 90 20    					MOV				P1, #20h
-0098   00B0 11 55       					ACALL			DELAY
-0099   00B2 75 90 40    					MOV				P1, #40h
-0100   00B5 11 55       					ACALL			DELAY
-0101   00B7 22          					RET
-0102   00B8             
-0103   00B8             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0104   00B8             ; INIT 8255
-0105   00B8             ; INPUT: A, MODE
-0106   00B8             ; 76543210 
-0107   00B8             ; |||||||+--------- PC0-3  ,  1:INPUT ,  0:OUTPUT
-0108   00B8             ; ||||||+---------- PB     ,  1:INPUT ,  0:OUTPUT
-0109   00B8             ; |||||+----------- PB MODE,  0:MODE 0,  1:MODE 1
-0110   00B8             ; ||||+------------ PC4-7  ,  1:INPUT ,  0:OUTPUT
-0111   00B8             ; |||+------------- PA     ,  1:INPUT ,  0:OUTPUT
-0112   00B8             ; ||+-------------- PA MODE, 00:MODE 0, 01:MODE 1
-0113   00B8             ; |+--------------- PA MODE, 10:MODE 2, 11:X
-0114   00B8             ; +---------------- ALWAYS 1
-0115   00B8 90 FF 03    INIT_8255_0:		MOV				DPTR, #0FF03H
-0116   00BB 01 C0       					AJMP			INIT_8255_a			
-0117   00BD 90 FF 13    INIT_8255_1:		MOV				DPTR, #0FF13H
-0118   00C0 F0          INIT_8255_a:		MOVX			@DPTR, A
-0119   00C1 22          					RET
-0120   00C2             
-0121   00C2             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0122   00C2             ; INIT SET_8255_0_PA
-0123   00C2             ; PARAMETER: A, DATA
-0124   00C2             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0125   00C2             ; INIT SET_8255_1_PA
-0126   00C2             ; PARAMETER: A, DATA
-0127   00C2 90 FF 00    SET_8255_0_PA:		MOV				DPTR, #0FF00H
-0128   00C5 01 CA       					AJMP			SET_8255_PA_a	
-0129   00C7 90 FF 10    SET_8255_1_PA:		MOV				DPTR, #0FF10H
-0130   00CA F0          SET_8255_PA_a:		MOVX			@DPTR, A
-0131   00CB 22          					RET
-0132   00CC             
-0133   00CC             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0134   00CC             ; INIT SET_8255_0_PB
-0135   00CC             ; PARAMETER: A, DATA
-0136   00CC             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0137   00CC             ; INIT SET_8255_1_PB
-0138   00CC             ; PARAMETER: A, DATA
-0139   00CC 90 FF 01    SET_8255_0_PB:		MOV				DPTR, #0FF01H
-0140   00CF 01 D4       					AJMP			SET_8255_PB_a	
-0141   00D1 90 FF 11    SET_8255_1_PB:		MOV				DPTR, #0FF11H
-0142   00D4 F0          SET_8255_PB_a:		MOVX			@DPTR, A
-0143   00D5 22          					RET
-0144   00D6             
-0145   00D6             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0146   00D6             ; INIT SET_8255_0_PC
-0147   00D6             ; PARAMETER: A, DATA
-0148   00D6             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0149   00D6             ; INIT SET_8255_1_PC
-0150   00D6             ; PARAMETER: A, DATA
-0151   00D6 90 FF 02    SET_8255_0_PC:		MOV				DPTR, #0FF02H
-0152   00D9 01 DE       					AJMP			SET_8255_PC_a	
-0153   00DB 90 FF 12    SET_8255_1_PC:		MOV				DPTR, #0FF12H
-0154   00DE F0          SET_8255_PC_a:		MOVX			@DPTR, A
-0155   00DF 22          					RET
-0156   00E0             
-0157   00E0             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0158   00E0             ; INIT GET_8255_0_PA
-0159   00E0             ; RETURN: A, DATA
-0160   00E0             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0161   00E0             ; INIT GET_8255_1_PA
-0162   00E0             ; RETURN: A, DATA
-0163   00E0 90 FF 00    GET_8255_0_PA:		MOV				DPTR, #0FF00H
-0164   00E3 01 E8       					AJMP			GET_8255_PA_a	
-0165   00E5 90 FF 10    GET_8255_1_PA:		MOV				DPTR, #0FF10H
-0166   00E8 E0          GET_8255_PA_a:		MOVX			A, @DPTR
-0167   00E9 22          					RET
-0168   00EA             
-0169   00EA             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0170   00EA             ; INIT GET_8255_0_PB
-0171   00EA             ; RETURN: A, DATA
-0172   00EA             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0173   00EA             ; INIT GET_8255_1_PB
-0174   00EA             ; RETURN: A, DATA
-0175   00EA 90 FF 01    GET_8255_0_PB:		MOV				DPTR, #0FF01H
-0176   00ED 01 F2       					AJMP			GET_8255_PB_a	
-0177   00EF 90 FF 11    GET_8255_1_PB:		MOV				DPTR, #0FF11H
-0178   00F2 E0          GET_8255_PB_a:		MOVX			A, @DPTR
-0179   00F3 22          					RET
-0180   00F4             
-0181   00F4             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0182   00F4             ; INIT SET_8255_0_PC
-0183   00F4             ; RETURN: A, DATA
-0184   00F4             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0185   00F4             ; INIT SET_8255_1_PC
-0186   00F4             ; RETURN: A, DATA
-0187   00F4 90 FF 02    GET_8255_0_PC:		MOV				DPTR, #0FF02H
-0188   00F7 01 FC       					AJMP			GET_8255_PC_a	
-0189   00F9 90 FF 12    GET_8255_1_PC:		MOV				DPTR, #0FF12H
-0190   00FC E0          GET_8255_PC_a:		MOVX			A, @DPTR
-0191   00FD 22          					RET
-0192   00FE             
-0193   00FE             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0194   00FE             ; CLEAR_MEMORTY FUNCTION
-0195   00FE 90 00 00    CLR_MEMORY:			MOV				DPTR, #0000h
-0196   0101 7E 00       CLR_MEMORY_1:		MOV				R6, #000H
-0197   0103 7F 00       CLR_MEMORY_2:		MOV				R7, #000H
-0198   0105 E4          CLR_MEMORY_3:		CLR				A
-0199   0106 F0          					MOVX			@DPTR,A
-0200   0107 A3          					INC				DPTR
-0201   0108 DF FB       					DJNZ			R7, CLR_MEMORY_3
-0202   010A DE F7       					DJNZ			R6, CLR_MEMORY_2
-0203   010C 22          CLR_MEMORY_END:		RET
-0204   010D             
-0205   010D             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0206   010D             ; COPY_BIOS FUNCTION
-0207   010D 90 00 00    COPYBIOS:			MOV				DPTR, #0000h
-0208   0110 7E 80       COPYBIOS_1:			MOV				R6, #080H
-0209   0112 7F 00       COPYBIOS_2:			MOV				R7, #000H
-0210   0114 E4          COPYBIOS_3:			CLR				A
-0211   0115 93          					MOVC			A, @A+DPTR
-0212   0116 F0          					MOVX			@DPTR,A
-0213   0117 A3          					INC				DPTR
-0214   0118 DF FA       					DJNZ			R7, COPYBIOS_3
-0215   011A DE F6       					DJNZ			R6, COPYBIOS_2
-0216   011C 22          COPYBIOS_END:		RET				
-0217   011D             
-0218   011D             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0219   011D             ; COMPARE_BIOS FUNCTION
-0220   011D 90 00 00    CMPBIOS:			MOV				DPTR, #0000h
-0221   0120 7E 80       CMPBIOS_1:			MOV				R6, #080H
-0222   0122 7F 00       CMPBIOS_2:			MOV				R7, #000H
-0223   0124 E4          CMPBIOS_3:			CLR				A
-0224   0125 93          					MOVC			A, @A+DPTR
-0225   0126 F8          					MOV				R0, A
-0226   0127 E0          					MOVX			A, @DPTR
-0227   0128 98          					SUBB			A, R0
-0228   0129 70 05       					JNZ				CMPBIOS_END
-0229   012B A3          					INC				DPTR
-0230   012C DF F6       					DJNZ			R7, CMPBIOS_3
-0231   012E DE F2       					DJNZ			R6, CMPBIOS_2
-0232   0130 22          CMPBIOS_END:		RET	
-0233   0131             
-0234   0131             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0235   0131             ; EXIT_BOOT FUNCTION
-0236   0131 90 FF 70    EXIT_BOOT:			MOV				DPTR, #0FF70h
-0237   0134 F0          					MOVX			@DPTR, A
-0238   0135 22          					RET
-0239   0136             
-0240   0136             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0241   0136             ; ENTER_ISP FUNCTION
-0242   0136 90 FF 71    ENTER_ISP:			MOV				DPTR, #0FF71h
-0243   0139 F0          					MOVX			@DPTR, A
-0244   013A 22          					RET		
-0245   013B             
-0246   013B             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0247   013B             ; WARM_BOOT FUNCTION
-0248   013B 90 FF 72    WARM_BOOT:			MOV				DPTR, #0FF72h
-0249   013E F0          					MOVX			@DPTR, A
-0250   013F 22          					RET
-0251   0140             
-0252   0140                                 .END
+0018   0040             BOOT_SEQUENCE:		; ACALL			CLR_MEMORY
+0019   0040 31 11       					ACALL           COPYBIOS
+0020   0042 31 21       					ACALL           CMPBIOS
+0021   0044 B4 00 0D    					CJNE			A, #0, BOOT_FAILED
+0022   0047             
+0023   0047 31 35       BOOT_SUCCESS:		ACALL			EXIT_BOOT
+0024   0049 75 90 01    BOOT_SUCCESS_1:		MOV				P1, #01h
+0025   004C 11 98       					ACALL			TEST_LED
+0026   004E 11 66       					ACALL			TEST_8255_0
+0027   0050 11 7F       					ACALL			TEST_8255_1
+0028   0052 01 49       					AJMP            BOOT_SUCCESS_1
+0029   0054             
+0030   0054 75 90 02    BOOT_FAILED:		MOV				P1, #02h
+0031   0057 01 54                           AJMP            BOOT_FAILED
+0032   0059             
+0033   0059             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0034   0059             ; DELAY FUNCTION
+0035   0059 7D 01       DELAY:				MOV				R5, #01; #50
+0036   005B 7E 01       DELAY1:				MOV				R6, #01; #100
+0037   005D 7F 01       DELAY2:				MOV				R7, #01; #100
+0038   005F DF FE       DELAY3:				DJNZ			R7, DELAY3
+0039   0061 DE FA       					DJNZ			R6, DELAY2
+0040   0063 DD F6       					DJNZ			R5, DELAY1
+0041   0065 22          					RET
+0042   0066             
+0043   0066             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0044   0066             ; TEST 8255
+0045   0066 7C 0A       TEST_8255_0:		MOV				R4, #10
+0046   0068 74 80       					MOV				A, #080h
+0047   006A 11 BC       					ACALL           INIT_8255_0
+0048   006C E4          					CLR				A
+0049   006D             
+0050   006D 11 C6       TEST_8255_0_a:		ACALL			SET_8255_0_PA
+0051   006F 11 59       					ACALL			DELAY
+0052   0071 04          					INC				A
+0053   0072             
+0054   0072 11 D0       					ACALL			SET_8255_0_PB
+0055   0074 11 59       					ACALL			DELAY
+0056   0076 04          					INC				A
+0057   0077             
+0058   0077 11 DA       					ACALL			SET_8255_0_PC
+0059   0079 11 59       					ACALL			DELAY
+0060   007B 04          					INC				A
+0061   007C             
+0062   007C DC EF       					DJNZ			R4, TEST_8255_0_a
+0063   007E 22          					RET
+0064   007F             
+0065   007F 7C 0A       TEST_8255_1:		MOV				R4, #10
+0066   0081 74 80       					MOV				A, #080h
+0067   0083 11 C1       					ACALL           INIT_8255_1
+0068   0085 E4          					CLR				A
+0069   0086             
+0070   0086 11 CB       TEST_8255_1_a:		ACALL			SET_8255_1_PA
+0071   0088 11 59       					ACALL			DELAY
+0072   008A 04          					INC				A
+0073   008B             
+0074   008B 11 D5       					ACALL			SET_8255_1_PB
+0075   008D 11 59       					ACALL			DELAY
+0076   008F 04          					INC				A
+0077   0090             
+0078   0090 11 DF       					ACALL			SET_8255_1_PC
+0079   0092 11 59       					ACALL			DELAY
+0080   0094 04          					INC				A
+0081   0095             
+0082   0095 DC EF       					DJNZ			R4, TEST_8255_1_a
+0083   0097 22          					RET
+0084   0098             
+0085   0098             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0086   0098             ; TEST LED
+0087   0098 75 90 01    TEST_LED:			MOV				P1, #01h
+0088   009B 11 59       					ACALL			DELAY
+0089   009D 75 90 02    					MOV				P1, #02h
+0090   00A0 11 59       					ACALL			DELAY
+0091   00A2 75 90 04    					MOV				P1, #04h
+0092   00A5 11 59       					ACALL			DELAY
+0093   00A7 75 90 08    					MOV				P1, #08h
+0094   00AA 11 59       					ACALL			DELAY
+0095   00AC 75 90 10    					MOV				P1, #10h
+0096   00AF 11 59       					ACALL			DELAY
+0097   00B1 75 90 20    					MOV				P1, #20h
+0098   00B4 11 59       					ACALL			DELAY
+0099   00B6 75 90 40    					MOV				P1, #40h
+0100   00B9 11 59       					ACALL			DELAY
+0101   00BB 22          					RET
+0102   00BC             
+0103   00BC             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0104   00BC             ; INIT 8255
+0105   00BC             ; INPUT: A, MODE
+0106   00BC             ; 76543210 
+0107   00BC             ; |||||||+--------- PC0-3  ,  1:INPUT ,  0:OUTPUT
+0108   00BC             ; ||||||+---------- PB     ,  1:INPUT ,  0:OUTPUT
+0109   00BC             ; |||||+----------- PB MODE,  0:MODE 0,  1:MODE 1
+0110   00BC             ; ||||+------------ PC4-7  ,  1:INPUT ,  0:OUTPUT
+0111   00BC             ; |||+------------- PA     ,  1:INPUT ,  0:OUTPUT
+0112   00BC             ; ||+-------------- PA MODE, 00:MODE 0, 01:MODE 1
+0113   00BC             ; |+--------------- PA MODE, 10:MODE 2, 11:X
+0114   00BC             ; +---------------- ALWAYS 1
+0115   00BC 90 FF 03    INIT_8255_0:		MOV				DPTR, #0FF03H
+0116   00BF 01 C4       					AJMP			INIT_8255_a			
+0117   00C1 90 FF 13    INIT_8255_1:		MOV				DPTR, #0FF13H
+0118   00C4 F0          INIT_8255_a:		MOVX			@DPTR, A
+0119   00C5 22          					RET
+0120   00C6             
+0121   00C6             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0122   00C6             ; INIT SET_8255_0_PA
+0123   00C6             ; PARAMETER: A, DATA
+0124   00C6             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0125   00C6             ; INIT SET_8255_1_PA
+0126   00C6             ; PARAMETER: A, DATA
+0127   00C6 90 FF 00    SET_8255_0_PA:		MOV				DPTR, #0FF00H
+0128   00C9 01 CE       					AJMP			SET_8255_PA_a	
+0129   00CB 90 FF 10    SET_8255_1_PA:		MOV				DPTR, #0FF10H
+0130   00CE F0          SET_8255_PA_a:		MOVX			@DPTR, A
+0131   00CF 22          					RET
+0132   00D0             
+0133   00D0             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0134   00D0             ; INIT SET_8255_0_PB
+0135   00D0             ; PARAMETER: A, DATA
+0136   00D0             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0137   00D0             ; INIT SET_8255_1_PB
+0138   00D0             ; PARAMETER: A, DATA
+0139   00D0 90 FF 01    SET_8255_0_PB:		MOV				DPTR, #0FF01H
+0140   00D3 01 D8       					AJMP			SET_8255_PB_a	
+0141   00D5 90 FF 11    SET_8255_1_PB:		MOV				DPTR, #0FF11H
+0142   00D8 F0          SET_8255_PB_a:		MOVX			@DPTR, A
+0143   00D9 22          					RET
+0144   00DA             
+0145   00DA             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0146   00DA             ; INIT SET_8255_0_PC
+0147   00DA             ; PARAMETER: A, DATA
+0148   00DA             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0149   00DA             ; INIT SET_8255_1_PC
+0150   00DA             ; PARAMETER: A, DATA
+0151   00DA 90 FF 02    SET_8255_0_PC:		MOV				DPTR, #0FF02H
+0152   00DD 01 E2       					AJMP			SET_8255_PC_a	
+0153   00DF 90 FF 12    SET_8255_1_PC:		MOV				DPTR, #0FF12H
+0154   00E2 F0          SET_8255_PC_a:		MOVX			@DPTR, A
+0155   00E3 22          					RET
+0156   00E4             
+0157   00E4             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0158   00E4             ; INIT GET_8255_0_PA
+0159   00E4             ; RETURN: A, DATA
+0160   00E4             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0161   00E4             ; INIT GET_8255_1_PA
+0162   00E4             ; RETURN: A, DATA
+0163   00E4 90 FF 00    GET_8255_0_PA:		MOV				DPTR, #0FF00H
+0164   00E7 01 EC       					AJMP			GET_8255_PA_a	
+0165   00E9 90 FF 10    GET_8255_1_PA:		MOV				DPTR, #0FF10H
+0166   00EC E0          GET_8255_PA_a:		MOVX			A, @DPTR
+0167   00ED 22          					RET
+0168   00EE             
+0169   00EE             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0170   00EE             ; INIT GET_8255_0_PB
+0171   00EE             ; RETURN: A, DATA
+0172   00EE             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0173   00EE             ; INIT GET_8255_1_PB
+0174   00EE             ; RETURN: A, DATA
+0175   00EE 90 FF 01    GET_8255_0_PB:		MOV				DPTR, #0FF01H
+0176   00F1 01 F6       					AJMP			GET_8255_PB_a	
+0177   00F3 90 FF 11    GET_8255_1_PB:		MOV				DPTR, #0FF11H
+0178   00F6 E0          GET_8255_PB_a:		MOVX			A, @DPTR
+0179   00F7 22          					RET
+0180   00F8             
+0181   00F8             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0182   00F8             ; INIT SET_8255_0_PC
+0183   00F8             ; RETURN: A, DATA
+0184   00F8             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0185   00F8             ; INIT SET_8255_1_PC
+0186   00F8             ; RETURN: A, DATA
+0187   00F8 90 FF 02    GET_8255_0_PC:		MOV				DPTR, #0FF02H
+0188   00FB 21 00       					AJMP			GET_8255_PC_a	
+0189   00FD 90 FF 12    GET_8255_1_PC:		MOV				DPTR, #0FF12H
+0190   0100 E0          GET_8255_PC_a:		MOVX			A, @DPTR
+0191   0101 22          					RET
+0192   0102             
+0193   0102             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0194   0102             ; CLEAR_MEMORTY FUNCTION
+0195   0102 90 00 00    CLR_MEMORY:			MOV				DPTR, #0000h
+0196   0105 7E 00       CLR_MEMORY_1:		MOV				R6, #000H
+0197   0107 7F 00       CLR_MEMORY_2:		MOV				R7, #000H
+0198   0109 E4          CLR_MEMORY_3:		CLR				A
+0199   010A F0          					MOVX			@DPTR,A
+0200   010B A3          					INC				DPTR
+0201   010C DF FB       					DJNZ			R7, CLR_MEMORY_3
+0202   010E DE F7       					DJNZ			R6, CLR_MEMORY_2
+0203   0110 22          CLR_MEMORY_END:		RET
+0204   0111             
+0205   0111             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0206   0111             ; COPY_BIOS FUNCTION
+0207   0111 90 00 00    COPYBIOS:			MOV				DPTR, #0000h
+0208   0114 7E 80       COPYBIOS_1:			MOV				R6, #080H
+0209   0116 7F 00       COPYBIOS_2:			MOV				R7, #000H
+0210   0118 E4          COPYBIOS_3:			CLR				A
+0211   0119 93          					MOVC			A, @A+DPTR
+0212   011A F0          					MOVX			@DPTR,A
+0213   011B A3          					INC				DPTR
+0214   011C DF FA       					DJNZ			R7, COPYBIOS_3
+0215   011E DE F6       					DJNZ			R6, COPYBIOS_2
+0216   0120 22          COPYBIOS_END:		RET				
+0217   0121             
+0218   0121             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0219   0121             ; COMPARE_BIOS FUNCTION
+0220   0121 90 00 00    CMPBIOS:			MOV				DPTR, #0000h
+0221   0124 7E 80       CMPBIOS_1:			MOV				R6, #080H
+0222   0126 7F 00       CMPBIOS_2:			MOV				R7, #000H
+0223   0128 E4          CMPBIOS_3:			CLR				A
+0224   0129 93          					MOVC			A, @A+DPTR
+0225   012A F8          					MOV				R0, A
+0226   012B E0          					MOVX			A, @DPTR
+0227   012C 98          					SUBB			A, R0
+0228   012D 70 05       					JNZ				CMPBIOS_END
+0229   012F A3          					INC				DPTR
+0230   0130 DF F6       					DJNZ			R7, CMPBIOS_3
+0231   0132 DE F2       					DJNZ			R6, CMPBIOS_2
+0232   0134 22          CMPBIOS_END:		RET	
+0233   0135             
+0234   0135             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0235   0135             ; EXIT_BOOT FUNCTION
+0236   0135 90 FF 70    EXIT_BOOT:			MOV				DPTR, #0FF70h
+0237   0138 F0          					MOVX			@DPTR, A
+0238   0139 22          					RET
+0239   013A             
+0240   013A             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0241   013A             ; ENTER_ISP FUNCTION
+0242   013A 90 FF 71    ENTER_ISP:			MOV				DPTR, #0FF71h
+0243   013D F0          					MOVX			@DPTR, A
+0244   013E 22          					RET		
+0245   013F             
+0246   013F             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0247   013F             ; WARM_BOOT FUNCTION
+0248   013F 90 FF 72    WARM_BOOT:			MOV				DPTR, #0FF72h
+0249   0142 F0          					MOVX			@DPTR, A
+0250   0143 22          					RET
+0251   0144             
+0252   0144                                 .END
 ADDR  00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 -----------------------------------------------------
 0000  01 40 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 0010  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 0020  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-0040  11 FE 31 0D 31 1D B4 00 07 31 31 75 90 01 01 4B
-0050  75 90 02 01 50 7D 01 7E 01 7F 01 DF FE DE FA DD
-0060  F6 22 7C 0A 74 80 11 B8 E4 11 C2 11 55 04 11 CC
-0070  11 55 04 11 D6 11 55 04 DC EF 22 7C 0A 74 80 11
-0080  BD E4 11 C7 11 55 04 11 D1 11 55 04 11 DB 11 55
-0090  04 DC EF 22 75 90 01 11 55 75 90 02 11 55 75 90
-00A0  04 11 55 75 90 08 11 55 75 90 10 11 55 75 90 20
-00B0  11 55 75 90 40 11 55 22 90 FF 03 01 C0 90 FF 13
-00C0  F0 22 90 FF 00 01 CA 90 FF 10 F0 22 90 FF 01 01
-00D0  D4 90 FF 11 F0 22 90 FF 02 01 DE 90 FF 12 F0 22
-00E0  90 FF 00 01 E8 90 FF 10 E0 22 90 FF 01 01 F2 90
-00F0  FF 11 E0 22 90 FF 02 01 FC 90 FF 12 E0 22 90 00
-0100  00 7E 00 7F 00 E4 F0 A3 DF FB DE F7 22 90 00 00
-0110  7E 80 7F 00 E4 93 F0 A3 DF FA DE F6 22 90 00 00
-0120  7E 80 7F 00 E4 93 F8 E0 98 70 05 A3 DF F6 DE F2
-0130  22 90 FF 70 F0 22 90 FF 71 F0 22 90 FF 72 F0 22
+0040  31 11 31 21 B4 00 0D 31 35 75 90 01 11 98 11 66
+0050  11 7F 01 49 75 90 02 01 54 7D 01 7E 01 7F 01 DF
+0060  FE DE FA DD F6 22 7C 0A 74 80 11 BC E4 11 C6 11
+0070  59 04 11 D0 11 59 04 11 DA 11 59 04 DC EF 22 7C
+0080  0A 74 80 11 C1 E4 11 CB 11 59 04 11 D5 11 59 04
+0090  11 DF 11 59 04 DC EF 22 75 90 01 11 59 75 90 02
+00A0  11 59 75 90 04 11 59 75 90 08 11 59 75 90 10 11
+00B0  59 75 90 20 11 59 75 90 40 11 59 22 90 FF 03 01
+00C0  C4 90 FF 13 F0 22 90 FF 00 01 CE 90 FF 10 F0 22
+00D0  90 FF 01 01 D8 90 FF 11 F0 22 90 FF 02 01 E2 90
+00E0  FF 12 F0 22 90 FF 00 01 EC 90 FF 10 E0 22 90 FF
+00F0  01 01 F6 90 FF 11 E0 22 90 FF 02 21 00 90 FF 12
+0100  E0 22 90 00 00 7E 00 7F 00 E4 F0 A3 DF FB DE F7
+0110  22 90 00 00 7E 80 7F 00 E4 93 F0 A3 DF FA DE F6
+0120  22 90 00 00 7E 80 7F 00 E4 93 F8 E0 98 70 05 A3
+0130  DF F6 DE F2 22 90 FF 70 F0 22 90 FF 71 F0 22 90
+0140  FF 72 F0 22 00 00 00 00 00 00 00 00 00 00 00 00
 
 
 tasm: Number of errors = 0

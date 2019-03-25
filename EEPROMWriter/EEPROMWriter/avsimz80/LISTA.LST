@@ -1,0 +1,33 @@
+################################################################################
+#                                                                              #
+#    Micro Series Z80 Assembler V1.80/MD2               05/Sep/98  04:51:08    #
+#                                                                              #
+#       Source   =   playboy.asm                                               #
+#       List     =   lista.lst                                                 #
+#       Object   =   playboy.r01                                               #
+#       Options  =                                                             #
+#                                                                              #
+#                                               (c) Copyright IAR Systems 1985 #
+################################################################################
+
+
+    1  0000                   ORG 0
+    2  0000 210001            LD HL,100H
+    3  0003 06FF              LD B,0FFH
+    4  0005 0E00              LD C,00H
+    5  0007 1620              LD D,20H
+    6  0009 7E        ET1     LD A,(HL)
+    7  000A B8                CP B
+    8  000B C20F00            JP NZ,ET2
+    9  000E 47                LD B,A
+   10  000F B9        ET2     CP C
+   11  0010 C21400            JP NZ,ET3
+   12  0013 4F                LD C,A
+   13  0014 15        ET3     DEC D
+   14  0015 C20900            JP NZ,ET1
+   15  0018                   END
+
+    Errors:  None         ###########
+    Bytes:   24           # playboy #
+    CRC:     2F68         ###########
+
