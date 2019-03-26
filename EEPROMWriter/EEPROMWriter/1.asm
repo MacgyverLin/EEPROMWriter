@@ -51,9 +51,9 @@ BOOT_FAILED:		MOV				P1, #02h
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; DELAY FUNCTION
-DELAY:				MOV				R5, #01; #50
-DELAY1:				MOV				R6, #01; #100
-DELAY2:				MOV				R7, #01; #100
+DELAY:				MOV				R5, #50
+DELAY1:				MOV				R6, #100
+DELAY2:				MOV				R7, #100
 DELAY3:				DJNZ			R7, DELAY3
 					DJNZ			R6, DELAY2
 					DJNZ			R5, DELAY1

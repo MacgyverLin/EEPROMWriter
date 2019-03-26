@@ -171,593 +171,647 @@
 0009   0000             SERIAL_VECTOR       .EQU            0023H
 0010   0000             
 0011   0000                                 .ORG            RESET_VECTOR
-0012   0000 01 26       					AJMP			START
-0013   0002             
+0012   0000 02 01 00    					LJMP			START
+0013   0003             
 0014   0003                                 .ORG            EXTERNAL0_VECTOR
-0015   0003 01 25       					AJMP			EXTERNAL0
-0016   0005             
+0015   0003 02 00 26    					LJMP			EXTERNAL0
+0016   0006             
 0017   000B                                 .ORG            TIMER0_VECTOR
-0018   000B 01 25       					AJMP			TIMER0
-0019   000D             
+0018   000B 02 00 26    					LJMP			TIMER0
+0019   000E             
 0020   0013                                 .ORG            EXTERNAL1_VECTOR
-0021   0013 01 25       					AJMP			EXTERNAL1
-0022   0015             
+0021   0013 02 00 26    					LJMP			EXTERNAL1
+0022   0016             
 0023   001B                                 .ORG            TIMER1_VECTOR
-0024   001B 01 25       					AJMP			TIMER1
-0025   001D             
+0024   001B 02 00 26    					LJMP			TIMER1
+0025   001E             
 0026   0023                                 .ORG            SERIAL_VECTOR
-0027   0023 01 25       					AJMP			SERIAL
-0028   0025             EXTERNAL0:
-0029   0025             TIMER0:
-0030   0025             EXTERNAL1:
-0031   0025             TIMER1:
-0032   0025 22          SERIAL:             RET
-0033   0026             
-0034   0026             					.TEXT
-0035   0026             START:
-0036   0026             BOOT_SEQUENCE:		;ACALL			LED_TEST
-0037   0026 11 4A       					ACALL			PIO0_TEST
-0038   0028 11 63       					ACALL			PIO1_TEST
-0039   002A                                 ;ACALL          CF_0_TEST
-0040   002A             					;ACALL			CLR_MEMORY
-0041   002A 31 E3       					ACALL           COPYBIOS
-0042   002C 31 F3       					ACALL           CMPBIOS
-0043   002E B4 00 07    					CJNE			A, #0, BOOT_FAILED
-0044   0031             
-0045   0031 51 07       BOOT_SUCCESS:		ACALL			EXIT_BOOT
-0046   0033 75 90 01    BOOT_SUCCESS_1:		MOV				P1, #01h
-0047   0036 01 33       					AJMP            BOOT_SUCCESS_1
-0048   0038             
-0049   0038 75 90 02    BOOT_FAILED:		MOV				P1, #02h
-0050   003B 01 38                           AJMP            BOOT_FAILED
-0051   003D             
-0052   003D             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0053   003D             ; DELAY FUNCTION
-0054   003D 7D 01       DELAY:				MOV				R5, #01; #50
-0055   003F 7E 01       DELAY1:				MOV				R6, #01; #100
-0056   0041 7F 01       DELAY2:				MOV				R7, #01; #100
-0057   0043 DF FE       DELAY3:				DJNZ			R7, DELAY3
-0058   0045 DE FA       					DJNZ			R6, DELAY2
-0059   0047 DD F6       					DJNZ			R5, DELAY1
-0060   0049 22          					RET
-0061   004A             
-0062   004A             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0063   004A             ; TEST 8255
-0064   004A 78 0A       PIO0_TEST:		    MOV				R0, #10
-0065   004C 74 80       					MOV				A, #080h
-0066   004E 11 A4       					ACALL           PIO0_WRITE_CTRL
-0067   0050 E4          					CLR				A
-0068   0051             
-0069   0051 11 AE       PIO0_TEST_LP:		ACALL			PIO0_WRITE_PORT_A
-0070   0053 11 3D       					ACALL			DELAY
-0071   0055 04          					INC				A
-0072   0056             
-0073   0056 11 B3       					ACALL			PIO0_WRITE_PORT_B
-0074   0058 11 3D       					ACALL			DELAY
-0075   005A 04          					INC				A
-0076   005B             
-0077   005B 11 B8       					ACALL			PIO0_WRITE_PORT_C
-0078   005D 11 3D       					ACALL			DELAY
-0079   005F 04          					INC				A
-0080   0060             
-0081   0060 D8 EF       					DJNZ			R0, PIO0_TEST_LP
-0082   0062 22          					RET
-0083   0063             
-0084   0063 78 0A       PIO1_TEST:		    MOV				R0, #10
-0085   0065 74 80       					MOV				A, #080h
-0086   0067 11 A9       					ACALL           PIO1_WRITE_CTRL
-0087   0069 E4          					CLR				A
-0088   006A             
-0089   006A 11 BD       PIO1_TEST_LP:		ACALL			PIO1_WRITE_PORT_A
-0090   006C 11 3D       					ACALL			DELAY
-0091   006E 04          					INC				A
-0092   006F             
-0093   006F 11 C2       					ACALL			PIO1_WRITE_PORT_B
-0094   0071 11 3D       					ACALL			DELAY
-0095   0073 04          					INC				A
-0096   0074             
-0097   0074 11 C7       					ACALL			PIO1_WRITE_PORT_C
-0098   0076 11 3D       					ACALL			DELAY
-0099   0078 04          					INC				A
-0100   0079             
-0101   0079 D8 EF       					DJNZ			R0, PIO1_TEST_LP
-0102   007B 22          					RET
-0103   007C             
-0104   007C             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-0105   007C             ; TEST LED
-0106   007C 75 90 01    LED_TEST:			MOV				P1, #01h
-0107   007F 11 3D       					ACALL			DELAY
-0108   0081 75 90 02    					MOV				P1, #02h
-0109   0084 11 3D       					ACALL			DELAY
-0110   0086 75 90 04    					MOV				P1, #04h
-0111   0089 11 3D       					ACALL			DELAY
-0112   008B 75 90 08    					MOV				P1, #08h
-0113   008E 11 3D       					ACALL			DELAY
-0114   0090 75 90 10    					MOV				P1, #10h
-0115   0093 11 3D       					ACALL			DELAY
-0116   0095 75 90 20    					MOV				P1, #20h
-0117   0098 11 3D       					ACALL			DELAY
-0118   009A 75 90 40    					MOV				P1, #40h
-0119   009D 11 3D       					ACALL			DELAY
-0120   009F 22          					RET
-0121   00A0             
-0122   00A0             ;========================================================================================================
-0123   00A0             ; IOWRITE
-0124   00A0             ; PARAMETER: A, DATA
-0125   00A0             ; PARAMETER: DPTR, ADDRESS
-0126   00A0             ;*************************************************************
-0127   00A0 F0          IOWRITE:	            	MOVX			@DPTR, A
-0128   00A1 22          					        RET
-0129   00A2             
-0130   00A2             ;*************************************************************
-0131   00A2             ; IOREAD
-0132   00A2             ; PARAMETER: DPTR, ADDRESS
-0133   00A2             ; RETURN: A, DATA
-0134   00A2             ;*************************************************************
-0135   00A2 E0          IOREAD:	        	        MOVX			A, @DPTR
-0136   00A3 22          					        RET
-0137   00A4             
-0138   00A4             ;========================================================================================================
-0139   00A4             PIO0_BASE          .EQU            0FF00H
-0140   00A4             PIO0_PORT_A        .EQU            PIO0_BASE+0
-0141   00A4             PIO0_PORT_B        .EQU            PIO0_BASE+1
-0142   00A4             PIO0_PORT_C        .EQU            PIO0_BASE+2
-0143   00A4             PIO0_PORT_CTRL     .EQU            PIO0_BASE+3
-0144   00A4             
-0145   00A4             PIO1_BASE          .EQU            0FF10H
-0146   00A4             PIO1_PORT_A        .EQU            PIO1_BASE+0
-0147   00A4             PIO1_PORT_B        .EQU            PIO1_BASE+1
-0148   00A4             PIO1_PORT_C        .EQU            PIO1_BASE+2
-0149   00A4             PIO1_PORT_CTRL     .EQU            PIO1_BASE+3
-0150   00A4             ;*************************************************************
-0151   00A4             ; INIT_8255_0, INIT_8255_1
-0152   00A4             ; INPUT: A, MODE
-0153   00A4             ; 76543210 
-0154   00A4             ; |||||||+--------- PC0-3  ,  1:INPUT ,  0:OUTPUT
-0155   00A4             ; ||||||+---------- PB     ,  1:INPUT ,  0:OUTPUT
-0156   00A4             ; |||||+----------- PB MODE,  0:MODE 0,  1:MODE 1
-0157   00A4             ; ||||+------------ PC4-7  ,  1:INPUT ,  0:OUTPUT
-0158   00A4             ; |||+------------- PA     ,  1:INPUT ,  0:OUTPUT
-0159   00A4             ; ||+-------------- PA MODE, 00:MODE 0, 01:MODE 1
-0160   00A4             ; |+--------------- PA MODE, 10:MODE 2, 11:X
-0161   00A4             ; +---------------- ALWAYS 1
-0162   00A4             ;*************************************************************
-0163   00A4 90 FF 03    PIO0_WRITE_CTRL:            MOV             DPTR, #PIO0_PORT_CTRL
-0164   00A7 01 A0       					        AJMP            IOWRITE
-0165   00A9             	
-0166   00A9 90 FF 13    PIO1_WRITE_CTRL:            MOV             DPTR, #PIO1_PORT_CTRL
-0167   00AC 01 A0                                   AJMP            IOWRITE
-0168   00AE             
-0169   00AE             ;*************************************************************
-0170   00AE             ; WRITE_PIO_0_PORT_A
-0171   00AE             ; PARAMETER: A, DATA
-0172   00AE             ;*************************************************************
-0173   00AE 90 FF 00    PIO0_WRITE_PORT_A:		    MOV				DPTR, #PIO0_PORT_A
-0174   00B1 01 A0       					        AJMP            IOWRITE
-0175   00B3             
-0176   00B3             ;*************************************************************
-0177   00B3             ; WRITE_PIO_0_PORT_B
-0178   00B3             ; PARAMETER: A, DATA
-0179   00B3             ;*************************************************************
-0180   00B3 90 FF 01    PIO0_WRITE_PORT_B:		    MOV				DPTR, #PIO0_PORT_B
-0181   00B6 01 A0       					        AJMP            IOWRITE
-0182   00B8             
-0183   00B8             ;*************************************************************
-0184   00B8             ; WRITE_PIO_0_PORT_C
-0185   00B8             ; PARAMETER: A, DATA
-0186   00B8             ;*************************************************************
-0187   00B8 90 FF 02    PIO0_WRITE_PORT_C:	    	MOV				DPTR, #PIO0_PORT_C
-0188   00BB 01 A0       	    				    AJMP            IOWRITE
-0189   00BD             
-0190   00BD             ;*************************************************************
-0191   00BD             ; WRITE_PIO_1_PORT_A
-0192   00BD             ; PARAMETER: A, DATA
-0193   00BD             ;*************************************************************
-0194   00BD 90 FF 10    PIO1_WRITE_PORT_A:		    MOV				DPTR, #PIO1_PORT_A
-0195   00C0 01 A0                                   AJMP            IOWRITE
-0196   00C2             
-0197   00C2             ;*************************************************************
-0198   00C2             ; WRITE_PIO_1_PORT_B
-0199   00C2             ; PARAMETER: A, DATA
-0200   00C2             ;*************************************************************
-0201   00C2 90 FF 11    PIO1_WRITE_PORT_B:		    MOV				DPTR, #PIO1_PORT_B
-0202   00C5 01 A0                                   AJMP            IOWRITE
-0203   00C7             
-0204   00C7             ;*************************************************************
-0205   00C7             ; WRITE_PIO_1_PORT_C
-0206   00C7             ; PARAMETER: A, DATA
-0207   00C7             ;*************************************************************
-0208   00C7 90 FF 12    PIO1_WRITE_PORT_C:		    MOV				DPTR, #PIO1_PORT_C
-0209   00CA 01 A0                                   AJMP            IOWRITE
-0210   00CC             
-0211   00CC             ;*************************************************************
-0212   00CC             ; READ_PIO_0_PORT_A
-0213   00CC             ; RETURN: A, DATA
-0214   00CC             ;*************************************************************
-0215   00CC 90 FF 00    PIO0_READ_PORT_A:	        MOV				DPTR, #PIO0_PORT_A
-0216   00CF 01 A2       					        AJMP            IOREAD
-0217   00D1             
-0218   00D1             ;*************************************************************
-0219   00D1             ; READ_PIO_0_PORT_B
-0220   00D1             ; RETURN: A, DATA
-0221   00D1             ;*************************************************************
-0222   00D1 90 FF 01    PIO0_READ_PORT_B:	        MOV				DPTR, #PIO0_PORT_B
-0223   00D4 01 A2       					        AJMP            IOREAD
-0224   00D6             
-0225   00D6             ;*************************************************************
-0226   00D6             ; READ_PIO_0_PORT_C
-0227   00D6             ; RETURN: A, DATA
-0228   00D6             ;*************************************************************
-0229   00D6 90 FF 02    PIO0_READ_PORT_C:	        MOV				DPTR, #PIO0_PORT_C
-0230   00D9 01 A2       					        AJMP            IOREAD
-0231   00DB             
-0232   00DB             ;*************************************************************
-0233   00DB             ; READ_PIO_1_PORT_A
-0234   00DB             ; RETURN: A, DATA
-0235   00DB             ;*************************************************************
-0236   00DB 90 FF 10    PIO1_READ_PORT_A:	       	MOV				DPTR, #PIO1_PORT_A
-0237   00DE 01 A2                                   AJMP            IOREAD
-0238   00E0             
-0239   00E0             ;*************************************************************
-0240   00E0             ; READ_PIO_1_PORT_B
-0241   00E0             ; RETURN: A, DATA
-0242   00E0             ;*************************************************************
-0243   00E0 90 FF 11    PIO1_READ_PORT_B:	       	MOV				DPTR, #PIO1_PORT_B
-0244   00E3 01 A2                                   AJMP            IOREAD
-0245   00E5             
-0246   00E5             ;*************************************************************
-0247   00E5             ; READ_PIO_1_PORT_C
-0248   00E5             ; RETURN: A, DATA
-0249   00E5             ;*************************************************************
-0250   00E5 90 FF 12    PIO1_READ_PORT_C:	       	MOV				DPTR, #PIO1_PORT_C
-0251   00E8 01 A2                                   AJMP            IOREAD
-0252   00EA             
-0253   00EA             
-0254   00EA             
-0255   00EA             ;========================================================================================================
-0256   00EA             ;*************************************************************
-0257   00EA             ; https://z80project.wordpress.com/2015/07/06/z80-8-bit-compact-flash-card-interface-part-1/
-0258   00EA             ; 
-0259   00EA             ; check data from sector 0 HxD
-0260   00EA             ; https://mh-nexus.de/en/hxd/
-0261   00EA             ;*************************************************************
-0262   00EA             CF_0_BASE                        .EQU            0FF20H
-0263   00EA             CF_0_PORT_DATA                   .EQU            CF_0_BASE+0
-0264   00EA             CF_0_PORT_ERROR                  .EQU            CF_0_BASE+1
-0265   00EA             CF_0_PORT_FEATURES               .EQU            CF_0_BASE+1
-0266   00EA             CF_0_PORT_SECTOR_COUNT           .EQU            CF_0_BASE+2
-0267   00EA             CF_0_PORT_LBA_0                  .EQU            CF_0_BASE+3
-0268   00EA             CF_0_PORT_LBA_1                  .EQU            CF_0_BASE+4
-0269   00EA             CF_0_PORT_LBA_2                  .EQU            CF_0_BASE+5
-0270   00EA             CF_0_PORT_LBA_3                  .EQU            CF_0_BASE+6
-0271   00EA             CF_0_PORT_STATUS                 .EQU            CF_0_BASE+7
-0272   00EA             CF_0_PORT_COMMAND                .EQU            CF_0_BASE+7
-0273   00EA             
-0274   00EA             TEST_BUFFER_PTR                  .EQU            01000h
-0275   00EA             TEST_BUFFER_SIZE                 .EQU            00200h
-0276   00EA             
-0277   00EA 74 01       CF_0_TEST:                      MOV             A, #001h                    
-0278   00EC 31 5D                                       ACALL           CF0_WRITE_FEATURES    ; set 8 bit mode to features port
-0279   00EE             
-0280   00EE 74 EF                                       MOV             A, #0EFh                    
-0281   00F0 31 80                                       ACALL           CF0_WRITE_COMMAND     ; command 'set features'
-0282   00F2                                             
-0283   00F2 22                                          RET
-0284   00F3             
-0285   00F3 31 3A       CF_0_READ_SECTOR:               ACALL           CF0_LOOP_BUSY
-0286   00F5 74 01                                       MOV             A, #001h                    
-0287   00F7 31 67                                       ACALL           CF0_WRITE_SECTOR_COUNT; read 1 sector at a time
-0288   00F9                                             
-0289   00F9 31 3A                                       ACALL           CF0_LOOP_BUSY
-0290   00FB 74 00                                       MOV             A, #000h                    
-0291   00FD 31 6C                                       ACALL           CF0_WRITE_LBA_0       ; read from lba 0
-0292   00FF             
-0293   00FF 31 3A                                       ACALL           CF0_LOOP_BUSY
-0294   0101 74 00                                       MOV             A, #000h                    
-0295   0103 31 71                                       ACALL           CF0_WRITE_LBA_1       ; read from lba 0
-0296   0105             
-0297   0105 31 3A                                       ACALL           CF0_LOOP_BUSY
-0298   0107 74 00                                       MOV             A, #000h                    
-0299   0109 31 76                                       ACALL           CF0_WRITE_LBA_2       ; read from lba 0
-0300   010B             
-0301   010B 31 3A                                       ACALL           CF0_LOOP_BUSY
-0302   010D 74 E0                                       MOV             A, #0E0h                    
-0303   010F 31 7B                                       ACALL           CF0_WRITE_LBA_3       ; read from lba 0, notes E0h means LBA mode
-0304   0111 31 14                                       ACALL           CF0_READ_CMD
-0305   0113 22                                          RET             
-0306   0114             
-0307   0114 31 41       CF0_READ_CMD:                   ACALL           CF0_LOOP_CMD_RDY
-0308   0116 74 20                                       MOV             A, #020h                    
-0309   0118 31 80                                       ACALL           CF0_WRITE_COMMAND     ; command 'read sector'
-0310   011A                                             
-0311   011A 31 4A                                       ACALL           CF0_LOOP_DAT_RDY
-0312   011C 31 85                                       ACALL           CF0_READ_STATUS
-0313   011E 54 01       	                            ANL		        A, #%00000001         ; Mask Error bit
-0314   0120 70 F2       	                            JNZ		        CF0_READ_CMD      	  ; 
-0315   0122                                             
-0316   0122 90 10 00    CF0_READ_SECTOR:                MOV             DPTR, #TEST_BUFFER_PTR
-0317   0125 78 00                                       MOV             R0, #00h
-0318   0127 31 4A       CF0_READ_SECTOR_LP:             ACALL           CF0_LOOP_DAT_RDY
-0319   0129 31 58                                       ACALL           CF0_READ_DATA
-0320   012B 75 83 00                                    MOV             DPH, #TEST_BUFFER_PTR
-0321   012E F0                                          MOVX            @DPTR, A
-0322   012F                                             
-0323   012F 31 4A                                       ACALL           CF0_LOOP_DAT_RDY
-0324   0131 31 58                                       ACALL           CF0_READ_DATA
-0325   0133 75 82 00                                    MOV             DPL, #TEST_BUFFER_PTR
-0326   0136 F0                                          MOVX            @DPTR, A
-0327   0137                                             
-0328   0137 D8 EE                                       DJNZ            R0, CF0_READ_SECTOR_LP                        
-0329   0139 22                                          RET
-0330   013A             
-0331   013A             ;***************************************************************************
-0332   013A             ; LOOP_BUSY
-0333   013A             ; Function: Loops until status register bit 7 (busy) is 0
-0334   013A             ;***************************************************************************	
-0335   013A 31 85       CF0_LOOP_BUSY:                  ACALL           CF0_READ_STATUS
-0336   013C 54 80       	                            ANL		        A, #%10000000               ; Mask busy bit
-0337   013E 70 FA       	                            JNZ		        CF0_LOOP_BUSY			    ; Loop until busy(7) is 0
-0338   0140 22          	                            RET
-0339   0141             
-0340   0141             ;***************************************************************************
-0341   0141             ;LOOP_CMD_RDY
-0342   0141             ;Function: Loops until status register bit 7 (busy) is 0 and drvrdy(6) is 1
-0343   0141             ;***************************************************************************	
-0344   0141 31 85       CF0_LOOP_CMD_RDY:               ACALL           CF0_READ_STATUS
-0345   0143 54 C0       	                            ANL		        A, #%11000000               ; Mask busy and rdy bits
-0346   0145 64 40                                       XRL		        A, #%01000000               ; we want busy(7) to be 0 and drvrdy(6) to be 1
-0347   0147 70 F8       	                            JNZ		        CF0_LOOP_CMD_RDY    		; 
-0348   0149 22          	                            RET
-0349   014A             
-0350   014A             ;***************************************************************************
-0351   014A             ; LOOP_DAT_RDY
-0352   014A             ; Function: Loops until status register bit 7 (busy) is 0 and drq(3) is 1
-0353   014A             ;***************************************************************************		
-0354   014A 31 85       CF0_LOOP_DAT_RDY:               ACALL           CF0_READ_STATUS
-0355   014C 54 88       	                            ANL		        A, #%10001000               ; Mask busy and drq bits
-0356   014E 64 08                                       XRL		        A, #%00001000               ; we want busy(7) to be 0 and drq(3) to be 1
-0357   0150 70 F8       	                            JNZ		        CF0_LOOP_DAT_RDY    		; 
-0358   0152 22          	                            RET
-0359   0153             
-0360   0153             ;*************************************************************
-0361   0153             ; WRITE_CF_0_DATA
-0362   0153             ; PARAMETER: A, DATA
-0363   0153             ;*************************************************************
-0364   0153 90 FF 20    CF0_WRITE_DATA:		            MOV				DPTR, #CF_0_PORT_DATA
-0365   0156 01 A0                                       AJMP            IOWRITE
-0366   0158             
-0367   0158 90 FF 20    CF0_READ_DATA:		            MOV				DPTR, #CF_0_PORT_DATA
-0368   015B 01 A2                                       AJMP            IOREAD
-0369   015D             
-0370   015D 90 FF 21    CF0_WRITE_FEATURES:	        	MOV				DPTR, #CF_0_PORT_FEATURES
-0371   0160 01 A0                                       AJMP            IOWRITE
-0372   0162             
-0373   0162 90 FF 21    CF0_READ_ERROR:		            MOV				DPTR, #CF_0_PORT_ERROR
-0374   0165 01 A2                                       AJMP            IOREAD
-0375   0167             
-0376   0167 90 FF 22    CF0_WRITE_SECTOR_COUNT:	        MOV		    	DPTR, #CF_0_PORT_SECTOR_COUNT
-0377   016A 01 A0                                       AJMP            IOWRITE                                
-0378   016C             
-0379   016C 90 FF 23    CF0_WRITE_LBA_0:		        MOV				DPTR, #CF_0_PORT_LBA_0
-0380   016F 01 A0                                       AJMP            IOWRITE                                
-0381   0171             
-0382   0171 90 FF 24    CF0_WRITE_LBA_1:		        MOV				DPTR, #CF_0_PORT_LBA_1
-0383   0174 01 A0                                       AJMP            IOWRITE                                
-0384   0176             
-0385   0176 90 FF 25    CF0_WRITE_LBA_2:		        MOV				DPTR, #CF_0_PORT_LBA_2
-0386   0179 01 A0                                       AJMP            IOWRITE                                
-0387   017B             
-0388   017B 90 FF 26    CF0_WRITE_LBA_3:		        MOV				DPTR, #CF_0_PORT_LBA_3
-0389   017E 01 A0                                       AJMP            IOWRITE                                
-0390   0180             
-0391   0180 90 FF 27    CF0_WRITE_COMMAND:		        MOV				DPTR, #CF_0_PORT_COMMAND
-0392   0183 01 A0                                       AJMP            IOWRITE                                
-0393   0185             
-0394   0185             ;****************************************************************
-0395   0185             ;    7       6       5       4       3       2       1       0      
-0396   0185             ;+-------+-------+-------+-------+-------+-------+-------+-------+     
-0397   0185             ;|  BSY  | DRDY  |  DWF  |  DSC  |  DRQ  | CORR  |  IDX  |  ERR  |      
-0398   0185             ;+-------+-------+-------+-------+-------+-------+-------+-------+
-0399   0185             ;****************************************************************
-0400   0185 90 FF 27    CF0_READ_STATUS:		        MOV				DPTR, #CF_0_PORT_STATUS
-0401   0188 01 A2                                       AJMP            IOREAD
-0402   018A             
-0403   018A             
-0404   018A             ;========================================================================================================
-0405   018A             UART0_BASE              .EQU            0FF30H
-0406   018A             UART0_DATA              .EQU            UART0_BASE + 0	    ;Data in/out
-0407   018A             UART0_RXX               .EQU            UART0_BASE + 1      ;Check RX
-0408   018A             UART0_INTR              .EQU            UART0_BASE + 2      ;Interrupts
-0409   018A             UART0_LINE_CTRL         .EQU            UART0_BASE + 3      ;Line control
-0410   018A             UART0_MODEM_CTRL        .EQU            UART0_BASE + 4      ;Modem control
-0411   018A             UART0_LINE_STATUS       .EQU            UART0_BASE + 5      ;Line status
-0412   018A             UART0_MODEM_STATUS      .EQU            UART0_BASE + 6      ;Modem status
-0413   018A             UART0_SCRATCH           .EQU            UART0_BASE + 7      ;Scratch register		
-0414   018A             		
-0415   018A             ;***************************************************************************
-0416   018A             ;UART_INIT
-0417   018A             ;Function: Initialize the UART to BAUD Rate 9600 (1.8432 MHz clock input)
-0418   018A             ;***************************************************************************
-0419   018A 90 FF 33    UART_INIT:                      MOV				DPTR, #UART0_LINE_CTRL
-0420   018D 74 08                                       MOV             A, #08h
-0421   018F F0                                          MOVX            @DPTR, A                ;Mask to Set DLAB Flag
-0422   0190             
-0423   0190 90 FF 30                                    MOV				DPTR, #UART0_DATA
-0424   0193 74 0C                                       MOV             A, #12                  ;Divisor = 12 @ 9600bps w/ 1.8432 Mhz
-0425   0195 F0                                          MOVX            @DPTR, A                ;Set BAUD rate to 9600
-0426   0196             
-0427   0196 90 FF 31                                    MOV				DPTR, #UART0_RXX
-0428   0199 74 00                                       MOV             A, #00                  
-0429   019B F0                                          MOVX            @DPTR, A                
-0430   019C             
-0431   019C 90 FF 33                                    MOV				DPTR, #UART0_LINE_CTRL  ;Set 8-bit data, 1 stop bit, reset DLAB Flag
-0432   019F 74 03                                       MOV             A, #03             
-0433   01A1 F0                                          MOVX            @DPTR, A                                                
-0434   01A2             
-0435   01A2 90 FF 31                                    MOV				DPTR, #UART0_RXX         ;Enable receive data available interrupt only
-0436   01A5 74 01                                       MOV             A, #01           
-0437   01A7 F0                                          MOVX            @DPTR, A                                                                                
-0438   01A8 22                              			RET		
-0439   01A9             		
-0440   01A9             ;***************************************************************************
-0441   01A9             ;UART_PRNT_STR:
-0442   01A9             ;Function: Print out string starting at MEM location (HL) to 16550 UART
-0443   01A9             ;***************************************************************************
-0444   01A9             EOS                             .EQU            0
-0445   01A9             UART0_PRINT_STR:                
-0446   01A9 E0          UART0_PRINT_STR_LP:             MOVX            A, @DPTR
-0447   01AA B4 00 06                                    CJNE            A, #EOS, UART0_PRINT_STR_END
-0448   01AD 31 BD       			                    ACALL	        UART0_TX
-0449   01AF A3                                          INC		        DPTR					;Increment pointer to next char
-0450   01B0 02 01 A9                                    LJMP	        UART0_PRINT_STR_LP	    ;Transmit loop
-0451   01B3 22          UART0_PRINT_STR_END:            RET	 
-0452   01B4             			 	
-0453   01B4             ;***************************************************************************
-0454   01B4             ;UART_TX_READY
-0455   01B4             ;Function: Check if UART is ready to transmit
-0456   01B4             ;***************************************************************************
-0457   01B4             UART0_TX_RDY:                    
-0458   01B4 90 FF 35    UART0_TX_RDY_LP:			     MOV            DPTR, #UART0_LINE_STATUS
-0459   01B7 E0                                           MOVX           A, @DPTR
-0460   01B8 54 20                                        ANL            A, #%00100000
-0461   01BA 60 F8                                        JZ             UART0_TX_RDY_LP
-0462   01BC             			                     
-0463   01BC 22          			                     RET
-0464   01BD             
-0465   01BD             ;***************************************************************************
-0466   01BD             ;UART_TX
-0467   01BD             ;Function: Transmit character in A to UART
-0468   01BD             ;***************************************************************************
-0469   01BD 31 B4       UART0_TX:                       ACALL           UART0_TX_RDY			;Make sure UART is ready to receive
-0470   01BF 90 FF 30                                    MOV				DPTR, #UART0_DATA
-0471   01C2 F0                                          MOVX            @DPTR, A                ;Set BAUD rate to 9600
-0472   01C3 22          			                    RET
-0473   01C4             				
-0474   01C4             ;***************************************************************************
-0475   01C4             ;UART_TX_READY
-0476   01C4             ;Function: Check if UART is ready to transmit
-0477   01C4             ;***************************************************************************
-0478   01C4             UART0_RX_RDY:                    
-0479   01C4 90 FF 35    UART0_RX_RDY_LP:			     MOV            DPTR, #UART0_LINE_STATUS
-0480   01C7 E0                                           MOVX           A, @DPTR
-0481   01C8 54 01                                        ANL            A, #%00000001
-0482   01CA 60 F8                                        JZ             UART0_RX_RDY_LP
-0483   01CC             			                     
-0484   01CC 22          			                     RET
-0485   01CD             	
-0486   01CD             ;***************************************************************************
-0487   01CD             ;UART_RX
-0488   01CD             ;Function: Receive character in UART to A
-0489   01CD             ;***************************************************************************
-0490   01CD 31 C4       UART0_RX:                       ACALL           UART0_RX_RDY			;Make sure UART is ready to receive
-0491   01CF 90 FF 30                                    MOV				DPTR, #UART0_DATA
-0492   01D2 E0                                          MOVX            A, @DPTR                ;Set BAUD rate to 9600
-0493   01D3 22          			                    RET
-0494   01D4             
-0495   01D4             ;========================================================================================================
-0496   01D4             ;*************************************************************
-0497   01D4             ; CLEAR_MEMORTY FUNCTION
-0498   01D4 90 00 00    CLR_MEMORY:			        MOV				DPTR, #0000h
-0499   01D7 7E FF       CLR_MEMORY_1:		        MOV				R6, #0FFH
-0500   01D9 7F F0       CLR_MEMORY_2:		        MOV				R7, #0F0H
-0501   01DB E4          CLR_MEMORY_3:		        CLR				A
-0502   01DC F0          					        MOVX			@DPTR,A
-0503   01DD A3          					        INC				DPTR
-0504   01DE DF FB       					        DJNZ			R7, CLR_MEMORY_3
-0505   01E0 DE F7       					        DJNZ			R6, CLR_MEMORY_2
-0506   01E2 22          CLR_MEMORY_END:		        RET
-0507   01E3             
-0508   01E3             ;*************************************************************
-0509   01E3             ; COPY_BIOS FUNCTION
-0510   01E3             ;*************************************************************
-0511   01E3 90 00 00    COPYBIOS:			        MOV				DPTR, #0000h
-0512   01E6 7E 80       COPYBIOS_1:			        MOV				R6, #080H
-0513   01E8 7F 00       COPYBIOS_2:			        MOV				R7, #000H
-0514   01EA E4          COPYBIOS_3:			        CLR				A
-0515   01EB 93          					        MOVC			A, @A+DPTR
-0516   01EC F0          					        MOVX			@DPTR,A
-0517   01ED A3          					        INC				DPTR
-0518   01EE DF FA       					        DJNZ			R7, COPYBIOS_3
-0519   01F0 DE F6       					        DJNZ			R6, COPYBIOS_2
-0520   01F2 22          COPYBIOS_END:		        RET				
-0521   01F3             
-0522   01F3             ;*************************************************************
-0523   01F3             ; COMPARE_BIOS FUNCTION
-0524   01F3             ;*************************************************************
-0525   01F3 90 00 00    CMPBIOS:			        MOV				DPTR, #0000h
-0526   01F6 7E 80       CMPBIOS_1:			        MOV				R6, #080H
-0527   01F8 7F 00       CMPBIOS_2:			        MOV				R7, #000H
-0528   01FA E4          CMPBIOS_3:			        CLR				A
-0529   01FB 93          					        MOVC			A, @A+DPTR
-0530   01FC F8          					        MOV				R0, A
-0531   01FD E0          					        MOVX			A, @DPTR
-0532   01FE 98          					        SUBB			A, R0
-0533   01FF 70 05       					        JNZ				CMPBIOS_END
-0534   0201 A3          					        INC				DPTR
-0535   0202 DF F6       					        DJNZ			R7, CMPBIOS_3
-0536   0204 DE F2       					        DJNZ			R6, CMPBIOS_2
-0537   0206 22          CMPBIOS_END:		        RET	
-0538   0207             
-0539   0207             ;========================================================================================================
-0540   0207             ;*************************************************************
-0541   0207             ; EXIT_BOOT FUNCTION
-0542   0207             ;*************************************************************
-0543   0207             PORT_EXIT_BOOT		.EQU            0FF70h
-0544   0207             PORT_ENTER_ISP		.EQU            0FF71h
-0545   0207             PORT_WARM_BOOT		.EQU            0FF72h
-0546   0207             
-0547   0207 90 FF 70    EXIT_BOOT:			        MOV				DPTR, #PORT_EXIT_BOOT
-0548   020A 01 A0       					        AJMP            IOWRITE
-0549   020C             
-0550   020C             ;*************************************************************
-0551   020C             ; ENTER_ISP FUNCTION
-0552   020C             ;*************************************************************
-0553   020C 90 FF 71    ENTER_ISP:			        MOV				DPTR, #PORT_ENTER_ISP
-0554   020F 01 A0       					        AJMP            IOWRITE
-0555   0211             
-0556   0211             ;*************************************************************
-0557   0211             ; WARM_BOOT FUNCTION
-0558   0211             ;*************************************************************
-0559   0211 90 FF 72    WARM_BOOT:			        MOV				DPTR, #PORT_WARM_BOOT
-0560   0214 01 A0       					        AJMP            IOWRITE
-0561   0216             
-0562   0216                                         .END
+0027   0023 02 00 26    					LJMP			SERIAL
+0028   0026             EXTERNAL0:
+0029   0026             TIMER0:
+0030   0026             EXTERNAL1:
+0031   0026             TIMER1:
+0032   0026 22          SERIAL:             RET
+0033   0027             
+0034   0100             					.ORG			0100h
+0035   0100             START:
+0036   0100 75 81 20    BOOT_SEQUENCE:		MOV				SP, #020h
+0037   0103 12 01 9B    					LCALL			LED_TEST
+0038   0106             					;LCALL			PIO0_TEST
+0039   0106 12 01 69    					LCALL			PIO1_TEST
+0040   0109                                 ;LCALL          CF_0_TEST
+0041   0109             					;LCALL			CLR_MEMORY
+0042   0109 75 90 11    					MOV				P1, #11h
+0043   010C 12 03 49    					LCALL           COPYBIOS
+0044   010F 75 90 12    					MOV				P1, #12h
+0045   0112 12 03 59    					LCALL           CMPBIOS
+0046   0115 75 90 13    					MOV				P1, #13h
+0047   0118 B4 00 09    					CJNE			A, #0, BOOT_FAILED
+0048   011B             
+0049   011B 12 03 6D    BOOT_SUCCESS:		LCALL			EXIT_BOOT
+0050   011E 75 90 14    BOOT_SUCCESS_1:		MOV				P1, #14h
+0051   0121 02 01 1E    					LJMP            BOOT_SUCCESS_1
+0052   0124             
+0053   0124 75 90 15    BOOT_FAILED:		MOV				P1, #15h
+0054   0127 02 01 24                        LJMP            BOOT_FAILED
+0055   012A             
+0056   012A             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0057   012A             ; DELAY FUNCTION
+0058   012A 7D 32       DELAY:				MOV				R5, #50
+0059   012C 7E 64       DELAY1:				MOV				R6, #100
+0060   012E 7F 64       DELAY2:				MOV				R7, #100
+0061   0130 DF FE       DELAY3:				DJNZ			R7, DELAY3
+0062   0132 DE FA       					DJNZ			R6, DELAY2
+0063   0134 DD F6       					DJNZ			R5, DELAY1
+0064   0136 22          					RET
+0065   0137             
+0066   0137             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0067   0137             ; TEST 8255
+0068   0137 75 90 00    PIO0_TEST:			MOV				P1, #00h
+0069   013A 74 80       					MOV				A, #080h
+0070   013C 12 01 D0    					LCALL           PIO0_WRITE_CTRL
+0071   013F 75 90 01    					MOV				P1, #01h
+0072   0142             
+0073   0142 74 5A       					MOV				A, #05Ah
+0074   0144 75 90 02    PIO0_TEST_A:		MOV				P1, #02h
+0075   0147 12 01 DC    					LCALL			PIO0_WRITE_PORT_A
+0076   014A 75 90 03    					MOV				P1, #03h
+0077   014D             					;LCALL			DELAY
+0078   014D 75 90 04    					MOV				P1, #04h
+0079   0150             					;INC				A
+0080   0150             					;JNZ				PIO0_TEST_A
+0081   0150             
+0082   0150 75 90 05    PIO0_TEST_B:		MOV				P1, #05h
+0083   0153 12 01 E8    					LCALL			PIO0_WRITE_PORT_B
+0084   0156 75 90 06    					MOV				P1, #06h
+0085   0159             					;LCALL			DELAY
+0086   0159 75 90 07    					MOV				P1, #07h
+0087   015C             					;INC				A
+0088   015C             					;JNZ				PIO0_TEST_B
+0089   015C             
+0090   015C 75 90 08    PIO0_TEST_C:		MOV				P1, #08h
+0091   015F 12 01 EE    					LCALL			PIO0_WRITE_PORT_C
+0092   0162 75 90 09    					MOV				P1, #09h
+0093   0165             					;LCALL			DELAY
+0094   0165 75 90 10    					MOV				P1, #10h
+0095   0168             					;INC				A
+0096   0168             					;JNZ				PIO0_TEST_C
+0097   0168 22          					RET
+0098   0169             
+0099   0169             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0100   0169             ; TEST 8255
+0101   0169 75 90 80    PIO1_TEST:			MOV				P1, #80h
+0102   016C 74 80       					MOV				A, #080h
+0103   016E 12 01 D6    					LCALL           PIO1_WRITE_CTRL
+0104   0171 75 90 81    					MOV				P1, #81h
+0105   0174             
+0106   0174 74 A5       					MOV				A, #0A5h
+0107   0176 75 90 82    PIO1_TEST_A:		MOV				P1, #82h
+0108   0179 12 01 F4    					LCALL			PIO1_WRITE_PORT_A
+0109   017C 75 90 83    					MOV				P1, #83h
+0110   017F             					;LCALL			DELAY
+0111   017F 75 90 84    					MOV				P1, #84h
+0112   0182             					;INC				A
+0113   0182             					;JNZ				PIO1_TEST_A
+0114   0182             
+0115   0182 75 90 85    PIO1_TEST_B:		MOV				P1, #85h
+0116   0185 12 01 FA    					LCALL			PIO1_WRITE_PORT_B
+0117   0188 75 90 86    					MOV				P1, #86h
+0118   018B             					;LCALL			DELAY
+0119   018B 75 90 87    					MOV				P1, #87h
+0120   018E             					;INC				A
+0121   018E             					;JNZ				PIO1_TEST_B
+0122   018E             
+0123   018E 75 90 88    PIO1_TEST_C:		MOV				P1, #88h
+0124   0191 12 02 00    					LCALL			PIO1_WRITE_PORT_C
+0125   0194 75 90 89    					MOV				P1, #89h
+0126   0197             					;LCALL			DELAY
+0127   0197 75 90 90    					MOV				P1, #90h
+0128   019A             					;INC				A
+0129   019A             					;JNZ				PIO1_TEST_C
+0130   019A 22          					RET
+0131   019B             
+0132   019B             ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+0133   019B             ; TEST LED
+0134   019B 75 90 01    LED_TEST:			MOV				P1, #01h
+0135   019E 12 01 2A    					LCALL			DELAY
+0136   01A1 75 90 02    					MOV				P1, #02h
+0137   01A4 12 01 2A    					LCALL			DELAY
+0138   01A7 75 90 04    					MOV				P1, #04h
+0139   01AA 12 01 2A    					LCALL			DELAY
+0140   01AD 75 90 08    					MOV				P1, #08h
+0141   01B0 12 01 2A    					LCALL			DELAY
+0142   01B3 75 90 10    					MOV				P1, #10h
+0143   01B6 12 01 2A    					LCALL			DELAY
+0144   01B9 75 90 20    					MOV				P1, #20h
+0145   01BC 12 01 2A    					LCALL			DELAY
+0146   01BF 75 90 40    					MOV				P1, #40h
+0147   01C2 12 01 2A    					LCALL			DELAY
+0148   01C5 22          					RET
+0149   01C6             
+0150   01C6             ;========================================================================================================
+0151   01C6             ; IOWRITE
+0152   01C6             ; PARAMETER: A, DATA
+0153   01C6             ; PARAMETER: DPTR, ADDRESS
+0154   01C6             ;*************************************************************
+0155   01C6 75 90 83    IOWRITE:	            	MOV				P1, #83h
+0156   01C9 F0          							MOVX			@DPTR, A
+0157   01CA 75 90 84    							MOV				P1, #84h
+0158   01CD 22          					        RET
+0159   01CE             
+0160   01CE             ;*************************************************************
+0161   01CE             ; IOREAD
+0162   01CE             ; PARAMETER: DPTR, ADDRESS
+0163   01CE             ; RETURN: A, DATA
+0164   01CE             ;*************************************************************
+0165   01CE E0          IOREAD:	        	        MOVX			A, @DPTR
+0166   01CF 22          					        RET
+0167   01D0             
+0168   01D0             ;========================================================================================================
+0169   01D0             PIO0_BASE          .EQU            0FF00H
+0170   01D0             PIO0_PORT_A        .EQU            PIO0_BASE+0
+0171   01D0             PIO0_PORT_B        .EQU            PIO0_BASE+1
+0172   01D0             PIO0_PORT_C        .EQU            PIO0_BASE+2
+0173   01D0             PIO0_PORT_CTRL     .EQU            PIO0_BASE+3
+0174   01D0             
+0175   01D0             PIO1_BASE          .EQU            0FF10H
+0176   01D0             PIO1_PORT_A        .EQU            PIO1_BASE+0
+0177   01D0             PIO1_PORT_B        .EQU            PIO1_BASE+1
+0178   01D0             PIO1_PORT_C        .EQU            PIO1_BASE+2
+0179   01D0             PIO1_PORT_CTRL     .EQU            PIO1_BASE+3
+0180   01D0             ;*************************************************************
+0181   01D0             ; INIT_8255_0, INIT_8255_1
+0182   01D0             ; INPUT: A, MODE
+0183   01D0             ; 76543210 
+0184   01D0             ; |||||||+--------- PC0-3  ,  1:INPUT ,  0:OUTPUT
+0185   01D0             ; ||||||+---------- PB     ,  1:INPUT ,  0:OUTPUT
+0186   01D0             ; |||||+----------- PB MODE,  0:MODE 0,  1:MODE 1
+0187   01D0             ; ||||+------------ PC4-7  ,  1:INPUT ,  0:OUTPUT
+0188   01D0             ; |||+------------- PA     ,  1:INPUT ,  0:OUTPUT
+0189   01D0             ; ||+-------------- PA MODE, 00:MODE 0, 01:MODE 1
+0190   01D0             ; |+--------------- PA MODE, 10:MODE 2, 11:X
+0191   01D0             ; +---------------- ALWAYS 1
+0192   01D0             ;*************************************************************
+0193   01D0 90 FF 03    PIO0_WRITE_CTRL:            MOV             DPTR, #PIO0_PORT_CTRL
+0194   01D3 02 01 C6    					        LJMP            IOWRITE
+0195   01D6             	
+0196   01D6 90 FF 13    PIO1_WRITE_CTRL:            MOV             DPTR, #PIO1_PORT_CTRL
+0197   01D9 02 01 C6                                LJMP            IOWRITE
+0198   01DC             
+0199   01DC             ;*************************************************************
+0200   01DC             ; WRITE_PIO_0_PORT_A
+0201   01DC             ; PARAMETER: A, DATA
+0202   01DC             ;*************************************************************
+0203   01DC 75 90 81    PIO0_WRITE_PORT_A:		    MOV				P1, #81h
+0204   01DF 90 FF 00    							MOV				DPTR, #PIO0_PORT_A
+0205   01E2 75 90 82    							MOV				P1, #82h
+0206   01E5 02 01 C6    					        LJMP            IOWRITE
+0207   01E8             
+0208   01E8             ;*************************************************************
+0209   01E8             ; WRITE_PIO_0_PORT_B
+0210   01E8             ; PARAMETER: A, DATA
+0211   01E8             ;*************************************************************
+0212   01E8 90 FF 01    PIO0_WRITE_PORT_B:		    MOV				DPTR, #PIO0_PORT_B
+0213   01EB 02 01 C6    					        LJMP            IOWRITE
+0214   01EE             
+0215   01EE             ;*************************************************************
+0216   01EE             ; WRITE_PIO_0_PORT_C
+0217   01EE             ; PARAMETER: A, DATA
+0218   01EE             ;*************************************************************
+0219   01EE 90 FF 02    PIO0_WRITE_PORT_C:	    	MOV				DPTR, #PIO0_PORT_C
+0220   01F1 02 01 C6    	    				    LJMP            IOWRITE
+0221   01F4             
+0222   01F4             ;*************************************************************
+0223   01F4             ; WRITE_PIO_1_PORT_A
+0224   01F4             ; PARAMETER: A, DATA
+0225   01F4             ;*************************************************************
+0226   01F4 90 FF 10    PIO1_WRITE_PORT_A:		    MOV				DPTR, #PIO1_PORT_A
+0227   01F7 02 01 C6                                LJMP            IOWRITE
+0228   01FA             
+0229   01FA             ;*************************************************************
+0230   01FA             ; WRITE_PIO_1_PORT_B
+0231   01FA             ; PARAMETER: A, DATA
+0232   01FA             ;*************************************************************
+0233   01FA 90 FF 11    PIO1_WRITE_PORT_B:		    MOV				DPTR, #PIO1_PORT_B
+0234   01FD 02 01 C6                                LJMP            IOWRITE
+0235   0200             
+0236   0200             ;*************************************************************
+0237   0200             ; WRITE_PIO_1_PORT_C
+0238   0200             ; PARAMETER: A, DATA
+0239   0200             ;*************************************************************
+0240   0200 90 FF 12    PIO1_WRITE_PORT_C:		    MOV				DPTR, #PIO1_PORT_C
+0241   0203 02 01 C6                                LJMP            IOWRITE
+0242   0206             
+0243   0206             ;*************************************************************
+0244   0206             ; READ_PIO_0_PORT_A
+0245   0206             ; RETURN: A, DATA
+0246   0206             ;*************************************************************
+0247   0206 90 FF 00    PIO0_READ_PORT_A:	        MOV				DPTR, #PIO0_PORT_A
+0248   0209 02 01 CE    					        LJMP            IOREAD
+0249   020C             
+0250   020C             ;*************************************************************
+0251   020C             ; READ_PIO_0_PORT_B
+0252   020C             ; RETURN: A, DATA
+0253   020C             ;*************************************************************
+0254   020C 90 FF 01    PIO0_READ_PORT_B:	        MOV				DPTR, #PIO0_PORT_B
+0255   020F 02 01 CE    					        LJMP            IOREAD
+0256   0212             
+0257   0212             ;*************************************************************
+0258   0212             ; READ_PIO_0_PORT_C
+0259   0212             ; RETURN: A, DATA
+0260   0212             ;*************************************************************
+0261   0212 90 FF 02    PIO0_READ_PORT_C:	        MOV				DPTR, #PIO0_PORT_C
+0262   0215 02 01 CE    					        LJMP            IOREAD
+0263   0218             
+0264   0218             ;*************************************************************
+0265   0218             ; READ_PIO_1_PORT_A
+0266   0218             ; RETURN: A, DATA
+0267   0218             ;*************************************************************
+0268   0218 90 FF 10    PIO1_READ_PORT_A:	       	MOV				DPTR, #PIO1_PORT_A
+0269   021B 02 01 CE                                LJMP            IOREAD
+0270   021E             
+0271   021E             ;*************************************************************
+0272   021E             ; READ_PIO_1_PORT_B
+0273   021E             ; RETURN: A, DATA
+0274   021E             ;*************************************************************
+0275   021E 90 FF 11    PIO1_READ_PORT_B:	       	MOV				DPTR, #PIO1_PORT_B
+0276   0221 02 01 CE                                LJMP            IOREAD
+0277   0224             
+0278   0224             ;*************************************************************
+0279   0224             ; READ_PIO_1_PORT_C
+0280   0224             ; RETURN: A, DATA
+0281   0224             ;*************************************************************
+0282   0224 90 FF 12    PIO1_READ_PORT_C:	       	MOV				DPTR, #PIO1_PORT_C
+0283   0227 02 01 CE                                LJMP            IOREAD
+0284   022A             
+0285   022A             
+0286   022A             
+0287   022A             ;========================================================================================================
+0288   022A             ;*************************************************************
+0289   022A             ; https://z80project.wordpress.com/2015/07/06/z80-8-bit-compact-flash-card-interface-part-1/
+0290   022A             ; 
+0291   022A             ; check data from sector 0 HxD
+0292   022A             ; https://mh-nexus.de/en/hxd/
+0293   022A             ;*************************************************************
+0294   022A             CF_0_BASE                        .EQU            0FF20H
+0295   022A             CF_0_PORT_DATA                   .EQU            CF_0_BASE+0
+0296   022A             CF_0_PORT_ERROR                  .EQU            CF_0_BASE+1
+0297   022A             CF_0_PORT_FEATURES               .EQU            CF_0_BASE+1
+0298   022A             CF_0_PORT_SECTOR_COUNT           .EQU            CF_0_BASE+2
+0299   022A             CF_0_PORT_LBA_0                  .EQU            CF_0_BASE+3
+0300   022A             CF_0_PORT_LBA_1                  .EQU            CF_0_BASE+4
+0301   022A             CF_0_PORT_LBA_2                  .EQU            CF_0_BASE+5
+0302   022A             CF_0_PORT_LBA_3                  .EQU            CF_0_BASE+6
+0303   022A             CF_0_PORT_STATUS                 .EQU            CF_0_BASE+7
+0304   022A             CF_0_PORT_COMMAND                .EQU            CF_0_BASE+7
+0305   022A             
+0306   022A             TEST_BUFFER_PTR                  .EQU            01000h
+0307   022A             TEST_BUFFER_SIZE                 .EQU            00200h
+0308   022A             
+0309   022A 74 01       CF_0_TEST:                      MOV             A, #001h                    
+0310   022C 12 02 B7                                    LCALL           CF0_WRITE_FEATURES    ; set 8 bit mode to features port
+0311   022F             
+0312   022F 74 EF                                       MOV             A, #0EFh                    
+0313   0231 12 02 E1                                    LCALL           CF0_WRITE_COMMAND     ; command 'set features'
+0314   0234                                             
+0315   0234 22                                          RET
+0316   0235             
+0317   0235 12 02 8F    CF_0_READ_SECTOR:               LCALL           CF0_LOOP_BUSY
+0318   0238 74 01                                       MOV             A, #001h                    
+0319   023A 12 02 C3                                    LCALL           CF0_WRITE_SECTOR_COUNT; read 1 sector at a time
+0320   023D                                             
+0321   023D 12 02 8F                                    LCALL           CF0_LOOP_BUSY
+0322   0240 74 00                                       MOV             A, #000h                    
+0323   0242 12 02 C9                                    LCALL           CF0_WRITE_LBA_0       ; read from lba 0
+0324   0245             
+0325   0245 12 02 8F                                    LCALL           CF0_LOOP_BUSY
+0326   0248 74 00                                       MOV             A, #000h                    
+0327   024A 12 02 CF                                    LCALL           CF0_WRITE_LBA_1       ; read from lba 0
+0328   024D             
+0329   024D 12 02 8F                                    LCALL           CF0_LOOP_BUSY
+0330   0250 74 00                                       MOV             A, #000h                    
+0331   0252 12 02 D5                                    LCALL           CF0_WRITE_LBA_2       ; read from lba 0
+0332   0255             
+0333   0255 12 02 8F                                    LCALL           CF0_LOOP_BUSY
+0334   0258 74 E0                                       MOV             A, #0E0h                    
+0335   025A 12 02 DB                                    LCALL           CF0_WRITE_LBA_3       ; read from lba 0, notes E0h means LBA mode
+0336   025D 12 02 61                                    LCALL           CF0_READ_CMD
+0337   0260 22                                          RET             
+0338   0261             
+0339   0261 12 02 97    CF0_READ_CMD:                   LCALL           CF0_LOOP_CMD_RDY
+0340   0264 74 20                                       MOV             A, #020h                    
+0341   0266 12 02 E1                                    LCALL           CF0_WRITE_COMMAND     ; command 'read sector'
+0342   0269                                             
+0343   0269 12 02 A1                                    LCALL           CF0_LOOP_DAT_RDY
+0344   026C 12 02 E7                                    LCALL           CF0_READ_STATUS
+0345   026F 54 01       	                            ANL		        A, #%00000001         ; Mask Error bit
+0346   0271 70 EE       	                            JNZ		        CF0_READ_CMD      	  ; 
+0347   0273                                             
+0348   0273 90 10 00    CF0_READ_SECTOR:                MOV             DPTR, #TEST_BUFFER_PTR
+0349   0276 78 00                                       MOV             R0, #00h
+0350   0278 12 02 A1    CF0_READ_SECTOR_LP:             LCALL           CF0_LOOP_DAT_RDY
+0351   027B 12 02 B1                                    LCALL           CF0_READ_DATA
+0352   027E 75 83 00                                    MOV             DPH, #TEST_BUFFER_PTR
+0353   0281 F0                                          MOVX            @DPTR, A
+0354   0282                                             
+0355   0282 12 02 A1                                    LCALL           CF0_LOOP_DAT_RDY
+0356   0285 12 02 B1                                    LCALL           CF0_READ_DATA
+0357   0288 75 82 00                                    MOV             DPL, #TEST_BUFFER_PTR
+0358   028B F0                                          MOVX            @DPTR, A
+0359   028C                                             
+0360   028C D8 EA                                       DJNZ            R0, CF0_READ_SECTOR_LP                        
+0361   028E 22                                          RET
+0362   028F             
+0363   028F             ;***************************************************************************
+0364   028F             ; LOOP_BUSY
+0365   028F             ; Function: Loops until status register bit 7 (busy) is 0
+0366   028F             ;***************************************************************************	
+0367   028F 12 02 E7    CF0_LOOP_BUSY:                  LCALL           CF0_READ_STATUS
+0368   0292 54 80       	                            ANL		        A, #%10000000               ; Mask busy bit
+0369   0294 70 F9       	                            JNZ		        CF0_LOOP_BUSY			    ; Loop until busy(7) is 0
+0370   0296 22          	                            RET
+0371   0297             
+0372   0297             ;***************************************************************************
+0373   0297             ;LOOP_CMD_RDY
+0374   0297             ;Function: Loops until status register bit 7 (busy) is 0 and drvrdy(6) is 1
+0375   0297             ;***************************************************************************	
+0376   0297 12 02 E7    CF0_LOOP_CMD_RDY:               LCALL           CF0_READ_STATUS
+0377   029A 54 C0       	                            ANL		        A, #%11000000               ; Mask busy and rdy bits
+0378   029C 64 40                                       XRL		        A, #%01000000               ; we want busy(7) to be 0 and drvrdy(6) to be 1
+0379   029E 70 F7       	                            JNZ		        CF0_LOOP_CMD_RDY    		; 
+0380   02A0 22          	                            RET
+0381   02A1             
+0382   02A1             ;***************************************************************************
+0383   02A1             ; LOOP_DAT_RDY
+0384   02A1             ; Function: Loops until status register bit 7 (busy) is 0 and drq(3) is 1
+0385   02A1             ;***************************************************************************		
+0386   02A1 12 02 E7    CF0_LOOP_DAT_RDY:               LCALL           CF0_READ_STATUS
+0387   02A4 54 88       	                            ANL		        A, #%10001000               ; Mask busy and drq bits
+0388   02A6 64 08                                       XRL		        A, #%00001000               ; we want busy(7) to be 0 and drq(3) to be 1
+0389   02A8 70 F7       	                            JNZ		        CF0_LOOP_DAT_RDY    		; 
+0390   02AA 22          	                            RET
+0391   02AB             
+0392   02AB             ;*************************************************************
+0393   02AB             ; WRITE_CF_0_DATA
+0394   02AB             ; PARAMETER: A, DATA
+0395   02AB             ;*************************************************************
+0396   02AB 90 FF 20    CF0_WRITE_DATA:		            MOV				DPTR, #CF_0_PORT_DATA
+0397   02AE 02 01 C6                                    LJMP            IOWRITE
+0398   02B1             
+0399   02B1 90 FF 20    CF0_READ_DATA:		            MOV				DPTR, #CF_0_PORT_DATA
+0400   02B4 02 01 CE                                    LJMP            IOREAD
+0401   02B7             
+0402   02B7 90 FF 21    CF0_WRITE_FEATURES:	        	MOV				DPTR, #CF_0_PORT_FEATURES
+0403   02BA 02 01 C6                                    LJMP            IOWRITE
+0404   02BD             
+0405   02BD 90 FF 21    CF0_READ_ERROR:		            MOV				DPTR, #CF_0_PORT_ERROR
+0406   02C0 02 01 CE                                    LJMP            IOREAD
+0407   02C3             
+0408   02C3 90 FF 22    CF0_WRITE_SECTOR_COUNT:	        MOV		    	DPTR, #CF_0_PORT_SECTOR_COUNT
+0409   02C6 02 01 C6                                    LJMP            IOWRITE                                
+0410   02C9             
+0411   02C9 90 FF 23    CF0_WRITE_LBA_0:		        MOV				DPTR, #CF_0_PORT_LBA_0
+0412   02CC 02 01 C6                                    LJMP            IOWRITE                                
+0413   02CF             
+0414   02CF 90 FF 24    CF0_WRITE_LBA_1:		        MOV				DPTR, #CF_0_PORT_LBA_1
+0415   02D2 02 01 C6                                    LJMP            IOWRITE                                
+0416   02D5             
+0417   02D5 90 FF 25    CF0_WRITE_LBA_2:		        MOV				DPTR, #CF_0_PORT_LBA_2
+0418   02D8 02 01 C6                                    LJMP            IOWRITE                                
+0419   02DB             
+0420   02DB 90 FF 26    CF0_WRITE_LBA_3:		        MOV				DPTR, #CF_0_PORT_LBA_3
+0421   02DE 02 01 C6                                    LJMP            IOWRITE                                
+0422   02E1             
+0423   02E1 90 FF 27    CF0_WRITE_COMMAND:		        MOV				DPTR, #CF_0_PORT_COMMAND
+0424   02E4 02 01 C6                                    LJMP            IOWRITE                                
+0425   02E7             
+0426   02E7             ;****************************************************************
+0427   02E7             ;    7       6       5       4       3       2       1       0      
+0428   02E7             ;+-------+-------+-------+-------+-------+-------+-------+-------+     
+0429   02E7             ;|  BSY  | DRDY  |  DWF  |  DSC  |  DRQ  | CORR  |  IDX  |  ERR  |      
+0430   02E7             ;+-------+-------+-------+-------+-------+-------+-------+-------+
+0431   02E7             ;****************************************************************
+0432   02E7 90 FF 27    CF0_READ_STATUS:		        MOV				DPTR, #CF_0_PORT_STATUS
+0433   02EA 02 01 CE                                    LJMP            IOREAD
+0434   02ED             
+0435   02ED             
+0436   02ED             ;========================================================================================================
+0437   02ED             UART0_BASE              .EQU            0FF30H
+0438   02ED             UART0_DATA              .EQU            UART0_BASE + 0	    ;Data in/out
+0439   02ED             UART0_RXX               .EQU            UART0_BASE + 1      ;Check RX
+0440   02ED             UART0_INTR              .EQU            UART0_BASE + 2      ;Interrupts
+0441   02ED             UART0_LINE_CTRL         .EQU            UART0_BASE + 3      ;Line control
+0442   02ED             UART0_MODEM_CTRL        .EQU            UART0_BASE + 4      ;Modem control
+0443   02ED             UART0_LINE_STATUS       .EQU            UART0_BASE + 5      ;Line status
+0444   02ED             UART0_MODEM_STATUS      .EQU            UART0_BASE + 6      ;Modem status
+0445   02ED             UART0_SCRATCH           .EQU            UART0_BASE + 7      ;Scratch register		
+0446   02ED             		
+0447   02ED             ;***************************************************************************
+0448   02ED             ;UART_INIT
+0449   02ED             ;Function: Initialize the UART to BAUD Rate 9600 (1.8432 MHz clock input)
+0450   02ED             ;***************************************************************************
+0451   02ED 90 FF 33    UART_INIT:                      MOV				DPTR, #UART0_LINE_CTRL
+0452   02F0 74 08                                       MOV             A, #08h
+0453   02F2 F0                                          MOVX            @DPTR, A                ;Mask to Set DLAB Flag
+0454   02F3             
+0455   02F3 90 FF 30                                    MOV				DPTR, #UART0_DATA
+0456   02F6 74 0C                                       MOV             A, #12                  ;Divisor = 12 @ 9600bps w/ 1.8432 Mhz
+0457   02F8 F0                                          MOVX            @DPTR, A                ;Set BAUD rate to 9600
+0458   02F9             
+0459   02F9 90 FF 31                                    MOV				DPTR, #UART0_RXX
+0460   02FC 74 00                                       MOV             A, #00                  
+0461   02FE F0                                          MOVX            @DPTR, A                
+0462   02FF             
+0463   02FF 90 FF 33                                    MOV				DPTR, #UART0_LINE_CTRL  ;Set 8-bit data, 1 stop bit, reset DLAB Flag
+0464   0302 74 03                                       MOV             A, #03             
+0465   0304 F0                                          MOVX            @DPTR, A                                                
+0466   0305             
+0467   0305 90 FF 31                                    MOV				DPTR, #UART0_RXX         ;Enable receive data available interrupt only
+0468   0308 74 01                                       MOV             A, #01           
+0469   030A F0                                          MOVX            @DPTR, A                                                                                
+0470   030B 22                              			RET		
+0471   030C             		
+0472   030C             ;***************************************************************************
+0473   030C             ;UART_PRNT_STR:
+0474   030C             ;Function: Print out string starting at MEM location (HL) to 16550 UART
+0475   030C             ;***************************************************************************
+0476   030C             EOS                             .EQU            0
+0477   030C             UART0_PRINT_STR:                
+0478   030C E0          UART0_PRINT_STR_LP:             MOVX            A, @DPTR
+0479   030D B4 00 07                                    CJNE            A, #EOS, UART0_PRINT_STR_END
+0480   0310 12 03 21    			                    LCALL	        UART0_TX
+0481   0313 A3                                          INC		        DPTR					;Increment pointer to next char
+0482   0314 02 03 0C                                    LJMP	        UART0_PRINT_STR_LP	    ;Transmit loop
+0483   0317 22          UART0_PRINT_STR_END:            RET	 
+0484   0318             			 	
+0485   0318             ;***************************************************************************
+0486   0318             ;UART_TX_READY
+0487   0318             ;Function: Check if UART is ready to transmit
+0488   0318             ;***************************************************************************
+0489   0318             UART0_TX_RDY:                    
+0490   0318 90 FF 35    UART0_TX_RDY_LP:			     MOV            DPTR, #UART0_LINE_STATUS
+0491   031B E0                                           MOVX           A, @DPTR
+0492   031C 54 20                                        ANL            A, #%00100000
+0493   031E 60 F8                                        JZ             UART0_TX_RDY_LP
+0494   0320             			                     
+0495   0320 22          			                     RET
+0496   0321             
+0497   0321             ;***************************************************************************
+0498   0321             ;UART_TX
+0499   0321             ;Function: Transmit character in A to UART
+0500   0321             ;***************************************************************************
+0501   0321 12 03 18    UART0_TX:                       LCALL           UART0_TX_RDY			;Make sure UART is ready to receive
+0502   0324 90 FF 30                                    MOV				DPTR, #UART0_DATA
+0503   0327 F0                                          MOVX            @DPTR, A                ;Set BAUD rate to 9600
+0504   0328 22          			                    RET
+0505   0329             				
+0506   0329             ;***************************************************************************
+0507   0329             ;UART_TX_READY
+0508   0329             ;Function: Check if UART is ready to transmit
+0509   0329             ;***************************************************************************
+0510   0329             UART0_RX_RDY:                    
+0511   0329 90 FF 35    UART0_RX_RDY_LP:			     MOV            DPTR, #UART0_LINE_STATUS
+0512   032C E0                                           MOVX           A, @DPTR
+0513   032D 54 01                                        ANL            A, #%00000001
+0514   032F 60 F8                                        JZ             UART0_RX_RDY_LP
+0515   0331             			                     
+0516   0331 22          			                     RET
+0517   0332             	
+0518   0332             ;***************************************************************************
+0519   0332             ;UART_RX
+0520   0332             ;Function: Receive character in UART to A
+0521   0332             ;***************************************************************************
+0522   0332 12 03 29    UART0_RX:                       LCALL           UART0_RX_RDY			;Make sure UART is ready to receive
+0523   0335 90 FF 30                                    MOV				DPTR, #UART0_DATA
+0524   0338 E0                                          MOVX            A, @DPTR                ;Set BAUD rate to 9600
+0525   0339 22          			                    RET
+0526   033A             
+0527   033A             ;========================================================================================================
+0528   033A             ;*************************************************************
+0529   033A             ; CLEAR_MEMORTY FUNCTION
+0530   033A 90 00 00    CLR_MEMORY:			        MOV				DPTR, #0000h
+0531   033D 7E FF       CLR_MEMORY_1:		        MOV				R6, #0FFH
+0532   033F 7F F0       CLR_MEMORY_2:		        MOV				R7, #0F0H
+0533   0341 E4          CLR_MEMORY_3:		        CLR				A
+0534   0342 F0          					        MOVX			@DPTR,A
+0535   0343 A3          					        INC				DPTR
+0536   0344 DF FB       					        DJNZ			R7, CLR_MEMORY_3
+0537   0346 DE F7       					        DJNZ			R6, CLR_MEMORY_2
+0538   0348 22          CLR_MEMORY_END:		        RET
+0539   0349             
+0540   0349             ;*************************************************************
+0541   0349             ; COPY_BIOS FUNCTION
+0542   0349             ;*************************************************************
+0543   0349 90 00 00    COPYBIOS:			        MOV				DPTR, #0000h
+0544   034C 7E 80       COPYBIOS_1:			        MOV				R6, #080H
+0545   034E 7F 00       COPYBIOS_2:			        MOV				R7, #000H
+0546   0350 E4          COPYBIOS_3:			        CLR				A
+0547   0351 93          					        MOVC			A, @A+DPTR
+0548   0352 F0          					        MOVX			@DPTR,A
+0549   0353 A3          					        INC				DPTR
+0550   0354 DF FA       					        DJNZ			R7, COPYBIOS_3
+0551   0356 DE F6       					        DJNZ			R6, COPYBIOS_2
+0552   0358 22          COPYBIOS_END:		        RET				
+0553   0359             
+0554   0359             ;*************************************************************
+0555   0359             ; COMPARE_BIOS FUNCTION
+0556   0359             ;*************************************************************
+0557   0359 90 00 00    CMPBIOS:			        MOV				DPTR, #0000h
+0558   035C 7E 80       CMPBIOS_1:			        MOV				R6, #080H
+0559   035E 7F 00       CMPBIOS_2:			        MOV				R7, #000H
+0560   0360 E4          CMPBIOS_3:			        CLR				A
+0561   0361 93          					        MOVC			A, @A+DPTR
+0562   0362 F8          					        MOV				R0, A
+0563   0363 E0          					        MOVX			A, @DPTR
+0564   0364 98          					        SUBB			A, R0
+0565   0365 70 05       					        JNZ				CMPBIOS_END
+0566   0367 A3          					        INC				DPTR
+0567   0368 DF F6       					        DJNZ			R7, CMPBIOS_3
+0568   036A DE F2       					        DJNZ			R6, CMPBIOS_2
+0569   036C 22          CMPBIOS_END:		        RET	
+0570   036D             
+0571   036D             ;========================================================================================================
+0572   036D             ;*************************************************************
+0573   036D             ; EXIT_BOOT FUNCTION
+0574   036D             ;*************************************************************
+0575   036D             PORT_EXIT_BOOT		.EQU            0FF70h
+0576   036D             PORT_ENTER_ISP		.EQU            0FF71h
+0577   036D             PORT_WARM_BOOT		.EQU            0FF72h
+0578   036D             
+0579   036D 90 FF 70    EXIT_BOOT:			        MOV				DPTR, #PORT_EXIT_BOOT
+0580   0370 02 01 C6    					        LJMP            IOWRITE
+0581   0373             
+0582   0373             ;*************************************************************
+0583   0373             ; ENTER_ISP FUNCTION
+0584   0373             ;*************************************************************
+0585   0373 90 FF 71    ENTER_ISP:			        MOV				DPTR, #PORT_ENTER_ISP
+0586   0376 02 01 C6    					        LJMP            IOWRITE
+0587   0379             
+0588   0379             ;*************************************************************
+0589   0379             ; WARM_BOOT FUNCTION
+0590   0379             ;*************************************************************
+0591   0379 90 FF 72    WARM_BOOT:			        MOV				DPTR, #PORT_WARM_BOOT
+0592   037C 02 01 C6    					        LJMP            IOWRITE
+0593   037F             
+0594   037F                                         .END
 ADDR  00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 -----------------------------------------------------
-0000  01 26 00 01 25 00 00 00 00 00 00 01 25 00 00 00
-0010  00 00 00 01 25 00 00 00 00 00 00 01 25 00 00 00
-0020  00 00 00 01 25 22 11 4A 11 63 31 E3 31 F3 B4 00
-0030  07 51 07 75 90 01 01 33 75 90 02 01 38 7D 01 7E
-0040  01 7F 01 DF FE DE FA DD F6 22 78 0A 74 80 11 A4
-0050  E4 11 AE 11 3D 04 11 B3 11 3D 04 11 B8 11 3D 04
-0060  D8 EF 22 78 0A 74 80 11 A9 E4 11 BD 11 3D 04 11
-0070  C2 11 3D 04 11 C7 11 3D 04 D8 EF 22 75 90 01 11
-0080  3D 75 90 02 11 3D 75 90 04 11 3D 75 90 08 11 3D
-0090  75 90 10 11 3D 75 90 20 11 3D 75 90 40 11 3D 22
-00A0  F0 22 E0 22 90 FF 03 01 A0 90 FF 13 01 A0 90 FF
-00B0  00 01 A0 90 FF 01 01 A0 90 FF 02 01 A0 90 FF 10
-00C0  01 A0 90 FF 11 01 A0 90 FF 12 01 A0 90 FF 00 01
-00D0  A2 90 FF 01 01 A2 90 FF 02 01 A2 90 FF 10 01 A2
-00E0  90 FF 11 01 A2 90 FF 12 01 A2 74 01 31 5D 74 EF
-00F0  31 80 22 31 3A 74 01 31 67 31 3A 74 00 31 6C 31
-0100  3A 74 00 31 71 31 3A 74 00 31 76 31 3A 74 E0 31
-0110  7B 31 14 22 31 41 74 20 31 80 31 4A 31 85 54 01
-0120  70 F2 90 10 00 78 00 31 4A 31 58 75 83 00 F0 31
-0130  4A 31 58 75 82 00 F0 D8 EE 22 31 85 54 80 70 FA
-0140  22 31 85 54 C0 64 40 70 F8 22 31 85 54 88 64 08
-0150  70 F8 22 90 FF 20 01 A0 90 FF 20 01 A2 90 FF 21
-0160  01 A0 90 FF 21 01 A2 90 FF 22 01 A0 90 FF 23 01
-0170  A0 90 FF 24 01 A0 90 FF 25 01 A0 90 FF 26 01 A0
-0180  90 FF 27 01 A0 90 FF 27 01 A2 90 FF 33 74 08 F0
-0190  90 FF 30 74 0C F0 90 FF 31 74 00 F0 90 FF 33 74
-01A0  03 F0 90 FF 31 74 01 F0 22 E0 B4 00 06 31 BD A3
-01B0  02 01 A9 22 90 FF 35 E0 54 20 60 F8 22 31 B4 90
-01C0  FF 30 F0 22 90 FF 35 E0 54 01 60 F8 22 31 C4 90
-01D0  FF 30 E0 22 90 00 00 7E FF 7F F0 E4 F0 A3 DF FB
-01E0  DE F7 22 90 00 00 7E 80 7F 00 E4 93 F0 A3 DF FA
-01F0  DE F6 22 90 00 00 7E 80 7F 00 E4 93 F8 E0 98 70
-0200  05 A3 DF F6 DE F2 22 90 FF 70 01 A0 90 FF 71 01
-0210  A0 90 FF 72 01 A0 00 00 00 00 00 00 00 00 00 00
+0000  02 01 00 02 00 26 00 00 00 00 00 02 00 26 00 00
+0010  00 00 00 02 00 26 00 00 00 00 00 02 00 26 00 00
+0020  00 00 00 02 00 26 22 00 00 00 00 00 00 00 00 00
+0030  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0040  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0050  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0060  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0070  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0080  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0090  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00A0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00B0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00C0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00D0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00E0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+00F0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+0100  75 81 20 12 01 9B 12 01 69 75 90 11 12 03 49 75
+0110  90 12 12 03 59 75 90 13 B4 00 09 12 03 6D 75 90
+0120  14 02 01 1E 75 90 15 02 01 24 7D 32 7E 64 7F 64
+0130  DF FE DE FA DD F6 22 75 90 00 74 80 12 01 D0 75
+0140  90 01 74 5A 75 90 02 12 01 DC 75 90 03 75 90 04
+0150  75 90 05 12 01 E8 75 90 06 75 90 07 75 90 08 12
+0160  01 EE 75 90 09 75 90 10 22 75 90 80 74 80 12 01
+0170  D6 75 90 81 74 A5 75 90 82 12 01 F4 75 90 83 75
+0180  90 84 75 90 85 12 01 FA 75 90 86 75 90 87 75 90
+0190  88 12 02 00 75 90 89 75 90 90 22 75 90 01 12 01
+01A0  2A 75 90 02 12 01 2A 75 90 04 12 01 2A 75 90 08
+01B0  12 01 2A 75 90 10 12 01 2A 75 90 20 12 01 2A 75
+01C0  90 40 12 01 2A 22 75 90 83 F0 75 90 84 22 E0 22
+01D0  90 FF 03 02 01 C6 90 FF 13 02 01 C6 75 90 81 90
+01E0  FF 00 75 90 82 02 01 C6 90 FF 01 02 01 C6 90 FF
+01F0  02 02 01 C6 90 FF 10 02 01 C6 90 FF 11 02 01 C6
+0200  90 FF 12 02 01 C6 90 FF 00 02 01 CE 90 FF 01 02
+0210  01 CE 90 FF 02 02 01 CE 90 FF 10 02 01 CE 90 FF
+0220  11 02 01 CE 90 FF 12 02 01 CE 74 01 12 02 B7 74
+0230  EF 12 02 E1 22 12 02 8F 74 01 12 02 C3 12 02 8F
+0240  74 00 12 02 C9 12 02 8F 74 00 12 02 CF 12 02 8F
+0250  74 00 12 02 D5 12 02 8F 74 E0 12 02 DB 12 02 61
+0260  22 12 02 97 74 20 12 02 E1 12 02 A1 12 02 E7 54
+0270  01 70 EE 90 10 00 78 00 12 02 A1 12 02 B1 75 83
+0280  00 F0 12 02 A1 12 02 B1 75 82 00 F0 D8 EA 22 12
+0290  02 E7 54 80 70 F9 22 12 02 E7 54 C0 64 40 70 F7
+02A0  22 12 02 E7 54 88 64 08 70 F7 22 90 FF 20 02 01
+02B0  C6 90 FF 20 02 01 CE 90 FF 21 02 01 C6 90 FF 21
+02C0  02 01 CE 90 FF 22 02 01 C6 90 FF 23 02 01 C6 90
+02D0  FF 24 02 01 C6 90 FF 25 02 01 C6 90 FF 26 02 01
+02E0  C6 90 FF 27 02 01 C6 90 FF 27 02 01 CE 90 FF 33
+02F0  74 08 F0 90 FF 30 74 0C F0 90 FF 31 74 00 F0 90
+0300  FF 33 74 03 F0 90 FF 31 74 01 F0 22 E0 B4 00 07
+0310  12 03 21 A3 02 03 0C 22 90 FF 35 E0 54 20 60 F8
+0320  22 12 03 18 90 FF 30 F0 22 90 FF 35 E0 54 01 60
+0330  F8 22 12 03 29 90 FF 30 E0 22 90 00 00 7E FF 7F
+0340  F0 E4 F0 A3 DF FB DE F7 22 90 00 00 7E 80 7F 00
+0350  E4 93 F0 A3 DF FA DE F6 22 90 00 00 7E 80 7F 00
+0360  E4 93 F8 E0 98 70 05 A3 DF F6 DE F2 22 90 FF 70
+0370  02 01 C6 90 FF 71 02 01 C6 90 FF 72 02 01 C6 00
 
 
 tasm: Number of errors = 0
