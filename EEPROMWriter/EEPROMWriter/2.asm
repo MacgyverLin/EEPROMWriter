@@ -1,5 +1,5 @@
                     .include "8051.h"
-                    .AVSYM
+;EXPORT
 
 RESET_VECTOR        .EQU            0000H
 EXTERNAL0_VECTOR    .EQU            0003H
@@ -34,9 +34,11 @@ SERIAL:             RET
 					.ORG			0100h
 START:
 BOOT_SEQUENCE:		MOV				SP, #020h
-					LCALL			LED_TEST
+					;LCALL			LED_TEST
 					;LCALL			PIO0_TEST
-					LCALL			PIO1_TEST
+					;LCALL			PIO1_TEST
+                    ;LCALL           UART0_TEST1
+                    LCALL           UART0_TEST2
                     ;LCALL          CF_0_TEST
 					;LCALL			CLR_MEMORY
 					MOV				P1, #11h
@@ -65,66 +67,44 @@ DELAY3:				DJNZ			R7, DELAY3
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; TEST 8255
-PIO0_TEST:			MOV				P1, #00h
-					MOV				A, #080h
+PIO0_TEST:			MOV				A, #080h
 					LCALL           PIO0_WRITE_CTRL
-					MOV				P1, #01h
-
+					
 					MOV				A, #05Ah
-PIO0_TEST_A:		MOV				P1, #02h
-					LCALL			PIO0_WRITE_PORT_A
-					MOV				P1, #03h
+PIO0_TEST_A:		LCALL			PIO0_WRITE_PORT_A
 					;LCALL			DELAY
-					MOV				P1, #04h
 					;INC				A
 					;JNZ				PIO0_TEST_A
 
-PIO0_TEST_B:		MOV				P1, #05h
-					LCALL			PIO0_WRITE_PORT_B
-					MOV				P1, #06h
+PIO0_TEST_B:		LCALL			PIO0_WRITE_PORT_B
 					;LCALL			DELAY
-					MOV				P1, #07h
 					;INC				A
 					;JNZ				PIO0_TEST_B
 
-PIO0_TEST_C:		MOV				P1, #08h
-					LCALL			PIO0_WRITE_PORT_C
-					MOV				P1, #09h
+PIO0_TEST_C:		LCALL			PIO0_WRITE_PORT_C
 					;LCALL			DELAY
-					MOV				P1, #10h
 					;INC				A
 					;JNZ				PIO0_TEST_C
 					RET
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; TEST 8255
-PIO1_TEST:			MOV				P1, #80h
-					MOV				A, #080h
+PIO1_TEST:			MOV				A, #080h
 					LCALL           PIO1_WRITE_CTRL
-					MOV				P1, #81h
-
-					MOV				A, #0A5h
-PIO1_TEST_A:		MOV				P1, #82h
-					LCALL			PIO1_WRITE_PORT_A
-					MOV				P1, #83h
+					
+                    MOV				A, #0A5h
+PIO1_TEST_A:		LCALL			PIO1_WRITE_PORT_A
 					;LCALL			DELAY
-					MOV				P1, #84h
 					;INC				A
 					;JNZ				PIO1_TEST_A
 
-PIO1_TEST_B:		MOV				P1, #85h
-					LCALL			PIO1_WRITE_PORT_B
-					MOV				P1, #86h
+PIO1_TEST_B:		LCALL			PIO1_WRITE_PORT_B
 					;LCALL			DELAY
-					MOV				P1, #87h
 					;INC				A
 					;JNZ				PIO1_TEST_B
 
-PIO1_TEST_C:		MOV				P1, #88h
-					LCALL			PIO1_WRITE_PORT_C
-					MOV				P1, #89h
+PIO1_TEST_C:		LCALL			PIO1_WRITE_PORT_C
 					;LCALL			DELAY
-					MOV				P1, #90h
 					;INC				A
 					;JNZ				PIO1_TEST_C
 					RET
@@ -146,24 +126,6 @@ LED_TEST:			MOV				P1, #01h
 					MOV				P1, #40h
 					LCALL			DELAY
 					RET
-
-;========================================================================================================
-; IOWRITE
-; PARAMETER: A, DATA
-; PARAMETER: DPTR, ADDRESS
-;*************************************************************
-IOWRITE:	            	MOV				P1, #83h
-							MOVX			@DPTR, A
-							MOV				P1, #84h
-					        RET
-
-;*************************************************************
-; IOREAD
-; PARAMETER: DPTR, ADDRESS
-; RETURN: A, DATA
-;*************************************************************
-IOREAD:	        	        MOVX			A, @DPTR
-					        RET
 
 ;========================================================================================================
 PIO0_BASE          .EQU            0FF00H
@@ -191,99 +153,108 @@ PIO1_PORT_CTRL     .EQU            PIO1_BASE+3
 ; +---------------- ALWAYS 1
 ;*************************************************************
 PIO0_WRITE_CTRL:            MOV             DPTR, #PIO0_PORT_CTRL
-					        LJMP            IOWRITE
+                            MOVX			@DPTR, A
+							RET
 	
 PIO1_WRITE_CTRL:            MOV             DPTR, #PIO1_PORT_CTRL
-                            LJMP            IOWRITE
+                            MOVX			@DPTR, A
+							RET
 
 ;*************************************************************
 ; WRITE_PIO_0_PORT_A
 ; PARAMETER: A, DATA
 ;*************************************************************
-PIO0_WRITE_PORT_A:		    MOV				P1, #81h
-							MOV				DPTR, #PIO0_PORT_A
-							MOV				P1, #82h
-					        LJMP            IOWRITE
+PIO0_WRITE_PORT_A:		    MOV				DPTR, #PIO0_PORT_A
+							MOVX			@DPTR, A
+							RET
 
 ;*************************************************************
 ; WRITE_PIO_0_PORT_B
 ; PARAMETER: A, DATA
 ;*************************************************************
 PIO0_WRITE_PORT_B:		    MOV				DPTR, #PIO0_PORT_B
-					        LJMP            IOWRITE
+							MOVX			@DPTR, A
+							RET
 
 ;*************************************************************
 ; WRITE_PIO_0_PORT_C
 ; PARAMETER: A, DATA
 ;*************************************************************
 PIO0_WRITE_PORT_C:	    	MOV				DPTR, #PIO0_PORT_C
-	    				    LJMP            IOWRITE
+							MOVX			@DPTR, A
+							RET
 
 ;*************************************************************
 ; WRITE_PIO_1_PORT_A
 ; PARAMETER: A, DATA
 ;*************************************************************
 PIO1_WRITE_PORT_A:		    MOV				DPTR, #PIO1_PORT_A
-                            LJMP            IOWRITE
+							MOVX			@DPTR, A
+							RET
 
 ;*************************************************************
 ; WRITE_PIO_1_PORT_B
 ; PARAMETER: A, DATA
 ;*************************************************************
 PIO1_WRITE_PORT_B:		    MOV				DPTR, #PIO1_PORT_B
-                            LJMP            IOWRITE
+							MOVX			@DPTR, A
+							RET
 
 ;*************************************************************
 ; WRITE_PIO_1_PORT_C
 ; PARAMETER: A, DATA
 ;*************************************************************
 PIO1_WRITE_PORT_C:		    MOV				DPTR, #PIO1_PORT_C
-                            LJMP            IOWRITE
+							MOVX			@DPTR, A
+							RET
 
 ;*************************************************************
 ; READ_PIO_0_PORT_A
 ; RETURN: A, DATA
 ;*************************************************************
 PIO0_READ_PORT_A:	        MOV				DPTR, #PIO0_PORT_A
-					        LJMP            IOREAD
+							MOVX			A, @DPTR
+							RET
 
 ;*************************************************************
 ; READ_PIO_0_PORT_B
 ; RETURN: A, DATA
 ;*************************************************************
 PIO0_READ_PORT_B:	        MOV				DPTR, #PIO0_PORT_B
-					        LJMP            IOREAD
+							MOVX			A, @DPTR
+							RET
 
 ;*************************************************************
 ; READ_PIO_0_PORT_C
 ; RETURN: A, DATA
 ;*************************************************************
 PIO0_READ_PORT_C:	        MOV				DPTR, #PIO0_PORT_C
-					        LJMP            IOREAD
+							MOVX			A, @DPTR
+							RET
 
 ;*************************************************************
 ; READ_PIO_1_PORT_A
 ; RETURN: A, DATA
 ;*************************************************************
 PIO1_READ_PORT_A:	       	MOV				DPTR, #PIO1_PORT_A
-                            LJMP            IOREAD
+							MOVX			A, @DPTR
+							RET
 
 ;*************************************************************
 ; READ_PIO_1_PORT_B
 ; RETURN: A, DATA
 ;*************************************************************
 PIO1_READ_PORT_B:	       	MOV				DPTR, #PIO1_PORT_B
-                            LJMP            IOREAD
+							MOVX			A, @DPTR
+							RET
 
 ;*************************************************************
 ; READ_PIO_1_PORT_C
 ; RETURN: A, DATA
 ;*************************************************************
 PIO1_READ_PORT_C:	       	MOV				DPTR, #PIO1_PORT_C
-                            LJMP            IOREAD
-
-
-
+							MOVX			A, @DPTR
+							RET
 ;========================================================================================================
 ;*************************************************************
 ; https://z80project.wordpress.com/2015/07/06/z80-8-bit-compact-flash-card-interface-part-1/
@@ -306,7 +277,7 @@ CF_0_PORT_COMMAND                .EQU            CF_0_BASE+7
 TEST_BUFFER_PTR                  .EQU            01000h
 TEST_BUFFER_SIZE                 .EQU            00200h
 
-CF_0_TEST:                      MOV             A, #001h                    
+CF_0_TEST:                      MOV             A, #001h        
                                 LCALL           CF0_WRITE_FEATURES    ; set 8 bit mode to features port
 
                                 MOV             A, #0EFh                    
@@ -394,34 +365,44 @@ CF0_LOOP_DAT_RDY:               LCALL           CF0_READ_STATUS
 ; PARAMETER: A, DATA
 ;*************************************************************
 CF0_WRITE_DATA:		            MOV				DPTR, #CF_0_PORT_DATA
-                                LJMP            IOWRITE
+							    MOVX			@DPTR, A
+							    RET
 
 CF0_READ_DATA:		            MOV				DPTR, #CF_0_PORT_DATA
-                                LJMP            IOREAD
+							    MOVX			A, @DPTR
+							    RET
 
 CF0_WRITE_FEATURES:	        	MOV				DPTR, #CF_0_PORT_FEATURES
-                                LJMP            IOWRITE
+							    MOVX			@DPTR, A
+							    RET
 
 CF0_READ_ERROR:		            MOV				DPTR, #CF_0_PORT_ERROR
-                                LJMP            IOREAD
+							    MOVX			A, @DPTR
+							    RET
 
 CF0_WRITE_SECTOR_COUNT:	        MOV		    	DPTR, #CF_0_PORT_SECTOR_COUNT
-                                LJMP            IOWRITE                                
+							    MOVX			@DPTR, A
+							    RET
 
 CF0_WRITE_LBA_0:		        MOV				DPTR, #CF_0_PORT_LBA_0
-                                LJMP            IOWRITE                                
+							    MOVX			@DPTR, A
+							    RET
 
 CF0_WRITE_LBA_1:		        MOV				DPTR, #CF_0_PORT_LBA_1
-                                LJMP            IOWRITE                                
+							    MOVX			@DPTR, A
+							    RET
 
 CF0_WRITE_LBA_2:		        MOV				DPTR, #CF_0_PORT_LBA_2
-                                LJMP            IOWRITE                                
+							    MOVX			@DPTR, A
+							    RET
 
 CF0_WRITE_LBA_3:		        MOV				DPTR, #CF_0_PORT_LBA_3
-                                LJMP            IOWRITE                                
+							    MOVX			@DPTR, A
+							    RET
 
 CF0_WRITE_COMMAND:		        MOV				DPTR, #CF_0_PORT_COMMAND
-                                LJMP            IOWRITE                                
+							    MOVX			@DPTR, A
+							    RET
 
 ;****************************************************************
 ;    7       6       5       4       3       2       1       0      
@@ -430,9 +411,135 @@ CF0_WRITE_COMMAND:		        MOV				DPTR, #CF_0_PORT_COMMAND
 ;+-------+-------+-------+-------+-------+-------+-------+-------+
 ;****************************************************************
 CF0_READ_STATUS:		        MOV				DPTR, #CF_0_PORT_STATUS
-                                LJMP            IOREAD
+							    MOVX			A, @DPTR
+							    RET
 
+;========================================================================================================
+EOS                             .EQU            0
+MON_MSG:                        .TEXT           "\r\nZMC80 Computer\t\t2015 MCook\r\n\r\n", EOS
 
+UART0_TEST1:                    LCALL           UART0_INIT
+UART0_TEST1_LP:                 LCALL           UART0_RX
+                                LCALL           UART0_TX
+                                LJMP            UART0_TEST1_LP
+                                RET
+
+UART0_TEST2:                    LCALL           UART0_INIT
+UART0_TEST2_LP:                 MOV             DPTR, #MON_MSG
+                                LCALL           UART0_TX_STR
+                                LJMP            UART0_TEST2_LP
+                                RET                                
+
+UART0_TEST3:                    LCALL           UART0_INIT
+UART0_TEST3_LP:                 MOV             DPTR, #MON_MSG
+                                MOV             R7, #36
+                                LCALL           UART0_TX_BUF
+                                LJMP            UART0_TEST3_LP
+                                RET                                
+
+;*************************************************************
+; UART0_INIT
+; PARAMETERS: NONE
+; RETURN: NONE
+;*************************************************************
+UART0_INIT:                     MOV             SCON, #050h ; mode 1
+                                MOV             TMOD, #021h ; timer 1 mode2, timer 0 mode 1
+                                MOV             PCON, #080h ; power control, double baud rate
+                                MOV             TH1, #0FAh  ; baud rate = 4800
+                                MOV             TL1, #0FAh  ; 
+                                ; SETB            ES          ; Enable Serial Interrupt
+                                ; SETB            EA          ; Enable Interrupt
+                                SETB            TR1         ; Timer 1 Run
+                                RET
+
+;*************************************************************
+; UART0_WAIT_TX_DONE
+; PARAMETERS: NONE
+; RETURN: NONE
+;*************************************************************
+UART0_WAIT_TX_DONE:             JNB             TI, UART0_WAIT_TX_DONE
+			                    RET
+
+;*************************************************************
+; UART0_TX
+; PARAMETERS: A, DATA TO BE SEND
+; RETURN: NONE
+;*************************************************************
+UART0_TX:                       CLR             TI
+                                MOV             SBUF, A
+                                LCALL           UART0_WAIT_TX_DONE
+			                    RET
+
+;*************************************************************
+; UART0_TX_STR
+; PARAMETERS: DPTR=data src pointer
+; RETURN: NONE
+;*************************************************************
+UART0_TX_STR:                   
+UART0_TX_STR_LP:                MOVX            A, @DPTR                ; DPTR=data src pointer
+			                    LCALL	        UART0_TX
+                                INC		        DPTR					; Increment pointer to next char                                
+                                CJNE            A, #EOS, UART0_TX_STR_LP
+                                ; DJNZ            R7, UART0_TX_STR_LP    ; Transmit loop
+UART0_TX_STR_END:               RET	 
+
+;*************************************************************
+; UART0_TX_BUF
+; PARAMETERS: DPTR=data src pointer, R7=Buffer size
+; RETURN: NONE
+;*************************************************************
+UART0_TX_BUF:                   
+UART0_TX_BUF_LP:                MOVX            A, @DPTR                ; DPTR=data src pointer
+			                    LCALL	        UART0_TX
+                                INC		        DPTR					; Increment pointer to next char                                
+                                DJNZ            R7, UART0_TX_BUF_LP     ; Transmit loop
+UART0_TX_BUF_END:               RET	 
+
+;*************************************************************
+; UART0_WAIT_RX_DONE
+; PARAMETERS: NONE
+; RETURN: NONE
+;*************************************************************
+UART0_WAIT_RX_DONE:             JNB              RI, UART0_WAIT_RX_DONE
+			                    RET
+
+;*************************************************************
+; UART0_RX
+; PARAMETERS: NONE
+; RETURN: A, DATA RECEIVED
+;*************************************************************
+UART0_RX:                       CLR             RI
+                                LCALL           UART0_WAIT_RX_DONE
+                                MOV             A, SBUF
+			                    RET
+                                
+;*************************************************************
+; UART0_RX_STR
+; PARAMETERS: DPTR=data dst pointer
+; RETURN: NONE
+;*************************************************************
+UART0_RX_STR:                   
+UART0_RX_STR_LP:                LCALL	        UART0_RX
+                                MOVX            @DPTR, A                ; DPTR=data src pointer
+                                INC		        DPTR					; Increment pointer to next char                                
+                                CJNE            A, #EOS, UART0_RX_STR_LP
+                                ; DJNZ            R7, UART0_RX_STR_LP    ; Transmit loop
+UART0_RX_STR_END:               RET
+
+;*************************************************************
+; UART0_RX_BUF
+; PARAMETERS: DPTR=data dst pointer, R7=Buffer size
+; RETURN: NONE
+;*************************************************************
+UART0_RX_BUF:                   
+UART0_RX_BUF_LP:                LCALL	        UART0_RX
+                                MOVX            @DPTR, A                ; DPTR=data src pointer
+                                INC		        DPTR					; Increment pointer to next char                                
+                                ; CJNE            A, #EOS, UART0_RX_BUF_LP
+                                DJNZ            R7, UART0_RX_BUF_LP    ; Transmit loop
+UART0_RX_BUF_END:               RET
+
+#IFDEF PC16550
 ;========================================================================================================
 UART0_BASE              .EQU            0FF30H
 UART0_DATA              .EQU            UART0_BASE + 0	    ;Data in/out
@@ -448,7 +555,7 @@ UART0_SCRATCH           .EQU            UART0_BASE + 7      ;Scratch register
 ;UART_INIT
 ;Function: Initialize the UART to BAUD Rate 9600 (1.8432 MHz clock input)
 ;***************************************************************************
-UART_INIT:                      MOV				DPTR, #UART0_LINE_CTRL
+UART0_INIT:                     MOV				DPTR, #UART0_LINE_CTRL
                                 MOV             A, #08h
                                 MOVX            @DPTR, A                ;Mask to Set DLAB Flag
 
@@ -498,7 +605,7 @@ UART0_TX_RDY_LP:			     MOV            DPTR, #UART0_LINE_STATUS
 ;UART_TX
 ;Function: Transmit character in A to UART
 ;***************************************************************************
-UART0_TX:                       LCALL           UART0_TX_RDY			;Make sure UART is ready to receive
+UART0_TX:                       LCALL           UART0_TX_RDY			;Make sure UART is ready to send
                                 MOV				DPTR, #UART0_DATA
                                 MOVX            @DPTR, A                ;Set BAUD rate to 9600
 			                    RET
@@ -523,6 +630,7 @@ UART0_RX:                       LCALL           UART0_RX_RDY			;Make sure UART i
                                 MOV				DPTR, #UART0_DATA
                                 MOVX            A, @DPTR                ;Set BAUD rate to 9600
 			                    RET
+#ENDIF
 
 ;========================================================================================================
 ;*************************************************************
@@ -577,18 +685,21 @@ PORT_ENTER_ISP		.EQU            0FF71h
 PORT_WARM_BOOT		.EQU            0FF72h
 
 EXIT_BOOT:			        MOV				DPTR, #PORT_EXIT_BOOT
-					        LJMP            IOWRITE
+					        MOVX			@DPTR, A
+                            RET
 
 ;*************************************************************
 ; ENTER_ISP FUNCTION
 ;*************************************************************
 ENTER_ISP:			        MOV				DPTR, #PORT_ENTER_ISP
-					        LJMP            IOWRITE
+					        MOVX			@DPTR, A
+                            RET
 
 ;*************************************************************
 ; WARM_BOOT FUNCTION
 ;*************************************************************
 WARM_BOOT:			        MOV				DPTR, #PORT_WARM_BOOT
-					        LJMP            IOWRITE
+					        MOVX			@DPTR, A
+                            RET
 
                             .END
