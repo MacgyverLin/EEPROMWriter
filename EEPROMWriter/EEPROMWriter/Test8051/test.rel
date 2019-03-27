@@ -1,0 +1,16 @@
+XH3
+H 3 areas 3 global symbols
+S .__.ABS. Def000000
+A _CODE size 0 flags 0 addr 0
+A OSEG size 1 flags 0 addr 0
+S _asm_func_PARM_2 Def000000
+A CSEG size A flags 0 addr 0
+S _asm_func Def000000
+T 00 00 00
+R 00 00 00 01
+T 00 00 00
+R 00 00 00 01
+T 00 00 00
+R 00 00 00 02
+T 00 00 00 E5 82 25 00 00 00 F5 82 75 83 00 22
+R 00 00 00 02 F1 21 06 00 01

@@ -1,0 +1,19 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 1.
+Hexadecimal [24-Bits]
+
+
+
+                                      1     .globl _asm_func_PARM_2
+                                      2     .globl _asm_func
+                                      3 
+                                      4     .area OSEG
+      000000                          5 _asm_func_PARM_2:
+      000000                          6     .ds 1
+                                      7 
+                                      8     .area CSEG
+      000000                          9 _asm_func:
+      000000 E5 82            [12]   10     mov a,dpl
+      000002 25 00            [12]   11     add a,_asm_func_PARM_2
+      000004 F5 82            [12]   12     mov dpl,a
+      000006 75 83 00         [24]   13     mov dph,#0x00
+      000009 22               [24]   14     ret

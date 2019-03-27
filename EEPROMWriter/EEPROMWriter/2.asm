@@ -34,50 +34,43 @@ SERIAL:             RET
 					.ORG			0100h
 START:
 BOOT_SEQUENCE:		MOV				SP, #020h
-					;LCALL			CF0_READ_CMD
 					LCALL			LED_TEST
 
-					MOV				P1, #04h
-					LCALL           COPYBIOS
-
-					MOV				P1, #08h
-					;LCALL           CMPBIOS
-					LCALL			EXIT_BOOT
-
 					MOV				P1, #01h
-					LCALL			PIO0_TEST
+					;LCALL			CLR_MEMORY
 
 					MOV				P1, #02h
-					LCALL			PIO1_TEST
+					LCALL           COPYBIOS
+
+					MOV				P1, #04h
+					LCALL           CMPBIOS
+					CJNE			A, #0, BOOT_FAILED
+
+                    LCALL			EXIT_BOOT
+
+					MOV				P1, #08h
+					LCALL			PIO0_TEST
 
 					MOV				P1, #10h
+					LCALL			PIO1_TEST
+
+					MOV				P1, #20h
                     ;LCALL           UART0_TEST1
                     ;LCALL           UART0_TEST2
                     ;LCALL           UART0_TEST3
                     LCALL           CF0_TEST
 
-					MOV				P1, #20h
-					;LCALL			CLR_MEMORY
+BOOT_SUCCESS:		MOV				P1, #81h
+					LJMP            BOOT_SUCCESS
 
-					MOV				P1, #40h
-					LCALL           COPYBIOS
-
-					MOV				P1, #80h
-					LCALL           CMPBIOS
-					CJNE			A, #0, BOOT_FAILED
-
-BOOT_SUCCESS:		LCALL			EXIT_BOOT
-BOOT_SUCCESS_1:		MOV				P1, #14h
-					LJMP            BOOT_SUCCESS_1
-
-BOOT_FAILED:		MOV				P1, #15h
+BOOT_FAILED:		MOV				P1, #82h
                     LJMP            BOOT_FAILED
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; DELAY FUNCTION
-DELAY:				MOV				R5, #50
-DELAY1:				MOV				R6, #100
-DELAY2:				MOV				R7, #100
+DELAY:				MOV				R5, #01; #50
+DELAY1:				MOV				R6, #01; #100
+DELAY2:				MOV				R7, #01; #100
 DELAY3:				DJNZ			R7, DELAY3
 					DJNZ			R6, DELAY2
 					DJNZ			R5, DELAY1
@@ -481,7 +474,7 @@ UART0_TEST3_LP:                 MOV             DPTR, #MON_MSG
                                 MOV             R7, #36
                                 LCALL           UART0_TX_BUF
                                 LJMP            UART0_TEST3_LP
-                                RET                                
+                                RET
 
 ;*************************************************************
 ; UART0_INIT

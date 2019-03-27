@@ -1,0 +1,7 @@
+smax:0000h
+x:ffffh
+smoc:0000h
+c:ffffh
+lp2.hex
+d2ax:027fh
+ะะะะะะะะะะออออออออออออออออI am a boy. You are a Girl.fอ
