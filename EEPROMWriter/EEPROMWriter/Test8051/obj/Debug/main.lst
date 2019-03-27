@@ -1,0 +1,914 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.8.0 #10562 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module main
+                                      6 	.optsdcc -mmcs51 --model-huge
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _Id
+                                     12 	.globl _p3
+                                     13 	.globl _p2
+                                     14 	.globl _code_v
+                                     15 	.globl _main
+                                     16 	.globl _SysClearMemory
+                                     17 	.globl _SysCheckBIOS
+                                     18 	.globl _SysCopyBIOS
+                                     19 	.globl _CY
+                                     20 	.globl _AC
+                                     21 	.globl _F0
+                                     22 	.globl _RS1
+                                     23 	.globl _RS0
+                                     24 	.globl _OV
+                                     25 	.globl _F1
+                                     26 	.globl _P
+                                     27 	.globl _PS
+                                     28 	.globl _PT1
+                                     29 	.globl _PX1
+                                     30 	.globl _PT0
+                                     31 	.globl _PX0
+                                     32 	.globl _RD
+                                     33 	.globl _WR
+                                     34 	.globl _T1
+                                     35 	.globl _T0
+                                     36 	.globl _INT1
+                                     37 	.globl _INT0
+                                     38 	.globl _TXD
+                                     39 	.globl _RXD
+                                     40 	.globl _P3_7
+                                     41 	.globl _P3_6
+                                     42 	.globl _P3_5
+                                     43 	.globl _P3_4
+                                     44 	.globl _P3_3
+                                     45 	.globl _P3_2
+                                     46 	.globl _P3_1
+                                     47 	.globl _P3_0
+                                     48 	.globl _EA
+                                     49 	.globl _ES
+                                     50 	.globl _ET1
+                                     51 	.globl _EX1
+                                     52 	.globl _ET0
+                                     53 	.globl _EX0
+                                     54 	.globl _P2_7
+                                     55 	.globl _P2_6
+                                     56 	.globl _P2_5
+                                     57 	.globl _P2_4
+                                     58 	.globl _P2_3
+                                     59 	.globl _P2_2
+                                     60 	.globl _P2_1
+                                     61 	.globl _P2_0
+                                     62 	.globl _SM0
+                                     63 	.globl _SM1
+                                     64 	.globl _SM2
+                                     65 	.globl _REN
+                                     66 	.globl _TB8
+                                     67 	.globl _RB8
+                                     68 	.globl _TI
+                                     69 	.globl _RI
+                                     70 	.globl _P1_7
+                                     71 	.globl _P1_6
+                                     72 	.globl _P1_5
+                                     73 	.globl _P1_4
+                                     74 	.globl _P1_3
+                                     75 	.globl _P1_2
+                                     76 	.globl _P1_1
+                                     77 	.globl _P1_0
+                                     78 	.globl _TF1
+                                     79 	.globl _TR1
+                                     80 	.globl _TF0
+                                     81 	.globl _TR0
+                                     82 	.globl _IE1
+                                     83 	.globl _IT1
+                                     84 	.globl _IE0
+                                     85 	.globl _IT0
+                                     86 	.globl _P0_7
+                                     87 	.globl _P0_6
+                                     88 	.globl _P0_5
+                                     89 	.globl _P0_4
+                                     90 	.globl _P0_3
+                                     91 	.globl _P0_2
+                                     92 	.globl _P0_1
+                                     93 	.globl _P0_0
+                                     94 	.globl _B
+                                     95 	.globl _ACC
+                                     96 	.globl _PSW
+                                     97 	.globl _IP
+                                     98 	.globl _P3
+                                     99 	.globl _IE
+                                    100 	.globl _P2
+                                    101 	.globl _SBUF
+                                    102 	.globl _SCON
+                                    103 	.globl _P1
+                                    104 	.globl _TH1
+                                    105 	.globl _TH0
+                                    106 	.globl _TL1
+                                    107 	.globl _TL0
+                                    108 	.globl _TMOD
+                                    109 	.globl _TCON
+                                    110 	.globl _PCON
+                                    111 	.globl _DPH
+                                    112 	.globl _DPL
+                                    113 	.globl _SP
+                                    114 	.globl _P0
+                                    115 	.globl _SysClearMemory_PARM_2
+                                    116 	.globl _SysCheckBIOS_PARM_3
+                                    117 	.globl _SysCheckBIOS_PARM_2
+                                    118 	.globl _SysCopyBIOS_PARM_3
+                                    119 	.globl _SysCopyBIOS_PARM_2
+                                    120 	.globl _PORTA_8255
+                                    121 	.globl _chksum
+                                    122 	.globl _p5
+                                    123 	.globl _p4
+                                    124 	.globl _p1
+                                    125 	.globl _xdata_v
+                                    126 	.globl _pdata_v
+                                    127 	.globl _bvar
+                                    128 	.globl _idata_v
+                                    129 	.globl _fp
+                                    130 	.globl _p0
+                                    131 	.globl _data_v
+                                    132 ;--------------------------------------------------------
+                                    133 ; special function registers
+                                    134 ;--------------------------------------------------------
+                                    135 	.area RSEG    (ABS,DATA)
+      000000                        136 	.org 0x0000
+                           000080   137 G$P0$0_0$0 == 0x0080
+                           000080   138 _P0	=	0x0080
+                           000081   139 G$SP$0_0$0 == 0x0081
+                           000081   140 _SP	=	0x0081
+                           000082   141 G$DPL$0_0$0 == 0x0082
+                           000082   142 _DPL	=	0x0082
+                           000083   143 G$DPH$0_0$0 == 0x0083
+                           000083   144 _DPH	=	0x0083
+                           000087   145 G$PCON$0_0$0 == 0x0087
+                           000087   146 _PCON	=	0x0087
+                           000088   147 G$TCON$0_0$0 == 0x0088
+                           000088   148 _TCON	=	0x0088
+                           000089   149 G$TMOD$0_0$0 == 0x0089
+                           000089   150 _TMOD	=	0x0089
+                           00008A   151 G$TL0$0_0$0 == 0x008a
+                           00008A   152 _TL0	=	0x008a
+                           00008B   153 G$TL1$0_0$0 == 0x008b
+                           00008B   154 _TL1	=	0x008b
+                           00008C   155 G$TH0$0_0$0 == 0x008c
+                           00008C   156 _TH0	=	0x008c
+                           00008D   157 G$TH1$0_0$0 == 0x008d
+                           00008D   158 _TH1	=	0x008d
+                           000090   159 G$P1$0_0$0 == 0x0090
+                           000090   160 _P1	=	0x0090
+                           000098   161 G$SCON$0_0$0 == 0x0098
+                           000098   162 _SCON	=	0x0098
+                           000099   163 G$SBUF$0_0$0 == 0x0099
+                           000099   164 _SBUF	=	0x0099
+                           0000A0   165 G$P2$0_0$0 == 0x00a0
+                           0000A0   166 _P2	=	0x00a0
+                           0000A8   167 G$IE$0_0$0 == 0x00a8
+                           0000A8   168 _IE	=	0x00a8
+                           0000B0   169 G$P3$0_0$0 == 0x00b0
+                           0000B0   170 _P3	=	0x00b0
+                           0000B8   171 G$IP$0_0$0 == 0x00b8
+                           0000B8   172 _IP	=	0x00b8
+                           0000D0   173 G$PSW$0_0$0 == 0x00d0
+                           0000D0   174 _PSW	=	0x00d0
+                           0000E0   175 G$ACC$0_0$0 == 0x00e0
+                           0000E0   176 _ACC	=	0x00e0
+                           0000F0   177 G$B$0_0$0 == 0x00f0
+                           0000F0   178 _B	=	0x00f0
+                                    179 ;--------------------------------------------------------
+                                    180 ; special function bits
+                                    181 ;--------------------------------------------------------
+                                    182 	.area RSEG    (ABS,DATA)
+      000000                        183 	.org 0x0000
+                           000080   184 G$P0_0$0_0$0 == 0x0080
+                           000080   185 _P0_0	=	0x0080
+                           000081   186 G$P0_1$0_0$0 == 0x0081
+                           000081   187 _P0_1	=	0x0081
+                           000082   188 G$P0_2$0_0$0 == 0x0082
+                           000082   189 _P0_2	=	0x0082
+                           000083   190 G$P0_3$0_0$0 == 0x0083
+                           000083   191 _P0_3	=	0x0083
+                           000084   192 G$P0_4$0_0$0 == 0x0084
+                           000084   193 _P0_4	=	0x0084
+                           000085   194 G$P0_5$0_0$0 == 0x0085
+                           000085   195 _P0_5	=	0x0085
+                           000086   196 G$P0_6$0_0$0 == 0x0086
+                           000086   197 _P0_6	=	0x0086
+                           000087   198 G$P0_7$0_0$0 == 0x0087
+                           000087   199 _P0_7	=	0x0087
+                           000088   200 G$IT0$0_0$0 == 0x0088
+                           000088   201 _IT0	=	0x0088
+                           000089   202 G$IE0$0_0$0 == 0x0089
+                           000089   203 _IE0	=	0x0089
+                           00008A   204 G$IT1$0_0$0 == 0x008a
+                           00008A   205 _IT1	=	0x008a
+                           00008B   206 G$IE1$0_0$0 == 0x008b
+                           00008B   207 _IE1	=	0x008b
+                           00008C   208 G$TR0$0_0$0 == 0x008c
+                           00008C   209 _TR0	=	0x008c
+                           00008D   210 G$TF0$0_0$0 == 0x008d
+                           00008D   211 _TF0	=	0x008d
+                           00008E   212 G$TR1$0_0$0 == 0x008e
+                           00008E   213 _TR1	=	0x008e
+                           00008F   214 G$TF1$0_0$0 == 0x008f
+                           00008F   215 _TF1	=	0x008f
+                           000090   216 G$P1_0$0_0$0 == 0x0090
+                           000090   217 _P1_0	=	0x0090
+                           000091   218 G$P1_1$0_0$0 == 0x0091
+                           000091   219 _P1_1	=	0x0091
+                           000092   220 G$P1_2$0_0$0 == 0x0092
+                           000092   221 _P1_2	=	0x0092
+                           000093   222 G$P1_3$0_0$0 == 0x0093
+                           000093   223 _P1_3	=	0x0093
+                           000094   224 G$P1_4$0_0$0 == 0x0094
+                           000094   225 _P1_4	=	0x0094
+                           000095   226 G$P1_5$0_0$0 == 0x0095
+                           000095   227 _P1_5	=	0x0095
+                           000096   228 G$P1_6$0_0$0 == 0x0096
+                           000096   229 _P1_6	=	0x0096
+                           000097   230 G$P1_7$0_0$0 == 0x0097
+                           000097   231 _P1_7	=	0x0097
+                           000098   232 G$RI$0_0$0 == 0x0098
+                           000098   233 _RI	=	0x0098
+                           000099   234 G$TI$0_0$0 == 0x0099
+                           000099   235 _TI	=	0x0099
+                           00009A   236 G$RB8$0_0$0 == 0x009a
+                           00009A   237 _RB8	=	0x009a
+                           00009B   238 G$TB8$0_0$0 == 0x009b
+                           00009B   239 _TB8	=	0x009b
+                           00009C   240 G$REN$0_0$0 == 0x009c
+                           00009C   241 _REN	=	0x009c
+                           00009D   242 G$SM2$0_0$0 == 0x009d
+                           00009D   243 _SM2	=	0x009d
+                           00009E   244 G$SM1$0_0$0 == 0x009e
+                           00009E   245 _SM1	=	0x009e
+                           00009F   246 G$SM0$0_0$0 == 0x009f
+                           00009F   247 _SM0	=	0x009f
+                           0000A0   248 G$P2_0$0_0$0 == 0x00a0
+                           0000A0   249 _P2_0	=	0x00a0
+                           0000A1   250 G$P2_1$0_0$0 == 0x00a1
+                           0000A1   251 _P2_1	=	0x00a1
+                           0000A2   252 G$P2_2$0_0$0 == 0x00a2
+                           0000A2   253 _P2_2	=	0x00a2
+                           0000A3   254 G$P2_3$0_0$0 == 0x00a3
+                           0000A3   255 _P2_3	=	0x00a3
+                           0000A4   256 G$P2_4$0_0$0 == 0x00a4
+                           0000A4   257 _P2_4	=	0x00a4
+                           0000A5   258 G$P2_5$0_0$0 == 0x00a5
+                           0000A5   259 _P2_5	=	0x00a5
+                           0000A6   260 G$P2_6$0_0$0 == 0x00a6
+                           0000A6   261 _P2_6	=	0x00a6
+                           0000A7   262 G$P2_7$0_0$0 == 0x00a7
+                           0000A7   263 _P2_7	=	0x00a7
+                           0000A8   264 G$EX0$0_0$0 == 0x00a8
+                           0000A8   265 _EX0	=	0x00a8
+                           0000A9   266 G$ET0$0_0$0 == 0x00a9
+                           0000A9   267 _ET0	=	0x00a9
+                           0000AA   268 G$EX1$0_0$0 == 0x00aa
+                           0000AA   269 _EX1	=	0x00aa
+                           0000AB   270 G$ET1$0_0$0 == 0x00ab
+                           0000AB   271 _ET1	=	0x00ab
+                           0000AC   272 G$ES$0_0$0 == 0x00ac
+                           0000AC   273 _ES	=	0x00ac
+                           0000AF   274 G$EA$0_0$0 == 0x00af
+                           0000AF   275 _EA	=	0x00af
+                           0000B0   276 G$P3_0$0_0$0 == 0x00b0
+                           0000B0   277 _P3_0	=	0x00b0
+                           0000B1   278 G$P3_1$0_0$0 == 0x00b1
+                           0000B1   279 _P3_1	=	0x00b1
+                           0000B2   280 G$P3_2$0_0$0 == 0x00b2
+                           0000B2   281 _P3_2	=	0x00b2
+                           0000B3   282 G$P3_3$0_0$0 == 0x00b3
+                           0000B3   283 _P3_3	=	0x00b3
+                           0000B4   284 G$P3_4$0_0$0 == 0x00b4
+                           0000B4   285 _P3_4	=	0x00b4
+                           0000B5   286 G$P3_5$0_0$0 == 0x00b5
+                           0000B5   287 _P3_5	=	0x00b5
+                           0000B6   288 G$P3_6$0_0$0 == 0x00b6
+                           0000B6   289 _P3_6	=	0x00b6
+                           0000B7   290 G$P3_7$0_0$0 == 0x00b7
+                           0000B7   291 _P3_7	=	0x00b7
+                           0000B0   292 G$RXD$0_0$0 == 0x00b0
+                           0000B0   293 _RXD	=	0x00b0
+                           0000B1   294 G$TXD$0_0$0 == 0x00b1
+                           0000B1   295 _TXD	=	0x00b1
+                           0000B2   296 G$INT0$0_0$0 == 0x00b2
+                           0000B2   297 _INT0	=	0x00b2
+                           0000B3   298 G$INT1$0_0$0 == 0x00b3
+                           0000B3   299 _INT1	=	0x00b3
+                           0000B4   300 G$T0$0_0$0 == 0x00b4
+                           0000B4   301 _T0	=	0x00b4
+                           0000B5   302 G$T1$0_0$0 == 0x00b5
+                           0000B5   303 _T1	=	0x00b5
+                           0000B6   304 G$WR$0_0$0 == 0x00b6
+                           0000B6   305 _WR	=	0x00b6
+                           0000B7   306 G$RD$0_0$0 == 0x00b7
+                           0000B7   307 _RD	=	0x00b7
+                           0000B8   308 G$PX0$0_0$0 == 0x00b8
+                           0000B8   309 _PX0	=	0x00b8
+                           0000B9   310 G$PT0$0_0$0 == 0x00b9
+                           0000B9   311 _PT0	=	0x00b9
+                           0000BA   312 G$PX1$0_0$0 == 0x00ba
+                           0000BA   313 _PX1	=	0x00ba
+                           0000BB   314 G$PT1$0_0$0 == 0x00bb
+                           0000BB   315 _PT1	=	0x00bb
+                           0000BC   316 G$PS$0_0$0 == 0x00bc
+                           0000BC   317 _PS	=	0x00bc
+                           0000D0   318 G$P$0_0$0 == 0x00d0
+                           0000D0   319 _P	=	0x00d0
+                           0000D1   320 G$F1$0_0$0 == 0x00d1
+                           0000D1   321 _F1	=	0x00d1
+                           0000D2   322 G$OV$0_0$0 == 0x00d2
+                           0000D2   323 _OV	=	0x00d2
+                           0000D3   324 G$RS0$0_0$0 == 0x00d3
+                           0000D3   325 _RS0	=	0x00d3
+                           0000D4   326 G$RS1$0_0$0 == 0x00d4
+                           0000D4   327 _RS1	=	0x00d4
+                           0000D5   328 G$F0$0_0$0 == 0x00d5
+                           0000D5   329 _F0	=	0x00d5
+                           0000D6   330 G$AC$0_0$0 == 0x00d6
+                           0000D6   331 _AC	=	0x00d6
+                           0000D7   332 G$CY$0_0$0 == 0x00d7
+                           0000D7   333 _CY	=	0x00d7
+                                    334 ;--------------------------------------------------------
+                                    335 ; overlayable register banks
+                                    336 ;--------------------------------------------------------
+                                    337 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        338 	.ds 8
+                                    339 ;--------------------------------------------------------
+                                    340 ; internal ram data
+                                    341 ;--------------------------------------------------------
+                                    342 	.area DSEG    (DATA)
+                           000000   343 G$data_v$0_0$0==.
+      000000                        344 _data_v::
+      000000                        345 	.ds 1
+                           000001   346 G$p0$0_0$0==.
+      000001                        347 _p0::
+      000001                        348 	.ds 2
+                           000003   349 G$fp$0_0$0==.
+      000003                        350 _fp::
+      000003                        351 	.ds 3
+                                    352 ;--------------------------------------------------------
+                                    353 ; overlayable items in internal ram 
+                                    354 ;--------------------------------------------------------
+                                    355 	.area	OSEG    (OVR,DATA)
+                                    356 	.area	OSEG    (OVR,DATA)
+                                    357 	.area	OSEG    (OVR,DATA)
+                                    358 ;--------------------------------------------------------
+                                    359 ; Stack segment in internal ram 
+                                    360 ;--------------------------------------------------------
+                                    361 	.area	SSEG
+      000000                        362 __start__stack:
+      000000                        363 	.ds	1
+                                    364 
+                                    365 ;--------------------------------------------------------
+                                    366 ; indirectly addressable internal ram data
+                                    367 ;--------------------------------------------------------
+                                    368 	.area ISEG    (DATA)
+                           000000   369 G$idata_v$0_0$0==.
+      000000                        370 _idata_v::
+      000000                        371 	.ds 1
+                                    372 ;--------------------------------------------------------
+                                    373 ; absolute internal ram data
+                                    374 ;--------------------------------------------------------
+                                    375 	.area IABS    (ABS,DATA)
+                                    376 	.area IABS    (ABS,DATA)
+                                    377 ;--------------------------------------------------------
+                                    378 ; bit data
+                                    379 ;--------------------------------------------------------
+                                    380 	.area BSEG    (BIT)
+                           000002   381 G$bvar$0_0$0 == 0x0002
+                           000002   382 _bvar	=	0x0002
+                                    383 ;--------------------------------------------------------
+                                    384 ; paged external ram data
+                                    385 ;--------------------------------------------------------
+                                    386 	.area PSEG    (PAG,XDATA)
+                           000000   387 G$pdata_v$0_0$0==.
+      000000                        388 _pdata_v::
+      000000                        389 	.ds 1
+                                    390 ;--------------------------------------------------------
+                                    391 ; external ram data
+                                    392 ;--------------------------------------------------------
+                                    393 	.area XSEG    (XDATA)
+                           000000   394 G$xdata_v$0_0$0==.
+      000000                        395 _xdata_v::
+      000000                        396 	.ds 1
+                           000001   397 G$p1$0_0$0==.
+      000001                        398 _p1::
+      000001                        399 	.ds 1
+                           000002   400 G$p4$0_0$0==.
+      000002                        401 _p4::
+      000002                        402 	.ds 3
+                           000005   403 G$p5$0_0$0==.
+      000005                        404 _p5::
+      000005                        405 	.ds 3
+                           007FFE   406 G$chksum$0_0$0 == 0x7ffe
+                           007FFE   407 _chksum	=	0x7ffe
+                           008000   408 G$PORTA_8255$0_0$0 == 0x8000
+                           008000   409 _PORTA_8255	=	0x8000
+                           000008   410 Lmain.SysCopyBIOS$dstAddr$1_0$2==.
+      000008                        411 _SysCopyBIOS_PARM_2:
+      000008                        412 	.ds 2
+                           00000A   413 Lmain.SysCopyBIOS$size$1_0$2==.
+      00000A                        414 _SysCopyBIOS_PARM_3:
+      00000A                        415 	.ds 2
+                           00000C   416 Lmain.SysCopyBIOS$srcAddr$1_0$2==.
+      00000C                        417 _SysCopyBIOS_srcAddr_65536_2:
+      00000C                        418 	.ds 2
+                           00000E   419 Lmain.SysCheckBIOS$dstAddr$1_0$5==.
+      00000E                        420 _SysCheckBIOS_PARM_2:
+      00000E                        421 	.ds 2
+                           000010   422 Lmain.SysCheckBIOS$size$1_0$5==.
+      000010                        423 _SysCheckBIOS_PARM_3:
+      000010                        424 	.ds 2
+                           000012   425 Lmain.SysCheckBIOS$srcAddr$1_0$5==.
+      000012                        426 _SysCheckBIOS_srcAddr_65536_5:
+      000012                        427 	.ds 2
+                           000014   428 Lmain.SysClearMemory$size$1_0$8==.
+      000014                        429 _SysClearMemory_PARM_2:
+      000014                        430 	.ds 2
+                           000016   431 Lmain.SysClearMemory$address$1_0$8==.
+      000016                        432 _SysClearMemory_address_65536_8:
+      000016                        433 	.ds 2
+                                    434 ;--------------------------------------------------------
+                                    435 ; absolute external ram data
+                                    436 ;--------------------------------------------------------
+                                    437 	.area XABS    (ABS,XDATA)
+                                    438 ;--------------------------------------------------------
+                                    439 ; external initialized ram data
+                                    440 ;--------------------------------------------------------
+                                    441 	.area XISEG   (XDATA)
+                                    442 	.area HOME    (CODE)
+                                    443 	.area GSINIT0 (CODE)
+                                    444 	.area GSINIT1 (CODE)
+                                    445 	.area GSINIT2 (CODE)
+                                    446 	.area GSINIT3 (CODE)
+                                    447 	.area GSINIT4 (CODE)
+                                    448 	.area GSINIT5 (CODE)
+                                    449 	.area GSINIT  (CODE)
+                                    450 	.area GSFINAL (CODE)
+                                    451 	.area CSEG    (CODE)
+                                    452 ;--------------------------------------------------------
+                                    453 ; interrupt vector 
+                                    454 ;--------------------------------------------------------
+                                    455 	.area HOME    (CODE)
+      000000                        456 __interrupt_vect:
+      000000 02r00r00         [24]  457 	ljmp	__sdcc_gsinit_startup
+                                    458 ;--------------------------------------------------------
+                                    459 ; global & static initialisations
+                                    460 ;--------------------------------------------------------
+                                    461 	.area HOME    (CODE)
+                                    462 	.area GSINIT  (CODE)
+                                    463 	.area GSFINAL (CODE)
+                                    464 	.area GSINIT  (CODE)
+                                    465 	.globl __sdcc_gsinit_startup
+                                    466 	.globl __sdcc_program_startup
+                                    467 	.globl __start__stack
+                                    468 	.globl __mcs51_genXINIT
+                                    469 	.globl __mcs51_genXRAMCLEAR
+                                    470 	.globl __mcs51_genRAMCLEAR
+                                    471 	.area GSFINAL (CODE)
+      000000 02r00r03         [24]  472 	ljmp	__sdcc_program_startup
+                                    473 ;--------------------------------------------------------
+                                    474 ; Home
+                                    475 ;--------------------------------------------------------
+                                    476 	.area HOME    (CODE)
+                                    477 	.area HOME    (CODE)
+      000003                        478 __sdcc_program_startup:
+      000003 02r01r06         [24]  479 	ljmp	_main
+                                    480 ;	return from main will return to caller
+                                    481 ;--------------------------------------------------------
+                                    482 ; code
+                                    483 ;--------------------------------------------------------
+                                    484 	.area CSEG    (CODE)
+                                    485 ;------------------------------------------------------------
+                                    486 ;Allocation info for local variables in function 'SysCopyBIOS'
+                                    487 ;------------------------------------------------------------
+                                    488 ;dstAddr                   Allocated with name '_SysCopyBIOS_PARM_2'
+                                    489 ;size                      Allocated with name '_SysCopyBIOS_PARM_3'
+                                    490 ;srcAddr                   Allocated with name '_SysCopyBIOS_srcAddr_65536_2'
+                                    491 ;src                       Allocated to registers 
+                                    492 ;dst                       Allocated to registers 
+                                    493 ;------------------------------------------------------------
+                           000000   494 	G$SysCopyBIOS$0$0 ==.
+                           000000   495 	C$main.c$47$0_0$3 ==.
+                                    496 ;	main.c:47: void SysCopyBIOS(unsigned int srcAddr, unsigned int dstAddr, unsigned int size)
+                                    497 ;	-----------------------------------------
+                                    498 ;	 function SysCopyBIOS
+                                    499 ;	-----------------------------------------
+      000000                        500 _SysCopyBIOS:
+                           000007   501 	ar7 = 0x07
+                           000006   502 	ar6 = 0x06
+                           000005   503 	ar5 = 0x05
+                           000004   504 	ar4 = 0x04
+                           000003   505 	ar3 = 0x03
+                           000002   506 	ar2 = 0x02
+                           000001   507 	ar1 = 0x01
+                           000000   508 	ar0 = 0x00
+      000000 AF 83            [24]  509 	mov	r7,dph
+      000002 E5 82            [12]  510 	mov	a,dpl
+      000004 90r00r0C         [24]  511 	mov	dptr,#_SysCopyBIOS_srcAddr_65536_2
+      000007 F0               [24]  512 	movx	@dptr,a
+      000008 EF               [12]  513 	mov	a,r7
+      000009 A3               [24]  514 	inc	dptr
+      00000A F0               [24]  515 	movx	@dptr,a
+                           00000B   516 	C$main.c$49$1_0$3 ==.
+                                    517 ;	main.c:49: __code unsigned char * __data src = *((__code unsigned char * __data)srcAddr);
+      00000B 90r00r0C         [24]  518 	mov	dptr,#_SysCopyBIOS_srcAddr_65536_2
+      00000E E0               [24]  519 	movx	a,@dptr
+      00000F FE               [12]  520 	mov	r6,a
+      000010 A3               [24]  521 	inc	dptr
+      000011 E0               [24]  522 	movx	a,@dptr
+      000012 FF               [12]  523 	mov	r7,a
+      000013 8E 82            [24]  524 	mov	dpl,r6
+      000015 8F 83            [24]  525 	mov	dph,r7
+      000017 E4               [12]  526 	clr	a
+      000018 93               [24]  527 	movc	a,@a+dptr
+      000019 FE               [12]  528 	mov	r6,a
+      00001A 7F 00            [12]  529 	mov	r7,#0x00
+                           00001C   530 	C$main.c$50$1_0$3 ==.
+                                    531 ;	main.c:50: __xdata unsigned char *__data dst = *((__xdata unsigned char * __data)dstAddr);
+      00001C 90r00r08         [24]  532 	mov	dptr,#_SysCopyBIOS_PARM_2
+      00001F E0               [24]  533 	movx	a,@dptr
+      000020 FC               [12]  534 	mov	r4,a
+      000021 A3               [24]  535 	inc	dptr
+      000022 E0               [24]  536 	movx	a,@dptr
+      000023 FD               [12]  537 	mov	r5,a
+      000024 8C 82            [24]  538 	mov	dpl,r4
+      000026 8D 83            [24]  539 	mov	dph,r5
+      000028 E0               [24]  540 	movx	a,@dptr
+      000029 FC               [12]  541 	mov	r4,a
+      00002A 7D 00            [12]  542 	mov	r5,#0x00
+                           00002C   543 	C$main.c$51$1_0$3 ==.
+                                    544 ;	main.c:51: while(size--)
+      00002C 90r00r0A         [24]  545 	mov	dptr,#_SysCopyBIOS_PARM_3
+      00002F E0               [24]  546 	movx	a,@dptr
+      000030 FA               [12]  547 	mov	r2,a
+      000031 A3               [24]  548 	inc	dptr
+      000032 E0               [24]  549 	movx	a,@dptr
+      000033 FB               [12]  550 	mov	r3,a
+      000034                        551 00101$:
+      000034 8A 00            [24]  552 	mov	ar0,r2
+      000036 8B 01            [24]  553 	mov	ar1,r3
+      000038 1A               [12]  554 	dec	r2
+      000039 BA FF 01         [24]  555 	cjne	r2,#0xff,00115$
+      00003C 1B               [12]  556 	dec	r3
+      00003D                        557 00115$:
+      00003D E8               [12]  558 	mov	a,r0
+      00003E 49               [12]  559 	orl	a,r1
+      00003F 60 19            [24]  560 	jz	00104$
+                           000041   561 	C$main.c$53$2_0$4 ==.
+                                    562 ;	main.c:53: *dst++ = *src++;
+      000041 8E 82            [24]  563 	mov	dpl,r6
+      000043 8F 83            [24]  564 	mov	dph,r7
+      000045 E4               [12]  565 	clr	a
+      000046 93               [24]  566 	movc	a,@a+dptr
+      000047 F9               [12]  567 	mov	r1,a
+      000048 A3               [24]  568 	inc	dptr
+      000049 AE 82            [24]  569 	mov	r6,dpl
+      00004B AF 83            [24]  570 	mov	r7,dph
+      00004D 8C 82            [24]  571 	mov	dpl,r4
+      00004F 8D 83            [24]  572 	mov	dph,r5
+      000051 E9               [12]  573 	mov	a,r1
+      000052 F0               [24]  574 	movx	@dptr,a
+      000053 A3               [24]  575 	inc	dptr
+      000054 AC 82            [24]  576 	mov	r4,dpl
+      000056 AD 83            [24]  577 	mov	r5,dph
+      000058 80 DA            [24]  578 	sjmp	00101$
+      00005A                        579 00104$:
+                           00005A   580 	C$main.c$55$1_0$3 ==.
+                                    581 ;	main.c:55: }
+                           00005A   582 	C$main.c$55$1_0$3 ==.
+                           00005A   583 	XG$SysCopyBIOS$0$0 ==.
+      00005A 02r00r00         [24]  584 	ljmp	__sdcc_banked_ret
+                                    585 ;------------------------------------------------------------
+                                    586 ;Allocation info for local variables in function 'SysCheckBIOS'
+                                    587 ;------------------------------------------------------------
+                                    588 ;dstAddr                   Allocated with name '_SysCheckBIOS_PARM_2'
+                                    589 ;size                      Allocated with name '_SysCheckBIOS_PARM_3'
+                                    590 ;srcAddr                   Allocated with name '_SysCheckBIOS_srcAddr_65536_5'
+                                    591 ;src                       Allocated to registers 
+                                    592 ;dst                       Allocated to registers 
+                                    593 ;------------------------------------------------------------
+                           00005D   594 	G$SysCheckBIOS$0$0 ==.
+                           00005D   595 	C$main.c$57$1_0$6 ==.
+                                    596 ;	main.c:57: char SysCheckBIOS(unsigned int srcAddr, unsigned int dstAddr, unsigned int size)
+                                    597 ;	-----------------------------------------
+                                    598 ;	 function SysCheckBIOS
+                                    599 ;	-----------------------------------------
+      00005D                        600 _SysCheckBIOS:
+      00005D AF 83            [24]  601 	mov	r7,dph
+      00005F E5 82            [12]  602 	mov	a,dpl
+      000061 90r00r12         [24]  603 	mov	dptr,#_SysCheckBIOS_srcAddr_65536_5
+      000064 F0               [24]  604 	movx	@dptr,a
+      000065 EF               [12]  605 	mov	a,r7
+      000066 A3               [24]  606 	inc	dptr
+      000067 F0               [24]  607 	movx	@dptr,a
+                           000068   608 	C$main.c$59$1_0$6 ==.
+                                    609 ;	main.c:59: __code unsigned char * __data src = *((__code unsigned char * __data)srcAddr);
+      000068 90r00r12         [24]  610 	mov	dptr,#_SysCheckBIOS_srcAddr_65536_5
+      00006B E0               [24]  611 	movx	a,@dptr
+      00006C FE               [12]  612 	mov	r6,a
+      00006D A3               [24]  613 	inc	dptr
+      00006E E0               [24]  614 	movx	a,@dptr
+      00006F FF               [12]  615 	mov	r7,a
+      000070 8E 82            [24]  616 	mov	dpl,r6
+      000072 8F 83            [24]  617 	mov	dph,r7
+      000074 E4               [12]  618 	clr	a
+      000075 93               [24]  619 	movc	a,@a+dptr
+      000076 FE               [12]  620 	mov	r6,a
+      000077 7F 00            [12]  621 	mov	r7,#0x00
+                           000079   622 	C$main.c$60$1_0$6 ==.
+                                    623 ;	main.c:60: __xdata unsigned char *__data dst = *((__xdata unsigned char * __data)dstAddr);
+      000079 90r00r0E         [24]  624 	mov	dptr,#_SysCheckBIOS_PARM_2
+      00007C E0               [24]  625 	movx	a,@dptr
+      00007D FC               [12]  626 	mov	r4,a
+      00007E A3               [24]  627 	inc	dptr
+      00007F E0               [24]  628 	movx	a,@dptr
+      000080 FD               [12]  629 	mov	r5,a
+      000081 8C 82            [24]  630 	mov	dpl,r4
+      000083 8D 83            [24]  631 	mov	dph,r5
+      000085 E0               [24]  632 	movx	a,@dptr
+      000086 FC               [12]  633 	mov	r4,a
+      000087 7D 00            [12]  634 	mov	r5,#0x00
+                           000089   635 	C$main.c$61$1_0$6 ==.
+                                    636 ;	main.c:61: while(size--)
+      000089 90r00r10         [24]  637 	mov	dptr,#_SysCheckBIOS_PARM_3
+      00008C E0               [24]  638 	movx	a,@dptr
+      00008D FA               [12]  639 	mov	r2,a
+      00008E A3               [24]  640 	inc	dptr
+      00008F E0               [24]  641 	movx	a,@dptr
+      000090 FB               [12]  642 	mov	r3,a
+      000091                        643 00103$:
+      000091 8A 00            [24]  644 	mov	ar0,r2
+      000093 8B 01            [24]  645 	mov	ar1,r3
+      000095 1A               [12]  646 	dec	r2
+      000096 BA FF 01         [24]  647 	cjne	r2,#0xff,00120$
+      000099 1B               [12]  648 	dec	r3
+      00009A                        649 00120$:
+      00009A E8               [12]  650 	mov	a,r0
+      00009B 49               [12]  651 	orl	a,r1
+      00009C 60 22            [24]  652 	jz	00105$
+                           00009E   653 	C$main.c$63$2_0$7 ==.
+                                    654 ;	main.c:63: if(*dst++ != *src++)
+      00009E 8C 82            [24]  655 	mov	dpl,r4
+      0000A0 8D 83            [24]  656 	mov	dph,r5
+      0000A2 E0               [24]  657 	movx	a,@dptr
+      0000A3 F9               [12]  658 	mov	r1,a
+      0000A4 A3               [24]  659 	inc	dptr
+      0000A5 AC 82            [24]  660 	mov	r4,dpl
+      0000A7 AD 83            [24]  661 	mov	r5,dph
+      0000A9 8E 82            [24]  662 	mov	dpl,r6
+      0000AB 8F 83            [24]  663 	mov	dph,r7
+      0000AD E4               [12]  664 	clr	a
+      0000AE 93               [24]  665 	movc	a,@a+dptr
+      0000AF F8               [12]  666 	mov	r0,a
+      0000B0 A3               [24]  667 	inc	dptr
+      0000B1 AE 82            [24]  668 	mov	r6,dpl
+      0000B3 AF 83            [24]  669 	mov	r7,dph
+      0000B5 E9               [12]  670 	mov	a,r1
+      0000B6 B5 00 02         [24]  671 	cjne	a,ar0,00122$
+      0000B9 80 D6            [24]  672 	sjmp	00103$
+      0000BB                        673 00122$:
+                           0000BB   674 	C$main.c$64$2_0$7 ==.
+                                    675 ;	main.c:64: return 0;
+      0000BB 75 82 00         [24]  676 	mov	dpl,#0x00
+      0000BE 80 03            [24]  677 	sjmp	00106$
+      0000C0                        678 00105$:
+                           0000C0   679 	C$main.c$66$1_0$6 ==.
+                                    680 ;	main.c:66: return -1;
+      0000C0 75 82 FF         [24]  681 	mov	dpl,#0xff
+      0000C3                        682 00106$:
+                           0000C3   683 	C$main.c$67$1_0$6 ==.
+                                    684 ;	main.c:67: }
+                           0000C3   685 	C$main.c$67$1_0$6 ==.
+                           0000C3   686 	XG$SysCheckBIOS$0$0 ==.
+      0000C3 02r00r00         [24]  687 	ljmp	__sdcc_banked_ret
+                                    688 ;------------------------------------------------------------
+                                    689 ;Allocation info for local variables in function 'SysClearMemory'
+                                    690 ;------------------------------------------------------------
+                                    691 ;size                      Allocated with name '_SysClearMemory_PARM_2'
+                                    692 ;address                   Allocated with name '_SysClearMemory_address_65536_8'
+                                    693 ;dst                       Allocated to registers 
+                                    694 ;------------------------------------------------------------
+                           0000C6   695 	G$SysClearMemory$0$0 ==.
+                           0000C6   696 	C$main.c$69$1_0$9 ==.
+                                    697 ;	main.c:69: void SysClearMemory(unsigned int address, unsigned int size)
+                                    698 ;	-----------------------------------------
+                                    699 ;	 function SysClearMemory
+                                    700 ;	-----------------------------------------
+      0000C6                        701 _SysClearMemory:
+      0000C6 AF 83            [24]  702 	mov	r7,dph
+      0000C8 E5 82            [12]  703 	mov	a,dpl
+      0000CA 90r00r16         [24]  704 	mov	dptr,#_SysClearMemory_address_65536_8
+      0000CD F0               [24]  705 	movx	@dptr,a
+      0000CE EF               [12]  706 	mov	a,r7
+      0000CF A3               [24]  707 	inc	dptr
+      0000D0 F0               [24]  708 	movx	@dptr,a
+                           0000D1   709 	C$main.c$71$1_0$9 ==.
+                                    710 ;	main.c:71: __xdata unsigned char *__data dst = *((__xdata unsigned char * __data)address);
+      0000D1 90r00r16         [24]  711 	mov	dptr,#_SysClearMemory_address_65536_8
+      0000D4 E0               [24]  712 	movx	a,@dptr
+      0000D5 FE               [12]  713 	mov	r6,a
+      0000D6 A3               [24]  714 	inc	dptr
+      0000D7 E0               [24]  715 	movx	a,@dptr
+      0000D8 FF               [12]  716 	mov	r7,a
+      0000D9 8E 82            [24]  717 	mov	dpl,r6
+      0000DB 8F 83            [24]  718 	mov	dph,r7
+      0000DD E0               [24]  719 	movx	a,@dptr
+      0000DE FE               [12]  720 	mov	r6,a
+      0000DF 7F 00            [12]  721 	mov	r7,#0x00
+                           0000E1   722 	C$main.c$72$1_0$9 ==.
+                                    723 ;	main.c:72: while(size--)
+      0000E1 90r00r14         [24]  724 	mov	dptr,#_SysClearMemory_PARM_2
+      0000E4 E0               [24]  725 	movx	a,@dptr
+      0000E5 FC               [12]  726 	mov	r4,a
+      0000E6 A3               [24]  727 	inc	dptr
+      0000E7 E0               [24]  728 	movx	a,@dptr
+      0000E8 FD               [12]  729 	mov	r5,a
+      0000E9                        730 00101$:
+      0000E9 8C 02            [24]  731 	mov	ar2,r4
+      0000EB 8D 03            [24]  732 	mov	ar3,r5
+      0000ED 1C               [12]  733 	dec	r4
+      0000EE BC FF 01         [24]  734 	cjne	r4,#0xff,00115$
+      0000F1 1D               [12]  735 	dec	r5
+      0000F2                        736 00115$:
+      0000F2 EA               [12]  737 	mov	a,r2
+      0000F3 4B               [12]  738 	orl	a,r3
+      0000F4 60 0D            [24]  739 	jz	00104$
+                           0000F6   740 	C$main.c$74$2_0$10 ==.
+                                    741 ;	main.c:74: *dst++ = 0;
+      0000F6 8E 82            [24]  742 	mov	dpl,r6
+      0000F8 8F 83            [24]  743 	mov	dph,r7
+      0000FA E4               [12]  744 	clr	a
+      0000FB F0               [24]  745 	movx	@dptr,a
+      0000FC A3               [24]  746 	inc	dptr
+      0000FD AE 82            [24]  747 	mov	r6,dpl
+      0000FF AF 83            [24]  748 	mov	r7,dph
+      000101 80 E6            [24]  749 	sjmp	00101$
+      000103                        750 00104$:
+                           000103   751 	C$main.c$76$1_0$9 ==.
+                                    752 ;	main.c:76: }
+                           000103   753 	C$main.c$76$1_0$9 ==.
+                           000103   754 	XG$SysClearMemory$0$0 ==.
+      000103 02r00r00         [24]  755 	ljmp	__sdcc_banked_ret
+                                    756 ;------------------------------------------------------------
+                                    757 ;Allocation info for local variables in function 'main'
+                                    758 ;------------------------------------------------------------
+                                    759 ;i                         Allocated with name '_main_i_65536_11'
+                                    760 ;------------------------------------------------------------
+                           000106   761 	G$main$0$0 ==.
+                           000106   762 	C$main.c$79$1_0$11 ==.
+                                    763 ;	main.c:79: void main()
+                                    764 ;	-----------------------------------------
+                                    765 ;	 function main
+                                    766 ;	-----------------------------------------
+      000106                        767 _main:
+                           000106   768 	C$main.c$83$1_0$11 ==.
+                                    769 ;	main.c:83: data_v =  1;
+      000106 75*00 01         [24]  770 	mov	_data_v,#0x01
+                           000109   771 	C$main.c$84$1_0$11 ==.
+                                    772 ;	main.c:84: idata_v = 1;
+      000109 78r00            [12]  773 	mov	r0,#_idata_v
+      00010B 76 01            [12]  774 	mov	@r0,#0x01
+                           00010D   775 	C$main.c$85$1_0$11 ==.
+                                    776 ;	main.c:85: pdata_v = 1;
+      00010D 78r00            [12]  777 	mov	r0,#_pdata_v
+      00010F 74 01            [12]  778 	mov	a,#0x01
+      000111 F2               [24]  779 	movx	@r0,a
+                           000112   780 	C$main.c$86$1_0$11 ==.
+                                    781 ;	main.c:86: xdata_v = 1;
+      000112 90r00r00         [24]  782 	mov	dptr,#_xdata_v
+      000115 F0               [24]  783 	movx	@dptr,a
+                           000116   784 	C$main.c$90$1_0$11 ==.
+                                    785 ;	main.c:90: IOWRITE(0xfff3, 0x80);
+      000116 90 FF F3         [24]  786 	mov	dptr,#0xfff3
+      000119 03               [12]  787 	rr	a
+      00011A F0               [24]  788 	movx	@dptr,a
+                           00011B   789 	C$main.c$91$1_0$11 ==.
+                                    790 ;	main.c:91: IOWRITE(0xfff0, 0xA5);
+      00011B 90 FF F0         [24]  791 	mov	dptr,#0xfff0
+      00011E 74 A5            [12]  792 	mov	a,#0xa5
+      000120 F0               [24]  793 	movx	@dptr,a
+                           000121   794 	C$main.c$92$1_0$11 ==.
+                                    795 ;	main.c:92: IOWRITE(0xfff1, 0xA5);
+      000121 90 FF F1         [24]  796 	mov	dptr,#0xfff1
+      000124 F0               [24]  797 	movx	@dptr,a
+                           000125   798 	C$main.c$93$1_0$11 ==.
+                                    799 ;	main.c:93: IOWRITE(0xfff2, 0xA5);
+      000125 90 FF F2         [24]  800 	mov	dptr,#0xfff2
+      000128 F0               [24]  801 	movx	@dptr,a
+                           000129   802 	C$main.c$95$1_0$11 ==.
+                                    803 ;	main.c:95: i = IOREAD(0xfff0);
+      000129 90 FF F0         [24]  804 	mov	dptr,#0xfff0
+      00012C E0               [24]  805 	movx	a,@dptr
+                           00012D   806 	C$main.c$97$1_0$11 ==.
+                                    807 ;	main.c:97: PIO0WriteCtrl(0x80)  ;
+      00012D 90 FF 03         [24]  808 	mov	dptr,#0xff03
+      000130 74 80            [12]  809 	mov	a,#0x80
+      000132 F0               [24]  810 	movx	@dptr,a
+                           000133   811 	C$main.c$98$1_0$11 ==.
+                                    812 ;	main.c:98: PIO0WritePortA(0x5A) ;
+      000133 90 FF 00         [24]  813 	mov	dptr,#0xff00
+      000136 74 5A            [12]  814 	mov	a,#0x5a
+      000138 F0               [24]  815 	movx	@dptr,a
+                           000139   816 	C$main.c$99$1_0$11 ==.
+                                    817 ;	main.c:99: PIO0WritePortB(0x5A) ;
+      000139 90 FF 01         [24]  818 	mov	dptr,#0xff01
+      00013C F0               [24]  819 	movx	@dptr,a
+                           00013D   820 	C$main.c$100$1_0$11 ==.
+                                    821 ;	main.c:100: PIO0WritePortC(0x5A) ;
+      00013D 90 FF 02         [24]  822 	mov	dptr,#0xff02
+      000140 F0               [24]  823 	movx	@dptr,a
+                           000141   824 	C$main.c$101$1_0$11 ==.
+                                    825 ;	main.c:101: PIO1WriteCtrl(0x80)  ;
+      000141 90 FF 13         [24]  826 	mov	dptr,#0xff13
+      000144 74 80            [12]  827 	mov	a,#0x80
+      000146 F0               [24]  828 	movx	@dptr,a
+                           000147   829 	C$main.c$102$1_0$11 ==.
+                                    830 ;	main.c:102: PIO1WritePortA(0x5A) ;
+      000147 90 FF 10         [24]  831 	mov	dptr,#0xff10
+      00014A 74 5A            [12]  832 	mov	a,#0x5a
+      00014C F0               [24]  833 	movx	@dptr,a
+                           00014D   834 	C$main.c$103$1_0$11 ==.
+                                    835 ;	main.c:103: PIO1WritePortB(0x5A) ;
+      00014D 90 FF 11         [24]  836 	mov	dptr,#0xff11
+      000150 F0               [24]  837 	movx	@dptr,a
+                           000151   838 	C$main.c$104$1_0$11 ==.
+                                    839 ;	main.c:104: PIO1WritePortC(0x5A) ;
+      000151 90 FF 12         [24]  840 	mov	dptr,#0xff12
+      000154 F0               [24]  841 	movx	@dptr,a
+                           000155   842 	C$main.c$106$1_0$11 ==.
+                                    843 ;	main.c:106: SysCopyBIOS(0x0000, 0x0000, 0x4000);
+      000155 90r00r08         [24]  844 	mov	dptr,#_SysCopyBIOS_PARM_2
+      000158 E4               [12]  845 	clr	a
+      000159 F0               [24]  846 	movx	@dptr,a
+      00015A A3               [24]  847 	inc	dptr
+      00015B F0               [24]  848 	movx	@dptr,a
+      00015C 90r00r0A         [24]  849 	mov	dptr,#_SysCopyBIOS_PARM_3
+      00015F F0               [24]  850 	movx	@dptr,a
+      000160 74 40            [12]  851 	mov	a,#0x40
+      000162 A3               [24]  852 	inc	dptr
+      000163 F0               [24]  853 	movx	@dptr,a
+      000164 90 00 00         [24]  854 	mov	dptr,#0x0000
+      000167 78r00            [12]  855 	mov	r0,#_SysCopyBIOS
+      000169 79s00            [12]  856 	mov	r1,#(_SysCopyBIOS >> 8)
+      00016B 7As00            [12]  857 	mov	r2,#(_SysCopyBIOS >> 16)
+      00016D 12r00r00         [24]  858 	lcall	__sdcc_banked_call
+                           000170   859 	C$main.c$107$1_0$11 ==.
+                                    860 ;	main.c:107: SysCheckBIOS(0x0000, 0x0000, 0x4000);
+      000170 90r00r0E         [24]  861 	mov	dptr,#_SysCheckBIOS_PARM_2
+      000173 E4               [12]  862 	clr	a
+      000174 F0               [24]  863 	movx	@dptr,a
+      000175 A3               [24]  864 	inc	dptr
+      000176 F0               [24]  865 	movx	@dptr,a
+      000177 90r00r10         [24]  866 	mov	dptr,#_SysCheckBIOS_PARM_3
+      00017A F0               [24]  867 	movx	@dptr,a
+      00017B 74 40            [12]  868 	mov	a,#0x40
+      00017D A3               [24]  869 	inc	dptr
+      00017E F0               [24]  870 	movx	@dptr,a
+      00017F 90 00 00         [24]  871 	mov	dptr,#0x0000
+      000182 78r5D            [12]  872 	mov	r0,#_SysCheckBIOS
+      000184 79s00            [12]  873 	mov	r1,#(_SysCheckBIOS >> 8)
+      000186 7As00            [12]  874 	mov	r2,#(_SysCheckBIOS >> 16)
+      000188 12r00r00         [24]  875 	lcall	__sdcc_banked_call
+                           00018B   876 	C$main.c$108$1_0$11 ==.
+                                    877 ;	main.c:108: SysClearMemory(0x0000, 0x4000);
+      00018B 90r00r14         [24]  878 	mov	dptr,#_SysClearMemory_PARM_2
+      00018E E4               [12]  879 	clr	a
+      00018F F0               [24]  880 	movx	@dptr,a
+      000190 74 40            [12]  881 	mov	a,#0x40
+      000192 A3               [24]  882 	inc	dptr
+      000193 F0               [24]  883 	movx	@dptr,a
+      000194 90 00 00         [24]  884 	mov	dptr,#0x0000
+      000197 78rC6            [12]  885 	mov	r0,#_SysClearMemory
+      000199 79s00            [12]  886 	mov	r1,#(_SysClearMemory >> 8)
+      00019B 7As00            [12]  887 	mov	r2,#(_SysClearMemory >> 16)
+      00019D 12r00r00         [24]  888 	lcall	__sdcc_banked_call
+                           0001A0   889 	C$main.c$109$1_0$11 ==.
+                                    890 ;	main.c:109: }
+                           0001A0   891 	C$main.c$109$1_0$11 ==.
+                           0001A0   892 	XG$main$0$0 ==.
+      0001A0 02r00r00         [24]  893 	ljmp	__sdcc_banked_ret
+                                    894 	.area CSEG    (CODE)
+                                    895 	.area CONST   (CODE)
+                           000000   896 G$code_v$0_0$0 == .
+      000000                        897 _code_v:
+      000000 FF                     898 	.db #0xff	; 255
+                           000001   899 G$p2$0_0$0 == .
+      000001                        900 _p2:
+      000001                        901 	.ds 2
+                           000003   902 G$p3$0_0$0 == .
+      000003                        903 _p3:
+      000003                        904 	.ds 2
+                                    905 	.area XINIT   (CODE)
+                                    906 	.area CABS    (ABS,CODE)
+      007FF0                        907 	.org 0x7FF0
+                           007FF0   908 G$Id$0_0$0 == .
+      007FF0                        909 _Id:
+      007FF0 53                     910 	.db #0x53	; 83	'S'
+      007FF1 44                     911 	.db #0x44	; 68	'D'
+      007FF2 43                     912 	.db #0x43	; 67	'C'
+      007FF3 43                     913 	.db #0x43	; 67	'C'
+      007FF4 00                     914 	.db #0x00	; 0

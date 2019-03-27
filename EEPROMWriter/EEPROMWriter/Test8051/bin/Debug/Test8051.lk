@@ -1,0 +1,23 @@
+-muwx
+-i bin\Debug\Test8051.ihx
+-M
+-Y
+-I 0x0100
+-X 0x10000
+-C 0x10000
+-y
+-b HOME = 0x0000
+-b XSEG = 0x0001
+-b PSEG = 0x0001
+-b ISEG = 0x0000
+-b BSEG = 0x0000
+-k C:\Program Files (x86)\SDCC\lib
+-k C:\Program Files (x86)\SDCC\bin\..\lib\huge
+-l mcs51
+-l libsdcc
+-l libint
+-l liblong
+-l libfloat
+obj\Debug\main.rel
+
+-e

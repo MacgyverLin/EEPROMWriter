@@ -34,18 +34,36 @@ SERIAL:             RET
 					.ORG			0100h
 START:
 BOOT_SEQUENCE:		MOV				SP, #020h
-					;LCALL			LED_TEST
-					;LCALL			PIO0_TEST
-					;LCALL			PIO1_TEST
-                    ;LCALL           UART0_TEST1
-                    LCALL           UART0_TEST2
-                    ;LCALL          CF_0_TEST
-					;LCALL			CLR_MEMORY
-					MOV				P1, #11h
+					;LCALL			CF0_READ_CMD
+					LCALL			LED_TEST
+
+					MOV				P1, #04h
 					LCALL           COPYBIOS
-					MOV				P1, #12h
+
+					MOV				P1, #08h
+					;LCALL           CMPBIOS
+					LCALL			EXIT_BOOT
+
+					MOV				P1, #01h
+					LCALL			PIO0_TEST
+
+					MOV				P1, #02h
+					LCALL			PIO1_TEST
+
+					MOV				P1, #10h
+                    ;LCALL           UART0_TEST1
+                    ;LCALL           UART0_TEST2
+                    ;LCALL           UART0_TEST3
+                    LCALL           CF0_TEST
+
+					MOV				P1, #20h
+					;LCALL			CLR_MEMORY
+
+					MOV				P1, #40h
+					LCALL           COPYBIOS
+
+					MOV				P1, #80h
 					LCALL           CMPBIOS
-					MOV				P1, #13h
 					CJNE			A, #0, BOOT_FAILED
 
 BOOT_SUCCESS:		LCALL			EXIT_BOOT
@@ -73,18 +91,18 @@ PIO0_TEST:			MOV				A, #080h
 					MOV				A, #05Ah
 PIO0_TEST_A:		LCALL			PIO0_WRITE_PORT_A
 					;LCALL			DELAY
-					;INC				A
-					;JNZ				PIO0_TEST_A
+					INC				A
+					JNZ				PIO0_TEST_A
 
 PIO0_TEST_B:		LCALL			PIO0_WRITE_PORT_B
 					;LCALL			DELAY
-					;INC				A
-					;JNZ				PIO0_TEST_B
+					INC				A
+					JNZ				PIO0_TEST_B
 
 PIO0_TEST_C:		LCALL			PIO0_WRITE_PORT_C
 					;LCALL			DELAY
-					;INC				A
-					;JNZ				PIO0_TEST_C
+					INC				A
+					JNZ				PIO0_TEST_C
 					RET
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -95,18 +113,18 @@ PIO1_TEST:			MOV				A, #080h
                     MOV				A, #0A5h
 PIO1_TEST_A:		LCALL			PIO1_WRITE_PORT_A
 					;LCALL			DELAY
-					;INC				A
-					;JNZ				PIO1_TEST_A
+					INC				A
+					JNZ				PIO1_TEST_A
 
 PIO1_TEST_B:		LCALL			PIO1_WRITE_PORT_B
 					;LCALL			DELAY
-					;INC				A
-					;JNZ				PIO1_TEST_B
+					INC				A
+					JNZ				PIO1_TEST_B
 
 PIO1_TEST_C:		LCALL			PIO1_WRITE_PORT_C
 					;LCALL			DELAY
-					;INC				A
-					;JNZ				PIO1_TEST_C
+					INC				A
+					JNZ				PIO1_TEST_C
 					RET
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -124,6 +142,8 @@ LED_TEST:			MOV				P1, #01h
 					MOV				P1, #20h
 					LCALL			DELAY
 					MOV				P1, #40h
+					LCALL			DELAY
+					MOV				P1, #80h
 					LCALL			DELAY
 					RET
 
@@ -274,18 +294,21 @@ CF_0_PORT_LBA_3                  .EQU            CF_0_BASE+6
 CF_0_PORT_STATUS                 .EQU            CF_0_BASE+7
 CF_0_PORT_COMMAND                .EQU            CF_0_BASE+7
 
-TEST_BUFFER_PTR                  .EQU            01000h
-TEST_BUFFER_SIZE                 .EQU            00200h
+TEST_BUFFER_PTR                  .EQU            04000h
 
-CF_0_TEST:                      MOV             A, #001h        
+;*************************************************************
+; CF0_TEST
+; PARAMETERS:
+; RETURN: 
+;*************************************************************
+CF0_TEST:
+CF0_INIT:                       MOV             A, #001h        
                                 LCALL           CF0_WRITE_FEATURES    ; set 8 bit mode to features port
 
                                 MOV             A, #0EFh                    
                                 LCALL           CF0_WRITE_COMMAND     ; command 'set features'
-                                
-                                RET
 
-CF_0_READ_SECTOR:               LCALL           CF0_LOOP_BUSY
+CF0_TEST_READ_SECTOR:           LCALL           CF0_LOOP_BUSY
                                 MOV             A, #001h                    
                                 LCALL           CF0_WRITE_SECTOR_COUNT; read 1 sector at a time
                                 
@@ -305,8 +328,22 @@ CF_0_READ_SECTOR:               LCALL           CF0_LOOP_BUSY
                                 MOV             A, #0E0h                    
                                 LCALL           CF0_WRITE_LBA_3       ; read from lba 0, notes E0h means LBA mode
                                 LCALL           CF0_READ_CMD
-                                RET             
+                                ;RET             
 
+								LCALL           UART0_INIT
+				                MOV             DPTR, #TEST_BUFFER_PTR
+								MOV             R7, #00
+                                LCALL           UART0_TX_BUF
+				                MOV             DPTR, #(TEST_BUFFER_PTR+256)
+								MOV             R7, #00
+                                LCALL           UART0_TX_BUF
+                                RET                   
+								
+;*************************************************************
+; CF0_READ_CMD
+; PARAMETERS:
+; RETURN: 
+;*************************************************************
 CF0_READ_CMD:                   LCALL           CF0_LOOP_CMD_RDY
                                 MOV             A, #020h                    
                                 LCALL           CF0_WRITE_COMMAND     ; command 'read sector'
@@ -315,20 +352,28 @@ CF0_READ_CMD:                   LCALL           CF0_LOOP_CMD_RDY
                                 LCALL           CF0_READ_STATUS
 	                            ANL		        A, #%00000001         ; Mask Error bit
 	                            JNZ		        CF0_READ_CMD      	  ; 
-                                
+
 CF0_READ_SECTOR:                MOV             DPTR, #TEST_BUFFER_PTR
-                                MOV             R0, #00h
-CF0_READ_SECTOR_LP:             LCALL           CF0_LOOP_DAT_RDY
+                                MOV             R7, #00h
+CF0_READ_SECTOR_LP:             PUSH			DPH
+								PUSH			DPL
+								LCALL           CF0_LOOP_DAT_RDY
                                 LCALL           CF0_READ_DATA
-                                MOV             DPH, #TEST_BUFFER_PTR
+								POP				DPL
+								POP				DPH
                                 MOVX            @DPTR, A
-                                
-                                LCALL           CF0_LOOP_DAT_RDY
+								INC				DPTR
+
+								PUSH			DPH
+								PUSH			DPL
+								LCALL           CF0_LOOP_DAT_RDY
                                 LCALL           CF0_READ_DATA
-                                MOV             DPL, #TEST_BUFFER_PTR
+								POP				DPL
+								POP				DPH
                                 MOVX            @DPTR, A
+								INC				DPTR
                                 
-                                DJNZ            R0, CF0_READ_SECTOR_LP                        
+                                DJNZ            R7, CF0_READ_SECTOR_LP                        
                                 RET
 
 ;***************************************************************************
@@ -416,7 +461,8 @@ CF0_READ_STATUS:		        MOV				DPTR, #CF_0_PORT_STATUS
 
 ;========================================================================================================
 EOS                             .EQU            0
-MON_MSG:                        .TEXT           "\r\nZMC80 Computer\t\t2015 MCook\r\n\r\n", EOS
+MON_MSG:                        .TEXT           "\r\nZMC80 Computer\t\t2015 MCook\r\n\r\n"
+								.BYTE			0
 
 UART0_TEST1:                    LCALL           UART0_INIT
 UART0_TEST1_LP:                 LCALL           UART0_RX
@@ -424,7 +470,7 @@ UART0_TEST1_LP:                 LCALL           UART0_RX
                                 LJMP            UART0_TEST1_LP
                                 RET
 
-UART0_TEST2:                    LCALL           UART0_INIT
+UART0_TEST2:					LCALL           UART0_INIT
 UART0_TEST2_LP:                 MOV             DPTR, #MON_MSG
                                 LCALL           UART0_TX_STR
                                 LJMP            UART0_TEST2_LP
