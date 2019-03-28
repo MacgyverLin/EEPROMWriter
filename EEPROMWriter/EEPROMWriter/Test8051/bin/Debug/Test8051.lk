@@ -20,6 +20,12 @@
 -l libint
 -l liblong
 -l libfloat
+obj\Debug\compactflash.rel
+obj\Debug\delay.rel
+obj\Debug\led.rel
 obj\Debug\main.rel
+obj\Debug\pio.rel
+obj\Debug\sio.rel
+obj\Debug\sysctrl.rel
 
 -e

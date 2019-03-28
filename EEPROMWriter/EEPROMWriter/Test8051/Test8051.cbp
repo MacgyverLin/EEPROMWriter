@@ -55,9 +55,25 @@
 		<ExtraCommands>
 			<Add after='cmd /c &quot;packihx &lt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).ihx &gt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).hex&quot;' />
 		</ExtraCommands>
+		<Unit filename="compactflash.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="compactflash.h" />
+		<Unit filename="delay.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="delay.h" />
+		<Unit filename="led.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="led.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="sysctrl.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sysctrl.h" />
 		<Unit filename="version.h" />
 		<Extensions>
 			<code_completion />

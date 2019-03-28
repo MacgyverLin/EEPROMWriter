@@ -1,11 +1,11 @@
 Internal RAM layout:
       0 1 2 3 4 5 6 7 8 9 A B C D E F
-0x00:|0|0|0|0|0|0|0|0|a|a|a|a|a|a|a|a|
-0x10:|a|a|a|a|a|S|S|S|S|S|S|S|S|S|S|S|
+0x00:|0|0|0|0|0|0|0|0|a|a|b|b|c|c|c|c|
+0x10:|c|c|S|S|S|S|S|S|S|S|S|S|S|S|S|S|
 0x20:|S|S|S|S|S|S|S|S|S|S|S|S|S|S|S|S|
 0x30:|S|S|S|S|S|S|S|S|S|S|S|S|S|S|S|S|
 0x40:|S|S|S|S|S|S|S|S|S|S|S|S|S|S|S|S|
-0x50:|S|S|S|S|S| | | | | | | | | | | |
+0x50:|S|S| | | | | | | | | | | | | | |
 0x60:| | | | | | | | | | | | | | | | |
 0x70:| | | | | | | | | | | | | | | | |
 0x80:| | | | | | | | | | | | | | | | |
@@ -18,12 +18,12 @@ Internal RAM layout:
 0xf0:| | | | | | | | | | | | | | | | |
 0-3:Reg Banks, T:Bit regs, a-z:Data, B:Bits, Q:Overlay, I:iData, S:Stack, A:Absolute
 
-Stack starts at: 0x15 (sp set to 0x14) with 64 bytes available.
-The largest spare internal RAM space starts at 0x55 with 171 bytes available.
+Stack starts at: 0x12 (sp set to 0x11) with 64 bytes available.
+The largest spare internal RAM space starts at 0x52 with 174 bytes available.
 
 Other memory:
    Name             Start    End      Size     Max     
    ---------------- -------- -------- -------- --------
    PAGED EXT. RAM                         0      256   
-   EXTERNAL RAM     0x4000   0x4218     537    48896   
-   ROM/EPROM/FLASH  0x0000   0x06fc    1789    16384   
+   EXTERNAL RAM     0x4000   0x4228     553    48896   
+   ROM/EPROM/FLASH  0x0000   0x08d9    2266    16384   

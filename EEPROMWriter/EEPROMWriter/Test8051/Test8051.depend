@@ -1,4 +1,67 @@
 # depslib dependency file v1.0
-1553674302 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\main.c
+1553766131 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\main.c
+	<mcs51/8051.h>
+	"pio.h"
+	"compactflash.h"
+	"uart.h"
+	"sysctrl.h"
+	"led.h"
+
+1548655783 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ff.c
+	"ff.h"
+	"diskio.h"
+	<stdarg.h>
+
+1548645967 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ff.h
+	"integer.h"
+	"ffconf.h"
+
+1547434628 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\integer.h
+	<windows.h>
+	<tchar.h>
+
+1548670490 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ffconf.h
+
+1547434628 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\diskio.h
+	"integer.h"
+
+1553765953 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\compactflash.c
+	"compactflash.h"
+
+1553765113 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\compactflash.h
+	<mcs51/8051.h>
+	"sysctrl.h"
+
+1553763944 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\portio.h
+	<mcs51/8051.h>
+
+1553764655 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\delay.c
+	"delay.h"
+
+1553762821 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\delay.h
+	<mcs51/8051.h>
+
+1553766009 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\led.c
+	"led.h"
+	"delay.h"
+
+1553766005 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\led.h
+	<mcs51/8051.h>
+
+1553765074 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sysctrl.h
+	<mcs51/8051.h>
+
+1553765085 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sysctrl.c
+	"sysctrl.h"
+
+1553765897 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pio.c
+	"pio.h"
+	"delay.h"
+
+1553765869 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pio.h
+	<mcs51/8051.h>
+	"sysctrl.h"
+
+1553765191 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\uart.h
 	<mcs51/8051.h>
 
