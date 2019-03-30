@@ -3,16 +3,14 @@
 -M
 -Y
 -I 0x0100
--S 0x40
--X 0xbf00
--C 0x4000
--y
+-X 0x5f00
+-C 0xa000
 -b HOME = 0x0000
--b XSEG = 0x4000
--b PSEG = 0x4000
+-b XSEG = 0xa000
+-b PSEG = 0xa000
 -b ISEG = 0x0000
 -b BSEG = 0x0000
--b SSEG = 0x0020
+-k ..\..\..\..\..\Program Files (x86)\SDCC\lib\z80
 -k C:\Program Files (x86)\SDCC\lib
 -k C:\Program Files (x86)\SDCC\bin\..\lib\huge
 -l mcs51

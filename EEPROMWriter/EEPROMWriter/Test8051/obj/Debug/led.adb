@@ -1,5 +1,5 @@
 M:led
-F:G$ledTest$0_0$0({3}DF,SV:S),Z,0,0,0,0,0
+F:G$ledTest$0_0$0({2}DF,SV:S),Z,0,0,0,0,0
 S:G$P0$0_0$0({1}SC:U),I,0,0
 S:G$SP$0_0$0({1}SC:U),I,0,0
 S:G$DPL$0_0$0({1}SC:U),I,0,0
@@ -96,5 +96,5 @@ S:G$RS1$0_0$0({1}SX:U),J,0,0
 S:G$F0$0_0$0({1}SX:U),J,0,0
 S:G$AC$0_0$0({1}SX:U),J,0,0
 S:G$CY$0_0$0({1}SX:U),J,0,0
-S:G$delay_us$0_0$0({3}DF,SV:S),C,0,0
-S:G$delay_ms$0_0$0({3}DF,SV:S),C,0,0
+S:G$delay_us$0_0$0({2}DF,SV:S),C,0,0
+S:G$delay_ms$0_0$0({2}DF,SV:S),C,0,0

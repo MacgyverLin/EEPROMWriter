@@ -56,14 +56,12 @@ void sioTXStr(char device, const char* s)
 
 void sioTXBuf(char device, const char* buf, unsigned int size)
 {
-    __data unsigned int i = 0;
+    unsigned int i;
 
-    device;
-
-    while(size--)
+    for(i=0; i<size; i++)
     {
-		sioTX(device, buf[i++]);
-    }
+		sioTX(device, buf[i]);
+    };
 }
 
 void sioWaitRXDone(char device)
@@ -75,7 +73,7 @@ void sioWaitRXDone(char device)
 
 char sioRX(char device)
 {
-    __data char d;
+    char d;
 
     device;
 
@@ -88,27 +86,21 @@ char sioRX(char device)
 
 void sioRXStr(char device, char* s, unsigned int size)
 {
-    __data unsigned int i = 0;
+    unsigned int i;
 
-    device;
-
-    while(size--)
+    for(i=0; i<size; i++)
     {
-        if((s[i++] = sioRX(device))==0)
+        if((s[i] = sioRX(device))==0)
             break;
     }
 }
 
 void sioRXBuf(char device, char* buf, unsigned int size)
 {
-    __data unsigned int i = 0;
+    unsigned int i;
 
-    device;
-
-    while(size--)
-    {
-        buf[i++] = sioRX(device);
-    }
+    for(i=0; i<size; i++)
+        buf[i] = sioRX(device);
 }
 
 void sioTest1(char device)

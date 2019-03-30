@@ -253,6 +253,13 @@ void main()
 	char* rxBuffer = 0;
 	//test();	
 
+	unsigned long LBA = 0x01;
+	unsigned char b0 = (LBA    ) & 0xff;
+	unsigned char b1 = (LBA>> 8) & 0xff;
+	unsigned char b2 = (LBA>>16) & 0xff;
+	unsigned char b3 = (LBA>>32) & 0xff;
+
+
 	while(1)
 	{
 		switch(state)

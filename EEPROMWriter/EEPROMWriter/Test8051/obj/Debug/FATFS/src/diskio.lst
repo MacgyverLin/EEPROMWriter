@@ -1,0 +1,1391 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.8.0 #10562 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module diskio
+                                      6 	.optsdcc -mmcs51 --model-huge
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _ff_memfree
+                                     12 	.globl _ff_memalloc
+                                     13 	.globl _get_fattime
+                                     14 	.globl _cfReadSector
+                                     15 	.globl _cfInit
+                                     16 	.globl _free
+                                     17 	.globl _malloc
+                                     18 	.globl _CY
+                                     19 	.globl _AC
+                                     20 	.globl _F0
+                                     21 	.globl _RS1
+                                     22 	.globl _RS0
+                                     23 	.globl _OV
+                                     24 	.globl _F1
+                                     25 	.globl _P
+                                     26 	.globl _PS
+                                     27 	.globl _PT1
+                                     28 	.globl _PX1
+                                     29 	.globl _PT0
+                                     30 	.globl _PX0
+                                     31 	.globl _RD
+                                     32 	.globl _WR
+                                     33 	.globl _T1
+                                     34 	.globl _T0
+                                     35 	.globl _INT1
+                                     36 	.globl _INT0
+                                     37 	.globl _TXD
+                                     38 	.globl _RXD
+                                     39 	.globl _P3_7
+                                     40 	.globl _P3_6
+                                     41 	.globl _P3_5
+                                     42 	.globl _P3_4
+                                     43 	.globl _P3_3
+                                     44 	.globl _P3_2
+                                     45 	.globl _P3_1
+                                     46 	.globl _P3_0
+                                     47 	.globl _EA
+                                     48 	.globl _ES
+                                     49 	.globl _ET1
+                                     50 	.globl _EX1
+                                     51 	.globl _ET0
+                                     52 	.globl _EX0
+                                     53 	.globl _P2_7
+                                     54 	.globl _P2_6
+                                     55 	.globl _P2_5
+                                     56 	.globl _P2_4
+                                     57 	.globl _P2_3
+                                     58 	.globl _P2_2
+                                     59 	.globl _P2_1
+                                     60 	.globl _P2_0
+                                     61 	.globl _SM0
+                                     62 	.globl _SM1
+                                     63 	.globl _SM2
+                                     64 	.globl _REN
+                                     65 	.globl _TB8
+                                     66 	.globl _RB8
+                                     67 	.globl _TI
+                                     68 	.globl _RI
+                                     69 	.globl _P1_7
+                                     70 	.globl _P1_6
+                                     71 	.globl _P1_5
+                                     72 	.globl _P1_4
+                                     73 	.globl _P1_3
+                                     74 	.globl _P1_2
+                                     75 	.globl _P1_1
+                                     76 	.globl _P1_0
+                                     77 	.globl _TF1
+                                     78 	.globl _TR1
+                                     79 	.globl _TF0
+                                     80 	.globl _TR0
+                                     81 	.globl _IE1
+                                     82 	.globl _IT1
+                                     83 	.globl _IE0
+                                     84 	.globl _IT0
+                                     85 	.globl _P0_7
+                                     86 	.globl _P0_6
+                                     87 	.globl _P0_5
+                                     88 	.globl _P0_4
+                                     89 	.globl _P0_3
+                                     90 	.globl _P0_2
+                                     91 	.globl _P0_1
+                                     92 	.globl _P0_0
+                                     93 	.globl _B
+                                     94 	.globl _ACC
+                                     95 	.globl _PSW
+                                     96 	.globl _IP
+                                     97 	.globl _P3
+                                     98 	.globl _IE
+                                     99 	.globl _P2
+                                    100 	.globl _SBUF
+                                    101 	.globl _SCON
+                                    102 	.globl _P1
+                                    103 	.globl _TH1
+                                    104 	.globl _TH0
+                                    105 	.globl _TL1
+                                    106 	.globl _TL0
+                                    107 	.globl _TMOD
+                                    108 	.globl _TCON
+                                    109 	.globl _PCON
+                                    110 	.globl _DPH
+                                    111 	.globl _DPL
+                                    112 	.globl _SP
+                                    113 	.globl _P0
+                                    114 	.globl _disk_ioctl_PARM_3
+                                    115 	.globl _disk_ioctl_PARM_2
+                                    116 	.globl _disk_write_PARM_4
+                                    117 	.globl _disk_write_PARM_3
+                                    118 	.globl _disk_write_PARM_2
+                                    119 	.globl _disk_read_PARM_4
+                                    120 	.globl _disk_read_PARM_3
+                                    121 	.globl _disk_read_PARM_2
+                                    122 	.globl _disk_initialize
+                                    123 	.globl _disk_status
+                                    124 	.globl _disk_read
+                                    125 	.globl _disk_write
+                                    126 	.globl _disk_ioctl
+                                    127 ;--------------------------------------------------------
+                                    128 ; special function registers
+                                    129 ;--------------------------------------------------------
+                                    130 	.area RSEG    (ABS,DATA)
+      000000                        131 	.org 0x0000
+                           000080   132 _P0	=	0x0080
+                           000081   133 _SP	=	0x0081
+                           000082   134 _DPL	=	0x0082
+                           000083   135 _DPH	=	0x0083
+                           000087   136 _PCON	=	0x0087
+                           000088   137 _TCON	=	0x0088
+                           000089   138 _TMOD	=	0x0089
+                           00008A   139 _TL0	=	0x008a
+                           00008B   140 _TL1	=	0x008b
+                           00008C   141 _TH0	=	0x008c
+                           00008D   142 _TH1	=	0x008d
+                           000090   143 _P1	=	0x0090
+                           000098   144 _SCON	=	0x0098
+                           000099   145 _SBUF	=	0x0099
+                           0000A0   146 _P2	=	0x00a0
+                           0000A8   147 _IE	=	0x00a8
+                           0000B0   148 _P3	=	0x00b0
+                           0000B8   149 _IP	=	0x00b8
+                           0000D0   150 _PSW	=	0x00d0
+                           0000E0   151 _ACC	=	0x00e0
+                           0000F0   152 _B	=	0x00f0
+                                    153 ;--------------------------------------------------------
+                                    154 ; special function bits
+                                    155 ;--------------------------------------------------------
+                                    156 	.area RSEG    (ABS,DATA)
+      000000                        157 	.org 0x0000
+                           000080   158 _P0_0	=	0x0080
+                           000081   159 _P0_1	=	0x0081
+                           000082   160 _P0_2	=	0x0082
+                           000083   161 _P0_3	=	0x0083
+                           000084   162 _P0_4	=	0x0084
+                           000085   163 _P0_5	=	0x0085
+                           000086   164 _P0_6	=	0x0086
+                           000087   165 _P0_7	=	0x0087
+                           000088   166 _IT0	=	0x0088
+                           000089   167 _IE0	=	0x0089
+                           00008A   168 _IT1	=	0x008a
+                           00008B   169 _IE1	=	0x008b
+                           00008C   170 _TR0	=	0x008c
+                           00008D   171 _TF0	=	0x008d
+                           00008E   172 _TR1	=	0x008e
+                           00008F   173 _TF1	=	0x008f
+                           000090   174 _P1_0	=	0x0090
+                           000091   175 _P1_1	=	0x0091
+                           000092   176 _P1_2	=	0x0092
+                           000093   177 _P1_3	=	0x0093
+                           000094   178 _P1_4	=	0x0094
+                           000095   179 _P1_5	=	0x0095
+                           000096   180 _P1_6	=	0x0096
+                           000097   181 _P1_7	=	0x0097
+                           000098   182 _RI	=	0x0098
+                           000099   183 _TI	=	0x0099
+                           00009A   184 _RB8	=	0x009a
+                           00009B   185 _TB8	=	0x009b
+                           00009C   186 _REN	=	0x009c
+                           00009D   187 _SM2	=	0x009d
+                           00009E   188 _SM1	=	0x009e
+                           00009F   189 _SM0	=	0x009f
+                           0000A0   190 _P2_0	=	0x00a0
+                           0000A1   191 _P2_1	=	0x00a1
+                           0000A2   192 _P2_2	=	0x00a2
+                           0000A3   193 _P2_3	=	0x00a3
+                           0000A4   194 _P2_4	=	0x00a4
+                           0000A5   195 _P2_5	=	0x00a5
+                           0000A6   196 _P2_6	=	0x00a6
+                           0000A7   197 _P2_7	=	0x00a7
+                           0000A8   198 _EX0	=	0x00a8
+                           0000A9   199 _ET0	=	0x00a9
+                           0000AA   200 _EX1	=	0x00aa
+                           0000AB   201 _ET1	=	0x00ab
+                           0000AC   202 _ES	=	0x00ac
+                           0000AF   203 _EA	=	0x00af
+                           0000B0   204 _P3_0	=	0x00b0
+                           0000B1   205 _P3_1	=	0x00b1
+                           0000B2   206 _P3_2	=	0x00b2
+                           0000B3   207 _P3_3	=	0x00b3
+                           0000B4   208 _P3_4	=	0x00b4
+                           0000B5   209 _P3_5	=	0x00b5
+                           0000B6   210 _P3_6	=	0x00b6
+                           0000B7   211 _P3_7	=	0x00b7
+                           0000B0   212 _RXD	=	0x00b0
+                           0000B1   213 _TXD	=	0x00b1
+                           0000B2   214 _INT0	=	0x00b2
+                           0000B3   215 _INT1	=	0x00b3
+                           0000B4   216 _T0	=	0x00b4
+                           0000B5   217 _T1	=	0x00b5
+                           0000B6   218 _WR	=	0x00b6
+                           0000B7   219 _RD	=	0x00b7
+                           0000B8   220 _PX0	=	0x00b8
+                           0000B9   221 _PT0	=	0x00b9
+                           0000BA   222 _PX1	=	0x00ba
+                           0000BB   223 _PT1	=	0x00bb
+                           0000BC   224 _PS	=	0x00bc
+                           0000D0   225 _P	=	0x00d0
+                           0000D1   226 _F1	=	0x00d1
+                           0000D2   227 _OV	=	0x00d2
+                           0000D3   228 _RS0	=	0x00d3
+                           0000D4   229 _RS1	=	0x00d4
+                           0000D5   230 _F0	=	0x00d5
+                           0000D6   231 _AC	=	0x00d6
+                           0000D7   232 _CY	=	0x00d7
+                                    233 ;--------------------------------------------------------
+                                    234 ; overlayable register banks
+                                    235 ;--------------------------------------------------------
+                                    236 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        237 	.ds 8
+                                    238 ;--------------------------------------------------------
+                                    239 ; internal ram data
+                                    240 ;--------------------------------------------------------
+                                    241 	.area DSEG    (DATA)
+      000000                        242 _disk_read_sloc0_1_0:
+      000000                        243 	.ds 3
+                                    244 ;--------------------------------------------------------
+                                    245 ; overlayable items in internal ram 
+                                    246 ;--------------------------------------------------------
+                                    247 ;--------------------------------------------------------
+                                    248 ; indirectly addressable internal ram data
+                                    249 ;--------------------------------------------------------
+                                    250 	.area ISEG    (DATA)
+                                    251 ;--------------------------------------------------------
+                                    252 ; absolute internal ram data
+                                    253 ;--------------------------------------------------------
+                                    254 	.area IABS    (ABS,DATA)
+                                    255 	.area IABS    (ABS,DATA)
+                                    256 ;--------------------------------------------------------
+                                    257 ; bit data
+                                    258 ;--------------------------------------------------------
+                                    259 	.area BSEG    (BIT)
+                                    260 ;--------------------------------------------------------
+                                    261 ; paged external ram data
+                                    262 ;--------------------------------------------------------
+                                    263 	.area PSEG    (PAG,XDATA)
+                                    264 ;--------------------------------------------------------
+                                    265 ; external ram data
+                                    266 ;--------------------------------------------------------
+                                    267 	.area XSEG    (XDATA)
+      000000                        268 _disk_initialize_pdrv_65536_38:
+      000000                        269 	.ds 1
+      000001                        270 _disk_status_pdrv_65536_41:
+      000001                        271 	.ds 1
+      000002                        272 _disk_read_PARM_2:
+      000002                        273 	.ds 3
+      000005                        274 _disk_read_PARM_3:
+      000005                        275 	.ds 4
+      000009                        276 _disk_read_PARM_4:
+      000009                        277 	.ds 2
+      00000B                        278 _disk_read_pdrv_65536_44:
+      00000B                        279 	.ds 1
+      00000C                        280 _disk_write_PARM_2:
+      00000C                        281 	.ds 3
+      00000F                        282 _disk_write_PARM_3:
+      00000F                        283 	.ds 4
+      000013                        284 _disk_write_PARM_4:
+      000013                        285 	.ds 2
+      000015                        286 _disk_write_pdrv_65536_47:
+      000015                        287 	.ds 1
+      000016                        288 _disk_ioctl_PARM_2:
+      000016                        289 	.ds 1
+      000017                        290 _disk_ioctl_PARM_3:
+      000017                        291 	.ds 3
+      00001A                        292 _disk_ioctl_pdrv_65536_50:
+      00001A                        293 	.ds 1
+      00001B                        294 _disk_ioctl_res_65536_51:
+      00001B                        295 	.ds 1
+      00001C                        296 _ff_memalloc_size_65536_65:
+      00001C                        297 	.ds 2
+      00001E                        298 _ff_memfree_mf_65536_67:
+      00001E                        299 	.ds 3
+                                    300 ;--------------------------------------------------------
+                                    301 ; absolute external ram data
+                                    302 ;--------------------------------------------------------
+                                    303 	.area XABS    (ABS,XDATA)
+                                    304 ;--------------------------------------------------------
+                                    305 ; external initialized ram data
+                                    306 ;--------------------------------------------------------
+                                    307 	.area XISEG   (XDATA)
+                                    308 	.area HOME    (CODE)
+                                    309 	.area GSINIT0 (CODE)
+                                    310 	.area GSINIT1 (CODE)
+                                    311 	.area GSINIT2 (CODE)
+                                    312 	.area GSINIT3 (CODE)
+                                    313 	.area GSINIT4 (CODE)
+                                    314 	.area GSINIT5 (CODE)
+                                    315 	.area GSINIT  (CODE)
+                                    316 	.area GSFINAL (CODE)
+                                    317 	.area CSEG    (CODE)
+                                    318 ;--------------------------------------------------------
+                                    319 ; global & static initialisations
+                                    320 ;--------------------------------------------------------
+                                    321 	.area HOME    (CODE)
+                                    322 	.area GSINIT  (CODE)
+                                    323 	.area GSFINAL (CODE)
+                                    324 	.area GSINIT  (CODE)
+                                    325 ;--------------------------------------------------------
+                                    326 ; Home
+                                    327 ;--------------------------------------------------------
+                                    328 	.area HOME    (CODE)
+                                    329 	.area HOME    (CODE)
+                                    330 ;--------------------------------------------------------
+                                    331 ; code
+                                    332 ;--------------------------------------------------------
+                                    333 	.area CSEG    (CODE)
+                                    334 ;------------------------------------------------------------
+                                    335 ;Allocation info for local variables in function 'disk_initialize'
+                                    336 ;------------------------------------------------------------
+                                    337 ;pdrv                      Allocated with name '_disk_initialize_pdrv_65536_38'
+                                    338 ;------------------------------------------------------------
+                                    339 ;	FATFS\src\diskio.c:23: DSTATUS disk_initialize(BYTE pdrv)
+                                    340 ;	-----------------------------------------
+                                    341 ;	 function disk_initialize
+                                    342 ;	-----------------------------------------
+      000000                        343 _disk_initialize:
+                           000007   344 	ar7 = 0x07
+                           000006   345 	ar6 = 0x06
+                           000005   346 	ar5 = 0x05
+                           000004   347 	ar4 = 0x04
+                           000003   348 	ar3 = 0x03
+                           000002   349 	ar2 = 0x02
+                           000001   350 	ar1 = 0x01
+                           000000   351 	ar0 = 0x00
+      000000 E5 82            [12]  352 	mov	a,dpl
+      000002 90r00r00         [24]  353 	mov	dptr,#_disk_initialize_pdrv_65536_38
+      000005 F0               [24]  354 	movx	@dptr,a
+                                    355 ;	FATFS\src\diskio.c:25: switch (pdrv)
+      000006 E0               [24]  356 	movx	a,@dptr
+      000007 FF               [12]  357 	mov  r7,a
+      000008 24 FB            [12]  358 	add	a,#0xff - 0x04
+      00000A 40 10            [24]  359 	jc	00102$
+      00000C EF               [12]  360 	mov	a,r7
+      00000D 2F               [12]  361 	add	a,r7
+                                    362 ;	FATFS\src\diskio.c:28: case COMPACT_FLASH:
+      00000E 90r00r12         [24]  363 	mov	dptr,#00115$
+      000011 73               [24]  364 	jmp	@a+dptr
+      000012                        365 00115$:
+      000012 80 08            [24]  366 	sjmp	00102$
+      000014 80 17            [24]  367 	sjmp	00103$
+      000016 80 1A            [24]  368 	sjmp	00104$
+      000018 80 1D            [24]  369 	sjmp	00105$
+      00001A 80 20            [24]  370 	sjmp	00106$
+      00001C                        371 00102$:
+                                    372 ;	FATFS\src\diskio.c:30: cfInit(0);
+      00001C 75 82 00         [24]  373 	mov	dpl,#0x00
+      00001F 78r00            [12]  374 	mov	r0,#_cfInit
+      000021 79s00            [12]  375 	mov	r1,#(_cfInit >> 8)
+      000023 7As00            [12]  376 	mov	r2,#(_cfInit >> 16)
+      000025 12r00r00         [24]  377 	lcall	__sdcc_banked_call
+                                    378 ;	FATFS\src\diskio.c:31: return RES_OK;
+      000028 75 82 00         [24]  379 	mov	dpl,#0x00
+                                    380 ;	FATFS\src\diskio.c:33: case SIO_DRIVE_0:
+      00002B 80 12            [24]  381 	sjmp	00108$
+      00002D                        382 00103$:
+                                    383 ;	FATFS\src\diskio.c:34: return RES_OK;
+      00002D 75 82 00         [24]  384 	mov	dpl,#0x00
+                                    385 ;	FATFS\src\diskio.c:36: case SIO_DRIVE_1:
+      000030 80 0D            [24]  386 	sjmp	00108$
+      000032                        387 00104$:
+                                    388 ;	FATFS\src\diskio.c:37: return RES_OK;
+      000032 75 82 00         [24]  389 	mov	dpl,#0x00
+                                    390 ;	FATFS\src\diskio.c:39: case SIO_DRIVE_2:
+      000035 80 08            [24]  391 	sjmp	00108$
+      000037                        392 00105$:
+                                    393 ;	FATFS\src\diskio.c:40: return RES_OK;
+      000037 75 82 00         [24]  394 	mov	dpl,#0x00
+                                    395 ;	FATFS\src\diskio.c:42: case SIO_DRIVE_3:
+      00003A 80 03            [24]  396 	sjmp	00108$
+      00003C                        397 00106$:
+                                    398 ;	FATFS\src\diskio.c:43: return RES_OK;
+      00003C 75 82 00         [24]  399 	mov	dpl,#0x00
+                                    400 ;	FATFS\src\diskio.c:44: };
+      00003F                        401 00108$:
+                                    402 ;	FATFS\src\diskio.c:45: }
+      00003F 02r00r00         [24]  403 	ljmp	__sdcc_banked_ret
+                                    404 ;------------------------------------------------------------
+                                    405 ;Allocation info for local variables in function 'disk_status'
+                                    406 ;------------------------------------------------------------
+                                    407 ;pdrv                      Allocated with name '_disk_status_pdrv_65536_41'
+                                    408 ;------------------------------------------------------------
+                                    409 ;	FATFS\src\diskio.c:51: DSTATUS disk_status (
+                                    410 ;	-----------------------------------------
+                                    411 ;	 function disk_status
+                                    412 ;	-----------------------------------------
+      000042                        413 _disk_status:
+      000042 E5 82            [12]  414 	mov	a,dpl
+      000044 90r00r01         [24]  415 	mov	dptr,#_disk_status_pdrv_65536_41
+      000047 F0               [24]  416 	movx	@dptr,a
+                                    417 ;	FATFS\src\diskio.c:55: switch (pdrv)
+      000048 E0               [24]  418 	movx	a,@dptr
+      000049 FF               [12]  419 	mov	r7,a
+      00004A BF 01 02         [24]  420 	cjne	r7,#0x01,00125$
+      00004D 80 14            [24]  421 	sjmp	00102$
+      00004F                        422 00125$:
+      00004F BF 02 02         [24]  423 	cjne	r7,#0x02,00126$
+      000052 80 14            [24]  424 	sjmp	00103$
+      000054                        425 00126$:
+      000054 BF 03 02         [24]  426 	cjne	r7,#0x03,00127$
+      000057 80 14            [24]  427 	sjmp	00104$
+      000059                        428 00127$:
+      000059 BF 04 02         [24]  429 	cjne	r7,#0x04,00128$
+      00005C 80 14            [24]  430 	sjmp	00105$
+      00005E                        431 00128$:
+                                    432 ;	FATFS\src\diskio.c:58: return RES_OK;
+      00005E 75 82 00         [24]  433 	mov	dpl,#0x00
+                                    434 ;	FATFS\src\diskio.c:60: case SIO_DRIVE_0:
+      000061 80 12            [24]  435 	sjmp	00107$
+      000063                        436 00102$:
+                                    437 ;	FATFS\src\diskio.c:61: return RES_OK;
+      000063 75 82 00         [24]  438 	mov	dpl,#0x00
+                                    439 ;	FATFS\src\diskio.c:63: case SIO_DRIVE_1:
+      000066 80 0D            [24]  440 	sjmp	00107$
+      000068                        441 00103$:
+                                    442 ;	FATFS\src\diskio.c:64: return RES_OK;
+      000068 75 82 00         [24]  443 	mov	dpl,#0x00
+                                    444 ;	FATFS\src\diskio.c:66: case SIO_DRIVE_2:
+      00006B 80 08            [24]  445 	sjmp	00107$
+      00006D                        446 00104$:
+                                    447 ;	FATFS\src\diskio.c:67: return RES_OK;
+      00006D 75 82 00         [24]  448 	mov	dpl,#0x00
+                                    449 ;	FATFS\src\diskio.c:69: case SIO_DRIVE_3:
+      000070 80 03            [24]  450 	sjmp	00107$
+      000072                        451 00105$:
+                                    452 ;	FATFS\src\diskio.c:70: return RES_OK;
+      000072 75 82 00         [24]  453 	mov	dpl,#0x00
+                                    454 ;	FATFS\src\diskio.c:71: };
+      000075                        455 00107$:
+                                    456 ;	FATFS\src\diskio.c:72: }
+      000075 02r00r00         [24]  457 	ljmp	__sdcc_banked_ret
+                                    458 ;------------------------------------------------------------
+                                    459 ;Allocation info for local variables in function 'disk_read'
+                                    460 ;------------------------------------------------------------
+                                    461 ;sloc0                     Allocated with name '_disk_read_sloc0_1_0'
+                                    462 ;buff                      Allocated with name '_disk_read_PARM_2'
+                                    463 ;sector                    Allocated with name '_disk_read_PARM_3'
+                                    464 ;count                     Allocated with name '_disk_read_PARM_4'
+                                    465 ;pdrv                      Allocated with name '_disk_read_pdrv_65536_44'
+                                    466 ;------------------------------------------------------------
+                                    467 ;	FATFS\src\diskio.c:80: DRESULT disk_read (
+                                    468 ;	-----------------------------------------
+                                    469 ;	 function disk_read
+                                    470 ;	-----------------------------------------
+      000078                        471 _disk_read:
+      000078 E5 82            [12]  472 	mov	a,dpl
+      00007A 90r00r0B         [24]  473 	mov	dptr,#_disk_read_pdrv_65536_44
+      00007D F0               [24]  474 	movx	@dptr,a
+                                    475 ;	FATFS\src\diskio.c:87: switch (pdrv)
+      00007E E0               [24]  476 	movx	a,@dptr
+      00007F FF               [12]  477 	mov  r7,a
+      000080 24 FB            [12]  478 	add	a,#0xff - 0x04
+      000082 40 10            [24]  479 	jc	00102$
+      000084 EF               [12]  480 	mov	a,r7
+      000085 2F               [12]  481 	add	a,r7
+                                    482 ;	FATFS\src\diskio.c:90: case COMPACT_FLASH:
+      000086 90r00r8A         [24]  483 	mov	dptr,#00115$
+      000089 73               [24]  484 	jmp	@a+dptr
+      00008A                        485 00115$:
+      00008A 80 08            [24]  486 	sjmp	00102$
+      00008C 80 5F            [24]  487 	sjmp	00103$
+      00008E 80 62            [24]  488 	sjmp	00104$
+      000090 80 65            [24]  489 	sjmp	00105$
+      000092 80 68            [24]  490 	sjmp	00106$
+      000094                        491 00102$:
+                                    492 ;	FATFS\src\diskio.c:91: cfReadSector(0, buff, sector, count);
+      000094 90r00r02         [24]  493 	mov	dptr,#_disk_read_PARM_2
+      000097 E0               [24]  494 	movx	a,@dptr
+      000098 F5*00            [12]  495 	mov	_disk_read_sloc0_1_0,a
+      00009A A3               [24]  496 	inc	dptr
+      00009B E0               [24]  497 	movx	a,@dptr
+      00009C F5*01            [12]  498 	mov	(_disk_read_sloc0_1_0 + 1),a
+      00009E A3               [24]  499 	inc	dptr
+      00009F E0               [24]  500 	movx	a,@dptr
+      0000A0 F5*02            [12]  501 	mov	(_disk_read_sloc0_1_0 + 2),a
+      0000A2 90r00r05         [24]  502 	mov	dptr,#_disk_read_PARM_3
+      0000A5 E0               [24]  503 	movx	a,@dptr
+      0000A6 F9               [12]  504 	mov	r1,a
+      0000A7 A3               [24]  505 	inc	dptr
+      0000A8 E0               [24]  506 	movx	a,@dptr
+      0000A9 FA               [12]  507 	mov	r2,a
+      0000AA A3               [24]  508 	inc	dptr
+      0000AB E0               [24]  509 	movx	a,@dptr
+      0000AC FB               [12]  510 	mov	r3,a
+      0000AD A3               [24]  511 	inc	dptr
+      0000AE E0               [24]  512 	movx	a,@dptr
+      0000AF FC               [12]  513 	mov	r4,a
+      0000B0 90r00r09         [24]  514 	mov	dptr,#_disk_read_PARM_4
+      0000B3 E0               [24]  515 	movx	a,@dptr
+      0000B4 F8               [12]  516 	mov	r0,a
+      0000B5 A3               [24]  517 	inc	dptr
+      0000B6 E0               [24]  518 	movx	a,@dptr
+      0000B7 FF               [12]  519 	mov	r7,a
+      0000B8 90r00r00         [24]  520 	mov	dptr,#_cfReadSector_PARM_2
+      0000BB E5*00            [12]  521 	mov	a,_disk_read_sloc0_1_0
+      0000BD F0               [24]  522 	movx	@dptr,a
+      0000BE E5*01            [12]  523 	mov	a,(_disk_read_sloc0_1_0 + 1)
+      0000C0 A3               [24]  524 	inc	dptr
+      0000C1 F0               [24]  525 	movx	@dptr,a
+      0000C2 E5*02            [12]  526 	mov	a,(_disk_read_sloc0_1_0 + 2)
+      0000C4 A3               [24]  527 	inc	dptr
+      0000C5 F0               [24]  528 	movx	@dptr,a
+      0000C6 90r00r00         [24]  529 	mov	dptr,#_cfReadSector_PARM_3
+      0000C9 E9               [12]  530 	mov	a,r1
+      0000CA F0               [24]  531 	movx	@dptr,a
+      0000CB EA               [12]  532 	mov	a,r2
+      0000CC A3               [24]  533 	inc	dptr
+      0000CD F0               [24]  534 	movx	@dptr,a
+      0000CE EB               [12]  535 	mov	a,r3
+      0000CF A3               [24]  536 	inc	dptr
+      0000D0 F0               [24]  537 	movx	@dptr,a
+      0000D1 EC               [12]  538 	mov	a,r4
+      0000D2 A3               [24]  539 	inc	dptr
+      0000D3 F0               [24]  540 	movx	@dptr,a
+      0000D4 90r00r00         [24]  541 	mov	dptr,#_cfReadSector_PARM_4
+      0000D7 E8               [12]  542 	mov	a,r0
+      0000D8 F0               [24]  543 	movx	@dptr,a
+      0000D9 EF               [12]  544 	mov	a,r7
+      0000DA A3               [24]  545 	inc	dptr
+      0000DB F0               [24]  546 	movx	@dptr,a
+      0000DC 75 82 00         [24]  547 	mov	dpl,#0x00
+      0000DF 78r00            [12]  548 	mov	r0,#_cfReadSector
+      0000E1 79s00            [12]  549 	mov	r1,#(_cfReadSector >> 8)
+      0000E3 7As00            [12]  550 	mov	r2,#(_cfReadSector >> 16)
+      0000E5 12r00r00         [24]  551 	lcall	__sdcc_banked_call
+                                    552 ;	FATFS\src\diskio.c:93: return RES_OK;
+      0000E8 75 82 00         [24]  553 	mov	dpl,#0x00
+                                    554 ;	FATFS\src\diskio.c:95: case SIO_DRIVE_0:
+      0000EB 80 12            [24]  555 	sjmp	00108$
+      0000ED                        556 00103$:
+                                    557 ;	FATFS\src\diskio.c:96: return RES_OK;
+      0000ED 75 82 00         [24]  558 	mov	dpl,#0x00
+                                    559 ;	FATFS\src\diskio.c:98: case SIO_DRIVE_1:
+      0000F0 80 0D            [24]  560 	sjmp	00108$
+      0000F2                        561 00104$:
+                                    562 ;	FATFS\src\diskio.c:99: return RES_OK;
+      0000F2 75 82 00         [24]  563 	mov	dpl,#0x00
+                                    564 ;	FATFS\src\diskio.c:101: case SIO_DRIVE_2:
+      0000F5 80 08            [24]  565 	sjmp	00108$
+      0000F7                        566 00105$:
+                                    567 ;	FATFS\src\diskio.c:102: return RES_OK;
+      0000F7 75 82 00         [24]  568 	mov	dpl,#0x00
+                                    569 ;	FATFS\src\diskio.c:104: case SIO_DRIVE_3:
+      0000FA 80 03            [24]  570 	sjmp	00108$
+      0000FC                        571 00106$:
+                                    572 ;	FATFS\src\diskio.c:105: return RES_OK;
+      0000FC 75 82 00         [24]  573 	mov	dpl,#0x00
+                                    574 ;	FATFS\src\diskio.c:106: };
+      0000FF                        575 00108$:
+                                    576 ;	FATFS\src\diskio.c:107: }
+      0000FF 02r00r00         [24]  577 	ljmp	__sdcc_banked_ret
+                                    578 ;------------------------------------------------------------
+                                    579 ;Allocation info for local variables in function 'disk_write'
+                                    580 ;------------------------------------------------------------
+                                    581 ;buff                      Allocated with name '_disk_write_PARM_2'
+                                    582 ;sector                    Allocated with name '_disk_write_PARM_3'
+                                    583 ;count                     Allocated with name '_disk_write_PARM_4'
+                                    584 ;pdrv                      Allocated with name '_disk_write_pdrv_65536_47'
+                                    585 ;------------------------------------------------------------
+                                    586 ;	FATFS\src\diskio.c:116: DRESULT disk_write (
+                                    587 ;	-----------------------------------------
+                                    588 ;	 function disk_write
+                                    589 ;	-----------------------------------------
+      000102                        590 _disk_write:
+      000102 E5 82            [12]  591 	mov	a,dpl
+      000104 90r00r15         [24]  592 	mov	dptr,#_disk_write_pdrv_65536_47
+      000107 F0               [24]  593 	movx	@dptr,a
+                                    594 ;	FATFS\src\diskio.c:123: switch (pdrv)
+      000108 E0               [24]  595 	movx	a,@dptr
+      000109 FF               [12]  596 	mov  r7,a
+      00010A 24 FB            [12]  597 	add	a,#0xff - 0x04
+      00010C 40 10            [24]  598 	jc	00102$
+      00010E EF               [12]  599 	mov	a,r7
+      00010F 2F               [12]  600 	add	a,r7
+                                    601 ;	FATFS\src\diskio.c:126: case COMPACT_FLASH:
+      000110 90r01r14         [24]  602 	mov	dptr,#00115$
+      000113 73               [24]  603 	jmp	@a+dptr
+      000114                        604 00115$:
+      000114 80 08            [24]  605 	sjmp	00102$
+      000116 80 0B            [24]  606 	sjmp	00103$
+      000118 80 0E            [24]  607 	sjmp	00104$
+      00011A 80 11            [24]  608 	sjmp	00105$
+      00011C 80 14            [24]  609 	sjmp	00106$
+      00011E                        610 00102$:
+                                    611 ;	FATFS\src\diskio.c:129: return RES_OK;
+      00011E 75 82 00         [24]  612 	mov	dpl,#0x00
+                                    613 ;	FATFS\src\diskio.c:131: case SIO_DRIVE_0:
+      000121 80 12            [24]  614 	sjmp	00108$
+      000123                        615 00103$:
+                                    616 ;	FATFS\src\diskio.c:132: return RES_OK;
+      000123 75 82 00         [24]  617 	mov	dpl,#0x00
+                                    618 ;	FATFS\src\diskio.c:134: case SIO_DRIVE_1:
+      000126 80 0D            [24]  619 	sjmp	00108$
+      000128                        620 00104$:
+                                    621 ;	FATFS\src\diskio.c:135: return RES_OK;
+      000128 75 82 00         [24]  622 	mov	dpl,#0x00
+                                    623 ;	FATFS\src\diskio.c:137: case SIO_DRIVE_2:
+      00012B 80 08            [24]  624 	sjmp	00108$
+      00012D                        625 00105$:
+                                    626 ;	FATFS\src\diskio.c:138: return RES_OK;
+      00012D 75 82 00         [24]  627 	mov	dpl,#0x00
+                                    628 ;	FATFS\src\diskio.c:140: case SIO_DRIVE_3:
+      000130 80 03            [24]  629 	sjmp	00108$
+      000132                        630 00106$:
+                                    631 ;	FATFS\src\diskio.c:141: return RES_OK;
+      000132 75 82 00         [24]  632 	mov	dpl,#0x00
+                                    633 ;	FATFS\src\diskio.c:142: };
+      000135                        634 00108$:
+                                    635 ;	FATFS\src\diskio.c:150: }
+      000135 02r00r00         [24]  636 	ljmp	__sdcc_banked_ret
+                                    637 ;------------------------------------------------------------
+                                    638 ;Allocation info for local variables in function 'disk_ioctl'
+                                    639 ;------------------------------------------------------------
+                                    640 ;cmd                       Allocated with name '_disk_ioctl_PARM_2'
+                                    641 ;buff                      Allocated with name '_disk_ioctl_PARM_3'
+                                    642 ;pdrv                      Allocated with name '_disk_ioctl_pdrv_65536_50'
+                                    643 ;res                       Allocated with name '_disk_ioctl_res_65536_51'
+                                    644 ;------------------------------------------------------------
+                                    645 ;	FATFS\src\diskio.c:159: DRESULT disk_ioctl (
+                                    646 ;	-----------------------------------------
+                                    647 ;	 function disk_ioctl
+                                    648 ;	-----------------------------------------
+      000138                        649 _disk_ioctl:
+      000138 E5 82            [12]  650 	mov	a,dpl
+      00013A 90r00r1A         [24]  651 	mov	dptr,#_disk_ioctl_pdrv_65536_50
+      00013D F0               [24]  652 	movx	@dptr,a
+                                    653 ;	FATFS\src\diskio.c:167: switch (pdrv)
+      00013E E0               [24]  654 	movx	a,@dptr
+      00013F FF               [12]  655 	mov  r7,a
+      000140 24 FB            [12]  656 	add	a,#0xff - 0x04
+      000142 40 16            [24]  657 	jc	00102$
+      000144 EF               [12]  658 	mov	a,r7
+      000145 2F               [12]  659 	add	a,r7
+      000146 2F               [12]  660 	add	a,r7
+      000147 90r01r4B         [24]  661 	mov	dptr,#00165$
+      00014A 73               [24]  662 	jmp	@a+dptr
+      00014B                        663 00165$:
+      00014B 02r01r5A         [24]  664 	ljmp	00102$
+      00014E 02r02r06         [24]  665 	ljmp	00109$
+      000151 02r02rB2         [24]  666 	ljmp	00116$
+      000154 02r03r5E         [24]  667 	ljmp	00123$
+      000157 02r04r0A         [24]  668 	ljmp	00130$
+                                    669 ;	FATFS\src\diskio.c:170: case COMPACT_FLASH:
+      00015A                        670 00102$:
+                                    671 ;	FATFS\src\diskio.c:172: switch(cmd)
+      00015A 90r00r16         [24]  672 	mov	dptr,#_disk_ioctl_PARM_2
+      00015D E0               [24]  673 	movx	a,@dptr
+      00015E FF               [12]  674 	mov  r7,a
+      00015F 24 FC            [12]  675 	add	a,#0xff - 0x03
+      000161 50 03            [24]  676 	jnc	00166$
+      000163 02r01rFD         [24]  677 	ljmp	00107$
+      000166                        678 00166$:
+      000166 EF               [12]  679 	mov	a,r7
+      000167 2F               [12]  680 	add	a,r7
+                                    681 ;	FATFS\src\diskio.c:174: case CTRL_SYNC:
+      000168 90r01r6C         [24]  682 	mov	dptr,#00167$
+      00016B 73               [24]  683 	jmp	@a+dptr
+      00016C                        684 00167$:
+      00016C 80 06            [24]  685 	sjmp	00103$
+      00016E 80 61            [24]  686 	sjmp	00106$
+      000170 80 0A            [24]  687 	sjmp	00104$
+      000172 80 33            [24]  688 	sjmp	00105$
+      000174                        689 00103$:
+                                    690 ;	FATFS\src\diskio.c:175: res=RES_OK;
+      000174 90r00r1B         [24]  691 	mov	dptr,#_disk_ioctl_res_65536_51
+      000177 E4               [12]  692 	clr	a
+      000178 F0               [24]  693 	movx	@dptr,a
+                                    694 ;	FATFS\src\diskio.c:176: break;
+      000179 02r04rB0         [24]  695 	ljmp	00137$
+                                    696 ;	FATFS\src\diskio.c:177: case GET_SECTOR_SIZE:
+      00017C                        697 00104$:
+                                    698 ;	FATFS\src\diskio.c:178: *(DWORD*)buff=512;
+      00017C 90r00r17         [24]  699 	mov	dptr,#_disk_ioctl_PARM_3
+      00017F E0               [24]  700 	movx	a,@dptr
+      000180 FD               [12]  701 	mov	r5,a
+      000181 A3               [24]  702 	inc	dptr
+      000182 E0               [24]  703 	movx	a,@dptr
+      000183 FE               [12]  704 	mov	r6,a
+      000184 A3               [24]  705 	inc	dptr
+      000185 E0               [24]  706 	movx	a,@dptr
+      000186 FF               [12]  707 	mov	r7,a
+      000187 8D 82            [24]  708 	mov	dpl,r5
+      000189 8E 83            [24]  709 	mov	dph,r6
+      00018B 8F F0            [24]  710 	mov	b,r7
+      00018D E4               [12]  711 	clr	a
+      00018E 12r00r00         [24]  712 	lcall	__gptrput
+      000191 A3               [24]  713 	inc	dptr
+      000192 74 02            [12]  714 	mov	a,#0x02
+      000194 12r00r00         [24]  715 	lcall	__gptrput
+      000197 A3               [24]  716 	inc	dptr
+      000198 E4               [12]  717 	clr	a
+      000199 12r00r00         [24]  718 	lcall	__gptrput
+      00019C A3               [24]  719 	inc	dptr
+      00019D 12r00r00         [24]  720 	lcall	__gptrput
+                                    721 ;	FATFS\src\diskio.c:179: res=RES_OK;
+      0001A0 90r00r1B         [24]  722 	mov	dptr,#_disk_ioctl_res_65536_51
+      0001A3 F0               [24]  723 	movx	@dptr,a
+                                    724 ;	FATFS\src\diskio.c:180: break;
+      0001A4 02r04rB0         [24]  725 	ljmp	00137$
+                                    726 ;	FATFS\src\diskio.c:181: case GET_BLOCK_SIZE:
+      0001A7                        727 00105$:
+                                    728 ;	FATFS\src\diskio.c:182: *(DWORD*)buff=8;
+      0001A7 90r00r17         [24]  729 	mov	dptr,#_disk_ioctl_PARM_3
+      0001AA E0               [24]  730 	movx	a,@dptr
+      0001AB FD               [12]  731 	mov	r5,a
+      0001AC A3               [24]  732 	inc	dptr
+      0001AD E0               [24]  733 	movx	a,@dptr
+      0001AE FE               [12]  734 	mov	r6,a
+      0001AF A3               [24]  735 	inc	dptr
+      0001B0 E0               [24]  736 	movx	a,@dptr
+      0001B1 FF               [12]  737 	mov	r7,a
+      0001B2 8D 82            [24]  738 	mov	dpl,r5
+      0001B4 8E 83            [24]  739 	mov	dph,r6
+      0001B6 8F F0            [24]  740 	mov	b,r7
+      0001B8 74 08            [12]  741 	mov	a,#0x08
+      0001BA 12r00r00         [24]  742 	lcall	__gptrput
+      0001BD A3               [24]  743 	inc	dptr
+      0001BE E4               [12]  744 	clr	a
+      0001BF 12r00r00         [24]  745 	lcall	__gptrput
+      0001C2 A3               [24]  746 	inc	dptr
+      0001C3 12r00r00         [24]  747 	lcall	__gptrput
+      0001C6 A3               [24]  748 	inc	dptr
+      0001C7 12r00r00         [24]  749 	lcall	__gptrput
+                                    750 ;	FATFS\src\diskio.c:183: res=RES_OK;
+      0001CA 90r00r1B         [24]  751 	mov	dptr,#_disk_ioctl_res_65536_51
+      0001CD F0               [24]  752 	movx	@dptr,a
+                                    753 ;	FATFS\src\diskio.c:184: break;
+      0001CE 02r04rB0         [24]  754 	ljmp	00137$
+                                    755 ;	FATFS\src\diskio.c:185: case GET_SECTOR_COUNT:
+      0001D1                        756 00106$:
+                                    757 ;	FATFS\src\diskio.c:186: *(DWORD*)buff = 10000;//SD_GetSectorCount();
+      0001D1 90r00r17         [24]  758 	mov	dptr,#_disk_ioctl_PARM_3
+      0001D4 E0               [24]  759 	movx	a,@dptr
+      0001D5 FD               [12]  760 	mov	r5,a
+      0001D6 A3               [24]  761 	inc	dptr
+      0001D7 E0               [24]  762 	movx	a,@dptr
+      0001D8 FE               [12]  763 	mov	r6,a
+      0001D9 A3               [24]  764 	inc	dptr
+      0001DA E0               [24]  765 	movx	a,@dptr
+      0001DB FF               [12]  766 	mov	r7,a
+      0001DC 8D 82            [24]  767 	mov	dpl,r5
+      0001DE 8E 83            [24]  768 	mov	dph,r6
+      0001E0 8F F0            [24]  769 	mov	b,r7
+      0001E2 74 10            [12]  770 	mov	a,#0x10
+      0001E4 12r00r00         [24]  771 	lcall	__gptrput
+      0001E7 A3               [24]  772 	inc	dptr
+      0001E8 74 27            [12]  773 	mov	a,#0x27
+      0001EA 12r00r00         [24]  774 	lcall	__gptrput
+      0001ED A3               [24]  775 	inc	dptr
+      0001EE E4               [12]  776 	clr	a
+      0001EF 12r00r00         [24]  777 	lcall	__gptrput
+      0001F2 A3               [24]  778 	inc	dptr
+      0001F3 12r00r00         [24]  779 	lcall	__gptrput
+                                    780 ;	FATFS\src\diskio.c:187: res=RES_OK;
+      0001F6 90r00r1B         [24]  781 	mov	dptr,#_disk_ioctl_res_65536_51
+      0001F9 F0               [24]  782 	movx	@dptr,a
+                                    783 ;	FATFS\src\diskio.c:188: break;
+      0001FA 02r04rB0         [24]  784 	ljmp	00137$
+                                    785 ;	FATFS\src\diskio.c:189: default:
+      0001FD                        786 00107$:
+                                    787 ;	FATFS\src\diskio.c:190: res = RES_PARERR;
+      0001FD 90r00r1B         [24]  788 	mov	dptr,#_disk_ioctl_res_65536_51
+      000200 74 04            [12]  789 	mov	a,#0x04
+      000202 F0               [24]  790 	movx	@dptr,a
+                                    791 ;	FATFS\src\diskio.c:194: break;
+      000203 02r04rB0         [24]  792 	ljmp	00137$
+                                    793 ;	FATFS\src\diskio.c:196: case SIO_DRIVE_0:
+      000206                        794 00109$:
+                                    795 ;	FATFS\src\diskio.c:198: switch(cmd)
+      000206 90r00r16         [24]  796 	mov	dptr,#_disk_ioctl_PARM_2
+      000209 E0               [24]  797 	movx	a,@dptr
+      00020A FF               [12]  798 	mov  r7,a
+      00020B 24 FC            [12]  799 	add	a,#0xff - 0x03
+      00020D 50 03            [24]  800 	jnc	00168$
+      00020F 02r02rA9         [24]  801 	ljmp	00114$
+      000212                        802 00168$:
+      000212 EF               [12]  803 	mov	a,r7
+      000213 2F               [12]  804 	add	a,r7
+                                    805 ;	FATFS\src\diskio.c:200: case CTRL_SYNC:
+      000214 90r02r18         [24]  806 	mov	dptr,#00169$
+      000217 73               [24]  807 	jmp	@a+dptr
+      000218                        808 00169$:
+      000218 80 06            [24]  809 	sjmp	00110$
+      00021A 80 61            [24]  810 	sjmp	00113$
+      00021C 80 0A            [24]  811 	sjmp	00111$
+      00021E 80 33            [24]  812 	sjmp	00112$
+      000220                        813 00110$:
+                                    814 ;	FATFS\src\diskio.c:201: res=RES_OK;
+      000220 90r00r1B         [24]  815 	mov	dptr,#_disk_ioctl_res_65536_51
+      000223 E4               [12]  816 	clr	a
+      000224 F0               [24]  817 	movx	@dptr,a
+                                    818 ;	FATFS\src\diskio.c:202: break;
+      000225 02r04rB0         [24]  819 	ljmp	00137$
+                                    820 ;	FATFS\src\diskio.c:203: case GET_SECTOR_SIZE:
+      000228                        821 00111$:
+                                    822 ;	FATFS\src\diskio.c:204: *(DWORD*)buff=512;
+      000228 90r00r17         [24]  823 	mov	dptr,#_disk_ioctl_PARM_3
+      00022B E0               [24]  824 	movx	a,@dptr
+      00022C FD               [12]  825 	mov	r5,a
+      00022D A3               [24]  826 	inc	dptr
+      00022E E0               [24]  827 	movx	a,@dptr
+      00022F FE               [12]  828 	mov	r6,a
+      000230 A3               [24]  829 	inc	dptr
+      000231 E0               [24]  830 	movx	a,@dptr
+      000232 FF               [12]  831 	mov	r7,a
+      000233 8D 82            [24]  832 	mov	dpl,r5
+      000235 8E 83            [24]  833 	mov	dph,r6
+      000237 8F F0            [24]  834 	mov	b,r7
+      000239 E4               [12]  835 	clr	a
+      00023A 12r00r00         [24]  836 	lcall	__gptrput
+      00023D A3               [24]  837 	inc	dptr
+      00023E 74 02            [12]  838 	mov	a,#0x02
+      000240 12r00r00         [24]  839 	lcall	__gptrput
+      000243 A3               [24]  840 	inc	dptr
+      000244 E4               [12]  841 	clr	a
+      000245 12r00r00         [24]  842 	lcall	__gptrput
+      000248 A3               [24]  843 	inc	dptr
+      000249 12r00r00         [24]  844 	lcall	__gptrput
+                                    845 ;	FATFS\src\diskio.c:205: res=RES_OK;
+      00024C 90r00r1B         [24]  846 	mov	dptr,#_disk_ioctl_res_65536_51
+      00024F F0               [24]  847 	movx	@dptr,a
+                                    848 ;	FATFS\src\diskio.c:206: break;
+      000250 02r04rB0         [24]  849 	ljmp	00137$
+                                    850 ;	FATFS\src\diskio.c:207: case GET_BLOCK_SIZE:
+      000253                        851 00112$:
+                                    852 ;	FATFS\src\diskio.c:208: *(DWORD*)buff=8;
+      000253 90r00r17         [24]  853 	mov	dptr,#_disk_ioctl_PARM_3
+      000256 E0               [24]  854 	movx	a,@dptr
+      000257 FD               [12]  855 	mov	r5,a
+      000258 A3               [24]  856 	inc	dptr
+      000259 E0               [24]  857 	movx	a,@dptr
+      00025A FE               [12]  858 	mov	r6,a
+      00025B A3               [24]  859 	inc	dptr
+      00025C E0               [24]  860 	movx	a,@dptr
+      00025D FF               [12]  861 	mov	r7,a
+      00025E 8D 82            [24]  862 	mov	dpl,r5
+      000260 8E 83            [24]  863 	mov	dph,r6
+      000262 8F F0            [24]  864 	mov	b,r7
+      000264 74 08            [12]  865 	mov	a,#0x08
+      000266 12r00r00         [24]  866 	lcall	__gptrput
+      000269 A3               [24]  867 	inc	dptr
+      00026A E4               [12]  868 	clr	a
+      00026B 12r00r00         [24]  869 	lcall	__gptrput
+      00026E A3               [24]  870 	inc	dptr
+      00026F 12r00r00         [24]  871 	lcall	__gptrput
+      000272 A3               [24]  872 	inc	dptr
+      000273 12r00r00         [24]  873 	lcall	__gptrput
+                                    874 ;	FATFS\src\diskio.c:209: res=RES_OK;
+      000276 90r00r1B         [24]  875 	mov	dptr,#_disk_ioctl_res_65536_51
+      000279 F0               [24]  876 	movx	@dptr,a
+                                    877 ;	FATFS\src\diskio.c:210: break;
+      00027A 02r04rB0         [24]  878 	ljmp	00137$
+                                    879 ;	FATFS\src\diskio.c:211: case GET_SECTOR_COUNT:
+      00027D                        880 00113$:
+                                    881 ;	FATFS\src\diskio.c:212: *(DWORD*)buff = 10000;// SD_GetSectorCount();
+      00027D 90r00r17         [24]  882 	mov	dptr,#_disk_ioctl_PARM_3
+      000280 E0               [24]  883 	movx	a,@dptr
+      000281 FD               [12]  884 	mov	r5,a
+      000282 A3               [24]  885 	inc	dptr
+      000283 E0               [24]  886 	movx	a,@dptr
+      000284 FE               [12]  887 	mov	r6,a
+      000285 A3               [24]  888 	inc	dptr
+      000286 E0               [24]  889 	movx	a,@dptr
+      000287 FF               [12]  890 	mov	r7,a
+      000288 8D 82            [24]  891 	mov	dpl,r5
+      00028A 8E 83            [24]  892 	mov	dph,r6
+      00028C 8F F0            [24]  893 	mov	b,r7
+      00028E 74 10            [12]  894 	mov	a,#0x10
+      000290 12r00r00         [24]  895 	lcall	__gptrput
+      000293 A3               [24]  896 	inc	dptr
+      000294 74 27            [12]  897 	mov	a,#0x27
+      000296 12r00r00         [24]  898 	lcall	__gptrput
+      000299 A3               [24]  899 	inc	dptr
+      00029A E4               [12]  900 	clr	a
+      00029B 12r00r00         [24]  901 	lcall	__gptrput
+      00029E A3               [24]  902 	inc	dptr
+      00029F 12r00r00         [24]  903 	lcall	__gptrput
+                                    904 ;	FATFS\src\diskio.c:213: res=RES_OK;
+      0002A2 90r00r1B         [24]  905 	mov	dptr,#_disk_ioctl_res_65536_51
+      0002A5 F0               [24]  906 	movx	@dptr,a
+                                    907 ;	FATFS\src\diskio.c:214: break;
+      0002A6 02r04rB0         [24]  908 	ljmp	00137$
+                                    909 ;	FATFS\src\diskio.c:215: default:
+      0002A9                        910 00114$:
+                                    911 ;	FATFS\src\diskio.c:216: res = RES_PARERR;
+      0002A9 90r00r1B         [24]  912 	mov	dptr,#_disk_ioctl_res_65536_51
+      0002AC 74 04            [12]  913 	mov	a,#0x04
+      0002AE F0               [24]  914 	movx	@dptr,a
+                                    915 ;	FATFS\src\diskio.c:220: break;
+      0002AF 02r04rB0         [24]  916 	ljmp	00137$
+                                    917 ;	FATFS\src\diskio.c:222: case SIO_DRIVE_1:
+      0002B2                        918 00116$:
+                                    919 ;	FATFS\src\diskio.c:224: switch(cmd)
+      0002B2 90r00r16         [24]  920 	mov	dptr,#_disk_ioctl_PARM_2
+      0002B5 E0               [24]  921 	movx	a,@dptr
+      0002B6 FF               [12]  922 	mov  r7,a
+      0002B7 24 FC            [12]  923 	add	a,#0xff - 0x03
+      0002B9 50 03            [24]  924 	jnc	00170$
+      0002BB 02r03r55         [24]  925 	ljmp	00121$
+      0002BE                        926 00170$:
+      0002BE EF               [12]  927 	mov	a,r7
+      0002BF 2F               [12]  928 	add	a,r7
+                                    929 ;	FATFS\src\diskio.c:226: case CTRL_SYNC:
+      0002C0 90r02rC4         [24]  930 	mov	dptr,#00171$
+      0002C3 73               [24]  931 	jmp	@a+dptr
+      0002C4                        932 00171$:
+      0002C4 80 06            [24]  933 	sjmp	00117$
+      0002C6 80 61            [24]  934 	sjmp	00120$
+      0002C8 80 0A            [24]  935 	sjmp	00118$
+      0002CA 80 33            [24]  936 	sjmp	00119$
+      0002CC                        937 00117$:
+                                    938 ;	FATFS\src\diskio.c:227: res=RES_OK;
+      0002CC 90r00r1B         [24]  939 	mov	dptr,#_disk_ioctl_res_65536_51
+      0002CF E4               [12]  940 	clr	a
+      0002D0 F0               [24]  941 	movx	@dptr,a
+                                    942 ;	FATFS\src\diskio.c:228: break;
+      0002D1 02r04rB0         [24]  943 	ljmp	00137$
+                                    944 ;	FATFS\src\diskio.c:229: case GET_SECTOR_SIZE:
+      0002D4                        945 00118$:
+                                    946 ;	FATFS\src\diskio.c:230: *(DWORD*)buff=512;
+      0002D4 90r00r17         [24]  947 	mov	dptr,#_disk_ioctl_PARM_3
+      0002D7 E0               [24]  948 	movx	a,@dptr
+      0002D8 FD               [12]  949 	mov	r5,a
+      0002D9 A3               [24]  950 	inc	dptr
+      0002DA E0               [24]  951 	movx	a,@dptr
+      0002DB FE               [12]  952 	mov	r6,a
+      0002DC A3               [24]  953 	inc	dptr
+      0002DD E0               [24]  954 	movx	a,@dptr
+      0002DE FF               [12]  955 	mov	r7,a
+      0002DF 8D 82            [24]  956 	mov	dpl,r5
+      0002E1 8E 83            [24]  957 	mov	dph,r6
+      0002E3 8F F0            [24]  958 	mov	b,r7
+      0002E5 E4               [12]  959 	clr	a
+      0002E6 12r00r00         [24]  960 	lcall	__gptrput
+      0002E9 A3               [24]  961 	inc	dptr
+      0002EA 74 02            [12]  962 	mov	a,#0x02
+      0002EC 12r00r00         [24]  963 	lcall	__gptrput
+      0002EF A3               [24]  964 	inc	dptr
+      0002F0 E4               [12]  965 	clr	a
+      0002F1 12r00r00         [24]  966 	lcall	__gptrput
+      0002F4 A3               [24]  967 	inc	dptr
+      0002F5 12r00r00         [24]  968 	lcall	__gptrput
+                                    969 ;	FATFS\src\diskio.c:231: res=RES_OK;
+      0002F8 90r00r1B         [24]  970 	mov	dptr,#_disk_ioctl_res_65536_51
+      0002FB F0               [24]  971 	movx	@dptr,a
+                                    972 ;	FATFS\src\diskio.c:232: break;
+      0002FC 02r04rB0         [24]  973 	ljmp	00137$
+                                    974 ;	FATFS\src\diskio.c:233: case GET_BLOCK_SIZE:
+      0002FF                        975 00119$:
+                                    976 ;	FATFS\src\diskio.c:234: *(DWORD*)buff=8;
+      0002FF 90r00r17         [24]  977 	mov	dptr,#_disk_ioctl_PARM_3
+      000302 E0               [24]  978 	movx	a,@dptr
+      000303 FD               [12]  979 	mov	r5,a
+      000304 A3               [24]  980 	inc	dptr
+      000305 E0               [24]  981 	movx	a,@dptr
+      000306 FE               [12]  982 	mov	r6,a
+      000307 A3               [24]  983 	inc	dptr
+      000308 E0               [24]  984 	movx	a,@dptr
+      000309 FF               [12]  985 	mov	r7,a
+      00030A 8D 82            [24]  986 	mov	dpl,r5
+      00030C 8E 83            [24]  987 	mov	dph,r6
+      00030E 8F F0            [24]  988 	mov	b,r7
+      000310 74 08            [12]  989 	mov	a,#0x08
+      000312 12r00r00         [24]  990 	lcall	__gptrput
+      000315 A3               [24]  991 	inc	dptr
+      000316 E4               [12]  992 	clr	a
+      000317 12r00r00         [24]  993 	lcall	__gptrput
+      00031A A3               [24]  994 	inc	dptr
+      00031B 12r00r00         [24]  995 	lcall	__gptrput
+      00031E A3               [24]  996 	inc	dptr
+      00031F 12r00r00         [24]  997 	lcall	__gptrput
+                                    998 ;	FATFS\src\diskio.c:235: res=RES_OK;
+      000322 90r00r1B         [24]  999 	mov	dptr,#_disk_ioctl_res_65536_51
+      000325 F0               [24] 1000 	movx	@dptr,a
+                                   1001 ;	FATFS\src\diskio.c:236: break;
+      000326 02r04rB0         [24] 1002 	ljmp	00137$
+                                   1003 ;	FATFS\src\diskio.c:237: case GET_SECTOR_COUNT:
+      000329                       1004 00120$:
+                                   1005 ;	FATFS\src\diskio.c:238: *(DWORD*)buff = 10000;// SD_GetSectorCount();
+      000329 90r00r17         [24] 1006 	mov	dptr,#_disk_ioctl_PARM_3
+      00032C E0               [24] 1007 	movx	a,@dptr
+      00032D FD               [12] 1008 	mov	r5,a
+      00032E A3               [24] 1009 	inc	dptr
+      00032F E0               [24] 1010 	movx	a,@dptr
+      000330 FE               [12] 1011 	mov	r6,a
+      000331 A3               [24] 1012 	inc	dptr
+      000332 E0               [24] 1013 	movx	a,@dptr
+      000333 FF               [12] 1014 	mov	r7,a
+      000334 8D 82            [24] 1015 	mov	dpl,r5
+      000336 8E 83            [24] 1016 	mov	dph,r6
+      000338 8F F0            [24] 1017 	mov	b,r7
+      00033A 74 10            [12] 1018 	mov	a,#0x10
+      00033C 12r00r00         [24] 1019 	lcall	__gptrput
+      00033F A3               [24] 1020 	inc	dptr
+      000340 74 27            [12] 1021 	mov	a,#0x27
+      000342 12r00r00         [24] 1022 	lcall	__gptrput
+      000345 A3               [24] 1023 	inc	dptr
+      000346 E4               [12] 1024 	clr	a
+      000347 12r00r00         [24] 1025 	lcall	__gptrput
+      00034A A3               [24] 1026 	inc	dptr
+      00034B 12r00r00         [24] 1027 	lcall	__gptrput
+                                   1028 ;	FATFS\src\diskio.c:239: res=RES_OK;
+      00034E 90r00r1B         [24] 1029 	mov	dptr,#_disk_ioctl_res_65536_51
+      000351 F0               [24] 1030 	movx	@dptr,a
+                                   1031 ;	FATFS\src\diskio.c:240: break;
+      000352 02r04rB0         [24] 1032 	ljmp	00137$
+                                   1033 ;	FATFS\src\diskio.c:241: default:
+      000355                       1034 00121$:
+                                   1035 ;	FATFS\src\diskio.c:242: res = RES_PARERR;
+      000355 90r00r1B         [24] 1036 	mov	dptr,#_disk_ioctl_res_65536_51
+      000358 74 04            [12] 1037 	mov	a,#0x04
+      00035A F0               [24] 1038 	movx	@dptr,a
+                                   1039 ;	FATFS\src\diskio.c:246: break;
+      00035B 02r04rB0         [24] 1040 	ljmp	00137$
+                                   1041 ;	FATFS\src\diskio.c:248: case SIO_DRIVE_2:
+      00035E                       1042 00123$:
+                                   1043 ;	FATFS\src\diskio.c:250: switch(cmd)
+      00035E 90r00r16         [24] 1044 	mov	dptr,#_disk_ioctl_PARM_2
+      000361 E0               [24] 1045 	movx	a,@dptr
+      000362 FF               [12] 1046 	mov  r7,a
+      000363 24 FC            [12] 1047 	add	a,#0xff - 0x03
+      000365 50 03            [24] 1048 	jnc	00172$
+      000367 02r04r01         [24] 1049 	ljmp	00128$
+      00036A                       1050 00172$:
+      00036A EF               [12] 1051 	mov	a,r7
+      00036B 2F               [12] 1052 	add	a,r7
+                                   1053 ;	FATFS\src\diskio.c:252: case CTRL_SYNC:
+      00036C 90r03r70         [24] 1054 	mov	dptr,#00173$
+      00036F 73               [24] 1055 	jmp	@a+dptr
+      000370                       1056 00173$:
+      000370 80 06            [24] 1057 	sjmp	00124$
+      000372 80 61            [24] 1058 	sjmp	00127$
+      000374 80 0A            [24] 1059 	sjmp	00125$
+      000376 80 33            [24] 1060 	sjmp	00126$
+      000378                       1061 00124$:
+                                   1062 ;	FATFS\src\diskio.c:253: res=RES_OK;
+      000378 90r00r1B         [24] 1063 	mov	dptr,#_disk_ioctl_res_65536_51
+      00037B E4               [12] 1064 	clr	a
+      00037C F0               [24] 1065 	movx	@dptr,a
+                                   1066 ;	FATFS\src\diskio.c:254: break;
+      00037D 02r04rB0         [24] 1067 	ljmp	00137$
+                                   1068 ;	FATFS\src\diskio.c:255: case GET_SECTOR_SIZE:
+      000380                       1069 00125$:
+                                   1070 ;	FATFS\src\diskio.c:256: *(DWORD*)buff=512;
+      000380 90r00r17         [24] 1071 	mov	dptr,#_disk_ioctl_PARM_3
+      000383 E0               [24] 1072 	movx	a,@dptr
+      000384 FD               [12] 1073 	mov	r5,a
+      000385 A3               [24] 1074 	inc	dptr
+      000386 E0               [24] 1075 	movx	a,@dptr
+      000387 FE               [12] 1076 	mov	r6,a
+      000388 A3               [24] 1077 	inc	dptr
+      000389 E0               [24] 1078 	movx	a,@dptr
+      00038A FF               [12] 1079 	mov	r7,a
+      00038B 8D 82            [24] 1080 	mov	dpl,r5
+      00038D 8E 83            [24] 1081 	mov	dph,r6
+      00038F 8F F0            [24] 1082 	mov	b,r7
+      000391 E4               [12] 1083 	clr	a
+      000392 12r00r00         [24] 1084 	lcall	__gptrput
+      000395 A3               [24] 1085 	inc	dptr
+      000396 74 02            [12] 1086 	mov	a,#0x02
+      000398 12r00r00         [24] 1087 	lcall	__gptrput
+      00039B A3               [24] 1088 	inc	dptr
+      00039C E4               [12] 1089 	clr	a
+      00039D 12r00r00         [24] 1090 	lcall	__gptrput
+      0003A0 A3               [24] 1091 	inc	dptr
+      0003A1 12r00r00         [24] 1092 	lcall	__gptrput
+                                   1093 ;	FATFS\src\diskio.c:257: res=RES_OK;
+      0003A4 90r00r1B         [24] 1094 	mov	dptr,#_disk_ioctl_res_65536_51
+      0003A7 F0               [24] 1095 	movx	@dptr,a
+                                   1096 ;	FATFS\src\diskio.c:258: break;
+      0003A8 02r04rB0         [24] 1097 	ljmp	00137$
+                                   1098 ;	FATFS\src\diskio.c:259: case GET_BLOCK_SIZE:
+      0003AB                       1099 00126$:
+                                   1100 ;	FATFS\src\diskio.c:260: *(DWORD*)buff=8;
+      0003AB 90r00r17         [24] 1101 	mov	dptr,#_disk_ioctl_PARM_3
+      0003AE E0               [24] 1102 	movx	a,@dptr
+      0003AF FD               [12] 1103 	mov	r5,a
+      0003B0 A3               [24] 1104 	inc	dptr
+      0003B1 E0               [24] 1105 	movx	a,@dptr
+      0003B2 FE               [12] 1106 	mov	r6,a
+      0003B3 A3               [24] 1107 	inc	dptr
+      0003B4 E0               [24] 1108 	movx	a,@dptr
+      0003B5 FF               [12] 1109 	mov	r7,a
+      0003B6 8D 82            [24] 1110 	mov	dpl,r5
+      0003B8 8E 83            [24] 1111 	mov	dph,r6
+      0003BA 8F F0            [24] 1112 	mov	b,r7
+      0003BC 74 08            [12] 1113 	mov	a,#0x08
+      0003BE 12r00r00         [24] 1114 	lcall	__gptrput
+      0003C1 A3               [24] 1115 	inc	dptr
+      0003C2 E4               [12] 1116 	clr	a
+      0003C3 12r00r00         [24] 1117 	lcall	__gptrput
+      0003C6 A3               [24] 1118 	inc	dptr
+      0003C7 12r00r00         [24] 1119 	lcall	__gptrput
+      0003CA A3               [24] 1120 	inc	dptr
+      0003CB 12r00r00         [24] 1121 	lcall	__gptrput
+                                   1122 ;	FATFS\src\diskio.c:261: res=RES_OK;
+      0003CE 90r00r1B         [24] 1123 	mov	dptr,#_disk_ioctl_res_65536_51
+      0003D1 F0               [24] 1124 	movx	@dptr,a
+                                   1125 ;	FATFS\src\diskio.c:262: break;
+      0003D2 02r04rB0         [24] 1126 	ljmp	00137$
+                                   1127 ;	FATFS\src\diskio.c:263: case GET_SECTOR_COUNT:
+      0003D5                       1128 00127$:
+                                   1129 ;	FATFS\src\diskio.c:264: *(DWORD*)buff = 10000;// SD_GetSectorCount();
+      0003D5 90r00r17         [24] 1130 	mov	dptr,#_disk_ioctl_PARM_3
+      0003D8 E0               [24] 1131 	movx	a,@dptr
+      0003D9 FD               [12] 1132 	mov	r5,a
+      0003DA A3               [24] 1133 	inc	dptr
+      0003DB E0               [24] 1134 	movx	a,@dptr
+      0003DC FE               [12] 1135 	mov	r6,a
+      0003DD A3               [24] 1136 	inc	dptr
+      0003DE E0               [24] 1137 	movx	a,@dptr
+      0003DF FF               [12] 1138 	mov	r7,a
+      0003E0 8D 82            [24] 1139 	mov	dpl,r5
+      0003E2 8E 83            [24] 1140 	mov	dph,r6
+      0003E4 8F F0            [24] 1141 	mov	b,r7
+      0003E6 74 10            [12] 1142 	mov	a,#0x10
+      0003E8 12r00r00         [24] 1143 	lcall	__gptrput
+      0003EB A3               [24] 1144 	inc	dptr
+      0003EC 74 27            [12] 1145 	mov	a,#0x27
+      0003EE 12r00r00         [24] 1146 	lcall	__gptrput
+      0003F1 A3               [24] 1147 	inc	dptr
+      0003F2 E4               [12] 1148 	clr	a
+      0003F3 12r00r00         [24] 1149 	lcall	__gptrput
+      0003F6 A3               [24] 1150 	inc	dptr
+      0003F7 12r00r00         [24] 1151 	lcall	__gptrput
+                                   1152 ;	FATFS\src\diskio.c:265: res=RES_OK;
+      0003FA 90r00r1B         [24] 1153 	mov	dptr,#_disk_ioctl_res_65536_51
+      0003FD F0               [24] 1154 	movx	@dptr,a
+                                   1155 ;	FATFS\src\diskio.c:266: break;
+      0003FE 02r04rB0         [24] 1156 	ljmp	00137$
+                                   1157 ;	FATFS\src\diskio.c:267: default:
+      000401                       1158 00128$:
+                                   1159 ;	FATFS\src\diskio.c:268: res = RES_PARERR;
+      000401 90r00r1B         [24] 1160 	mov	dptr,#_disk_ioctl_res_65536_51
+      000404 74 04            [12] 1161 	mov	a,#0x04
+      000406 F0               [24] 1162 	movx	@dptr,a
+                                   1163 ;	FATFS\src\diskio.c:272: break;
+      000407 02r04rB0         [24] 1164 	ljmp	00137$
+                                   1165 ;	FATFS\src\diskio.c:274: case SIO_DRIVE_3:
+      00040A                       1166 00130$:
+                                   1167 ;	FATFS\src\diskio.c:276: switch(cmd)
+      00040A 90r00r16         [24] 1168 	mov	dptr,#_disk_ioctl_PARM_2
+      00040D E0               [24] 1169 	movx	a,@dptr
+      00040E FF               [12] 1170 	mov  r7,a
+      00040F 24 FC            [12] 1171 	add	a,#0xff - 0x03
+      000411 50 03            [24] 1172 	jnc	00174$
+      000413 02r04rAA         [24] 1173 	ljmp	00135$
+      000416                       1174 00174$:
+      000416 EF               [12] 1175 	mov	a,r7
+      000417 2F               [12] 1176 	add	a,r7
+                                   1177 ;	FATFS\src\diskio.c:278: case CTRL_SYNC:
+      000418 90r04r1C         [24] 1178 	mov	dptr,#00175$
+      00041B 73               [24] 1179 	jmp	@a+dptr
+      00041C                       1180 00175$:
+      00041C 80 06            [24] 1181 	sjmp	00131$
+      00041E 80 5F            [24] 1182 	sjmp	00134$
+      000420 80 0A            [24] 1183 	sjmp	00132$
+      000422 80 32            [24] 1184 	sjmp	00133$
+      000424                       1185 00131$:
+                                   1186 ;	FATFS\src\diskio.c:279: res=RES_OK;
+      000424 90r00r1B         [24] 1187 	mov	dptr,#_disk_ioctl_res_65536_51
+      000427 E4               [12] 1188 	clr	a
+      000428 F0               [24] 1189 	movx	@dptr,a
+                                   1190 ;	FATFS\src\diskio.c:280: break;
+      000429 02r04rB0         [24] 1191 	ljmp	00137$
+                                   1192 ;	FATFS\src\diskio.c:281: case GET_SECTOR_SIZE:
+      00042C                       1193 00132$:
+                                   1194 ;	FATFS\src\diskio.c:282: *(DWORD*)buff=512;
+      00042C 90r00r17         [24] 1195 	mov	dptr,#_disk_ioctl_PARM_3
+      00042F E0               [24] 1196 	movx	a,@dptr
+      000430 FD               [12] 1197 	mov	r5,a
+      000431 A3               [24] 1198 	inc	dptr
+      000432 E0               [24] 1199 	movx	a,@dptr
+      000433 FE               [12] 1200 	mov	r6,a
+      000434 A3               [24] 1201 	inc	dptr
+      000435 E0               [24] 1202 	movx	a,@dptr
+      000436 FF               [12] 1203 	mov	r7,a
+      000437 8D 82            [24] 1204 	mov	dpl,r5
+      000439 8E 83            [24] 1205 	mov	dph,r6
+      00043B 8F F0            [24] 1206 	mov	b,r7
+      00043D E4               [12] 1207 	clr	a
+      00043E 12r00r00         [24] 1208 	lcall	__gptrput
+      000441 A3               [24] 1209 	inc	dptr
+      000442 74 02            [12] 1210 	mov	a,#0x02
+      000444 12r00r00         [24] 1211 	lcall	__gptrput
+      000447 A3               [24] 1212 	inc	dptr
+      000448 E4               [12] 1213 	clr	a
+      000449 12r00r00         [24] 1214 	lcall	__gptrput
+      00044C A3               [24] 1215 	inc	dptr
+      00044D 12r00r00         [24] 1216 	lcall	__gptrput
+                                   1217 ;	FATFS\src\diskio.c:283: res=RES_OK;
+      000450 90r00r1B         [24] 1218 	mov	dptr,#_disk_ioctl_res_65536_51
+      000453 F0               [24] 1219 	movx	@dptr,a
+                                   1220 ;	FATFS\src\diskio.c:284: break;
+                                   1221 ;	FATFS\src\diskio.c:285: case GET_BLOCK_SIZE:
+      000454 80 5A            [24] 1222 	sjmp	00137$
+      000456                       1223 00133$:
+                                   1224 ;	FATFS\src\diskio.c:286: *(DWORD*)buff=8;
+      000456 90r00r17         [24] 1225 	mov	dptr,#_disk_ioctl_PARM_3
+      000459 E0               [24] 1226 	movx	a,@dptr
+      00045A FD               [12] 1227 	mov	r5,a
+      00045B A3               [24] 1228 	inc	dptr
+      00045C E0               [24] 1229 	movx	a,@dptr
+      00045D FE               [12] 1230 	mov	r6,a
+      00045E A3               [24] 1231 	inc	dptr
+      00045F E0               [24] 1232 	movx	a,@dptr
+      000460 FF               [12] 1233 	mov	r7,a
+      000461 8D 82            [24] 1234 	mov	dpl,r5
+      000463 8E 83            [24] 1235 	mov	dph,r6
+      000465 8F F0            [24] 1236 	mov	b,r7
+      000467 74 08            [12] 1237 	mov	a,#0x08
+      000469 12r00r00         [24] 1238 	lcall	__gptrput
+      00046C A3               [24] 1239 	inc	dptr
+      00046D E4               [12] 1240 	clr	a
+      00046E 12r00r00         [24] 1241 	lcall	__gptrput
+      000471 A3               [24] 1242 	inc	dptr
+      000472 12r00r00         [24] 1243 	lcall	__gptrput
+      000475 A3               [24] 1244 	inc	dptr
+      000476 12r00r00         [24] 1245 	lcall	__gptrput
+                                   1246 ;	FATFS\src\diskio.c:287: res=RES_OK;
+      000479 90r00r1B         [24] 1247 	mov	dptr,#_disk_ioctl_res_65536_51
+      00047C F0               [24] 1248 	movx	@dptr,a
+                                   1249 ;	FATFS\src\diskio.c:288: break;
+                                   1250 ;	FATFS\src\diskio.c:289: case GET_SECTOR_COUNT:
+      00047D 80 31            [24] 1251 	sjmp	00137$
+      00047F                       1252 00134$:
+                                   1253 ;	FATFS\src\diskio.c:290: *(DWORD*)buff = 10000;// SD_GetSectorCount();
+      00047F 90r00r17         [24] 1254 	mov	dptr,#_disk_ioctl_PARM_3
+      000482 E0               [24] 1255 	movx	a,@dptr
+      000483 FD               [12] 1256 	mov	r5,a
+      000484 A3               [24] 1257 	inc	dptr
+      000485 E0               [24] 1258 	movx	a,@dptr
+      000486 FE               [12] 1259 	mov	r6,a
+      000487 A3               [24] 1260 	inc	dptr
+      000488 E0               [24] 1261 	movx	a,@dptr
+      000489 FF               [12] 1262 	mov	r7,a
+      00048A 8D 82            [24] 1263 	mov	dpl,r5
+      00048C 8E 83            [24] 1264 	mov	dph,r6
+      00048E 8F F0            [24] 1265 	mov	b,r7
+      000490 74 10            [12] 1266 	mov	a,#0x10
+      000492 12r00r00         [24] 1267 	lcall	__gptrput
+      000495 A3               [24] 1268 	inc	dptr
+      000496 74 27            [12] 1269 	mov	a,#0x27
+      000498 12r00r00         [24] 1270 	lcall	__gptrput
+      00049B A3               [24] 1271 	inc	dptr
+      00049C E4               [12] 1272 	clr	a
+      00049D 12r00r00         [24] 1273 	lcall	__gptrput
+      0004A0 A3               [24] 1274 	inc	dptr
+      0004A1 12r00r00         [24] 1275 	lcall	__gptrput
+                                   1276 ;	FATFS\src\diskio.c:291: res=RES_OK;
+      0004A4 90r00r1B         [24] 1277 	mov	dptr,#_disk_ioctl_res_65536_51
+      0004A7 F0               [24] 1278 	movx	@dptr,a
+                                   1279 ;	FATFS\src\diskio.c:292: break;
+                                   1280 ;	FATFS\src\diskio.c:293: default:
+      0004A8 80 06            [24] 1281 	sjmp	00137$
+      0004AA                       1282 00135$:
+                                   1283 ;	FATFS\src\diskio.c:294: res = RES_PARERR;
+      0004AA 90r00r1B         [24] 1284 	mov	dptr,#_disk_ioctl_res_65536_51
+      0004AD 74 04            [12] 1285 	mov	a,#0x04
+      0004AF F0               [24] 1286 	movx	@dptr,a
+                                   1287 ;	FATFS\src\diskio.c:299: }
+      0004B0                       1288 00137$:
+                                   1289 ;	FATFS\src\diskio.c:307: return res;
+      0004B0 90r00r1B         [24] 1290 	mov	dptr,#_disk_ioctl_res_65536_51
+      0004B3 E0               [24] 1291 	movx	a,@dptr
+      0004B4 FF               [12] 1292 	mov	r7,a
+      0004B5 F5 82            [12] 1293 	mov	dpl,a
+                                   1294 ;	FATFS\src\diskio.c:308: }
+      0004B7 02r00r00         [24] 1295 	ljmp	__sdcc_banked_ret
+                                   1296 ;------------------------------------------------------------
+                                   1297 ;Allocation info for local variables in function 'get_fattime'
+                                   1298 ;------------------------------------------------------------
+                                   1299 ;	FATFS\src\diskio.c:310: DWORD get_fattime (void)
+                                   1300 ;	-----------------------------------------
+                                   1301 ;	 function get_fattime
+                                   1302 ;	-----------------------------------------
+      0004BA                       1303 _get_fattime:
+                                   1304 ;	FATFS\src\diskio.c:312: return 0;
+      0004BA 90 00 00         [24] 1305 	mov	dptr,#(0x00&0x00ff)
+      0004BD E4               [12] 1306 	clr	a
+      0004BE F5 F0            [12] 1307 	mov	b,a
+                                   1308 ;	FATFS\src\diskio.c:313: }
+      0004C0 02r00r00         [24] 1309 	ljmp	__sdcc_banked_ret
+                                   1310 ;------------------------------------------------------------
+                                   1311 ;Allocation info for local variables in function 'ff_memalloc'
+                                   1312 ;------------------------------------------------------------
+                                   1313 ;size                      Allocated with name '_ff_memalloc_size_65536_65'
+                                   1314 ;------------------------------------------------------------
+                                   1315 ;	FATFS\src\diskio.c:315: void *ff_memalloc (UINT size)
+                                   1316 ;	-----------------------------------------
+                                   1317 ;	 function ff_memalloc
+                                   1318 ;	-----------------------------------------
+      0004C3                       1319 _ff_memalloc:
+      0004C3 AF 83            [24] 1320 	mov	r7,dph
+      0004C5 E5 82            [12] 1321 	mov	a,dpl
+      0004C7 90r00r1C         [24] 1322 	mov	dptr,#_ff_memalloc_size_65536_65
+      0004CA F0               [24] 1323 	movx	@dptr,a
+      0004CB EF               [12] 1324 	mov	a,r7
+      0004CC A3               [24] 1325 	inc	dptr
+      0004CD F0               [24] 1326 	movx	@dptr,a
+                                   1327 ;	FATFS\src\diskio.c:317: return malloc(size);
+      0004CE 90r00r1C         [24] 1328 	mov	dptr,#_ff_memalloc_size_65536_65
+      0004D1 E0               [24] 1329 	movx	a,@dptr
+      0004D2 FE               [12] 1330 	mov	r6,a
+      0004D3 A3               [24] 1331 	inc	dptr
+      0004D4 E0               [24] 1332 	movx	a,@dptr
+      0004D5 FF               [12] 1333 	mov	r7,a
+      0004D6 8E 82            [24] 1334 	mov	dpl,r6
+      0004D8 8F 83            [24] 1335 	mov	dph,r7
+      0004DA 78r00            [12] 1336 	mov	r0,#_malloc
+      0004DC 79s00            [12] 1337 	mov	r1,#(_malloc >> 8)
+      0004DE 7As00            [12] 1338 	mov	r2,#(_malloc >> 16)
+      0004E0 12r00r00         [24] 1339 	lcall	__sdcc_banked_call
+      0004E3 AE 82            [24] 1340 	mov	r6,dpl
+      0004E5 AF 83            [24] 1341 	mov	r7,dph
+      0004E7 7D 00            [12] 1342 	mov	r5,#0x00
+      0004E9 8E 82            [24] 1343 	mov	dpl,r6
+      0004EB 8F 83            [24] 1344 	mov	dph,r7
+      0004ED 8D F0            [24] 1345 	mov	b,r5
+                                   1346 ;	FATFS\src\diskio.c:318: }
+      0004EF 02r00r00         [24] 1347 	ljmp	__sdcc_banked_ret
+                                   1348 ;------------------------------------------------------------
+                                   1349 ;Allocation info for local variables in function 'ff_memfree'
+                                   1350 ;------------------------------------------------------------
+                                   1351 ;mf                        Allocated with name '_ff_memfree_mf_65536_67'
+                                   1352 ;------------------------------------------------------------
+                                   1353 ;	FATFS\src\diskio.c:320: void ff_memfree (void* mf)
+                                   1354 ;	-----------------------------------------
+                                   1355 ;	 function ff_memfree
+                                   1356 ;	-----------------------------------------
+      0004F2                       1357 _ff_memfree:
+      0004F2 AF F0            [24] 1358 	mov	r7,b
+      0004F4 AE 83            [24] 1359 	mov	r6,dph
+      0004F6 E5 82            [12] 1360 	mov	a,dpl
+      0004F8 90r00r1E         [24] 1361 	mov	dptr,#_ff_memfree_mf_65536_67
+      0004FB F0               [24] 1362 	movx	@dptr,a
+      0004FC EE               [12] 1363 	mov	a,r6
+      0004FD A3               [24] 1364 	inc	dptr
+      0004FE F0               [24] 1365 	movx	@dptr,a
+      0004FF EF               [12] 1366 	mov	a,r7
+      000500 A3               [24] 1367 	inc	dptr
+      000501 F0               [24] 1368 	movx	@dptr,a
+                                   1369 ;	FATFS\src\diskio.c:322: free(mf);
+      000502 90r00r1E         [24] 1370 	mov	dptr,#_ff_memfree_mf_65536_67
+      000505 E0               [24] 1371 	movx	a,@dptr
+      000506 FD               [12] 1372 	mov	r5,a
+      000507 A3               [24] 1373 	inc	dptr
+      000508 E0               [24] 1374 	movx	a,@dptr
+      000509 FE               [12] 1375 	mov	r6,a
+      00050A A3               [24] 1376 	inc	dptr
+      00050B E0               [24] 1377 	movx	a,@dptr
+      00050C FF               [12] 1378 	mov	r7,a
+      00050D 8D 82            [24] 1379 	mov	dpl,r5
+      00050F 8E 83            [24] 1380 	mov	dph,r6
+      000511 8F F0            [24] 1381 	mov	b,r7
+      000513 78r00            [12] 1382 	mov	r0,#_free
+      000515 79s00            [12] 1383 	mov	r1,#(_free >> 8)
+      000517 7As00            [12] 1384 	mov	r2,#(_free >> 16)
+      000519 12r00r00         [24] 1385 	lcall	__sdcc_banked_call
+                                   1386 ;	FATFS\src\diskio.c:323: }
+      00051C 02r00r00         [24] 1387 	ljmp	__sdcc_banked_ret
+                                   1388 	.area CSEG    (CODE)
+                                   1389 	.area CONST   (CODE)
+                                   1390 	.area XINIT   (CODE)
+                                   1391 	.area CABS    (ABS,CODE)

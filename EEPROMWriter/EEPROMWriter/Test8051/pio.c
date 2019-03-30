@@ -3,7 +3,7 @@
 
 void pioTest(char device)
 {
-    __data char v;
+    char v;
     pioWriteCtrl(device, 0x80);
 
     v = 255;

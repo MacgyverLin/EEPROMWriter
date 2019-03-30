@@ -1,8 +1,8 @@
 M:delay
-F:G$delay_us$0_0$0({3}DF,SV:S),Z,0,0,0,0,0
-F:G$delay_ms$0_0$0({3}DF,SV:S),Z,0,0,0,0,0
-S:Ldelay.delay_us$us$1_0$3({2}SI:U),F,0,0
-S:Ldelay.delay_ms$ms$1_0$5({2}SI:U),F,0,0
+F:G$delay_us$0_0$0({2}DF,SV:S),Z,0,0,0,0,0
+S:Ldelay.delay_us$us$1_0$3({2}SI:U),R,0,0,[]
+F:G$delay_ms$0_0$0({2}DF,SV:S),Z,0,0,0,0,0
+S:Ldelay.delay_ms$ms$1_0$5({2}SI:U),R,0,0,[]
 S:G$P0$0_0$0({1}SC:U),I,0,0
 S:G$SP$0_0$0({1}SC:U),I,0,0
 S:G$DPL$0_0$0({1}SC:U),I,0,0

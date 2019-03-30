@@ -1,9 +1,9 @@
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 1   
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN main.OBJ
-COMPILER INVOKED BY: E:\Keil\C51\BIN\C51.EXE main.c COMPACT ROM(COMPACT) OPTIMIZE(9,SIZE) BROWSE DEBUG OBJECTEXTEND
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE main.c LARGE OPTIMIZE(0,SIZE) BROWSE DEBUG OBJECTEXTEND
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   53          
   54          void setAddress(unsigned int addr)
   55          {
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 2   
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 2   
 
   56   1              SET_EEPROM_ADDRESS_L((addr    ) & 0xff);
   57   1              SET_EEPROM_ADDRESS_H((addr>>8 ) & 0xff);
@@ -126,7 +126,7 @@ line level    source
  115   1      
  116   1              SET_WR();
  117   1              SET_OE();
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 3   
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 3   
 
  118   1              CLR_CE();
  119   1      }
@@ -190,7 +190,7 @@ line level    source
  177   2              }
  178   1              endWriteByte(); 
  179   1      }
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 4   
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 4   
 
  180          
  181          char verifyPage(unsigned int startAddress, unsigned char* dat, unsigned int size)
@@ -254,7 +254,7 @@ line level    source
                       while(1)
                       {
                               if(!test)
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 5   
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 5   
 
                               {
                                       delayMS(250);
@@ -270,251 +270,258 @@ line level    source
  253   1              char* rxBuffer = 0;
  254   1              //test();       
  255   1      
- 256   1              while(1)
- 257   1              {
- 258   2                      switch(state)
- 259   2                      {
- 260   3                              case INITIAL:
- 261   3                              {
- 262   4                                      displayState(state);                            
- 263   4                                      if(serialInitialize(9600))
- 264   4                                      {
- 265   5                                              state = CONNECTING;
- 266   5                                      }
- 267   4                                      else
- 268   4                                      {
- 269   5                                              delayMS(500);
- 270   5                                              state = INITIAL;
- 271   5                                      }
- 272   4                              }
- 273   3                              break;
- 274   3      
- 275   3                              case CONNECTING:
- 276   3                              {
- 277   4                                      displayState(state);                            
- 278   4                                      rxBuffer = serialReceiveData(1); // wait for command C
- 279   4      
- 280   4                                      //CONNECTED_LED = ~CONNECTED_LED;
- 281   4                                      if(*rxBuffer == 'C') 
- 282   4                                      {
- 283   5                                              serialSendData("c", 1); // ack
- 284   5                                              
- 285   5                                              state = CONNECTED;       // connected
- 286   5                                      }
- 287   4                                      else
- 288   4                                      {
- 289   5                                              state = INITIAL;        // set next baud
- 290   5                                      }                               
- 291   4                              }
- 292   3                              break;
- 293   3                                      
- 294   3                              case CONNECTED:
- 295   3                              {
- 296   4                                      displayState(state);                            
- 297   4                                      // CONNECTED_LED = 1;           
- 298   4                              
- 299   4                                      rxBuffer = serialReceiveData(1); // wait for command P or V
- 300   4                                      if(*rxBuffer == 'P')
- 301   4                                      {
- 302   5                                              serialSendData("p", 1);  // ack
- 303   5                                              
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 6   
+ 256   1              unsigned long LBA = 0x01;
+ 257   1              unsigned char b0 = (LBA    ) & 0xff;
+ 258   1              unsigned char b1 = (LBA>> 8) & 0xff;
+ 259   1              unsigned char b2 = (LBA>>16) & 0xff;
+ 260   1              unsigned char b3 = (LBA>>32) & 0xff;
+ 261   1      
+ 262   1      
+ 263   1              while(1)
+ 264   1              {
+ 265   2                      switch(state)
+ 266   2                      {
+ 267   3                              case INITIAL:
+ 268   3                              {
+ 269   4                                      displayState(state);                            
+ 270   4                                      if(serialInitialize(9600))
+ 271   4                                      {
+ 272   5                                              state = CONNECTING;
+ 273   5                                      }
+ 274   4                                      else
+ 275   4                                      {
+ 276   5                                              delayMS(500);
+ 277   5                                              state = INITIAL;
+ 278   5                                      }
+ 279   4                              }
+ 280   3                              break;
+ 281   3      
+ 282   3                              case CONNECTING:
+ 283   3                              {
+ 284   4                                      displayState(state);                            
+ 285   4                                      rxBuffer = serialReceiveData(1); // wait for command C
+ 286   4      
+ 287   4                                      //CONNECTED_LED = ~CONNECTED_LED;
+ 288   4                                      if(*rxBuffer == 'C') 
+ 289   4                                      {
+ 290   5                                              serialSendData("c", 1); // ack
+ 291   5                                              
+ 292   5                                              state = CONNECTED;       // connected
+ 293   5                                      }
+ 294   4                                      else
+ 295   4                                      {
+ 296   5                                              state = INITIAL;        // set next baud
+ 297   5                                      }                               
+ 298   4                              }
+ 299   3                              break;
+ 300   3                                      
+ 301   3                              case CONNECTED:
+ 302   3                              {
+ 303   4                                      displayState(state);                            
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 6   
 
- 304   5                                              state = PROGRAM_EEPROM_PAGE;     // program
- 305   5                                      }
- 306   4                                      else if(*rxBuffer == 'V')
- 307   4                                      {
- 308   5                                              serialSendData("v", 1);          // ack
- 309   5                                              
- 310   5                                              state = VERIFY_EEPROM_PAGE;      // verify
- 311   5                                      }       
- 312   4                                      else if(*rxBuffer == 'R')
- 313   4                                      {
- 314   5                                              serialSendData("r", 1);          // ack
- 315   5                                              
- 316   5                                              state = READ_EEPROM_PAGE;        // verify
- 317   5                                      }                                       
- 318   4                                      else
- 319   4                                      {
- 320   5                                              state = CONNECTED; // unknown command, again
- 321   5                                      }
- 322   4                              }
- 323   3                              break;
- 324   3                                      
- 325   3                              case PROGRAM_EEPROM_PAGE:
- 326   3                              {
- 327   4                                      unsigned int address;
- 328   4                                      unsigned int size;
- 329   4                                      
- 330   4                                      displayState(state);
- 331   4                                      
- 332   4                                      rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
- 333   4                                      if(*rxBuffer == 'D')
- 334   4                                      {
- 335   5                                              serialSendData("d", 1);  // ack failed
- 336   5                                                      
- 337   5                                              state = DONE; // unknown command, again
- 338   5                                      }                               
- 339   4                                      else if(*rxBuffer == 'A')
- 340   4                                      {
- 341   5                                              address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
- 342   5                                              size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
- 343   5      
- 344   5                                              serialSendData("a", 1);
- 345   5                                              
- 346   5                                              //PROGRAM_LED     = 1;
- 347   5                                              rxBuffer = serialReceiveData(size); // wait for command P or V  
- 348   5                                              programPage(address, rxBuffer, size);
- 349   5                                              if(verifyPage(address, rxBuffer, size))
- 350   5                                              {
- 351   6                                                      //PROGRAM_LED     = 0;
- 352   6                                              
- 353   6                                                      serialSendData("s", 1);  // ack success
- 354   6      
- 355   6                                                      state = PROGRAM_EEPROM_PAGE; // unknown command, again
- 356   6                                              }
- 357   5                                              else
- 358   5                                              {
- 359   6                                                      //PROGRAM_LED     = 0;
- 360   6                                              
- 361   6                                                      serialSendData("f", 1);  // ack failed
- 362   6                                                      
- 363   6                                                      state = FAILED; // unknown command, again
- 364   6                                              }
- 365   5                                      }
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 7   
+ 304   4                                      // CONNECTED_LED = 1;           
+ 305   4                              
+ 306   4                                      rxBuffer = serialReceiveData(1); // wait for command P or V
+ 307   4                                      if(*rxBuffer == 'P')
+ 308   4                                      {
+ 309   5                                              serialSendData("p", 1);  // ack
+ 310   5                                              
+ 311   5                                              state = PROGRAM_EEPROM_PAGE;     // program
+ 312   5                                      }
+ 313   4                                      else if(*rxBuffer == 'V')
+ 314   4                                      {
+ 315   5                                              serialSendData("v", 1);          // ack
+ 316   5                                              
+ 317   5                                              state = VERIFY_EEPROM_PAGE;      // verify
+ 318   5                                      }       
+ 319   4                                      else if(*rxBuffer == 'R')
+ 320   4                                      {
+ 321   5                                              serialSendData("r", 1);          // ack
+ 322   5                                              
+ 323   5                                              state = READ_EEPROM_PAGE;        // verify
+ 324   5                                      }                                       
+ 325   4                                      else
+ 326   4                                      {
+ 327   5                                              state = CONNECTED; // unknown command, again
+ 328   5                                      }
+ 329   4                              }
+ 330   3                              break;
+ 331   3                                      
+ 332   3                              case PROGRAM_EEPROM_PAGE:
+ 333   3                              {
+ 334   4                                      unsigned int address;
+ 335   4                                      unsigned int size;
+ 336   4                                      
+ 337   4                                      displayState(state);
+ 338   4                                      
+ 339   4                                      rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
+ 340   4                                      if(*rxBuffer == 'D')
+ 341   4                                      {
+ 342   5                                              serialSendData("d", 1);  // ack failed
+ 343   5                                                      
+ 344   5                                              state = DONE; // unknown command, again
+ 345   5                                      }                               
+ 346   4                                      else if(*rxBuffer == 'A')
+ 347   4                                      {
+ 348   5                                              address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
+ 349   5                                              size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
+ 350   5      
+ 351   5                                              serialSendData("a", 1);
+ 352   5                                              
+ 353   5                                              //PROGRAM_LED     = 1;
+ 354   5                                              rxBuffer = serialReceiveData(size); // wait for command P or V  
+ 355   5                                              programPage(address, rxBuffer, size);
+ 356   5                                              if(verifyPage(address, rxBuffer, size))
+ 357   5                                              {
+ 358   6                                                      //PROGRAM_LED     = 0;
+ 359   6                                              
+ 360   6                                                      serialSendData("s", 1);  // ack success
+ 361   6      
+ 362   6                                                      state = PROGRAM_EEPROM_PAGE; // unknown command, again
+ 363   6                                              }
+ 364   5                                              else
+ 365   5                                              {
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 7   
 
- 366   4                                      else
- 367   4                                      {
- 368   5                                              serialSendData("f", 1);  // ack failed
- 369   5      
- 370   5                                              state = FAILED; // unknown command, again
- 371   5                                      }
- 372   4                              }
- 373   3                              break;
- 374   3                              
- 375   3                              case VERIFY_EEPROM_PAGE:
- 376   3                              {
- 377   4                                      unsigned int address;
- 378   4                                      unsigned int size;
- 379   4                                      
- 380   4                                      displayState(state);
- 381   4                                      
- 382   4                                      rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
- 383   4                                      if(*rxBuffer == 'D')
- 384   4                                      {
- 385   5                                              serialSendData("d", 1);  // ack failed
- 386   5                                                      
- 387   5                                              state = DONE; // unknown command, again
- 388   5                                      }                               
- 389   4                                      else if(*rxBuffer == 'A')
- 390   4                                      {
- 391   5                                              address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
- 392   5                                              size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
- 393   5                                              
- 394   5                                              serialSendData("a", 1);
- 395   5      
- 396   5                                              //PROGRAM_LED     = 1;
- 397   5                                              rxBuffer = serialReceiveData(size); // wait for command P or V                                  
- 398   5                                              if(verifyPage(address, rxBuffer, size))
- 399   5                                              {
- 400   6                                                      //PROGRAM_LED     = 0;
- 401   6                                              
- 402   6                                                      serialSendData("s", 1);  // ack success
- 403   6      
- 404   6                                                      state = VERIFY_EEPROM_PAGE; // unknown command, again
- 405   6                                              }
- 406   5                                              else
- 407   5                                              {
- 408   6                                                      //PROGRAM_LED     = 0;
- 409   6                                              
- 410   6                                                      serialSendData("f", 1);  // ack failed
- 411   6                                                      
- 412   6                                                      state = FAILED; // unknown command, again
- 413   6                                              }
- 414   5                                      }
- 415   4                                      else
- 416   4                                      {
- 417   5                                              serialSendData("f", 1);  // ack failed
- 418   5                                                      
- 419   5                                              state = FAILED; // unknown command, again
- 420   5                                      }
- 421   4                              }
- 422   3                              break;
- 423   3                              
- 424   3                              case READ_EEPROM_PAGE:
- 425   3                              {
- 426   4                                      unsigned int address;
- 427   4                                      unsigned int size;
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 8   
+ 366   6                                                      //PROGRAM_LED     = 0;
+ 367   6                                              
+ 368   6                                                      serialSendData("f", 1);  // ack failed
+ 369   6                                                      
+ 370   6                                                      state = FAILED; // unknown command, again
+ 371   6                                              }
+ 372   5                                      }
+ 373   4                                      else
+ 374   4                                      {
+ 375   5                                              serialSendData("f", 1);  // ack failed
+ 376   5      
+ 377   5                                              state = FAILED; // unknown command, again
+ 378   5                                      }
+ 379   4                              }
+ 380   3                              break;
+ 381   3                              
+ 382   3                              case VERIFY_EEPROM_PAGE:
+ 383   3                              {
+ 384   4                                      unsigned int address;
+ 385   4                                      unsigned int size;
+ 386   4                                      
+ 387   4                                      displayState(state);
+ 388   4                                      
+ 389   4                                      rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
+ 390   4                                      if(*rxBuffer == 'D')
+ 391   4                                      {
+ 392   5                                              serialSendData("d", 1);  // ack failed
+ 393   5                                                      
+ 394   5                                              state = DONE; // unknown command, again
+ 395   5                                      }                               
+ 396   4                                      else if(*rxBuffer == 'A')
+ 397   4                                      {
+ 398   5                                              address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
+ 399   5                                              size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
+ 400   5                                              
+ 401   5                                              serialSendData("a", 1);
+ 402   5      
+ 403   5                                              //PROGRAM_LED     = 1;
+ 404   5                                              rxBuffer = serialReceiveData(size); // wait for command P or V                                  
+ 405   5                                              if(verifyPage(address, rxBuffer, size))
+ 406   5                                              {
+ 407   6                                                      //PROGRAM_LED     = 0;
+ 408   6                                              
+ 409   6                                                      serialSendData("s", 1);  // ack success
+ 410   6      
+ 411   6                                                      state = VERIFY_EEPROM_PAGE; // unknown command, again
+ 412   6                                              }
+ 413   5                                              else
+ 414   5                                              {
+ 415   6                                                      //PROGRAM_LED     = 0;
+ 416   6                                              
+ 417   6                                                      serialSendData("f", 1);  // ack failed
+ 418   6                                                      
+ 419   6                                                      state = FAILED; // unknown command, again
+ 420   6                                              }
+ 421   5                                      }
+ 422   4                                      else
+ 423   4                                      {
+ 424   5                                              serialSendData("f", 1);  // ack failed
+ 425   5                                                      
+ 426   5                                              state = FAILED; // unknown command, again
+ 427   5                                      }
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 8   
 
- 428   4                                      
- 429   4                                      displayState(state);
- 430   4                                      
- 431   4                                      rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
- 432   4                                      if(*rxBuffer == 'D')
- 433   4                                      {
- 434   5                                              serialSendData("d", 1);  // ack failed
- 435   5                                                      
- 436   5                                              state = DONE; // unknown command, again
- 437   5                                      }                               
- 438   4                                      else if(*rxBuffer == 'A')
- 439   4                                      {
- 440   5                                              address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
- 441   5                                              size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
- 442   5                                              
- 443   5                                              serialSendData("a", 1);
- 444   5      
- 445   5                                              readPage(address, rxBuffer, size);
- 446   5                                              
- 447   5                                              serialSendData(rxBuffer, size);
- 448   5                                      }
- 449   4                                      else
- 450   4                                      {
- 451   5                                              serialSendData("f", 1);  // ack failed
- 452   5                                                      
- 453   5                                              state = FAILED; // unknown command, again
- 454   5                                      }
- 455   4                              }
- 456   3                              break;                  
- 457   3                              
- 458   3                              case FAILED:
- 459   3                              {       
- 460   4                                      displayState(state);
- 461   4                                      
- 462   4                                      state = CONNECTED; 
- 463   4                              }
- 464   3                              break;
- 465   3                              
- 466   3                              case DONE:
- 467   3                              {       
- 468   4                                      displayState(state);
- 469   4                                      
- 470   4                                      state = CONNECTED; 
- 471   4                              }
- 472   3                              break;
- 473   3                              
- 474   3                              case TIMEOUT:
- 475   3                              {       
- 476   4                                      displayState(state);
- 477   4                                      
- 478   4                                      state = CONNECTING;
- 479   4                              }
- 480   3                              break;                  
- 481   3                      }
- 482   2              }
- 483   1              
- 484   1              #endif
- 485   1      } 
+ 428   4                              }
+ 429   3                              break;
+ 430   3                              
+ 431   3                              case READ_EEPROM_PAGE:
+ 432   3                              {
+ 433   4                                      unsigned int address;
+ 434   4                                      unsigned int size;
+ 435   4                                      
+ 436   4                                      displayState(state);
+ 437   4                                      
+ 438   4                                      rxBuffer = serialReceiveData(1+2+2); // wait for command P or V
+ 439   4                                      if(*rxBuffer == 'D')
+ 440   4                                      {
+ 441   5                                              serialSendData("d", 1);  // ack failed
+ 442   5                                                      
+ 443   5                                              state = DONE; // unknown command, again
+ 444   5                                      }                               
+ 445   4                                      else if(*rxBuffer == 'A')
+ 446   4                                      {
+ 447   5                                              address = convertToBigEndian16(*((unsigned int*)(rxBuffer+1  )));
+ 448   5                                              size    = convertToBigEndian16(*((unsigned int*)(rxBuffer+1+2)));
+ 449   5                                              
+ 450   5                                              serialSendData("a", 1);
+ 451   5      
+ 452   5                                              readPage(address, rxBuffer, size);
+ 453   5                                              
+ 454   5                                              serialSendData(rxBuffer, size);
+ 455   5                                      }
+ 456   4                                      else
+ 457   4                                      {
+ 458   5                                              serialSendData("f", 1);  // ack failed
+ 459   5                                                      
+ 460   5                                              state = FAILED; // unknown command, again
+ 461   5                                      }
+ 462   4                              }
+ 463   3                              break;                  
+ 464   3                              
+ 465   3                              case FAILED:
+ 466   3                              {       
+ 467   4                                      displayState(state);
+ 468   4                                      
+ 469   4                                      state = CONNECTED; 
+ 470   4                              }
+ 471   3                              break;
+ 472   3                              
+ 473   3                              case DONE:
+ 474   3                              {       
+ 475   4                                      displayState(state);
+ 476   4                                      
+ 477   4                                      state = CONNECTED; 
+ 478   4                              }
+ 479   3                              break;
+ 480   3                              
+ 481   3                              case TIMEOUT:
+ 482   3                              {       
+ 483   4                                      displayState(state);
+ 484   4                                      
+ 485   4                                      state = CONNECTING;
+ 486   4                              }
+ 487   3                              break;                  
+ 488   3                      }
+ 489   2              }
+C51 COMPILER V9.01   MAIN                                                                  03/30/2019 19:21:09 PAGE 9   
+
+ 490   1              
+ 491   1              #endif
+ 492   1      } 
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1275    ----
-C51 COMPILER V9.01   MAIN                                                                  03/07/2019 15:21:37 PAGE 9   
-
+   CODE SIZE        =   2359    ----
    CONSTANT SIZE    =     21    ----
-   XDATA SIZE       =   ----    ----
-   PDATA SIZE       =   ----      49
+   XDATA SIZE       =     70    ----
+   PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----

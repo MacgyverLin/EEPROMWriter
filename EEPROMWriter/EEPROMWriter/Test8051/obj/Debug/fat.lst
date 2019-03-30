@@ -1,0 +1,674 @@
+                                      1 ;--------------------------------------------------------
+                                      2 ; File Created by SDCC : free open source ANSI-C Compiler
+                                      3 ; Version 3.8.0 #10562 (MINGW32)
+                                      4 ;--------------------------------------------------------
+                                      5 	.module fat
+                                      6 	.optsdcc -mmcs51 --model-huge
+                                      7 	
+                                      8 ;--------------------------------------------------------
+                                      9 ; Public variables in this module
+                                     10 ;--------------------------------------------------------
+                                     11 	.globl _sioTXBuf
+                                     12 	.globl _sioTXStr
+                                     13 	.globl _f_mount
+                                     14 	.globl _f_read
+                                     15 	.globl _f_close
+                                     16 	.globl _f_open
+                                     17 	.globl _CY
+                                     18 	.globl _AC
+                                     19 	.globl _F0
+                                     20 	.globl _RS1
+                                     21 	.globl _RS0
+                                     22 	.globl _OV
+                                     23 	.globl _F1
+                                     24 	.globl _P
+                                     25 	.globl _PS
+                                     26 	.globl _PT1
+                                     27 	.globl _PX1
+                                     28 	.globl _PT0
+                                     29 	.globl _PX0
+                                     30 	.globl _RD
+                                     31 	.globl _WR
+                                     32 	.globl _T1
+                                     33 	.globl _T0
+                                     34 	.globl _INT1
+                                     35 	.globl _INT0
+                                     36 	.globl _TXD
+                                     37 	.globl _RXD
+                                     38 	.globl _P3_7
+                                     39 	.globl _P3_6
+                                     40 	.globl _P3_5
+                                     41 	.globl _P3_4
+                                     42 	.globl _P3_3
+                                     43 	.globl _P3_2
+                                     44 	.globl _P3_1
+                                     45 	.globl _P3_0
+                                     46 	.globl _EA
+                                     47 	.globl _ES
+                                     48 	.globl _ET1
+                                     49 	.globl _EX1
+                                     50 	.globl _ET0
+                                     51 	.globl _EX0
+                                     52 	.globl _P2_7
+                                     53 	.globl _P2_6
+                                     54 	.globl _P2_5
+                                     55 	.globl _P2_4
+                                     56 	.globl _P2_3
+                                     57 	.globl _P2_2
+                                     58 	.globl _P2_1
+                                     59 	.globl _P2_0
+                                     60 	.globl _SM0
+                                     61 	.globl _SM1
+                                     62 	.globl _SM2
+                                     63 	.globl _REN
+                                     64 	.globl _TB8
+                                     65 	.globl _RB8
+                                     66 	.globl _TI
+                                     67 	.globl _RI
+                                     68 	.globl _P1_7
+                                     69 	.globl _P1_6
+                                     70 	.globl _P1_5
+                                     71 	.globl _P1_4
+                                     72 	.globl _P1_3
+                                     73 	.globl _P1_2
+                                     74 	.globl _P1_1
+                                     75 	.globl _P1_0
+                                     76 	.globl _TF1
+                                     77 	.globl _TR1
+                                     78 	.globl _TF0
+                                     79 	.globl _TR0
+                                     80 	.globl _IE1
+                                     81 	.globl _IT1
+                                     82 	.globl _IE0
+                                     83 	.globl _IT0
+                                     84 	.globl _P0_7
+                                     85 	.globl _P0_6
+                                     86 	.globl _P0_5
+                                     87 	.globl _P0_4
+                                     88 	.globl _P0_3
+                                     89 	.globl _P0_2
+                                     90 	.globl _P0_1
+                                     91 	.globl _P0_0
+                                     92 	.globl _B
+                                     93 	.globl _ACC
+                                     94 	.globl _PSW
+                                     95 	.globl _IP
+                                     96 	.globl _P3
+                                     97 	.globl _IE
+                                     98 	.globl _P2
+                                     99 	.globl _SBUF
+                                    100 	.globl _SCON
+                                    101 	.globl _P1
+                                    102 	.globl _TH1
+                                    103 	.globl _TH0
+                                    104 	.globl _TL1
+                                    105 	.globl _TL0
+                                    106 	.globl _TMOD
+                                    107 	.globl _TCON
+                                    108 	.globl _PCON
+                                    109 	.globl _DPH
+                                    110 	.globl _DPL
+                                    111 	.globl _SP
+                                    112 	.globl _P0
+                                    113 	.globl _filename
+                                    114 	.globl _fil
+                                    115 	.globl _fs
+                                    116 	.globl _br
+                                    117 	.globl _res
+                                    118 	.globl _fatfsTest
+                                    119 ;--------------------------------------------------------
+                                    120 ; special function registers
+                                    121 ;--------------------------------------------------------
+                                    122 	.area RSEG    (ABS,DATA)
+      000000                        123 	.org 0x0000
+                           000080   124 _P0	=	0x0080
+                           000081   125 _SP	=	0x0081
+                           000082   126 _DPL	=	0x0082
+                           000083   127 _DPH	=	0x0083
+                           000087   128 _PCON	=	0x0087
+                           000088   129 _TCON	=	0x0088
+                           000089   130 _TMOD	=	0x0089
+                           00008A   131 _TL0	=	0x008a
+                           00008B   132 _TL1	=	0x008b
+                           00008C   133 _TH0	=	0x008c
+                           00008D   134 _TH1	=	0x008d
+                           000090   135 _P1	=	0x0090
+                           000098   136 _SCON	=	0x0098
+                           000099   137 _SBUF	=	0x0099
+                           0000A0   138 _P2	=	0x00a0
+                           0000A8   139 _IE	=	0x00a8
+                           0000B0   140 _P3	=	0x00b0
+                           0000B8   141 _IP	=	0x00b8
+                           0000D0   142 _PSW	=	0x00d0
+                           0000E0   143 _ACC	=	0x00e0
+                           0000F0   144 _B	=	0x00f0
+                                    145 ;--------------------------------------------------------
+                                    146 ; special function bits
+                                    147 ;--------------------------------------------------------
+                                    148 	.area RSEG    (ABS,DATA)
+      000000                        149 	.org 0x0000
+                           000080   150 _P0_0	=	0x0080
+                           000081   151 _P0_1	=	0x0081
+                           000082   152 _P0_2	=	0x0082
+                           000083   153 _P0_3	=	0x0083
+                           000084   154 _P0_4	=	0x0084
+                           000085   155 _P0_5	=	0x0085
+                           000086   156 _P0_6	=	0x0086
+                           000087   157 _P0_7	=	0x0087
+                           000088   158 _IT0	=	0x0088
+                           000089   159 _IE0	=	0x0089
+                           00008A   160 _IT1	=	0x008a
+                           00008B   161 _IE1	=	0x008b
+                           00008C   162 _TR0	=	0x008c
+                           00008D   163 _TF0	=	0x008d
+                           00008E   164 _TR1	=	0x008e
+                           00008F   165 _TF1	=	0x008f
+                           000090   166 _P1_0	=	0x0090
+                           000091   167 _P1_1	=	0x0091
+                           000092   168 _P1_2	=	0x0092
+                           000093   169 _P1_3	=	0x0093
+                           000094   170 _P1_4	=	0x0094
+                           000095   171 _P1_5	=	0x0095
+                           000096   172 _P1_6	=	0x0096
+                           000097   173 _P1_7	=	0x0097
+                           000098   174 _RI	=	0x0098
+                           000099   175 _TI	=	0x0099
+                           00009A   176 _RB8	=	0x009a
+                           00009B   177 _TB8	=	0x009b
+                           00009C   178 _REN	=	0x009c
+                           00009D   179 _SM2	=	0x009d
+                           00009E   180 _SM1	=	0x009e
+                           00009F   181 _SM0	=	0x009f
+                           0000A0   182 _P2_0	=	0x00a0
+                           0000A1   183 _P2_1	=	0x00a1
+                           0000A2   184 _P2_2	=	0x00a2
+                           0000A3   185 _P2_3	=	0x00a3
+                           0000A4   186 _P2_4	=	0x00a4
+                           0000A5   187 _P2_5	=	0x00a5
+                           0000A6   188 _P2_6	=	0x00a6
+                           0000A7   189 _P2_7	=	0x00a7
+                           0000A8   190 _EX0	=	0x00a8
+                           0000A9   191 _ET0	=	0x00a9
+                           0000AA   192 _EX1	=	0x00aa
+                           0000AB   193 _ET1	=	0x00ab
+                           0000AC   194 _ES	=	0x00ac
+                           0000AF   195 _EA	=	0x00af
+                           0000B0   196 _P3_0	=	0x00b0
+                           0000B1   197 _P3_1	=	0x00b1
+                           0000B2   198 _P3_2	=	0x00b2
+                           0000B3   199 _P3_3	=	0x00b3
+                           0000B4   200 _P3_4	=	0x00b4
+                           0000B5   201 _P3_5	=	0x00b5
+                           0000B6   202 _P3_6	=	0x00b6
+                           0000B7   203 _P3_7	=	0x00b7
+                           0000B0   204 _RXD	=	0x00b0
+                           0000B1   205 _TXD	=	0x00b1
+                           0000B2   206 _INT0	=	0x00b2
+                           0000B3   207 _INT1	=	0x00b3
+                           0000B4   208 _T0	=	0x00b4
+                           0000B5   209 _T1	=	0x00b5
+                           0000B6   210 _WR	=	0x00b6
+                           0000B7   211 _RD	=	0x00b7
+                           0000B8   212 _PX0	=	0x00b8
+                           0000B9   213 _PT0	=	0x00b9
+                           0000BA   214 _PX1	=	0x00ba
+                           0000BB   215 _PT1	=	0x00bb
+                           0000BC   216 _PS	=	0x00bc
+                           0000D0   217 _P	=	0x00d0
+                           0000D1   218 _F1	=	0x00d1
+                           0000D2   219 _OV	=	0x00d2
+                           0000D3   220 _RS0	=	0x00d3
+                           0000D4   221 _RS1	=	0x00d4
+                           0000D5   222 _F0	=	0x00d5
+                           0000D6   223 _AC	=	0x00d6
+                           0000D7   224 _CY	=	0x00d7
+                                    225 ;--------------------------------------------------------
+                                    226 ; overlayable register banks
+                                    227 ;--------------------------------------------------------
+                                    228 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        229 	.ds 8
+                                    230 ;--------------------------------------------------------
+                                    231 ; internal ram data
+                                    232 ;--------------------------------------------------------
+                                    233 	.area DSEG    (DATA)
+                                    234 ;--------------------------------------------------------
+                                    235 ; overlayable items in internal ram 
+                                    236 ;--------------------------------------------------------
+                                    237 ;--------------------------------------------------------
+                                    238 ; indirectly addressable internal ram data
+                                    239 ;--------------------------------------------------------
+                                    240 	.area ISEG    (DATA)
+                                    241 ;--------------------------------------------------------
+                                    242 ; absolute internal ram data
+                                    243 ;--------------------------------------------------------
+                                    244 	.area IABS    (ABS,DATA)
+                                    245 	.area IABS    (ABS,DATA)
+                                    246 ;--------------------------------------------------------
+                                    247 ; bit data
+                                    248 ;--------------------------------------------------------
+                                    249 	.area BSEG    (BIT)
+                                    250 ;--------------------------------------------------------
+                                    251 ; paged external ram data
+                                    252 ;--------------------------------------------------------
+                                    253 	.area PSEG    (PAG,XDATA)
+                                    254 ;--------------------------------------------------------
+                                    255 ; external ram data
+                                    256 ;--------------------------------------------------------
+                                    257 	.area XSEG    (XDATA)
+      000000                        258 _res::
+      000000                        259 	.ds 1
+      000001                        260 _br::
+      000001                        261 	.ds 2
+      000003                        262 _fs::
+      000003                        263 	.ds 550
+      000229                        264 _fil::
+      000229                        265 	.ds 30
+      000247                        266 _fatfsTest_buf_65536_56:
+      000247                        267 	.ds 3
+      00024A                        268 _fatfsTest_br_65536_57:
+      00024A                        269 	.ds 2
+                                    270 ;--------------------------------------------------------
+                                    271 ; absolute external ram data
+                                    272 ;--------------------------------------------------------
+                                    273 	.area XABS    (ABS,XDATA)
+                                    274 ;--------------------------------------------------------
+                                    275 ; external initialized ram data
+                                    276 ;--------------------------------------------------------
+                                    277 	.area XISEG   (XDATA)
+      000000                        278 _filename::
+      000000                        279 	.ds 3
+                                    280 	.area HOME    (CODE)
+                                    281 	.area GSINIT0 (CODE)
+                                    282 	.area GSINIT1 (CODE)
+                                    283 	.area GSINIT2 (CODE)
+                                    284 	.area GSINIT3 (CODE)
+                                    285 	.area GSINIT4 (CODE)
+                                    286 	.area GSINIT5 (CODE)
+                                    287 	.area GSINIT  (CODE)
+                                    288 	.area GSFINAL (CODE)
+                                    289 	.area CSEG    (CODE)
+                                    290 ;--------------------------------------------------------
+                                    291 ; global & static initialisations
+                                    292 ;--------------------------------------------------------
+                                    293 	.area HOME    (CODE)
+                                    294 	.area GSINIT  (CODE)
+                                    295 	.area GSFINAL (CODE)
+                                    296 	.area GSINIT  (CODE)
+                                    297 ;--------------------------------------------------------
+                                    298 ; Home
+                                    299 ;--------------------------------------------------------
+                                    300 	.area HOME    (CODE)
+                                    301 	.area HOME    (CODE)
+                                    302 ;--------------------------------------------------------
+                                    303 ; code
+                                    304 ;--------------------------------------------------------
+                                    305 	.area CSEG    (CODE)
+                                    306 ;------------------------------------------------------------
+                                    307 ;Allocation info for local variables in function 'fatfsTest'
+                                    308 ;------------------------------------------------------------
+                                    309 ;buf                       Allocated with name '_fatfsTest_buf_65536_56'
+                                    310 ;br                        Allocated with name '_fatfsTest_br_65536_57'
+                                    311 ;------------------------------------------------------------
+                                    312 ;	fat.c:11: unsigned int fatfsTest(char *buf)
+                                    313 ;	-----------------------------------------
+                                    314 ;	 function fatfsTest
+                                    315 ;	-----------------------------------------
+      000000                        316 _fatfsTest:
+                           000007   317 	ar7 = 0x07
+                           000006   318 	ar6 = 0x06
+                           000005   319 	ar5 = 0x05
+                           000004   320 	ar4 = 0x04
+                           000003   321 	ar3 = 0x03
+                           000002   322 	ar2 = 0x02
+                           000001   323 	ar1 = 0x01
+                           000000   324 	ar0 = 0x00
+      000000 AF F0            [24]  325 	mov	r7,b
+      000002 AE 83            [24]  326 	mov	r6,dph
+      000004 E5 82            [12]  327 	mov	a,dpl
+      000006 90r02r47         [24]  328 	mov	dptr,#_fatfsTest_buf_65536_56
+      000009 F0               [24]  329 	movx	@dptr,a
+      00000A EE               [12]  330 	mov	a,r6
+      00000B A3               [24]  331 	inc	dptr
+      00000C F0               [24]  332 	movx	@dptr,a
+      00000D EF               [12]  333 	mov	a,r7
+      00000E A3               [24]  334 	inc	dptr
+      00000F F0               [24]  335 	movx	@dptr,a
+                                    336 ;	fat.c:13: unsigned int br = 0;
+      000010 90r02r4A         [24]  337 	mov	dptr,#_fatfsTest_br_65536_57
+      000013 E4               [12]  338 	clr	a
+      000014 F0               [24]  339 	movx	@dptr,a
+      000015 A3               [24]  340 	inc	dptr
+      000016 F0               [24]  341 	movx	@dptr,a
+                                    342 ;	fat.c:14: res = f_mount(&fs, "0:", 0);
+      000017 90r00r00         [24]  343 	mov	dptr,#_f_mount_PARM_2
+      00001A 74r00            [12]  344 	mov	a,#___str_0
+      00001C F0               [24]  345 	movx	@dptr,a
+      00001D 74s00            [12]  346 	mov	a,#(___str_0 >> 8)
+      00001F A3               [24]  347 	inc	dptr
+      000020 F0               [24]  348 	movx	@dptr,a
+      000021 74 80            [12]  349 	mov	a,#0x80
+      000023 A3               [24]  350 	inc	dptr
+      000024 F0               [24]  351 	movx	@dptr,a
+      000025 90r00r00         [24]  352 	mov	dptr,#_f_mount_PARM_3
+      000028 E4               [12]  353 	clr	a
+      000029 F0               [24]  354 	movx	@dptr,a
+      00002A 90r00r03         [24]  355 	mov	dptr,#_fs
+      00002D 75 F0 00         [24]  356 	mov	b,#0x00
+      000030 78r00            [12]  357 	mov	r0,#_f_mount
+      000032 79s00            [12]  358 	mov	r1,#(_f_mount >> 8)
+      000034 7As00            [12]  359 	mov	r2,#(_f_mount >> 16)
+      000036 12r00r00         [24]  360 	lcall	__sdcc_banked_call
+      000039 AF 82            [24]  361 	mov	r7,dpl
+      00003B 90r00r00         [24]  362 	mov	dptr,#_res
+      00003E EF               [12]  363 	mov	a,r7
+      00003F F0               [24]  364 	movx	@dptr,a
+                                    365 ;	fat.c:15: if(res==FR_OK)
+      000040 EF               [12]  366 	mov	a,r7
+      000041 70 1C            [24]  367 	jnz	00102$
+                                    368 ;	fat.c:17: sioTXStr(0, "f_mount OK\r\n");
+      000043 90r00r00         [24]  369 	mov	dptr,#_sioTXStr_PARM_2
+      000046 74r03            [12]  370 	mov	a,#___str_1
+      000048 F0               [24]  371 	movx	@dptr,a
+      000049 74s00            [12]  372 	mov	a,#(___str_1 >> 8)
+      00004B A3               [24]  373 	inc	dptr
+      00004C F0               [24]  374 	movx	@dptr,a
+      00004D 74 80            [12]  375 	mov	a,#0x80
+      00004F A3               [24]  376 	inc	dptr
+      000050 F0               [24]  377 	movx	@dptr,a
+      000051 75 82 00         [24]  378 	mov	dpl,#0x00
+      000054 78r00            [12]  379 	mov	r0,#_sioTXStr
+      000056 79s00            [12]  380 	mov	r1,#(_sioTXStr >> 8)
+      000058 7As00            [12]  381 	mov	r2,#(_sioTXStr >> 16)
+      00005A 12r00r00         [24]  382 	lcall	__sdcc_banked_call
+      00005D 80 1A            [24]  383 	sjmp	00103$
+      00005F                        384 00102$:
+                                    385 ;	fat.c:21: sioTXStr(0, "f_mount failed\r\n");
+      00005F 90r00r00         [24]  386 	mov	dptr,#_sioTXStr_PARM_2
+      000062 74r10            [12]  387 	mov	a,#___str_2
+      000064 F0               [24]  388 	movx	@dptr,a
+      000065 74s00            [12]  389 	mov	a,#(___str_2 >> 8)
+      000067 A3               [24]  390 	inc	dptr
+      000068 F0               [24]  391 	movx	@dptr,a
+      000069 74 80            [12]  392 	mov	a,#0x80
+      00006B A3               [24]  393 	inc	dptr
+      00006C F0               [24]  394 	movx	@dptr,a
+      00006D 75 82 00         [24]  395 	mov	dpl,#0x00
+      000070 78r00            [12]  396 	mov	r0,#_sioTXStr
+      000072 79s00            [12]  397 	mov	r1,#(_sioTXStr >> 8)
+      000074 7As00            [12]  398 	mov	r2,#(_sioTXStr >> 16)
+      000076 12r00r00         [24]  399 	lcall	__sdcc_banked_call
+      000079                        400 00103$:
+                                    401 ;	fat.c:24: sioTXStr(0, buf);
+      000079 90r02r47         [24]  402 	mov	dptr,#_fatfsTest_buf_65536_56
+      00007C E0               [24]  403 	movx	a,@dptr
+      00007D FD               [12]  404 	mov	r5,a
+      00007E A3               [24]  405 	inc	dptr
+      00007F E0               [24]  406 	movx	a,@dptr
+      000080 FE               [12]  407 	mov	r6,a
+      000081 A3               [24]  408 	inc	dptr
+      000082 E0               [24]  409 	movx	a,@dptr
+      000083 FF               [12]  410 	mov	r7,a
+      000084 90r00r00         [24]  411 	mov	dptr,#_sioTXStr_PARM_2
+      000087 ED               [12]  412 	mov	a,r5
+      000088 F0               [24]  413 	movx	@dptr,a
+      000089 EE               [12]  414 	mov	a,r6
+      00008A A3               [24]  415 	inc	dptr
+      00008B F0               [24]  416 	movx	@dptr,a
+      00008C EF               [12]  417 	mov	a,r7
+      00008D A3               [24]  418 	inc	dptr
+      00008E F0               [24]  419 	movx	@dptr,a
+      00008F 75 82 00         [24]  420 	mov	dpl,#0x00
+      000092 78r00            [12]  421 	mov	r0,#_sioTXStr
+      000094 79s00            [12]  422 	mov	r1,#(_sioTXStr >> 8)
+      000096 7As00            [12]  423 	mov	r2,#(_sioTXStr >> 16)
+      000098 12r00r00         [24]  424 	lcall	__sdcc_banked_call
+                                    425 ;	fat.c:25: res = f_open(&fil, "1.txt", FA_READ);
+      00009B 90r00r00         [24]  426 	mov	dptr,#_f_open_PARM_2
+      00009E 74r21            [12]  427 	mov	a,#___str_3
+      0000A0 F0               [24]  428 	movx	@dptr,a
+      0000A1 74s00            [12]  429 	mov	a,#(___str_3 >> 8)
+      0000A3 A3               [24]  430 	inc	dptr
+      0000A4 F0               [24]  431 	movx	@dptr,a
+      0000A5 74 80            [12]  432 	mov	a,#0x80
+      0000A7 A3               [24]  433 	inc	dptr
+      0000A8 F0               [24]  434 	movx	@dptr,a
+      0000A9 90r00r00         [24]  435 	mov	dptr,#_f_open_PARM_3
+      0000AC 23               [12]  436 	rl	a
+      0000AD F0               [24]  437 	movx	@dptr,a
+      0000AE 90r02r29         [24]  438 	mov	dptr,#_fil
+      0000B1 75 F0 00         [24]  439 	mov	b,#0x00
+      0000B4 78r00            [12]  440 	mov	r0,#_f_open
+      0000B6 79s00            [12]  441 	mov	r1,#(_f_open >> 8)
+      0000B8 7As00            [12]  442 	mov	r2,#(_f_open >> 16)
+      0000BA 12r00r00         [24]  443 	lcall	__sdcc_banked_call
+      0000BD AF 82            [24]  444 	mov	r7,dpl
+      0000BF 90r00r00         [24]  445 	mov	dptr,#_res
+      0000C2 EF               [12]  446 	mov	a,r7
+      0000C3 F0               [24]  447 	movx	@dptr,a
+                                    448 ;	fat.c:26: if(res==FR_OK)
+      0000C4 EF               [12]  449 	mov	a,r7
+      0000C5 70 1C            [24]  450 	jnz	00105$
+                                    451 ;	fat.c:28: sioTXStr(0, "f_open OK\r\n");
+      0000C7 90r00r00         [24]  452 	mov	dptr,#_sioTXStr_PARM_2
+      0000CA 74r27            [12]  453 	mov	a,#___str_4
+      0000CC F0               [24]  454 	movx	@dptr,a
+      0000CD 74s00            [12]  455 	mov	a,#(___str_4 >> 8)
+      0000CF A3               [24]  456 	inc	dptr
+      0000D0 F0               [24]  457 	movx	@dptr,a
+      0000D1 74 80            [12]  458 	mov	a,#0x80
+      0000D3 A3               [24]  459 	inc	dptr
+      0000D4 F0               [24]  460 	movx	@dptr,a
+      0000D5 75 82 00         [24]  461 	mov	dpl,#0x00
+      0000D8 78r00            [12]  462 	mov	r0,#_sioTXStr
+      0000DA 79s00            [12]  463 	mov	r1,#(_sioTXStr >> 8)
+      0000DC 7As00            [12]  464 	mov	r2,#(_sioTXStr >> 16)
+      0000DE 12r00r00         [24]  465 	lcall	__sdcc_banked_call
+      0000E1 80 1A            [24]  466 	sjmp	00106$
+      0000E3                        467 00105$:
+                                    468 ;	fat.c:32: sioTXStr(0, "f_open failed\r\n");
+      0000E3 90r00r00         [24]  469 	mov	dptr,#_sioTXStr_PARM_2
+      0000E6 74r33            [12]  470 	mov	a,#___str_5
+      0000E8 F0               [24]  471 	movx	@dptr,a
+      0000E9 74s00            [12]  472 	mov	a,#(___str_5 >> 8)
+      0000EB A3               [24]  473 	inc	dptr
+      0000EC F0               [24]  474 	movx	@dptr,a
+      0000ED 74 80            [12]  475 	mov	a,#0x80
+      0000EF A3               [24]  476 	inc	dptr
+      0000F0 F0               [24]  477 	movx	@dptr,a
+      0000F1 75 82 00         [24]  478 	mov	dpl,#0x00
+      0000F4 78r00            [12]  479 	mov	r0,#_sioTXStr
+      0000F6 79s00            [12]  480 	mov	r1,#(_sioTXStr >> 8)
+      0000F8 7As00            [12]  481 	mov	r2,#(_sioTXStr >> 16)
+      0000FA 12r00r00         [24]  482 	lcall	__sdcc_banked_call
+      0000FD                        483 00106$:
+                                    484 ;	fat.c:35: res = f_read(&fil, buf, SECTOR_SIZE, &br);
+      0000FD 90r02r47         [24]  485 	mov	dptr,#_fatfsTest_buf_65536_56
+      000100 E0               [24]  486 	movx	a,@dptr
+      000101 FD               [12]  487 	mov	r5,a
+      000102 A3               [24]  488 	inc	dptr
+      000103 E0               [24]  489 	movx	a,@dptr
+      000104 FE               [12]  490 	mov	r6,a
+      000105 A3               [24]  491 	inc	dptr
+      000106 E0               [24]  492 	movx	a,@dptr
+      000107 FF               [12]  493 	mov	r7,a
+      000108 8D 02            [24]  494 	mov	ar2,r5
+      00010A 8E 03            [24]  495 	mov	ar3,r6
+      00010C 8F 04            [24]  496 	mov	ar4,r7
+      00010E 90r00r00         [24]  497 	mov	dptr,#_f_read_PARM_2
+      000111 EA               [12]  498 	mov	a,r2
+      000112 F0               [24]  499 	movx	@dptr,a
+      000113 EB               [12]  500 	mov	a,r3
+      000114 A3               [24]  501 	inc	dptr
+      000115 F0               [24]  502 	movx	@dptr,a
+      000116 EC               [12]  503 	mov	a,r4
+      000117 A3               [24]  504 	inc	dptr
+      000118 F0               [24]  505 	movx	@dptr,a
+      000119 90r00r00         [24]  506 	mov	dptr,#_f_read_PARM_3
+      00011C E4               [12]  507 	clr	a
+      00011D F0               [24]  508 	movx	@dptr,a
+      00011E 74 02            [12]  509 	mov	a,#0x02
+      000120 A3               [24]  510 	inc	dptr
+      000121 F0               [24]  511 	movx	@dptr,a
+      000122 90r00r00         [24]  512 	mov	dptr,#_f_read_PARM_4
+      000125 74r4A            [12]  513 	mov	a,#_fatfsTest_br_65536_57
+      000127 F0               [24]  514 	movx	@dptr,a
+      000128 74s02            [12]  515 	mov	a,#(_fatfsTest_br_65536_57 >> 8)
+      00012A A3               [24]  516 	inc	dptr
+      00012B F0               [24]  517 	movx	@dptr,a
+      00012C E4               [12]  518 	clr	a
+      00012D A3               [24]  519 	inc	dptr
+      00012E F0               [24]  520 	movx	@dptr,a
+      00012F 90r02r29         [24]  521 	mov	dptr,#_fil
+      000132 75 F0 00         [24]  522 	mov	b,#0x00
+      000135 C0 07            [24]  523 	push	ar7
+      000137 C0 06            [24]  524 	push	ar6
+      000139 C0 05            [24]  525 	push	ar5
+      00013B 78r00            [12]  526 	mov	r0,#_f_read
+      00013D 79s00            [12]  527 	mov	r1,#(_f_read >> 8)
+      00013F 7As00            [12]  528 	mov	r2,#(_f_read >> 16)
+      000141 12r00r00         [24]  529 	lcall	__sdcc_banked_call
+      000144 AC 82            [24]  530 	mov	r4,dpl
+      000146 D0 05            [24]  531 	pop	ar5
+      000148 D0 06            [24]  532 	pop	ar6
+      00014A D0 07            [24]  533 	pop	ar7
+      00014C 90r00r00         [24]  534 	mov	dptr,#_res
+      00014F EC               [12]  535 	mov	a,r4
+      000150 F0               [24]  536 	movx	@dptr,a
+                                    537 ;	fat.c:36: if(res==FR_OK)
+      000151 EC               [12]  538 	mov	a,r4
+      000152 70 4F            [24]  539 	jnz	00108$
+                                    540 ;	fat.c:38: sioTXStr(0, "f_read OK\r\n");
+      000154 90r00r00         [24]  541 	mov	dptr,#_sioTXStr_PARM_2
+      000157 74r43            [12]  542 	mov	a,#___str_6
+      000159 F0               [24]  543 	movx	@dptr,a
+      00015A 74s00            [12]  544 	mov	a,#(___str_6 >> 8)
+      00015C A3               [24]  545 	inc	dptr
+      00015D F0               [24]  546 	movx	@dptr,a
+      00015E 74 80            [12]  547 	mov	a,#0x80
+      000160 A3               [24]  548 	inc	dptr
+      000161 F0               [24]  549 	movx	@dptr,a
+      000162 75 82 00         [24]  550 	mov	dpl,#0x00
+      000165 C0 07            [24]  551 	push	ar7
+      000167 C0 06            [24]  552 	push	ar6
+      000169 C0 05            [24]  553 	push	ar5
+      00016B 78r00            [12]  554 	mov	r0,#_sioTXStr
+      00016D 79s00            [12]  555 	mov	r1,#(_sioTXStr >> 8)
+      00016F 7As00            [12]  556 	mov	r2,#(_sioTXStr >> 16)
+      000171 12r00r00         [24]  557 	lcall	__sdcc_banked_call
+      000174 D0 05            [24]  558 	pop	ar5
+      000176 D0 06            [24]  559 	pop	ar6
+      000178 D0 07            [24]  560 	pop	ar7
+                                    561 ;	fat.c:39: sioTXBuf(0, buf, br);
+      00017A 90r02r4A         [24]  562 	mov	dptr,#_fatfsTest_br_65536_57
+      00017D E0               [24]  563 	movx	a,@dptr
+      00017E FB               [12]  564 	mov	r3,a
+      00017F A3               [24]  565 	inc	dptr
+      000180 E0               [24]  566 	movx	a,@dptr
+      000181 FC               [12]  567 	mov	r4,a
+      000182 90r00r00         [24]  568 	mov	dptr,#_sioTXBuf_PARM_2
+      000185 ED               [12]  569 	mov	a,r5
+      000186 F0               [24]  570 	movx	@dptr,a
+      000187 EE               [12]  571 	mov	a,r6
+      000188 A3               [24]  572 	inc	dptr
+      000189 F0               [24]  573 	movx	@dptr,a
+      00018A EF               [12]  574 	mov	a,r7
+      00018B A3               [24]  575 	inc	dptr
+      00018C F0               [24]  576 	movx	@dptr,a
+      00018D 90r00r00         [24]  577 	mov	dptr,#_sioTXBuf_PARM_3
+      000190 EB               [12]  578 	mov	a,r3
+      000191 F0               [24]  579 	movx	@dptr,a
+      000192 EC               [12]  580 	mov	a,r4
+      000193 A3               [24]  581 	inc	dptr
+      000194 F0               [24]  582 	movx	@dptr,a
+      000195 75 82 00         [24]  583 	mov	dpl,#0x00
+      000198 78r00            [12]  584 	mov	r0,#_sioTXBuf
+      00019A 79s00            [12]  585 	mov	r1,#(_sioTXBuf >> 8)
+      00019C 7As00            [12]  586 	mov	r2,#(_sioTXBuf >> 16)
+      00019E 12r00r00         [24]  587 	lcall	__sdcc_banked_call
+      0001A1 80 1A            [24]  588 	sjmp	00109$
+      0001A3                        589 00108$:
+                                    590 ;	fat.c:43: sioTXStr(0, "f_read failed\r\n");
+      0001A3 90r00r00         [24]  591 	mov	dptr,#_sioTXStr_PARM_2
+      0001A6 74r4F            [12]  592 	mov	a,#___str_7
+      0001A8 F0               [24]  593 	movx	@dptr,a
+      0001A9 74s00            [12]  594 	mov	a,#(___str_7 >> 8)
+      0001AB A3               [24]  595 	inc	dptr
+      0001AC F0               [24]  596 	movx	@dptr,a
+      0001AD 74 80            [12]  597 	mov	a,#0x80
+      0001AF A3               [24]  598 	inc	dptr
+      0001B0 F0               [24]  599 	movx	@dptr,a
+      0001B1 75 82 00         [24]  600 	mov	dpl,#0x00
+      0001B4 78r00            [12]  601 	mov	r0,#_sioTXStr
+      0001B6 79s00            [12]  602 	mov	r1,#(_sioTXStr >> 8)
+      0001B8 7As00            [12]  603 	mov	r2,#(_sioTXStr >> 16)
+      0001BA 12r00r00         [24]  604 	lcall	__sdcc_banked_call
+      0001BD                        605 00109$:
+                                    606 ;	fat.c:46: res = f_close(&fil);
+      0001BD 90r02r29         [24]  607 	mov	dptr,#_fil
+      0001C0 75 F0 00         [24]  608 	mov	b,#0x00
+      0001C3 78r00            [12]  609 	mov	r0,#_f_close
+      0001C5 79s00            [12]  610 	mov	r1,#(_f_close >> 8)
+      0001C7 7As00            [12]  611 	mov	r2,#(_f_close >> 16)
+      0001C9 12r00r00         [24]  612 	lcall	__sdcc_banked_call
+      0001CC E5 82            [12]  613 	mov	a,dpl
+      0001CE 90r00r00         [24]  614 	mov	dptr,#_res
+      0001D1 F0               [24]  615 	movx	@dptr,a
+                                    616 ;	fat.c:48: return br;
+      0001D2 90r02r4A         [24]  617 	mov	dptr,#_fatfsTest_br_65536_57
+      0001D5 E0               [24]  618 	movx	a,@dptr
+      0001D6 FE               [12]  619 	mov	r6,a
+      0001D7 A3               [24]  620 	inc	dptr
+      0001D8 E0               [24]  621 	movx	a,@dptr
+      0001D9 FF               [12]  622 	mov	r7,a
+      0001DA 8E 82            [24]  623 	mov	dpl,r6
+      0001DC 8F 83            [24]  624 	mov	dph,r7
+                                    625 ;	fat.c:49: }
+      0001DE 02r00r00         [24]  626 	ljmp	__sdcc_banked_ret
+                                    627 	.area CSEG    (CODE)
+                                    628 	.area CONST   (CODE)
+      000000                        629 ___str_0:
+      000000 30 3A                  630 	.ascii "0:"
+      000002 00                     631 	.db 0x00
+      000003                        632 ___str_1:
+      000003 66 5F 6D 6F 75 6E 74   633 	.ascii "f_mount OK"
+             20 4F 4B
+      00000D 0D                     634 	.db 0x0d
+      00000E 0A                     635 	.db 0x0a
+      00000F 00                     636 	.db 0x00
+      000010                        637 ___str_2:
+      000010 66 5F 6D 6F 75 6E 74   638 	.ascii "f_mount failed"
+             20 66 61 69 6C 65 64
+      00001E 0D                     639 	.db 0x0d
+      00001F 0A                     640 	.db 0x0a
+      000020 00                     641 	.db 0x00
+      000021                        642 ___str_3:
+      000021 31 2E 74 78 74         643 	.ascii "1.txt"
+      000026 00                     644 	.db 0x00
+      000027                        645 ___str_4:
+      000027 66 5F 6F 70 65 6E 20   646 	.ascii "f_open OK"
+             4F 4B
+      000030 0D                     647 	.db 0x0d
+      000031 0A                     648 	.db 0x0a
+      000032 00                     649 	.db 0x00
+      000033                        650 ___str_5:
+      000033 66 5F 6F 70 65 6E 20   651 	.ascii "f_open failed"
+             66 61 69 6C 65 64
+      000040 0D                     652 	.db 0x0d
+      000041 0A                     653 	.db 0x0a
+      000042 00                     654 	.db 0x00
+      000043                        655 ___str_6:
+      000043 66 5F 72 65 61 64 20   656 	.ascii "f_read OK"
+             4F 4B
+      00004C 0D                     657 	.db 0x0d
+      00004D 0A                     658 	.db 0x0a
+      00004E 00                     659 	.db 0x00
+      00004F                        660 ___str_7:
+      00004F 66 5F 72 65 61 64 20   661 	.ascii "f_read failed"
+             66 61 69 6C 65 64
+      00005C 0D                     662 	.db 0x0d
+      00005D 0A                     663 	.db 0x0a
+      00005E 00                     664 	.db 0x00
+                                    665 	.area XINIT   (CODE)
+      000000                        666 __xinit__filename:
+      000000r21s00 80               667 	.byte ___str_3, (___str_3 >> 8),#0x80
+                                    668 	.area CABS    (ABS,CODE)

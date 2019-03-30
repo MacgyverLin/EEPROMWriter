@@ -1,6 +1,6 @@
 ﻿  main.cpp
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(34): warning C4326: return type of 'main' should be 'int' instead of 'void'
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(296): warning C4018: '<': signed/unsigned mismatch
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(400): warning C4018: '<': signed/unsigned mismatch
-e:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(512): warning C4018: '<': signed/unsigned mismatch
-  EEPROMWriter.vcxproj -> E:\Project\EEPROMWriter\EEPROMWriter\Debug\EEPROMWriter.exe
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(34): warning C4326: return type of 'main' should be 'int' instead of 'void'
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(296): warning C4018: '<': signed/unsigned mismatch
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(400): warning C4018: '<': signed/unsigned mismatch
+c:\project\eepromwriter\eepromwriter\eepromwriter\main.cpp(512): warning C4018: '<': signed/unsigned mismatch
+  EEPROMWriter.vcxproj -> C:\Project\EEPROMWriter\EEPROMWriter\Debug\EEPROMWriter.exe

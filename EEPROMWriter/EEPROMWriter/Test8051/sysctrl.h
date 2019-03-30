@@ -38,8 +38,8 @@ __bit __at (0x02) bvar;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-#define IOWRITE(a, d) (*((volatile __xdata unsigned char * __data)(a))) = (d)
-#define IOREAD(a)     (*((volatile __xdata unsigned char * __data)(a)))
+#define IOWRITE(a, d) (*((volatile __xdata unsigned char *)(a))) = (d)
+#define IOREAD(a)     (*((volatile __xdata unsigned char *)(a)))
 
 //////////////////////////////////////////////////////////////////////////////
 //
@@ -54,17 +54,17 @@ __bit __at (0x02) bvar;
 #define SYS_PORT_7        (SYS_BASE+7)
 #define sysCopyBIOS(srcAddr, dstAddr, size)\
 {\
-    __code unsigned char * __data src = *((__code unsigned char * __data)srcAddr);\
-    __xdata volatile unsigned char *__data dst = *((__xdata volatile unsigned char * __data)dstAddr);\
-    __data unsigned int count = size;\
+    __code unsigned char *src = *((__code unsigned char *)srcAddr);\
+    __xdata volatile unsigned char *dst = *((__xdata volatile unsigned char *)dstAddr);\
+    unsigned int count = size;\
     while(count--)\
         *dst++ = *src++;\
 }
 #define sysCheckBIOS(ok, srcAddr, dstAddr, size)\
 {\
-    __code unsigned char * __data src = *((__code unsigned char * __data)srcAddr);\
-    __xdata volatile unsigned char *__data dst = *((__xdata volatile unsigned char * __data)dstAddr);\
-    __data unsigned int count = size;\
+    __code unsigned char *src = *((__code unsigned char *)srcAddr);\
+    __xdata volatile unsigned char *dst = *((__xdata volatile unsigned char *)dstAddr);\
+    unsigned int count = size;\
     ok = 1;\
     while(count--)\
     {\
@@ -77,8 +77,8 @@ __bit __at (0x02) bvar;
 }
 #define sysClearMemory(address, size)\
 {\
-    __xdata volatile unsigned char *__data dst = *((__xdata volatile unsigned char * __data)address);\
-    __data unsigned int count = size;\
+    __xdata volatile unsigned char *dst = *((__xdata volatile unsigned char *)address);\
+    unsigned int count = size;\
     while(count--)\
     {\
         *dst++ = 0;\

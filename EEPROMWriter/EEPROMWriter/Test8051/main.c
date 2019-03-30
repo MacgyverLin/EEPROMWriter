@@ -4,30 +4,34 @@
 #include "compactflash.h"
 #include "sysctrl.h"
 #include "led.h"
+#include "fat.h"
+
+unsigned char PSBANK=0;
 
 char buf[SECTOR_SIZE];
 void main()
 {
-    __data char res;
-/*
-    data_v =  1;
-    idata_v = 1;
-    pdata_v = 1;
-    xdata_v = 1;
+    char res;
+    unsigned int br = 0;
+    /*
+        data_v =  1;
+        idata_v = 1;
+        pdata_v = 1;
+        xdata_v = 1;
 
-    i = code_v;
-*/
+        i = code_v;
+    */
     P1 = 0x01;
-    sysCopyBIOS(0x0000, 0x0000, 0x4000);
+    sysCopyBIOS(0x0000, 0x0000, 0xA000);
 
     P1 = 0x02;
-    sysEnterNormalMode();
-
-    P1 = 0x03;
     res = 0;
-    //sysCheckBIOS(res, 0x0000, 0x0000, 0x4000);
-    if(1)
+    sysCheckBIOS(res, 0x0000, 0x0000, 0xA000);
+    if(res)
     {
+        P1 = 0x03;
+        sysEnterNormalMode();
+
         ledTest();
         // sysEnterISPMode();
         // sysColdBoot();
@@ -77,16 +81,29 @@ void main()
 
         P1 = 0x13;
         sioInit(0);
+
+        P1 = 0x14;
+        //sioTXStr(0, "main 1\r\n");
         cfTest(0, buf);
-        sioTXBuf(0, buf, SECTOR_SIZE);
 
-        //P1 = 0x14;
-        //cfTest(1);
+        P1 = 0x15;
+        //cfTest(1, buf);
+        //sioTXBuf(0, buf, SECTOR_SIZE);
 
-        P1 = 0x81;
+        P1 = 0x16;
+        //sioTXStr(0, "main 2\r\n");
+        // br = fatfsTest(buf);
+        //sioTXBuf(0, buf, br);
+
+        P1 = 0x17;
+        //br = fatfsTest(buf);
+
+        //P1 = 0x81;
     }
     else
     {
         P1 = 0x82;
     }
+
+    while(1);
 }

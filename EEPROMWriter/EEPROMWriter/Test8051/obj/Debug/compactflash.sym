@@ -8,481 +8,7 @@ Symbol Table
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000001 L
     A                                                           =  0000E0 L
- 17 A$compactflashmpactflash$1002                                  00028F GR
- 17 A$compactflashmpactflash$1007                                  000292 GR
- 17 A$compactflashmpactflash$1021                                  000295 GR
- 17 A$compactflashmpactflash$1022                                  000297 GR
- 17 A$compactflashmpactflash$1023                                  00029A GR
- 17 A$compactflashmpactflash$1026                                  00029B GR
- 17 A$compactflashmpactflash$1029                                  00029E GR
- 17 A$compactflashmpactflash$1030                                  00029F GR
- 17 A$compactflashmpactflash$1031                                  0002A0 GR
- 17 A$compactflashmpactflash$1032                                  0002A2 GR
- 17 A$compactflashmpactflash$1033                                  0002A4 GR
- 17 A$compactflashmpactflash$1034                                  0002A6 GR
- 17 A$compactflashmpactflash$1035                                  0002A8 GR
- 17 A$compactflashmpactflash$1036                                  0002AA GR
- 17 A$compactflashmpactflash$1037                                  0002AD GR
- 17 A$compactflashmpactflash$1040                                  0002AF GR
- 17 A$compactflashmpactflash$1043                                  0002B2 GR
- 17 A$compactflashmpactflash$1044                                  0002B5 GR
- 17 A$compactflashmpactflash$1045                                  0002B6 GR
- 17 A$compactflashmpactflash$1046                                  0002B7 GR
- 17 A$compactflashmpactflash$1047                                  0002B8 GR
- 17 A$compactflashmpactflash$1048                                  0002B9 GR
- 17 A$compactflashmpactflash$1049                                  0002BA GR
- 17 A$compactflashmpactflash$1050                                  0002BB GR
- 17 A$compactflashmpactflash$1051                                  0002BC GR
- 17 A$compactflashmpactflash$1052                                  0002BD GR
- 17 A$compactflashmpactflash$1053                                  0002C0 GR
- 17 A$compactflashmpactflash$1054                                  0002C1 GR
- 17 A$compactflashmpactflash$1055                                  0002C2 GR
- 17 A$compactflashmpactflash$1056                                  0002C3 GR
- 17 A$compactflashmpactflash$1057                                  0002C4 GR
- 17 A$compactflashmpactflash$1058                                  0002C5 GR
- 17 A$compactflashmpactflash$1059                                  0002C6 GR
- 17 A$compactflashmpactflash$1060                                  0002C7 GR
- 17 A$compactflashmpactflash$1061                                  0002C8 GR
- 17 A$compactflashmpactflash$1062                                  0002CB GR
- 17 A$compactflashmpactflash$1063                                  0002CD GR
- 17 A$compactflashmpactflash$1064                                  0002CE GR
- 17 A$compactflashmpactflash$1065                                  0002CF GR
- 17 A$compactflashmpactflash$1066                                  0002D0 GR
- 17 A$compactflashmpactflash$1067                                  0002D1 GR
- 17 A$compactflashmpactflash$1068                                  0002D3 GR
- 17 A$compactflashmpactflash$1069                                  0002D5 GR
- 17 A$compactflashmpactflash$1070                                  0002D7 GR
- 17 A$compactflashmpactflash$1071                                  0002D9 GR
- 17 A$compactflashmpactflash$1074                                  0002DC GR
- 17 A$compactflashmpactflash$1079                                  0002DF GR
- 17 A$compactflashmpactflash$438                                   000000 GR
- 17 A$compactflashmpactflash$439                                   000002 GR
- 17 A$compactflashmpactflash$440                                   000005 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 2.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 17 A$compactflashmpactflash$443                                   000006 GR
- 17 A$compactflashmpactflash$444                                   000007 GR
- 17 A$compactflashmpactflash$445                                   000008 GR
- 17 A$compactflashmpactflash$446                                   000009 GR
- 17 A$compactflashmpactflash$447                                   00000A GR
- 17 A$compactflashmpactflash$448                                   00000C GR
- 17 A$compactflashmpactflash$449                                   00000D GR
- 17 A$compactflashmpactflash$450                                   00000E GR
- 17 A$compactflashmpactflash$451                                   00000F GR
- 17 A$compactflashmpactflash$452                                   000010 GR
- 17 A$compactflashmpactflash$453                                   000011 GR
- 17 A$compactflashmpactflash$454                                   000013 GR
- 17 A$compactflashmpactflash$455                                   000014 GR
- 17 A$compactflashmpactflash$456                                   000015 GR
- 17 A$compactflashmpactflash$457                                   000016 GR
- 17 A$compactflashmpactflash$458                                   000018 GR
- 17 A$compactflashmpactflash$459                                   000019 GR
- 17 A$compactflashmpactflash$460                                   00001A GR
- 17 A$compactflashmpactflash$461                                   00001C GR
- 17 A$compactflashmpactflash$462                                   00001D GR
- 17 A$compactflashmpactflash$463                                   00001E GR
- 17 A$compactflashmpactflash$464                                   000020 GR
- 17 A$compactflashmpactflash$465                                   000022 GR
- 17 A$compactflashmpactflash$466                                   000024 GR
- 17 A$compactflashmpactflash$469                                   000025 GR
- 17 A$compactflashmpactflash$470                                   000027 GR
- 17 A$compactflashmpactflash$471                                   000028 GR
- 17 A$compactflashmpactflash$472                                   000029 GR
- 17 A$compactflashmpactflash$473                                   00002B GR
- 17 A$compactflashmpactflash$474                                   00002C GR
- 17 A$compactflashmpactflash$475                                   00002D GR
- 17 A$compactflashmpactflash$476                                   00002F GR
- 17 A$compactflashmpactflash$477                                   000031 GR
- 17 A$compactflashmpactflash$478                                   000033 GR
- 17 A$compactflashmpactflash$483                                   000034 GR
- 17 A$compactflashmpactflash$497                                   000037 GR
- 17 A$compactflashmpactflash$498                                   000039 GR
- 17 A$compactflashmpactflash$499                                   00003C GR
- 17 A$compactflashmpactflash$502                                   00003D GR
- 17 A$compactflashmpactflash$503                                   00003E GR
- 17 A$compactflashmpactflash$507                                   00003F GR
- 17 A$compactflashmpactflash$508                                   000041 GR
- 17 A$compactflashmpactflash$509                                   000042 GR
- 17 A$compactflashmpactflash$510                                   000043 GR
- 17 A$compactflashmpactflash$511                                   000045 GR
- 17 A$compactflashmpactflash$512                                   000046 GR
- 17 A$compactflashmpactflash$513                                   000047 GR
- 17 A$compactflashmpactflash$514                                   000048 GR
- 17 A$compactflashmpactflash$515                                   000049 GR
- 17 A$compactflashmpactflash$516                                   00004A GR
- 17 A$compactflashmpactflash$517                                   00004C GR
- 17 A$compactflashmpactflash$518                                   00004D GR
- 17 A$compactflashmpactflash$519                                   00004E GR
- 17 A$compactflashmpactflash$520                                   00004F GR
- 17 A$compactflashmpactflash$521                                   000051 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 3.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 17 A$compactflashmpactflash$522                                   000052 GR
- 17 A$compactflashmpactflash$523                                   000053 GR
- 17 A$compactflashmpactflash$524                                   000055 GR
- 17 A$compactflashmpactflash$525                                   000056 GR
- 17 A$compactflashmpactflash$526                                   000057 GR
- 17 A$compactflashmpactflash$527                                   000059 GR
- 17 A$compactflashmpactflash$528                                   00005B GR
- 17 A$compactflashmpactflash$531                                   00005C GR
- 17 A$compactflashmpactflash$532                                   00005D GR
- 17 A$compactflashmpactflash$537                                   000060 GR
- 17 A$compactflashmpactflash$551                                   000063 GR
- 17 A$compactflashmpactflash$552                                   000065 GR
- 17 A$compactflashmpactflash$553                                   000068 GR
- 17 A$compactflashmpactflash$556                                   000069 GR
- 17 A$compactflashmpactflash$557                                   00006A GR
- 17 A$compactflashmpactflash$561                                   00006B GR
- 17 A$compactflashmpactflash$562                                   00006D GR
- 17 A$compactflashmpactflash$563                                   00006E GR
- 17 A$compactflashmpactflash$564                                   00006F GR
- 17 A$compactflashmpactflash$565                                   000071 GR
- 17 A$compactflashmpactflash$566                                   000072 GR
- 17 A$compactflashmpactflash$567                                   000073 GR
- 17 A$compactflashmpactflash$568                                   000074 GR
- 17 A$compactflashmpactflash$569                                   000075 GR
- 17 A$compactflashmpactflash$570                                   000076 GR
- 17 A$compactflashmpactflash$571                                   000078 GR
- 17 A$compactflashmpactflash$572                                   000079 GR
- 17 A$compactflashmpactflash$573                                   00007A GR
- 17 A$compactflashmpactflash$574                                   00007B GR
- 17 A$compactflashmpactflash$575                                   00007D GR
- 17 A$compactflashmpactflash$576                                   00007E GR
- 17 A$compactflashmpactflash$577                                   00007F GR
- 17 A$compactflashmpactflash$578                                   000081 GR
- 17 A$compactflashmpactflash$579                                   000082 GR
- 17 A$compactflashmpactflash$580                                   000083 GR
- 17 A$compactflashmpactflash$581                                   000085 GR
- 17 A$compactflashmpactflash$582                                   000087 GR
- 17 A$compactflashmpactflash$583                                   000088 GR
- 17 A$compactflashmpactflash$586                                   000089 GR
- 17 A$compactflashmpactflash$587                                   00008C GR
- 17 A$compactflashmpactflash$588                                   00008E GR
- 17 A$compactflashmpactflash$589                                   000091 GR
- 17 A$compactflashmpactflash$594                                   000094 GR
- 17 A$compactflashmpactflash$608                                   000097 GR
- 17 A$compactflashmpactflash$609                                   000099 GR
- 17 A$compactflashmpactflash$610                                   00009C GR
- 17 A$compactflashmpactflash$613                                   00009D GR
- 17 A$compactflashmpactflash$614                                   00009E GR
- 17 A$compactflashmpactflash$618                                   00009F GR
- 17 A$compactflashmpactflash$619                                   0000A1 GR
- 17 A$compactflashmpactflash$620                                   0000A2 GR
- 17 A$compactflashmpactflash$621                                   0000A3 GR
- 17 A$compactflashmpactflash$622                                   0000A5 GR
- 17 A$compactflashmpactflash$623                                   0000A6 GR
- 17 A$compactflashmpactflash$624                                   0000A7 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 4.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 17 A$compactflashmpactflash$625                                   0000A8 GR
- 17 A$compactflashmpactflash$626                                   0000A9 GR
- 17 A$compactflashmpactflash$627                                   0000AA GR
- 17 A$compactflashmpactflash$628                                   0000AC GR
- 17 A$compactflashmpactflash$629                                   0000AD GR
- 17 A$compactflashmpactflash$630                                   0000AE GR
- 17 A$compactflashmpactflash$631                                   0000AF GR
- 17 A$compactflashmpactflash$632                                   0000B1 GR
- 17 A$compactflashmpactflash$633                                   0000B2 GR
- 17 A$compactflashmpactflash$634                                   0000B3 GR
- 17 A$compactflashmpactflash$635                                   0000B5 GR
- 17 A$compactflashmpactflash$636                                   0000B6 GR
- 17 A$compactflashmpactflash$637                                   0000B7 GR
- 17 A$compactflashmpactflash$638                                   0000B9 GR
- 17 A$compactflashmpactflash$639                                   0000BB GR
- 17 A$compactflashmpactflash$640                                   0000BC GR
- 17 A$compactflashmpactflash$643                                   0000BD GR
- 17 A$compactflashmpactflash$644                                   0000C0 GR
- 17 A$compactflashmpactflash$645                                   0000C2 GR
- 17 A$compactflashmpactflash$646                                   0000C5 GR
- 17 A$compactflashmpactflash$651                                   0000C8 GR
- 17 A$compactflashmpactflash$669                                   0000CB GR
- 17 A$compactflashmpactflash$670                                   0000CD GR
- 17 A$compactflashmpactflash$671                                   0000D0 GR
- 17 A$compactflashmpactflash$674                                   0000D1 GR
- 17 A$compactflashmpactflash$677                                   0000D4 GR
- 17 A$compactflashmpactflash$678                                   0000D5 GR
- 17 A$compactflashmpactflash$679                                   0000D6 GR
- 17 A$compactflashmpactflash$680                                   0000D8 GR
- 17 A$compactflashmpactflash$681                                   0000DA GR
- 17 A$compactflashmpactflash$682                                   0000DC GR
- 17 A$compactflashmpactflash$683                                   0000DE GR
- 17 A$compactflashmpactflash$684                                   0000E0 GR
- 17 A$compactflashmpactflash$685                                   0000E3 GR
- 17 A$compactflashmpactflash$688                                   0000E5 GR
- 17 A$compactflashmpactflash$691                                   0000E8 GR
- 17 A$compactflashmpactflash$692                                   0000EA GR
- 17 A$compactflashmpactflash$693                                   0000EB GR
- 17 A$compactflashmpactflash$694                                   0000EC GR
- 17 A$compactflashmpactflash$695                                   0000ED GR
- 17 A$compactflashmpactflash$696                                   0000EE GR
- 17 A$compactflashmpactflash$697                                   0000EF GR
- 17 A$compactflashmpactflash$698                                   0000F0 GR
- 17 A$compactflashmpactflash$699                                   0000F2 GR
- 17 A$compactflashmpactflash$700                                   0000F3 GR
- 17 A$compactflashmpactflash$701                                   0000F4 GR
- 17 A$compactflashmpactflash$702                                   0000F5 GR
- 17 A$compactflashmpactflash$703                                   0000F7 GR
- 17 A$compactflashmpactflash$704                                   0000F8 GR
- 17 A$compactflashmpactflash$705                                   0000F9 GR
- 17 A$compactflashmpactflash$706                                   0000FB GR
- 17 A$compactflashmpactflash$707                                   0000FC GR
- 17 A$compactflashmpactflash$708                                   0000FD GR
- 17 A$compactflashmpactflash$709                                   0000FF GR
- 17 A$compactflashmpactflash$710                                   000101 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 5.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 17 A$compactflashmpactflash$711                                   000103 GR
- 17 A$compactflashmpactflash$714                                   000104 GR
- 17 A$compactflashmpactflash$717                                   000107 GR
- 17 A$compactflashmpactflash$718                                   000109 GR
- 17 A$compactflashmpactflash$719                                   00010B GR
- 17 A$compactflashmpactflash$720                                   00010D GR
- 17 A$compactflashmpactflash$721                                   00010F GR
- 17 A$compactflashmpactflash$722                                   000111 GR
- 17 A$compactflashmpactflash$723                                   000113 GR
- 17 A$compactflashmpactflash$724                                   000115 GR
- 17 A$compactflashmpactflash$725                                   000118 GR
- 17 A$compactflashmpactflash$726                                   00011A GR
- 17 A$compactflashmpactflash$727                                   00011C GR
- 17 A$compactflashmpactflash$730                                   00011E GR
- 17 A$compactflashmpactflash$733                                   000121 GR
- 17 A$compactflashmpactflash$734                                   000123 GR
- 17 A$compactflashmpactflash$735                                   000124 GR
- 17 A$compactflashmpactflash$736                                   000125 GR
- 17 A$compactflashmpactflash$737                                   000127 GR
- 17 A$compactflashmpactflash$738                                   000128 GR
- 17 A$compactflashmpactflash$739                                   000129 GR
- 17 A$compactflashmpactflash$740                                   00012B GR
- 17 A$compactflashmpactflash$741                                   00012D GR
- 17 A$compactflashmpactflash$742                                   00012E GR
- 17 A$compactflashmpactflash$745                                   00012F GR
- 17 A$compactflashmpactflash$748                                   000132 GR
- 17 A$compactflashmpactflash$749                                   000134 GR
- 17 A$compactflashmpactflash$750                                   000136 GR
- 17 A$compactflashmpactflash$751                                   000138 GR
- 17 A$compactflashmpactflash$752                                   00013A GR
- 17 A$compactflashmpactflash$753                                   00013C GR
- 17 A$compactflashmpactflash$754                                   00013E GR
- 17 A$compactflashmpactflash$755                                   000140 GR
- 17 A$compactflashmpactflash$756                                   000143 GR
- 17 A$compactflashmpactflash$757                                   000145 GR
- 17 A$compactflashmpactflash$758                                   000147 GR
- 17 A$compactflashmpactflash$761                                   000149 GR
- 17 A$compactflashmpactflash$764                                   00014C GR
- 17 A$compactflashmpactflash$765                                   00014E GR
- 17 A$compactflashmpactflash$766                                   00014F GR
- 17 A$compactflashmpactflash$767                                   000150 GR
- 17 A$compactflashmpactflash$768                                   000152 GR
- 17 A$compactflashmpactflash$769                                   000153 GR
- 17 A$compactflashmpactflash$770                                   000154 GR
- 17 A$compactflashmpactflash$771                                   000156 GR
- 17 A$compactflashmpactflash$772                                   000158 GR
- 17 A$compactflashmpactflash$773                                   000159 GR
- 17 A$compactflashmpactflash$776                                   00015A GR
- 17 A$compactflashmpactflash$779                                   00015D GR
- 17 A$compactflashmpactflash$780                                   00015F GR
- 17 A$compactflashmpactflash$781                                   000161 GR
- 17 A$compactflashmpactflash$782                                   000163 GR
- 17 A$compactflashmpactflash$783                                   000165 GR
- 17 A$compactflashmpactflash$784                                   000167 GR
- 17 A$compactflashmpactflash$785                                   000169 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 6.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 17 A$compactflashmpactflash$786                                   00016B GR
- 17 A$compactflashmpactflash$787                                   00016E GR
- 17 A$compactflashmpactflash$788                                   000170 GR
- 17 A$compactflashmpactflash$789                                   000172 GR
- 17 A$compactflashmpactflash$792                                   000174 GR
- 17 A$compactflashmpactflash$795                                   000177 GR
- 17 A$compactflashmpactflash$796                                   000179 GR
- 17 A$compactflashmpactflash$797                                   00017A GR
- 17 A$compactflashmpactflash$798                                   00017B GR
- 17 A$compactflashmpactflash$799                                   00017D GR
- 17 A$compactflashmpactflash$800                                   00017E GR
- 17 A$compactflashmpactflash$801                                   00017F GR
- 17 A$compactflashmpactflash$802                                   000181 GR
- 17 A$compactflashmpactflash$803                                   000183 GR
- 17 A$compactflashmpactflash$804                                   000184 GR
- 17 A$compactflashmpactflash$807                                   000185 GR
- 17 A$compactflashmpactflash$810                                   000188 GR
- 17 A$compactflashmpactflash$811                                   00018A GR
- 17 A$compactflashmpactflash$812                                   00018C GR
- 17 A$compactflashmpactflash$813                                   00018E GR
- 17 A$compactflashmpactflash$814                                   000190 GR
- 17 A$compactflashmpactflash$815                                   000192 GR
- 17 A$compactflashmpactflash$816                                   000194 GR
- 17 A$compactflashmpactflash$817                                   000196 GR
- 17 A$compactflashmpactflash$818                                   000199 GR
- 17 A$compactflashmpactflash$819                                   00019B GR
- 17 A$compactflashmpactflash$820                                   00019D GR
- 17 A$compactflashmpactflash$823                                   00019F GR
- 17 A$compactflashmpactflash$826                                   0001A2 GR
- 17 A$compactflashmpactflash$827                                   0001A4 GR
- 17 A$compactflashmpactflash$828                                   0001A5 GR
- 17 A$compactflashmpactflash$829                                   0001A6 GR
- 17 A$compactflashmpactflash$830                                   0001A8 GR
- 17 A$compactflashmpactflash$831                                   0001A9 GR
- 17 A$compactflashmpactflash$832                                   0001AA GR
- 17 A$compactflashmpactflash$833                                   0001AC GR
- 17 A$compactflashmpactflash$834                                   0001AE GR
- 17 A$compactflashmpactflash$835                                   0001B0 GR
- 17 A$compactflashmpactflash$841                                   0001B1 GR
- 17 A$compactflashmpactflash$844                                   0001B4 GR
- 17 A$compactflashmpactflash$845                                   0001B6 GR
- 17 A$compactflashmpactflash$846                                   0001B8 GR
- 17 A$compactflashmpactflash$847                                   0001BA GR
- 17 A$compactflashmpactflash$848                                   0001BC GR
- 17 A$compactflashmpactflash$849                                   0001BE GR
- 17 A$compactflashmpactflash$850                                   0001C1 GR
- 17 A$compactflashmpactflash$853                                   0001C3 GR
- 17 A$compactflashmpactflash$856                                   0001C6 GR
- 17 A$compactflashmpactflash$857                                   0001C8 GR
- 17 A$compactflashmpactflash$858                                   0001C9 GR
- 17 A$compactflashmpactflash$859                                   0001CA GR
- 17 A$compactflashmpactflash$860                                   0001CB GR
- 17 A$compactflashmpactflash$861                                   0001CC GR
- 17 A$compactflashmpactflash$862                                   0001CD GR
- 17 A$compactflashmpactflash$863                                   0001CE GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 7.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 17 A$compactflashmpactflash$864                                   0001D0 GR
- 17 A$compactflashmpactflash$865                                   0001D1 GR
- 17 A$compactflashmpactflash$866                                   0001D2 GR
- 17 A$compactflashmpactflash$867                                   0001D3 GR
- 17 A$compactflashmpactflash$868                                   0001D5 GR
- 17 A$compactflashmpactflash$869                                   0001D6 GR
- 17 A$compactflashmpactflash$870                                   0001D7 GR
- 17 A$compactflashmpactflash$871                                   0001D9 GR
- 17 A$compactflashmpactflash$872                                   0001DA GR
- 17 A$compactflashmpactflash$873                                   0001DB GR
- 17 A$compactflashmpactflash$874                                   0001DD GR
- 17 A$compactflashmpactflash$875                                   0001DF GR
- 17 A$compactflashmpactflash$876                                   0001E1 GR
- 17 A$compactflashmpactflash$879                                   0001E2 GR
- 17 A$compactflashmpactflash$882                                   0001E5 GR
- 17 A$compactflashmpactflash$883                                   0001E7 GR
- 17 A$compactflashmpactflash$884                                   0001E9 GR
- 17 A$compactflashmpactflash$885                                   0001EB GR
- 17 A$compactflashmpactflash$886                                   0001ED GR
- 17 A$compactflashmpactflash$887                                   0001EF GR
- 17 A$compactflashmpactflash$888                                   0001F1 GR
- 17 A$compactflashmpactflash$889                                   0001F3 GR
- 17 A$compactflashmpactflash$890                                   0001F6 GR
- 17 A$compactflashmpactflash$891                                   0001F8 GR
- 17 A$compactflashmpactflash$892                                   0001FA GR
- 17 A$compactflashmpactflash$895                                   0001FC GR
- 17 A$compactflashmpactflash$898                                   0001FF GR
- 17 A$compactflashmpactflash$899                                   000201 GR
- 17 A$compactflashmpactflash$900                                   000203 GR
- 17 A$compactflashmpactflash$905                                   000204 GR
- 17 A$compactflashmpactflash$906                                   000207 GR
- 17 A$compactflashmpactflash$909                                   00020A GR
- 17 A$compactflashmpactflash$910                                   00020D GR
- 17 A$compactflashmpactflash$911                                   00020E GR
- 17 A$compactflashmpactflash$912                                   00020F GR
- 17 A$compactflashmpactflash$913                                   000212 GR
- 17 A$compactflashmpactflash$914                                   000213 GR
- 17 A$compactflashmpactflash$915                                   000214 GR
- 17 A$compactflashmpactflash$916                                   000215 GR
- 17 A$compactflashmpactflash$917                                   000216 GR
- 17 A$compactflashmpactflash$918                                   000217 GR
- 17 A$compactflashmpactflash$919                                   000218 GR
- 17 A$compactflashmpactflash$920                                   000219 GR
- 17 A$compactflashmpactflash$921                                   00021A GR
- 17 A$compactflashmpactflash$922                                   00021B GR
- 17 A$compactflashmpactflash$923                                   00021D GR
- 17 A$compactflashmpactflash$925                                   00021F GR
- 17 A$compactflashmpactflash$926                                   000221 GR
- 17 A$compactflashmpactflash$927                                   000223 GR
- 17 A$compactflashmpactflash$928                                   000225 GR
- 17 A$compactflashmpactflash$929                                   000226 GR
- 17 A$compactflashmpactflash$930                                   000229 GR
- 17 A$compactflashmpactflash$932                                   00022B GR
- 17 A$compactflashmpactflash$933                                   00022D GR
- 17 A$compactflashmpactflash$934                                   00022E GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 8.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 17 A$compactflashmpactflash$937                                   000230 GR
- 17 A$compactflashmpactflash$940                                   000233 GR
- 17 A$compactflashmpactflash$941                                   000235 GR
- 17 A$compactflashmpactflash$942                                   000237 GR
- 17 A$compactflashmpactflash$943                                   000239 GR
- 17 A$compactflashmpactflash$944                                   00023B GR
- 17 A$compactflashmpactflash$945                                   00023D GR
- 17 A$compactflashmpactflash$946                                   00023F GR
- 17 A$compactflashmpactflash$947                                   000241 GR
- 17 A$compactflashmpactflash$948                                   000243 GR
- 17 A$compactflashmpactflash$949                                   000246 GR
- 17 A$compactflashmpactflash$950                                   000248 GR
- 17 A$compactflashmpactflash$951                                   00024A GR
- 17 A$compactflashmpactflash$952                                   00024C GR
- 17 A$compactflashmpactflash$955                                   00024E GR
- 17 A$compactflashmpactflash$958                                   000251 GR
- 17 A$compactflashmpactflash$959                                   000253 GR
- 17 A$compactflashmpactflash$960                                   000254 GR
- 17 A$compactflashmpactflash$961                                   000255 GR
- 17 A$compactflashmpactflash$962                                   000257 GR
- 17 A$compactflashmpactflash$963                                   000258 GR
- 17 A$compactflashmpactflash$964                                   000259 GR
- 17 A$compactflashmpactflash$965                                   00025B GR
- 17 A$compactflashmpactflash$966                                   00025D GR
- 17 A$compactflashmpactflash$967                                   00025F GR
- 17 A$compactflashmpactflash$968                                   000261 GR
- 17 A$compactflashmpactflash$969                                   000263 GR
- 17 A$compactflashmpactflash$970                                   000264 GR
- 17 A$compactflashmpactflash$971                                   000265 GR
- 17 A$compactflashmpactflash$972                                   000266 GR
- 17 A$compactflashmpactflash$973                                   000267 GR
- 17 A$compactflashmpactflash$974                                   000268 GR
- 17 A$compactflashmpactflash$975                                   000269 GR
- 17 A$compactflashmpactflash$976                                   00026B GR
- 17 A$compactflashmpactflash$977                                   00026C GR
- 17 A$compactflashmpactflash$978                                   00026D GR
- 17 A$compactflashmpactflash$979                                   00026E GR
- 17 A$compactflashmpactflash$980                                   000270 GR
- 17 A$compactflashmpactflash$981                                   000271 GR
- 17 A$compactflashmpactflash$982                                   000272 GR
- 17 A$compactflashmpactflash$983                                   000274 GR
- 17 A$compactflashmpactflash$984                                   000275 GR
- 17 A$compactflashmpactflash$985                                   000276 GR
- 17 A$compactflashmpactflash$986                                   000278 GR
- 17 A$compactflashmpactflash$987                                   00027A GR
- 17 A$compactflashmpactflash$988                                   00027B GR
- 17 A$compactflashmpactflash$989                                   00027D GR
- 17 A$compactflashmpactflash$990                                   00027F GR
- 17 A$compactflashmpactflash$991                                   000281 GR
- 17 A$compactflashmpactflash$994                                   000284 GR
- 17 A$compactflashmpactflash$995                                   000287 GR
- 17 A$compactflashmpactflash$996                                   000289 GR
- 17 A$compactflashmpactflash$997                                   00028B GR
- 17 A$compactflashmpactflash$998                                   00028D GR
     A.0                                                         =  0000E0 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 9.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     A.1                                                         =  0000E1 L
     A.2                                                         =  0000E2 L
     A.3                                                         =  0000E3 L
@@ -509,77 +35,6 @@ Symbol Table
     B.5                                                         =  0000F5 L
     B.6                                                         =  0000F6 L
     B.7                                                         =  0000F7 L
- 17 C$compactflash.c$10$1_0$10                                  =  000037 GR
- 17 C$compactflash.c$101$2_0$21                                 =  00020A GR
- 17 C$compactflash.c$103$2_0$21                                 =  000230 GR
- 17 C$compactflash.c$104$2_0$21                                 =  000233 GR
- 17 C$compactflash.c$106$2_0$21                                 =  00024E GR
- 17 C$compactflash.c$107$2_0$21                                 =  000251 GR
- 17 C$compactflash.c$109$2_0$21                                 =  000284 GR
- 17 C$compactflash.c$114$1_0$19                                 =  00028F GR
- 17 C$compactflash.c$115$1_0$19                                 =  000292 GR
- 17 C$compactflash.c$119$1_0$23                                 =  000295 GR
- 17 C$compactflash.c$124$1_0$23                                 =  00029B GR
- 17 C$compactflash.c$125$1_0$23                                 =  00029E GR
- 17 C$compactflash.c$127$1_0$23                                 =  0002AF GR
- 17 C$compactflash.c$128$1_0$23                                 =  0002B2 GR
- 17 C$compactflash.c$13$2_0$11                                  =  00003D GR
- 17 C$compactflash.c$130$1_0$23                                 =  0002DC GR
- 17 C$compactflash.c$133$1_0$23                                 =  0002DF GR
- 17 C$compactflash.c$15$2_0$11                                  =  00003F GR
- 17 C$compactflash.c$17$1_0$10                                  =  00005C GR
- 17 C$compactflash.c$18$1_0$10                                  =  000060 GR
- 17 C$compactflash.c$20$1_0$13                                  =  000063 GR
- 17 C$compactflash.c$24$2_0$14                                  =  000069 GR
- 17 C$compactflash.c$26$2_0$14                                  =  00006B GR
- 17 C$compactflash.c$28$1_0$13                                  =  000089 GR
- 17 C$compactflash.c$29$1_0$13                                  =  000094 GR
- 17 C$compactflash.c$3$0_0$8                                    =  000000 GR
- 17 C$compactflash.c$31$1_0$16                                  =  000097 GR
- 17 C$compactflash.c$34$2_0$17                                  =  00009D GR
- 17 C$compactflash.c$36$2_0$17                                  =  00009F GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 10.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 17 C$compactflash.c$38$1_0$16                                  =  0000BD GR
- 17 C$compactflash.c$39$1_0$16                                  =  0000C8 GR
- 17 C$compactflash.c$41$1_0$19                                  =  0000CB GR
- 17 C$compactflash.c$49$1_0$19                                  =  0000D1 GR
- 17 C$compactflash.c$5$1_0$8                                    =  000006 GR
- 17 C$compactflash.c$50$1_0$19                                  =  0000D4 GR
- 17 C$compactflash.c$52$1_0$19                                  =  0000E5 GR
- 17 C$compactflash.c$53$1_0$19                                  =  0000E8 GR
- 17 C$compactflash.c$55$1_0$19                                  =  000104 GR
- 17 C$compactflash.c$56$1_0$19                                  =  000107 GR
- 17 C$compactflash.c$58$1_0$19                                  =  00011E GR
- 17 C$compactflash.c$59$1_0$19                                  =  000121 GR
- 17 C$compactflash.c$61$1_0$19                                  =  00012F GR
- 17 C$compactflash.c$62$1_0$19                                  =  000132 GR
- 17 C$compactflash.c$64$1_0$19                                  =  000149 GR
- 17 C$compactflash.c$65$1_0$19                                  =  00014C GR
- 17 C$compactflash.c$67$1_0$19                                  =  00015A GR
- 17 C$compactflash.c$68$1_0$19                                  =  00015D GR
- 17 C$compactflash.c$7$1_0$8                                    =  000025 GR
- 17 C$compactflash.c$70$1_0$19                                  =  000174 GR
- 17 C$compactflash.c$71$1_0$19                                  =  000177 GR
- 17 C$compactflash.c$73$1_0$19                                  =  000185 GR
- 17 C$compactflash.c$74$1_0$19                                  =  000188 GR
- 17 C$compactflash.c$76$1_0$19                                  =  00019F GR
- 17 C$compactflash.c$77$1_0$19                                  =  0001A2 GR
- 17 C$compactflash.c$8$1_0$8                                    =  000034 GR
- 17 C$compactflash.c$82$2_0$20                                  =  0001B1 GR
- 17 C$compactflash.c$84$2_0$20                                  =  0001B1 GR
- 17 C$compactflash.c$85$2_0$20                                  =  0001B4 GR
- 17 C$compactflash.c$87$2_0$20                                  =  0001C3 GR
- 17 C$compactflash.c$88$2_0$20                                  =  0001C6 GR
- 17 C$compactflash.c$90$2_0$20                                  =  0001E2 GR
- 17 C$compactflash.c$91$2_0$20                                  =  0001E5 GR
- 17 C$compactflash.c$93$2_0$20                                  =  0001FC GR
- 17 C$compactflash.c$94$2_0$20                                  =  0001FF GR
- 17 C$compactflash.c$96$2_0$20                                  =  000204 GR
- 17 C$compactflash.c$98$1_0$19                                  =  000204 GR
     CPRL2                                                       =  0000C8 L
     CT2                                                         =  0000C9 L
     CY                                                          =  0000D7 L
@@ -595,118 +50,6 @@ Symbol Table
     EXEN2                                                       =  0000CB L
     EXF2                                                        =  0000CE L
     F0                                                          =  0000D5 L
-    G$AC$0_0$0                                                  =  0000D6 G
-    G$ACC$0_0$0                                                 =  0000E0 G
-    G$B$0_0$0                                                   =  0000F0 G
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 11.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
-    G$CY$0_0$0                                                  =  0000D7 G
-    G$DPH$0_0$0                                                 =  000083 G
-    G$DPL$0_0$0                                                 =  000082 G
-    G$EA$0_0$0                                                  =  0000AF G
-    G$ES$0_0$0                                                  =  0000AC G
-    G$ET0$0_0$0                                                 =  0000A9 G
-    G$ET1$0_0$0                                                 =  0000AB G
-    G$EX0$0_0$0                                                 =  0000A8 G
-    G$EX1$0_0$0                                                 =  0000AA G
-    G$F0$0_0$0                                                  =  0000D5 G
-    G$F1$0_0$0                                                  =  0000D1 G
-    G$IE$0_0$0                                                  =  0000A8 G
-    G$IE0$0_0$0                                                 =  000089 G
-    G$IE1$0_0$0                                                 =  00008B G
-    G$INT0$0_0$0                                                =  0000B2 G
-    G$INT1$0_0$0                                                =  0000B3 G
-    G$IP$0_0$0                                                  =  0000B8 G
-    G$IT0$0_0$0                                                 =  000088 G
-    G$IT1$0_0$0                                                 =  00008A G
-    G$OV$0_0$0                                                  =  0000D2 G
-    G$P$0_0$0                                                   =  0000D0 G
-    G$P0$0_0$0                                                  =  000080 G
-    G$P0_0$0_0$0                                                =  000080 G
-    G$P0_1$0_0$0                                                =  000081 G
-    G$P0_2$0_0$0                                                =  000082 G
-    G$P0_3$0_0$0                                                =  000083 G
-    G$P0_4$0_0$0                                                =  000084 G
-    G$P0_5$0_0$0                                                =  000085 G
-    G$P0_6$0_0$0                                                =  000086 G
-    G$P0_7$0_0$0                                                =  000087 G
-    G$P1$0_0$0                                                  =  000090 G
-    G$P1_0$0_0$0                                                =  000090 G
-    G$P1_1$0_0$0                                                =  000091 G
-    G$P1_2$0_0$0                                                =  000092 G
-    G$P1_3$0_0$0                                                =  000093 G
-    G$P1_4$0_0$0                                                =  000094 G
-    G$P1_5$0_0$0                                                =  000095 G
-    G$P1_6$0_0$0                                                =  000096 G
-    G$P1_7$0_0$0                                                =  000097 G
-    G$P2$0_0$0                                                  =  0000A0 G
-    G$P2_0$0_0$0                                                =  0000A0 G
-    G$P2_1$0_0$0                                                =  0000A1 G
-    G$P2_2$0_0$0                                                =  0000A2 G
-    G$P2_3$0_0$0                                                =  0000A3 G
-    G$P2_4$0_0$0                                                =  0000A4 G
-    G$P2_5$0_0$0                                                =  0000A5 G
-    G$P2_6$0_0$0                                                =  0000A6 G
-    G$P2_7$0_0$0                                                =  0000A7 G
-    G$P3$0_0$0                                                  =  0000B0 G
-    G$P3_0$0_0$0                                                =  0000B0 G
-    G$P3_1$0_0$0                                                =  0000B1 G
-    G$P3_2$0_0$0                                                =  0000B2 G
-    G$P3_3$0_0$0                                                =  0000B3 G
-    G$P3_4$0_0$0                                                =  0000B4 G
-    G$P3_5$0_0$0                                                =  0000B5 G
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 12.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
-    G$P3_6$0_0$0                                                =  0000B6 G
-    G$P3_7$0_0$0                                                =  0000B7 G
-    G$PCON$0_0$0                                                =  000087 G
-    G$PS$0_0$0                                                  =  0000BC G
-    G$PSW$0_0$0                                                 =  0000D0 G
-    G$PT0$0_0$0                                                 =  0000B9 G
-    G$PT1$0_0$0                                                 =  0000BB G
-    G$PX0$0_0$0                                                 =  0000B8 G
-    G$PX1$0_0$0                                                 =  0000BA G
-    G$RB8$0_0$0                                                 =  00009A G
-    G$RD$0_0$0                                                  =  0000B7 G
-    G$REN$0_0$0                                                 =  00009C G
-    G$RI$0_0$0                                                  =  000098 G
-    G$RS0$0_0$0                                                 =  0000D3 G
-    G$RS1$0_0$0                                                 =  0000D4 G
-    G$RXD$0_0$0                                                 =  0000B0 G
-    G$SBUF$0_0$0                                                =  000099 G
-    G$SCON$0_0$0                                                =  000098 G
-    G$SM0$0_0$0                                                 =  00009F G
-    G$SM1$0_0$0                                                 =  00009E G
-    G$SM2$0_0$0                                                 =  00009D G
-    G$SP$0_0$0                                                  =  000081 G
-    G$T0$0_0$0                                                  =  0000B4 G
-    G$T1$0_0$0                                                  =  0000B5 G
-    G$TB8$0_0$0                                                 =  00009B G
-    G$TCON$0_0$0                                                =  000088 G
-    G$TF0$0_0$0                                                 =  00008D G
-    G$TF1$0_0$0                                                 =  00008F G
-    G$TH0$0_0$0                                                 =  00008C G
-    G$TH1$0_0$0                                                 =  00008D G
-    G$TI$0_0$0                                                  =  000099 G
-    G$TL0$0_0$0                                                 =  00008A G
-    G$TL1$0_0$0                                                 =  00008B G
-    G$TMOD$0_0$0                                                =  000089 G
-    G$TR0$0_0$0                                                 =  00008C G
-    G$TR1$0_0$0                                                 =  00008E G
-    G$TXD$0_0$0                                                 =  0000B1 G
-    G$WR$0_0$0                                                  =  0000B6 G
- 17 G$cfInit$0$0                                                =  000000 GR
- 17 G$cfReadSector$0$0                                          =  0000CB GR
- 17 G$cfTest$0$0                                                =  000295 GR
- 17 G$cfWaitCommandReady$0$0                                    =  000063 GR
- 17 G$cfWaitDataReady$0$0                                       =  000097 GR
- 17 G$cfWaitIdle$0$0                                            =  000037 GR
     IE                                                          =  0000A8 L
     IE.0                                                        =  0000A8 L
     IE.1                                                        =  0000A9 L
@@ -715,14 +58,14 @@ Symbol Table
     IE.4                                                        =  0000AC L
     IE.5                                                        =  0000AD L
     IE.7                                                        =  0000AF L
-    IE0                                                         =  000089 L
-    IE1                                                         =  00008B L
-    INT0                                                        =  0000B2 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 13.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 2.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
+    IE0                                                         =  000089 L
+    IE1                                                         =  00008B L
+    INT0                                                        =  0000B2 L
     INT1                                                        =  0000B3 L
     IP                                                          =  0000B8 L
     IP.0                                                        =  0000B8 L
@@ -733,16 +76,6 @@ Symbol Table
     IP.5                                                        =  0000BD L
     IT0                                                         =  000088 L
     IT1                                                         =  00008A L
-  B Lcompactflash.cfInit$device$1_0$7                           =  000000 GR
-  B Lcompactflash.cfReadSector$buf$1_0$18                       =  000004 GR
-  B Lcompactflash.cfReadSector$device$1_0$18                    =  000009 GR
-  5 Lcompactflash.cfReadSector$i$1_0$19                         =  000000 GR
-  B Lcompactflash.cfReadSector$sectorCount$1_0$18               =  000007 GR
-  B Lcompactflash.cfTest$buf$1_0$22                             =  00000A GR
-  B Lcompactflash.cfTest$device$1_0$22                          =  00000D GR
-  B Lcompactflash.cfWaitCommandReady$device$1_0$12              =  000002 GR
-  B Lcompactflash.cfWaitDataReady$device$1_0$15                 =  000003 GR
-  B Lcompactflash.cfWaitIdle$device$1_0$9                       =  000001 GR
     OV                                                          =  0000D2 L
     P                                                           =  0000D0 L
     P0                                                          =  000080 L
@@ -778,11 +111,6 @@ Symbol Table
     P3.2                                                        =  0000B2 L
     P3.3                                                        =  0000B3 L
     P3.4                                                        =  0000B4 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 14.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     P3.5                                                        =  0000B5 L
     P3.6                                                        =  0000B6 L
     P3.7                                                        =  0000B7 L
@@ -790,6 +118,11 @@ Symbol Table
     PS                                                          =  0000BC L
     PSW                                                         =  0000D0 L
     PSW.0                                                       =  0000D0 L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 3.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     PSW.1                                                       =  0000D1 L
     PSW.2                                                       =  0000D2 L
     PSW.3                                                       =  0000D3 L
@@ -838,11 +171,6 @@ Symbol Table
     TCLK                                                        =  0000CC L
     TCON                                                        =  000088 L
     TCON.0                                                      =  000088 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 15.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     TCON.1                                                      =  000089 L
     TCON.2                                                      =  00008A L
     TCON.3                                                      =  00008B L
@@ -850,6 +178,11 @@ Symbol Table
     TCON.5                                                      =  00008D L
     TCON.6                                                      =  00008E L
     TCON.7                                                      =  00008F L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 4.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     TF0                                                         =  00008D L
     TF1                                                         =  00008F L
     TF2                                                         =  0000CF L
@@ -865,12 +198,6 @@ Symbol Table
     TR1                                                         =  00008E L
     TR2                                                         =  0000CA L
     TXD                                                         =  0000B1 L
- 17 XG$cfInit$0$0                                               =  000034 GR
- 17 XG$cfReadSector$0$0                                         =  000292 GR
- 17 XG$cfTest$0$0                                               =  0002DF GR
- 17 XG$cfWaitCommandReady$0$0                                   =  000094 GR
- 17 XG$cfWaitDataReady$0$0                                      =  0000C8 GR
- 17 XG$cfWaitIdle$0$0                                           =  000060 GR
     _AC                                                         =  0000D6 G
     _ACC                                                        =  0000E0 G
     _B                                                          =  0000F0 G
@@ -898,11 +225,6 @@ Symbol Table
     _P0                                                         =  000080 G
     _P0_0                                                       =  000080 G
     _P0_1                                                       =  000081 G
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 16.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     _P0_2                                                       =  000082 G
     _P0_3                                                       =  000083 G
     _P0_4                                                       =  000084 G
@@ -916,6 +238,11 @@ Symbol Table
     _P1_3                                                       =  000093 G
     _P1_4                                                       =  000094 G
     _P1_5                                                       =  000095 G
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 5.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     _P1_6                                                       =  000096 G
     _P1_7                                                       =  000097 G
     _P2                                                         =  0000A0 G
@@ -958,11 +285,6 @@ Symbol Table
     _SP                                                         =  000081 G
     _T0                                                         =  0000B4 G
     _T1                                                         =  0000B5 G
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 17.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     _TB8                                                        =  00009B G
     _TCON                                                       =  000088 G
     _TF0                                                        =  00008D G
@@ -976,26 +298,38 @@ Symbol Table
     _TR0                                                        =  00008C G
     _TR1                                                        =  00008E G
     _TXD                                                        =  0000B1 G
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 6.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     _WR                                                         =  0000B6 G
     __gptrput                                                      ****** GX
     __sdcc_banked_call                                             ****** GX
     __sdcc_banked_ret                                              ****** GX
- 17 _cfInit                                                        000000 GR
-  B _cfInit_device_65536_7                                         000000 R
- 17 _cfReadSector                                                  0000CB GR
-  B _cfReadSector_PARM_2                                           000004 GR
-  B _cfReadSector_PARM_3                                           000007 GR
-  B _cfReadSector_device_65536_18                                  000009 R
-  5 _cfReadSector_i_65536_19                                       000000 R
- 17 _cfTest                                                        000295 GR
-  B _cfTest_PARM_2                                                 00000A GR
-  B _cfTest_device_65536_22                                        00000D R
- 17 _cfWaitCommandReady                                            000063 GR
-  B _cfWaitCommandReady_device_65536_12                            000002 R
- 17 _cfWaitDataReady                                               000097 GR
-  B _cfWaitDataReady_device_65536_15                               000003 R
- 17 _cfWaitIdle                                                    000037 GR
-  B _cfWaitIdle_device_65536_9                                     000001 R
+ 16 _cfInit                                                        000000 GR
+  A _cfInit_device_65536_20                                        000000 R
+ 16 _cfReadSector                                                  0000CB GR
+  A _cfReadSector_PARM_2                                           000004 GR
+  A _cfReadSector_PARM_3                                           000007 GR
+  A _cfReadSector_PARM_4                                           00000B GR
+  A _cfReadSector_device_65536_31                                  00000D R
+  5 _cfReadSector_sloc0_1_0                                        000000 R
+  5 _cfReadSector_sloc1_1_0                                        000002 R
+  5 _cfReadSector_sloc2_1_0                                        000006 R
+  5 _cfReadSector_sloc3_1_0                                        000008 R
+ 16 _cfTest                                                        0002D5 GR
+  A _cfTest_PARM_2                                                 00000E GR
+  A _cfTest_device_65536_37                                        000011 R
+ 16 _cfWaitCommandReady                                            000063 GR
+  A _cfWaitCommandReady_device_65536_25                            000002 R
+ 16 _cfWaitDataReady                                               000097 GR
+  A _cfWaitDataReady_device_65536_28                               000003 R
+ 16 _cfWaitIdle                                                    000037 GR
+  A _cfWaitIdle_device_65536_22                                    000001 R
+    _sioTXBuf                                                      ****** GX
+    _sioTXBuf_PARM_2                                               ****** GX
+    _sioTXBuf_PARM_3                                               ****** GX
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
     a.1                                                         =  0000E1 L
@@ -1018,17 +352,17 @@ Symbol Table
     ar0                                                         =  000000 
     ar1                                                         =  000001 
     ar2                                                         =  000002 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 18.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     ar3                                                         =  000003 
     ar4                                                         =  000004 
     ar5                                                         =  000005 
     ar6                                                         =  000006 
     ar7                                                         =  000007 
     b                                                           =  0000F0 L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 7.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     b.0                                                         =  0000F0 L
     b.1                                                         =  0000F1 L
     b.2                                                         =  0000F2 L
@@ -1078,17 +412,17 @@ Symbol Table
     p0                                                          =  000080 L
     p0.0                                                        =  000080 L
     p0.1                                                        =  000081 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 19.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     p0.2                                                        =  000082 L
     p0.3                                                        =  000083 L
     p0.4                                                        =  000084 L
     p0.5                                                        =  000085 L
     p0.6                                                        =  000086 L
     p0.7                                                        =  000087 L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 8.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     p1                                                          =  000090 L
     p1.0                                                        =  000090 L
     p1.1                                                        =  000091 L
@@ -1138,17 +472,17 @@ Symbol Table
     rclk                                                        =  0000CD L
     ren                                                         =  00009C L
     ri                                                          =  000098 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 20.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     rs0                                                         =  0000D3 L
     rs1                                                         =  0000D4 L
     rxd                                                         =  0000B0 L
     sbuf                                                        =  000099 L
     scon                                                        =  000098 L
     scon.0                                                      =  000098 L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 9.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     scon.1                                                      =  000099 L
     scon.2                                                      =  00009A L
     scon.3                                                      =  00009B L
@@ -1196,8 +530,7 @@ Symbol Table
     tr2                                                         =  0000CA L
     txd                                                         =  0000B1 L
 
-
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 21.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 10.
 Hexadecimal [24-Bits]
 
 Area Table
@@ -1207,26 +540,25 @@ Area Table
    2 RSEG0                                      size      0   flags    8
    3 RSEG1                                      size      0   flags    8
    4 REG_BANK_0                                 size      8   flags    4
-   5 DSEG                                       size      2   flags    0
-   6 OSEG                                       size      0   flags    4
-   7 ISEG                                       size      0   flags    0
-   8 IABS                                       size      0   flags    8
-   9 BSEG                                       size      0   flags   80
-   A PSEG                                       size      0   flags   50
-   B XSEG                                       size      E   flags   40
-   C XABS                                       size      0   flags   48
-   D XISEG                                      size      0   flags   40
-   E HOME                                       size      0   flags   20
-   F GSINIT0                                    size      0   flags   20
-  10 GSINIT1                                    size      0   flags   20
-  11 GSINIT2                                    size      0   flags   20
-  12 GSINIT3                                    size      0   flags   20
-  13 GSINIT4                                    size      0   flags   20
-  14 GSINIT5                                    size      0   flags   20
-  15 GSINIT                                     size      0   flags   20
-  16 GSFINAL                                    size      0   flags   20
-  17 CSEG                                       size    2E2   flags   20
-  18 CONST                                      size      0   flags   20
-  19 XINIT                                      size      0   flags   20
-  1A CABS                                       size      0   flags   28
+   5 DSEG                                       size      B   flags    0
+   6 ISEG                                       size      0   flags    0
+   7 IABS                                       size      0   flags    8
+   8 BSEG                                       size      0   flags   80
+   9 PSEG                                       size      0   flags   50
+   A XSEG                                       size     12   flags   40
+   B XABS                                       size      0   flags   48
+   C XISEG                                      size      0   flags   40
+   D HOME                                       size      0   flags   20
+   E GSINIT0                                    size      0   flags   20
+   F GSINIT1                                    size      0   flags   20
+  10 GSINIT2                                    size      0   flags   20
+  11 GSINIT3                                    size      0   flags   20
+  12 GSINIT4                                    size      0   flags   20
+  13 GSINIT5                                    size      0   flags   20
+  14 GSINIT                                     size      0   flags   20
+  15 GSFINAL                                    size      0   flags   20
+  16 CSEG                                       size    3B3   flags   20
+  17 CONST                                      size      0   flags   20
+  18 XINIT                                      size      0   flags   20
+  19 CABS                                       size      0   flags   28
 

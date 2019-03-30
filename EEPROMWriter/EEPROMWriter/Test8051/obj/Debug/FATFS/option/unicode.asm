@@ -1,0 +1,987 @@
+;--------------------------------------------------------
+; File Created by SDCC : free open source ANSI-C Compiler
+; Version 3.8.0 #10562 (MINGW32)
+;--------------------------------------------------------
+	.module unicode
+	.optsdcc -mmcs51 --model-huge
+	
+;--------------------------------------------------------
+; Public variables in this module
+;--------------------------------------------------------
+	.globl _ff_convert_PARM_2
+	.globl _ff_convert
+	.globl _ff_wtoupper
+;--------------------------------------------------------
+; special function registers
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+;--------------------------------------------------------
+; special function bits
+;--------------------------------------------------------
+	.area RSEG    (ABS,DATA)
+	.org 0x0000
+;--------------------------------------------------------
+; overlayable register banks
+;--------------------------------------------------------
+	.area REG_BANK_0	(REL,OVR,DATA)
+	.ds 8
+;--------------------------------------------------------
+; internal ram data
+;--------------------------------------------------------
+	.area DSEG    (DATA)
+;--------------------------------------------------------
+; overlayable items in internal ram 
+;--------------------------------------------------------
+;--------------------------------------------------------
+; indirectly addressable internal ram data
+;--------------------------------------------------------
+	.area ISEG    (DATA)
+;--------------------------------------------------------
+; absolute internal ram data
+;--------------------------------------------------------
+	.area IABS    (ABS,DATA)
+	.area IABS    (ABS,DATA)
+;--------------------------------------------------------
+; bit data
+;--------------------------------------------------------
+	.area BSEG    (BIT)
+;--------------------------------------------------------
+; paged external ram data
+;--------------------------------------------------------
+	.area PSEG    (PAG,XDATA)
+;--------------------------------------------------------
+; external ram data
+;--------------------------------------------------------
+	.area XSEG    (XDATA)
+_ff_convert_PARM_2:
+	.ds 2
+_ff_convert_chr_65536_36:
+	.ds 2
+_ff_convert_c_65536_37:
+	.ds 2
+_ff_wtoupper_chr_65536_44:
+	.ds 2
+;--------------------------------------------------------
+; absolute external ram data
+;--------------------------------------------------------
+	.area XABS    (ABS,XDATA)
+;--------------------------------------------------------
+; external initialized ram data
+;--------------------------------------------------------
+	.area XISEG   (XDATA)
+	.area HOME    (CODE)
+	.area GSINIT0 (CODE)
+	.area GSINIT1 (CODE)
+	.area GSINIT2 (CODE)
+	.area GSINIT3 (CODE)
+	.area GSINIT4 (CODE)
+	.area GSINIT5 (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area CSEG    (CODE)
+;--------------------------------------------------------
+; global & static initialisations
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area GSINIT  (CODE)
+	.area GSFINAL (CODE)
+	.area GSINIT  (CODE)
+;--------------------------------------------------------
+; Home
+;--------------------------------------------------------
+	.area HOME    (CODE)
+	.area HOME    (CODE)
+;--------------------------------------------------------
+; code
+;--------------------------------------------------------
+	.area CSEG    (CODE)
+;------------------------------------------------------------
+;Allocation info for local variables in function 'ff_convert'
+;------------------------------------------------------------
+;dir                       Allocated with name '_ff_convert_PARM_2'
+;chr                       Allocated with name '_ff_convert_chr_65536_36'
+;c                         Allocated with name '_ff_convert_c_65536_37'
+;------------------------------------------------------------
+;	FATFS\option\/ccsbcs.c:501: WCHAR ff_convert (	/* Converted character, Returns zero on error */
+;	-----------------------------------------
+;	 function ff_convert
+;	-----------------------------------------
+_ff_convert:
+	ar7 = 0x07
+	ar6 = 0x06
+	ar5 = 0x05
+	ar4 = 0x04
+	ar3 = 0x03
+	ar2 = 0x02
+	ar1 = 0x01
+	ar0 = 0x00
+	mov	r7,dph
+	mov	a,dpl
+	mov	dptr,#_ff_convert_chr_65536_36
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	FATFS\option\/ccsbcs.c:509: if (chr < 0x80) {	/* ASCII */
+	mov	dptr,#_ff_convert_chr_65536_36
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	clr	c
+	mov	a,r6
+	subb	a,#0x80
+	mov	a,r7
+	subb	a,#0x00
+	jnc	00108$
+;	FATFS\option\/ccsbcs.c:510: c = chr;
+	mov	dptr,#_ff_convert_c_65536_37
+	mov	a,r6
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
+	ljmp	00109$
+00108$:
+;	FATFS\option\/ccsbcs.c:513: if (dir) {		/* OEMCP to Unicode */
+	mov	dptr,#_ff_convert_PARM_2
+	movx	a,@dptr
+	mov	b,a
+	inc	dptr
+	movx	a,@dptr
+	orl	a,b
+	jz	00120$
+;	FATFS\option\/ccsbcs.c:514: c = (chr >= 0x100) ? 0 : Tbl[chr - 0x80];
+	mov	a,#0x100 - 0x01
+	add	a,r7
+	jnc	00114$
+	mov	r4,#0x00
+	mov	r5,#0x00
+	sjmp	00115$
+00114$:
+	mov	a,r6
+	add	a,#0x80
+	mov	r2,a
+	mov	a,r7
+	addc	a,#0xff
+	mov	r3,a
+	mov	a,r2
+	add	a,r2
+	mov	r2,a
+	mov	a,r3
+	rlc	a
+	mov	r3,a
+	mov	a,r2
+	add	a,#_Tbl
+	mov	dpl,a
+	mov	a,r3
+	addc	a,#(_Tbl >> 8)
+	mov	dph,a
+	clr	a
+	movc	a,@a+dptr
+	mov	r4,a
+	inc	dptr
+	clr	a
+	movc	a,@a+dptr
+	mov	r5,a
+00115$:
+	mov	dptr,#_ff_convert_c_65536_37
+	mov	a,r4
+	movx	@dptr,a
+	mov	a,r5
+	inc	dptr
+	movx	@dptr,a
+;	FATFS\option\/ccsbcs.c:517: for (c = 0; c < 0x80; c++) {
+	sjmp	00109$
+00120$:
+	mov	r4,#0x00
+	mov	r5,#0x00
+00110$:
+;	FATFS\option\/ccsbcs.c:518: if (chr == Tbl[c]) break;
+	mov	a,r4
+	add	a,r4
+	mov	r2,a
+	mov	a,r5
+	rlc	a
+	mov	r3,a
+	mov	a,r2
+	add	a,#_Tbl
+	mov	dpl,a
+	mov	a,r3
+	addc	a,#(_Tbl >> 8)
+	mov	dph,a
+	clr	a
+	movc	a,@a+dptr
+	mov	r2,a
+	inc	dptr
+	clr	a
+	movc	a,@a+dptr
+	mov	r3,a
+	mov	a,r6
+	cjne	a,ar2,00140$
+	mov	a,r7
+	cjne	a,ar3,00140$
+	sjmp	00103$
+00140$:
+;	FATFS\option\/ccsbcs.c:517: for (c = 0; c < 0x80; c++) {
+	inc	r4
+	cjne	r4,#0x00,00141$
+	inc	r5
+00141$:
+	clr	c
+	mov	a,r4
+	subb	a,#0x80
+	mov	a,r5
+	subb	a,#0x00
+	jc	00110$
+00103$:
+;	FATFS\option\/ccsbcs.c:520: c = (c + 0x80) & 0xFF;
+	mov	a,#0x80
+	add	a,r4
+	mov	r4,a
+	clr	a
+	addc	a,r5
+	mov	r5,a
+	mov	dptr,#_ff_convert_c_65536_37
+	mov	a,r4
+	movx	@dptr,a
+	clr	a
+	inc	dptr
+	movx	@dptr,a
+00109$:
+;	FATFS\option\/ccsbcs.c:524: return c;
+	mov	dptr,#_ff_convert_c_65536_37
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	dpl,r6
+	mov	dph,r7
+;	FATFS\option\/ccsbcs.c:525: }
+	ljmp	__sdcc_banked_ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'ff_wtoupper'
+;------------------------------------------------------------
+;chr                       Allocated with name '_ff_wtoupper_chr_65536_44'
+;i                         Allocated with name '_ff_wtoupper_i_65536_45'
+;------------------------------------------------------------
+;	FATFS\option\/ccsbcs.c:528: WCHAR ff_wtoupper (	/* Upper converted character */
+;	-----------------------------------------
+;	 function ff_wtoupper
+;	-----------------------------------------
+_ff_wtoupper:
+	mov	r7,dph
+	mov	a,dpl
+	mov	dptr,#_ff_wtoupper_chr_65536_44
+	movx	@dptr,a
+	mov	a,r7
+	inc	dptr
+	movx	@dptr,a
+;	FATFS\option\/ccsbcs.c:537: for (i = 0; tbl_lower[i] && chr != tbl_lower[i]; i++) ;
+	mov	dptr,#_ff_wtoupper_chr_65536_44
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+	mov	r4,#0x00
+	mov	r5,#0x00
+00104$:
+	mov	a,r4
+	add	a,r4
+	mov	r2,a
+	mov	a,r5
+	rlc	a
+	mov	r3,a
+	mov	a,r2
+	add	a,#_ff_wtoupper_tbl_lower_65536_45
+	mov	dpl,a
+	mov	a,r3
+	addc	a,#(_ff_wtoupper_tbl_lower_65536_45 >> 8)
+	mov	dph,a
+	clr	a
+	movc	a,@a+dptr
+	mov	r2,a
+	inc	dptr
+	clr	a
+	movc	a,@a+dptr
+	mov	r3,a
+	orl	a,r2
+	jz	00101$
+	mov	a,r6
+	cjne	a,ar2,00128$
+	mov	a,r7
+	cjne	a,ar3,00128$
+	sjmp	00101$
+00128$:
+	inc	r4
+	cjne	r4,#0x00,00104$
+	inc	r5
+	sjmp	00104$
+00101$:
+;	FATFS\option\/ccsbcs.c:539: return tbl_lower[i] ? tbl_upper[i] : chr;
+	mov	a,r4
+	add	a,r4
+	mov	r6,a
+	mov	a,r5
+	rlc	a
+	mov	r7,a
+	mov	a,r6
+	add	a,#_ff_wtoupper_tbl_lower_65536_45
+	mov	dpl,a
+	mov	a,r7
+	addc	a,#(_ff_wtoupper_tbl_lower_65536_45 >> 8)
+	mov	dph,a
+	clr	a
+	movc	a,@a+dptr
+	mov	r4,a
+	inc	dptr
+	clr	a
+	movc	a,@a+dptr
+	mov	r5,a
+	orl	a,r4
+	jz	00108$
+	mov	a,r6
+	add	a,#_ff_wtoupper_tbl_upper_65536_45
+	mov	dpl,a
+	mov	a,r7
+	addc	a,#(_ff_wtoupper_tbl_upper_65536_45 >> 8)
+	mov	dph,a
+	clr	a
+	movc	a,@a+dptr
+	mov	r6,a
+	inc	dptr
+	clr	a
+	movc	a,@a+dptr
+	mov	r7,a
+	sjmp	00109$
+00108$:
+	mov	dptr,#_ff_wtoupper_chr_65536_44
+	movx	a,@dptr
+	mov	r6,a
+	inc	dptr
+	movx	a,@dptr
+	mov	r7,a
+00109$:
+	mov	dpl,r6
+	mov	dph,r7
+;	FATFS\option\/ccsbcs.c:540: }
+	ljmp	__sdcc_banked_ret
+	.area CSEG    (CODE)
+	.area CONST   (CODE)
+_Tbl:
+	.byte #0xc7,#0x00	; 199
+	.byte #0xfc,#0x00	; 252
+	.byte #0xe9,#0x00	; 233
+	.byte #0xe2,#0x00	; 226
+	.byte #0xe4,#0x00	; 228
+	.byte #0xe0,#0x00	; 224
+	.byte #0xe5,#0x00	; 229
+	.byte #0xe7,#0x00	; 231
+	.byte #0xea,#0x00	; 234
+	.byte #0xeb,#0x00	; 235
+	.byte #0xe8,#0x00	; 232
+	.byte #0xef,#0x00	; 239
+	.byte #0xee,#0x00	; 238
+	.byte #0xec,#0x00	; 236
+	.byte #0xc4,#0x00	; 196
+	.byte #0xc5,#0x00	; 197
+	.byte #0xc9,#0x00	; 201
+	.byte #0xe6,#0x00	; 230
+	.byte #0xc6,#0x00	; 198
+	.byte #0xf4,#0x00	; 244
+	.byte #0xf6,#0x00	; 246
+	.byte #0xf2,#0x00	; 242
+	.byte #0xfb,#0x00	; 251
+	.byte #0xf9,#0x00	; 249
+	.byte #0xff,#0x00	; 255
+	.byte #0xd6,#0x00	; 214
+	.byte #0xdc,#0x00	; 220
+	.byte #0xa2,#0x00	; 162
+	.byte #0xa3,#0x00	; 163
+	.byte #0xa5,#0x00	; 165
+	.byte #0xa7,#0x20	; 8359
+	.byte #0x92,#0x01	; 402
+	.byte #0xe1,#0x00	; 225
+	.byte #0xed,#0x00	; 237
+	.byte #0xf3,#0x00	; 243
+	.byte #0xfa,#0x00	; 250
+	.byte #0xf1,#0x00	; 241
+	.byte #0xd1,#0x00	; 209
+	.byte #0xaa,#0x00	; 170
+	.byte #0xba,#0x00	; 186
+	.byte #0xbf,#0x00	; 191
+	.byte #0x10,#0x23	; 8976
+	.byte #0xac,#0x00	; 172
+	.byte #0xbd,#0x00	; 189
+	.byte #0xbc,#0x00	; 188
+	.byte #0xa1,#0x00	; 161
+	.byte #0xab,#0x00	; 171
+	.byte #0xbb,#0x00	; 187
+	.byte #0x91,#0x25	; 9617
+	.byte #0x92,#0x25	; 9618
+	.byte #0x93,#0x25	; 9619
+	.byte #0x02,#0x25	; 9474
+	.byte #0x24,#0x25	; 9508
+	.byte #0x61,#0x25	; 9569
+	.byte #0x62,#0x25	; 9570
+	.byte #0x56,#0x25	; 9558
+	.byte #0x55,#0x25	; 9557
+	.byte #0x63,#0x25	; 9571
+	.byte #0x51,#0x25	; 9553
+	.byte #0x57,#0x25	; 9559
+	.byte #0x5d,#0x25	; 9565
+	.byte #0x5c,#0x25	; 9564
+	.byte #0x5b,#0x25	; 9563
+	.byte #0x10,#0x25	; 9488
+	.byte #0x14,#0x25	; 9492
+	.byte #0x34,#0x25	; 9524
+	.byte #0x2c,#0x25	; 9516
+	.byte #0x1c,#0x25	; 9500
+	.byte #0x00,#0x25	; 9472
+	.byte #0x3c,#0x25	; 9532
+	.byte #0x5e,#0x25	; 9566
+	.byte #0x5f,#0x25	; 9567
+	.byte #0x5a,#0x25	; 9562
+	.byte #0x54,#0x25	; 9556
+	.byte #0x69,#0x25	; 9577
+	.byte #0x66,#0x25	; 9574
+	.byte #0x60,#0x25	; 9568
+	.byte #0x50,#0x25	; 9552
+	.byte #0x6c,#0x25	; 9580
+	.byte #0x67,#0x25	; 9575
+	.byte #0x68,#0x25	; 9576
+	.byte #0x64,#0x25	; 9572
+	.byte #0x65,#0x25	; 9573
+	.byte #0x59,#0x25	; 9561
+	.byte #0x58,#0x25	; 9560
+	.byte #0x52,#0x25	; 9554
+	.byte #0x53,#0x25	; 9555
+	.byte #0x6b,#0x25	; 9579
+	.byte #0x6a,#0x25	; 9578
+	.byte #0x18,#0x25	; 9496
+	.byte #0x0c,#0x25	; 9484
+	.byte #0x88,#0x25	; 9608
+	.byte #0x84,#0x25	; 9604
+	.byte #0x8c,#0x25	; 9612
+	.byte #0x90,#0x25	; 9616
+	.byte #0x80,#0x25	; 9600
+	.byte #0xb1,#0x03	; 945
+	.byte #0xdf,#0x00	; 223
+	.byte #0x93,#0x03	; 915
+	.byte #0xc0,#0x03	; 960
+	.byte #0xa3,#0x03	; 931
+	.byte #0xc3,#0x03	; 963
+	.byte #0xb5,#0x00	; 181
+	.byte #0xc4,#0x03	; 964
+	.byte #0xa6,#0x03	; 934
+	.byte #0x98,#0x03	; 920
+	.byte #0xa9,#0x03	; 937
+	.byte #0xb4,#0x03	; 948
+	.byte #0x1e,#0x22	; 8734
+	.byte #0xc6,#0x03	; 966
+	.byte #0xb5,#0x03	; 949
+	.byte #0x29,#0x22	; 8745
+	.byte #0x61,#0x22	; 8801
+	.byte #0xb1,#0x00	; 177
+	.byte #0x65,#0x22	; 8805
+	.byte #0x64,#0x22	; 8804
+	.byte #0x20,#0x23	; 8992
+	.byte #0x21,#0x23	; 8993
+	.byte #0xf7,#0x00	; 247
+	.byte #0x48,#0x22	; 8776
+	.byte #0xb0,#0x00	; 176
+	.byte #0x19,#0x22	; 8729
+	.byte #0xb7,#0x00	; 183
+	.byte #0x1a,#0x22	; 8730
+	.byte #0x7f,#0x20	; 8319
+	.byte #0xb2,#0x00	; 178
+	.byte #0xa0,#0x25	; 9632
+	.byte #0xa0,#0x00	; 160
+_ff_wtoupper_tbl_lower_65536_45:
+	.byte #0x61,#0x00	; 97
+	.byte #0x62,#0x00	; 98
+	.byte #0x63,#0x00	; 99
+	.byte #0x64,#0x00	; 100
+	.byte #0x65,#0x00	; 101
+	.byte #0x66,#0x00	; 102
+	.byte #0x67,#0x00	; 103
+	.byte #0x68,#0x00	; 104
+	.byte #0x69,#0x00	; 105
+	.byte #0x6a,#0x00	; 106
+	.byte #0x6b,#0x00	; 107
+	.byte #0x6c,#0x00	; 108
+	.byte #0x6d,#0x00	; 109
+	.byte #0x6e,#0x00	; 110
+	.byte #0x6f,#0x00	; 111
+	.byte #0x70,#0x00	; 112
+	.byte #0x71,#0x00	; 113
+	.byte #0x72,#0x00	; 114
+	.byte #0x73,#0x00	; 115
+	.byte #0x74,#0x00	; 116
+	.byte #0x75,#0x00	; 117
+	.byte #0x76,#0x00	; 118
+	.byte #0x77,#0x00	; 119
+	.byte #0x78,#0x00	; 120
+	.byte #0x79,#0x00	; 121
+	.byte #0x7a,#0x00	; 122
+	.byte #0xa1,#0x00	; 161
+	.byte #0xa2,#0x00	; 162
+	.byte #0xa3,#0x00	; 163
+	.byte #0xa5,#0x00	; 165
+	.byte #0xac,#0x00	; 172
+	.byte #0xaf,#0x00	; 175
+	.byte #0xe0,#0x00	; 224
+	.byte #0xe1,#0x00	; 225
+	.byte #0xe2,#0x00	; 226
+	.byte #0xe3,#0x00	; 227
+	.byte #0xe4,#0x00	; 228
+	.byte #0xe5,#0x00	; 229
+	.byte #0xe6,#0x00	; 230
+	.byte #0xe7,#0x00	; 231
+	.byte #0xe8,#0x00	; 232
+	.byte #0xe9,#0x00	; 233
+	.byte #0xea,#0x00	; 234
+	.byte #0xeb,#0x00	; 235
+	.byte #0xec,#0x00	; 236
+	.byte #0xed,#0x00	; 237
+	.byte #0xee,#0x00	; 238
+	.byte #0xef,#0x00	; 239
+	.byte #0xf0,#0x00	; 240
+	.byte #0xf1,#0x00	; 241
+	.byte #0xf2,#0x00	; 242
+	.byte #0xf3,#0x00	; 243
+	.byte #0xf4,#0x00	; 244
+	.byte #0xf5,#0x00	; 245
+	.byte #0xf6,#0x00	; 246
+	.byte #0xf8,#0x00	; 248
+	.byte #0xf9,#0x00	; 249
+	.byte #0xfa,#0x00	; 250
+	.byte #0xfb,#0x00	; 251
+	.byte #0xfc,#0x00	; 252
+	.byte #0xfd,#0x00	; 253
+	.byte #0xfe,#0x00	; 254
+	.byte #0xff,#0x00	; 255
+	.byte #0x01,#0x01	; 257
+	.byte #0x03,#0x01	; 259
+	.byte #0x05,#0x01	; 261
+	.byte #0x07,#0x01	; 263
+	.byte #0x09,#0x01	; 265
+	.byte #0x0b,#0x01	; 267
+	.byte #0x0d,#0x01	; 269
+	.byte #0x0f,#0x01	; 271
+	.byte #0x11,#0x01	; 273
+	.byte #0x13,#0x01	; 275
+	.byte #0x15,#0x01	; 277
+	.byte #0x17,#0x01	; 279
+	.byte #0x19,#0x01	; 281
+	.byte #0x1b,#0x01	; 283
+	.byte #0x1d,#0x01	; 285
+	.byte #0x1f,#0x01	; 287
+	.byte #0x21,#0x01	; 289
+	.byte #0x23,#0x01	; 291
+	.byte #0x25,#0x01	; 293
+	.byte #0x27,#0x01	; 295
+	.byte #0x29,#0x01	; 297
+	.byte #0x2b,#0x01	; 299
+	.byte #0x2d,#0x01	; 301
+	.byte #0x2f,#0x01	; 303
+	.byte #0x31,#0x01	; 305
+	.byte #0x33,#0x01	; 307
+	.byte #0x35,#0x01	; 309
+	.byte #0x37,#0x01	; 311
+	.byte #0x3a,#0x01	; 314
+	.byte #0x3c,#0x01	; 316
+	.byte #0x3e,#0x01	; 318
+	.byte #0x40,#0x01	; 320
+	.byte #0x42,#0x01	; 322
+	.byte #0x44,#0x01	; 324
+	.byte #0x46,#0x01	; 326
+	.byte #0x48,#0x01	; 328
+	.byte #0x4b,#0x01	; 331
+	.byte #0x4d,#0x01	; 333
+	.byte #0x4f,#0x01	; 335
+	.byte #0x51,#0x01	; 337
+	.byte #0x53,#0x01	; 339
+	.byte #0x55,#0x01	; 341
+	.byte #0x57,#0x01	; 343
+	.byte #0x59,#0x01	; 345
+	.byte #0x5b,#0x01	; 347
+	.byte #0x5d,#0x01	; 349
+	.byte #0x5f,#0x01	; 351
+	.byte #0x61,#0x01	; 353
+	.byte #0x63,#0x01	; 355
+	.byte #0x65,#0x01	; 357
+	.byte #0x67,#0x01	; 359
+	.byte #0x69,#0x01	; 361
+	.byte #0x6b,#0x01	; 363
+	.byte #0x6d,#0x01	; 365
+	.byte #0x6f,#0x01	; 367
+	.byte #0x71,#0x01	; 369
+	.byte #0x73,#0x01	; 371
+	.byte #0x75,#0x01	; 373
+	.byte #0x77,#0x01	; 375
+	.byte #0x7a,#0x01	; 378
+	.byte #0x7c,#0x01	; 380
+	.byte #0x7e,#0x01	; 382
+	.byte #0x92,#0x01	; 402
+	.byte #0xb1,#0x03	; 945
+	.byte #0xb2,#0x03	; 946
+	.byte #0xb3,#0x03	; 947
+	.byte #0xb4,#0x03	; 948
+	.byte #0xb5,#0x03	; 949
+	.byte #0xb6,#0x03	; 950
+	.byte #0xb7,#0x03	; 951
+	.byte #0xb8,#0x03	; 952
+	.byte #0xb9,#0x03	; 953
+	.byte #0xba,#0x03	; 954
+	.byte #0xbb,#0x03	; 955
+	.byte #0xbc,#0x03	; 956
+	.byte #0xbd,#0x03	; 957
+	.byte #0xbe,#0x03	; 958
+	.byte #0xbf,#0x03	; 959
+	.byte #0xc0,#0x03	; 960
+	.byte #0xc1,#0x03	; 961
+	.byte #0xc3,#0x03	; 963
+	.byte #0xc4,#0x03	; 964
+	.byte #0xc5,#0x03	; 965
+	.byte #0xc6,#0x03	; 966
+	.byte #0xc7,#0x03	; 967
+	.byte #0xc8,#0x03	; 968
+	.byte #0xc9,#0x03	; 969
+	.byte #0xca,#0x03	; 970
+	.byte #0x30,#0x04	; 1072
+	.byte #0x31,#0x04	; 1073
+	.byte #0x32,#0x04	; 1074
+	.byte #0x33,#0x04	; 1075
+	.byte #0x34,#0x04	; 1076
+	.byte #0x35,#0x04	; 1077
+	.byte #0x36,#0x04	; 1078
+	.byte #0x37,#0x04	; 1079
+	.byte #0x38,#0x04	; 1080
+	.byte #0x39,#0x04	; 1081
+	.byte #0x3a,#0x04	; 1082
+	.byte #0x3b,#0x04	; 1083
+	.byte #0x3c,#0x04	; 1084
+	.byte #0x3d,#0x04	; 1085
+	.byte #0x3e,#0x04	; 1086
+	.byte #0x3f,#0x04	; 1087
+	.byte #0x40,#0x04	; 1088
+	.byte #0x41,#0x04	; 1089
+	.byte #0x42,#0x04	; 1090
+	.byte #0x43,#0x04	; 1091
+	.byte #0x44,#0x04	; 1092
+	.byte #0x45,#0x04	; 1093
+	.byte #0x46,#0x04	; 1094
+	.byte #0x47,#0x04	; 1095
+	.byte #0x48,#0x04	; 1096
+	.byte #0x49,#0x04	; 1097
+	.byte #0x4a,#0x04	; 1098
+	.byte #0x4b,#0x04	; 1099
+	.byte #0x4c,#0x04	; 1100
+	.byte #0x4d,#0x04	; 1101
+	.byte #0x4e,#0x04	; 1102
+	.byte #0x4f,#0x04	; 1103
+	.byte #0x51,#0x04	; 1105
+	.byte #0x52,#0x04	; 1106
+	.byte #0x53,#0x04	; 1107
+	.byte #0x54,#0x04	; 1108
+	.byte #0x55,#0x04	; 1109
+	.byte #0x56,#0x04	; 1110
+	.byte #0x57,#0x04	; 1111
+	.byte #0x58,#0x04	; 1112
+	.byte #0x59,#0x04	; 1113
+	.byte #0x5a,#0x04	; 1114
+	.byte #0x5b,#0x04	; 1115
+	.byte #0x5c,#0x04	; 1116
+	.byte #0x5e,#0x04	; 1118
+	.byte #0x5f,#0x04	; 1119
+	.byte #0x70,#0x21	; 8560
+	.byte #0x71,#0x21	; 8561
+	.byte #0x72,#0x21	; 8562
+	.byte #0x73,#0x21	; 8563
+	.byte #0x74,#0x21	; 8564
+	.byte #0x75,#0x21	; 8565
+	.byte #0x76,#0x21	; 8566
+	.byte #0x77,#0x21	; 8567
+	.byte #0x78,#0x21	; 8568
+	.byte #0x79,#0x21	; 8569
+	.byte #0x7a,#0x21	; 8570
+	.byte #0x7b,#0x21	; 8571
+	.byte #0x7c,#0x21	; 8572
+	.byte #0x7d,#0x21	; 8573
+	.byte #0x7e,#0x21	; 8574
+	.byte #0x7f,#0x21	; 8575
+	.byte #0x41,#0xff	; 65345
+	.byte #0x42,#0xff	; 65346
+	.byte #0x43,#0xff	; 65347
+	.byte #0x44,#0xff	; 65348
+	.byte #0x45,#0xff	; 65349
+	.byte #0x46,#0xff	; 65350
+	.byte #0x47,#0xff	; 65351
+	.byte #0x48,#0xff	; 65352
+	.byte #0x49,#0xff	; 65353
+	.byte #0x4a,#0xff	; 65354
+	.byte #0x4b,#0xff	; 65355
+	.byte #0x4c,#0xff	; 65356
+	.byte #0x4d,#0xff	; 65357
+	.byte #0x4e,#0xff	; 65358
+	.byte #0x4f,#0xff	; 65359
+	.byte #0x50,#0xff	; 65360
+	.byte #0x51,#0xff	; 65361
+	.byte #0x52,#0xff	; 65362
+	.byte #0x53,#0xff	; 65363
+	.byte #0x54,#0xff	; 65364
+	.byte #0x55,#0xff	; 65365
+	.byte #0x56,#0xff	; 65366
+	.byte #0x57,#0xff	; 65367
+	.byte #0x58,#0xff	; 65368
+	.byte #0x59,#0xff	; 65369
+	.byte #0x5a,#0xff	; 65370
+	.byte #0x00,#0x00	; 0
+_ff_wtoupper_tbl_upper_65536_45:
+	.byte #0x41,#0x00	; 65
+	.byte #0x42,#0x00	; 66
+	.byte #0x43,#0x00	; 67
+	.byte #0x44,#0x00	; 68
+	.byte #0x45,#0x00	; 69
+	.byte #0x46,#0x00	; 70
+	.byte #0x47,#0x00	; 71
+	.byte #0x48,#0x00	; 72
+	.byte #0x49,#0x00	; 73
+	.byte #0x4a,#0x00	; 74
+	.byte #0x4b,#0x00	; 75
+	.byte #0x4c,#0x00	; 76
+	.byte #0x4d,#0x00	; 77
+	.byte #0x4e,#0x00	; 78
+	.byte #0x4f,#0x00	; 79
+	.byte #0x50,#0x00	; 80
+	.byte #0x51,#0x00	; 81
+	.byte #0x52,#0x00	; 82
+	.byte #0x53,#0x00	; 83
+	.byte #0x54,#0x00	; 84
+	.byte #0x55,#0x00	; 85
+	.byte #0x56,#0x00	; 86
+	.byte #0x57,#0x00	; 87
+	.byte #0x58,#0x00	; 88
+	.byte #0x59,#0x00	; 89
+	.byte #0x5a,#0x00	; 90
+	.byte #0x21,#0x00	; 33
+	.byte #0xe0,#0xff	; 65504
+	.byte #0xe1,#0xff	; 65505
+	.byte #0xe5,#0xff	; 65509
+	.byte #0xe2,#0xff	; 65506
+	.byte #0xe3,#0xff	; 65507
+	.byte #0xc0,#0x00	; 192
+	.byte #0xc1,#0x00	; 193
+	.byte #0xc2,#0x00	; 194
+	.byte #0xc3,#0x00	; 195
+	.byte #0xc4,#0x00	; 196
+	.byte #0xc5,#0x00	; 197
+	.byte #0xc6,#0x00	; 198
+	.byte #0xc7,#0x00	; 199
+	.byte #0xc8,#0x00	; 200
+	.byte #0xc9,#0x00	; 201
+	.byte #0xca,#0x00	; 202
+	.byte #0xcb,#0x00	; 203
+	.byte #0xcc,#0x00	; 204
+	.byte #0xcd,#0x00	; 205
+	.byte #0xce,#0x00	; 206
+	.byte #0xcf,#0x00	; 207
+	.byte #0xd0,#0x00	; 208
+	.byte #0xd1,#0x00	; 209
+	.byte #0xd2,#0x00	; 210
+	.byte #0xd3,#0x00	; 211
+	.byte #0xd4,#0x00	; 212
+	.byte #0xd5,#0x00	; 213
+	.byte #0xd6,#0x00	; 214
+	.byte #0xd8,#0x00	; 216
+	.byte #0xd9,#0x00	; 217
+	.byte #0xda,#0x00	; 218
+	.byte #0xdb,#0x00	; 219
+	.byte #0xdc,#0x00	; 220
+	.byte #0xdd,#0x00	; 221
+	.byte #0xde,#0x00	; 222
+	.byte #0x78,#0x01	; 376
+	.byte #0x00,#0x01	; 256
+	.byte #0x02,#0x01	; 258
+	.byte #0x04,#0x01	; 260
+	.byte #0x06,#0x01	; 262
+	.byte #0x08,#0x01	; 264
+	.byte #0x0a,#0x01	; 266
+	.byte #0x0c,#0x01	; 268
+	.byte #0x0e,#0x01	; 270
+	.byte #0x10,#0x01	; 272
+	.byte #0x12,#0x01	; 274
+	.byte #0x14,#0x01	; 276
+	.byte #0x16,#0x01	; 278
+	.byte #0x18,#0x01	; 280
+	.byte #0x1a,#0x01	; 282
+	.byte #0x1c,#0x01	; 284
+	.byte #0x1e,#0x01	; 286
+	.byte #0x20,#0x01	; 288
+	.byte #0x22,#0x01	; 290
+	.byte #0x24,#0x01	; 292
+	.byte #0x26,#0x01	; 294
+	.byte #0x28,#0x01	; 296
+	.byte #0x2a,#0x01	; 298
+	.byte #0x2c,#0x01	; 300
+	.byte #0x2e,#0x01	; 302
+	.byte #0x30,#0x01	; 304
+	.byte #0x32,#0x01	; 306
+	.byte #0x34,#0x01	; 308
+	.byte #0x36,#0x01	; 310
+	.byte #0x39,#0x01	; 313
+	.byte #0x3b,#0x01	; 315
+	.byte #0x3d,#0x01	; 317
+	.byte #0x3f,#0x01	; 319
+	.byte #0x41,#0x01	; 321
+	.byte #0x43,#0x01	; 323
+	.byte #0x45,#0x01	; 325
+	.byte #0x47,#0x01	; 327
+	.byte #0x4a,#0x01	; 330
+	.byte #0x4c,#0x01	; 332
+	.byte #0x4e,#0x01	; 334
+	.byte #0x50,#0x01	; 336
+	.byte #0x52,#0x01	; 338
+	.byte #0x54,#0x01	; 340
+	.byte #0x56,#0x01	; 342
+	.byte #0x58,#0x01	; 344
+	.byte #0x5a,#0x01	; 346
+	.byte #0x5c,#0x01	; 348
+	.byte #0x5e,#0x01	; 350
+	.byte #0x60,#0x01	; 352
+	.byte #0x62,#0x01	; 354
+	.byte #0x64,#0x01	; 356
+	.byte #0x66,#0x01	; 358
+	.byte #0x68,#0x01	; 360
+	.byte #0x6a,#0x01	; 362
+	.byte #0x6c,#0x01	; 364
+	.byte #0x6e,#0x01	; 366
+	.byte #0x70,#0x01	; 368
+	.byte #0x72,#0x01	; 370
+	.byte #0x74,#0x01	; 372
+	.byte #0x76,#0x01	; 374
+	.byte #0x79,#0x01	; 377
+	.byte #0x7b,#0x01	; 379
+	.byte #0x7d,#0x01	; 381
+	.byte #0x91,#0x01	; 401
+	.byte #0x91,#0x03	; 913
+	.byte #0x92,#0x03	; 914
+	.byte #0x93,#0x03	; 915
+	.byte #0x94,#0x03	; 916
+	.byte #0x95,#0x03	; 917
+	.byte #0x96,#0x03	; 918
+	.byte #0x97,#0x03	; 919
+	.byte #0x98,#0x03	; 920
+	.byte #0x99,#0x03	; 921
+	.byte #0x9a,#0x03	; 922
+	.byte #0x9b,#0x03	; 923
+	.byte #0x9c,#0x03	; 924
+	.byte #0x9d,#0x03	; 925
+	.byte #0x9e,#0x03	; 926
+	.byte #0x9f,#0x03	; 927
+	.byte #0xa0,#0x03	; 928
+	.byte #0xa1,#0x03	; 929
+	.byte #0xa3,#0x03	; 931
+	.byte #0xa4,#0x03	; 932
+	.byte #0xa5,#0x03	; 933
+	.byte #0xa6,#0x03	; 934
+	.byte #0xa7,#0x03	; 935
+	.byte #0xa8,#0x03	; 936
+	.byte #0xa9,#0x03	; 937
+	.byte #0xaa,#0x03	; 938
+	.byte #0x10,#0x04	; 1040
+	.byte #0x11,#0x04	; 1041
+	.byte #0x12,#0x04	; 1042
+	.byte #0x13,#0x04	; 1043
+	.byte #0x14,#0x04	; 1044
+	.byte #0x15,#0x04	; 1045
+	.byte #0x16,#0x04	; 1046
+	.byte #0x17,#0x04	; 1047
+	.byte #0x18,#0x04	; 1048
+	.byte #0x19,#0x04	; 1049
+	.byte #0x1a,#0x04	; 1050
+	.byte #0x1b,#0x04	; 1051
+	.byte #0x1c,#0x04	; 1052
+	.byte #0x1d,#0x04	; 1053
+	.byte #0x1e,#0x04	; 1054
+	.byte #0x1f,#0x04	; 1055
+	.byte #0x20,#0x04	; 1056
+	.byte #0x21,#0x04	; 1057
+	.byte #0x22,#0x04	; 1058
+	.byte #0x23,#0x04	; 1059
+	.byte #0x24,#0x04	; 1060
+	.byte #0x25,#0x04	; 1061
+	.byte #0x26,#0x04	; 1062
+	.byte #0x27,#0x04	; 1063
+	.byte #0x28,#0x04	; 1064
+	.byte #0x29,#0x04	; 1065
+	.byte #0x2a,#0x04	; 1066
+	.byte #0x2b,#0x04	; 1067
+	.byte #0x2c,#0x04	; 1068
+	.byte #0x2d,#0x04	; 1069
+	.byte #0x2e,#0x04	; 1070
+	.byte #0x2f,#0x04	; 1071
+	.byte #0x01,#0x04	; 1025
+	.byte #0x02,#0x04	; 1026
+	.byte #0x03,#0x04	; 1027
+	.byte #0x04,#0x04	; 1028
+	.byte #0x05,#0x04	; 1029
+	.byte #0x06,#0x04	; 1030
+	.byte #0x07,#0x04	; 1031
+	.byte #0x08,#0x04	; 1032
+	.byte #0x09,#0x04	; 1033
+	.byte #0x0a,#0x04	; 1034
+	.byte #0x0b,#0x04	; 1035
+	.byte #0x0c,#0x04	; 1036
+	.byte #0x0e,#0x04	; 1038
+	.byte #0x0f,#0x04	; 1039
+	.byte #0x60,#0x21	; 8544
+	.byte #0x61,#0x21	; 8545
+	.byte #0x62,#0x21	; 8546
+	.byte #0x63,#0x21	; 8547
+	.byte #0x64,#0x21	; 8548
+	.byte #0x65,#0x21	; 8549
+	.byte #0x66,#0x21	; 8550
+	.byte #0x67,#0x21	; 8551
+	.byte #0x68,#0x21	; 8552
+	.byte #0x69,#0x21	; 8553
+	.byte #0x6a,#0x21	; 8554
+	.byte #0x6b,#0x21	; 8555
+	.byte #0x6c,#0x21	; 8556
+	.byte #0x6d,#0x21	; 8557
+	.byte #0x6e,#0x21	; 8558
+	.byte #0x6f,#0x21	; 8559
+	.byte #0x21,#0xff	; 65313
+	.byte #0x22,#0xff	; 65314
+	.byte #0x23,#0xff	; 65315
+	.byte #0x24,#0xff	; 65316
+	.byte #0x25,#0xff	; 65317
+	.byte #0x26,#0xff	; 65318
+	.byte #0x27,#0xff	; 65319
+	.byte #0x28,#0xff	; 65320
+	.byte #0x29,#0xff	; 65321
+	.byte #0x2a,#0xff	; 65322
+	.byte #0x2b,#0xff	; 65323
+	.byte #0x2c,#0xff	; 65324
+	.byte #0x2d,#0xff	; 65325
+	.byte #0x2e,#0xff	; 65326
+	.byte #0x2f,#0xff	; 65327
+	.byte #0x30,#0xff	; 65328
+	.byte #0x31,#0xff	; 65329
+	.byte #0x32,#0xff	; 65330
+	.byte #0x33,#0xff	; 65331
+	.byte #0x34,#0xff	; 65332
+	.byte #0x35,#0xff	; 65333
+	.byte #0x36,#0xff	; 65334
+	.byte #0x37,#0xff	; 65335
+	.byte #0x38,#0xff	; 65336
+	.byte #0x39,#0xff	; 65337
+	.byte #0x3a,#0xff	; 65338
+	.byte #0x00,#0x00	; 0
+	.area XINIT   (CODE)
+	.area CABS    (ABS,CODE)

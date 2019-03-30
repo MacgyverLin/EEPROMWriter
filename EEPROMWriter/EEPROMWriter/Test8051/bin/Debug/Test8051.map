@@ -7,7 +7,6 @@ CABS                                00000000    00000000 =           0. bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000000  _PSBANK                         
 C:   00000000  l_BIT_BANK                      
 C:   00000000  l_BSEG                          
 C:   00000000  l_BSEG_BYTES                    
@@ -26,8 +25,6 @@ C:   00000000  l_RSEG
 C:   00000000  l_RSEG0                         
 C:   00000000  l_RSEG1                         
 C:   00000000  l_XABS                          
-C:   00000000  l_XINIT                         
-C:   00000000  l_XISEG                         
 C:   00000000  l__CODE                         
 C:   00000000  s_BSEG                          
 C:   00000000  s_CABS                          
@@ -40,23 +37,26 @@ C:   00000000  s_RSEG
 C:   00000000  s_RSEG0                         
 C:   00000000  s_RSEG1                         
 C:   00000000  s_XABS                          
+C:   00000001  l_XINIT                         
+C:   00000001  l_XISEG                         
 C:   00000003  l_GSFINAL                       
 C:   00000003  l_GSINIT0                       
 C:   00000008  l_REG_BANK_0                    
 C:   00000008  s_REG_BANK_1                    
 C:   0000000A  l_GSINIT2                       
 C:   00000010  s_REG_BANK_2                    
-C:   00000012  s_SSEG                          
 C:   00000018  s_BIT_BANK                      
 C:   00000018  s_OSEG                          
 C:   00000018  s_REG_BANK_3                    
 C:   0000001B  l_HOME                          
 C:   0000001B  s_GSINIT0                       
+C:   0000001C  s_SSEG                          
 C:   0000001E  s_GSINIT1                       
 C:   0000001E  s_GSINIT2                       
 C:   00000020  s_BSEG_BYTES                    
 C:   00000020  s__CODE                         
 C:   00000022  l_GSINIT3                       
+C:   00000028  s_GSINIT3                       
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
@@ -66,24 +66,23 @@ CABS                                00000000    00000000 =           0. bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000028  s_GSINIT3                       
 C:   0000002A  l_GSINIT4                       
-C:   00000040  l_SSEG                          
 C:   00000047  l_CONST                         
 C:   0000004A  s_GSINIT4                       
-C:   00000052  l_DSEG                          
 C:   00000074  s_GSFINAL                       
 C:   00000074  s_GSINIT                        
 C:   00000074  s_GSINIT5                       
 C:   00000077  s_CSEG                          
+C:   00000080  l_DSEG                          
+C:   000000E4  l_SSEG                          
 C:   00000100  l_IRAM                          
-C:   00000229  l_XSEG                          
-C:   0000081C  l_CSEG                          
-C:   00000893  s_CONST                         
-C:   000008DA  s_XINIT                         
-C:   00004000  s_PSEG                          
-C:   00004000  s_XSEG                          
-C:   00004229  s_XISEG                         
+C:   00000233  l_XSEG                          
+C:   0000091E  l_CSEG                          
+C:   00000995  s_CONST                         
+C:   000009DC  s_XINIT                         
+C:   0000A000  s_PSEG                          
+C:   0000A000  s_XSEG                          
+C:   0000A233  s_XISEG                         
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
@@ -95,55 +94,55 @@ Area                                    Addr        Size        Decimal Bytes (A
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
      00000000  .__.ABS.                           _startup
-     00000080  G$P0$0_0$0                         sysctrl
-     00000080  G$P0_0$0_0$0                       sysctrl
      00000080  _P0                                sysctrl
      00000080  _P0_0                              sysctrl
-     00000081  G$P0_1$0_0$0                       sysctrl
-     00000081  G$SP$0_0$0                         sysctrl
      00000081  _P0_1                              sysctrl
      00000081  _SP                                sysctrl
-     00000082  G$DPL$0_0$0                        sysctrl
-     00000082  G$P0_2$0_0$0                       sysctrl
      00000082  _DPL                               sysctrl
      00000082  _P0_2                              sysctrl
-     00000083  G$DPH$0_0$0                        sysctrl
-     00000083  G$P0_3$0_0$0                       sysctrl
      00000083  _DPH                               sysctrl
      00000083  _P0_3                              sysctrl
-     00000084  G$P0_4$0_0$0                       sysctrl
      00000084  _P0_4                              sysctrl
-     00000085  G$P0_5$0_0$0                       sysctrl
      00000085  _P0_5                              sysctrl
-     00000086  G$P0_6$0_0$0                       sysctrl
      00000086  _P0_6                              sysctrl
-     00000087  G$P0_7$0_0$0                       sysctrl
-     00000087  G$PCON$0_0$0                       sysctrl
      00000087  _P0_7                              sysctrl
      00000087  _PCON                              sysctrl
-     00000088  G$IT0$0_0$0                        sysctrl
-     00000088  G$TCON$0_0$0                       sysctrl
      00000088  _IT0                               sysctrl
      00000088  _TCON                              sysctrl
-     00000089  G$IE0$0_0$0                        sysctrl
-     00000089  G$TMOD$0_0$0                       sysctrl
      00000089  _IE0                               sysctrl
      00000089  _TMOD                              sysctrl
-     0000008A  G$IT1$0_0$0                        sysctrl
-     0000008A  G$TL0$0_0$0                        sysctrl
      0000008A  _IT1                               sysctrl
      0000008A  _TL0                               sysctrl
-     0000008B  G$IE1$0_0$0                        sysctrl
-     0000008B  G$TL1$0_0$0                        sysctrl
      0000008B  _IE1                               sysctrl
      0000008B  _TL1                               sysctrl
-     0000008C  G$TH0$0_0$0                        sysctrl
-     0000008C  G$TR0$0_0$0                        sysctrl
      0000008C  _TH0                               sysctrl
      0000008C  _TR0                               sysctrl
-     0000008D  G$TF0$0_0$0                        sysctrl
-     0000008D  G$TH1$0_0$0                        sysctrl
      0000008D  _TF0                               sysctrl
+     0000008D  _TH1                               sysctrl
+     0000008E  _TR1                               sysctrl
+     0000008F  _TF1                               sysctrl
+     00000090  _P1                                sysctrl
+     00000090  _P1_0                              sysctrl
+     00000091  _P1_1                              sysctrl
+     00000092  _P1_2                              sysctrl
+     00000093  _P1_3                              sysctrl
+     00000094  _P1_4                              sysctrl
+     00000095  _P1_5                              sysctrl
+     00000096  _P1_6                              sysctrl
+     00000097  _P1_7                              sysctrl
+     00000098  _RI                                sysctrl
+     00000098  _SCON                              sysctrl
+     00000099  _SBUF                              sysctrl
+     00000099  _TI                                sysctrl
+     0000009A  _RB8                               sysctrl
+     0000009B  _TB8                               sysctrl
+     0000009C  _REN                               sysctrl
+     0000009D  _SM2                               sysctrl
+     0000009E  _SM1                               sysctrl
+     0000009F  _SM0                               sysctrl
+     000000A0  _P2                                sysctrl
+     000000A0  _P2_0                              sysctrl
+     000000A0  __XPAGE                            
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
@@ -153,173 +152,59 @@ Area                                    Addr        Size        Decimal Bytes (A
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     0000008D  _TH1                               sysctrl
-     0000008E  G$TR1$0_0$0                        sysctrl
-     0000008E  _TR1                               sysctrl
-     0000008F  G$TF1$0_0$0                        sysctrl
-     0000008F  _TF1                               sysctrl
-     00000090  G$P1$0_0$0                         sysctrl
-     00000090  G$P1_0$0_0$0                       sysctrl
-     00000090  _P1                                sysctrl
-     00000090  _P1_0                              sysctrl
-     00000091  G$P1_1$0_0$0                       sysctrl
-     00000091  _P1_1                              sysctrl
-     00000092  G$P1_2$0_0$0                       sysctrl
-     00000092  _P1_2                              sysctrl
-     00000093  G$P1_3$0_0$0                       sysctrl
-     00000093  _P1_3                              sysctrl
-     00000094  G$P1_4$0_0$0                       sysctrl
-     00000094  _P1_4                              sysctrl
-     00000095  G$P1_5$0_0$0                       sysctrl
-     00000095  _P1_5                              sysctrl
-     00000096  G$P1_6$0_0$0                       sysctrl
-     00000096  _P1_6                              sysctrl
-     00000097  G$P1_7$0_0$0                       sysctrl
-     00000097  _P1_7                              sysctrl
-     00000098  G$RI$0_0$0                         sysctrl
-     00000098  G$SCON$0_0$0                       sysctrl
-     00000098  _RI                                sysctrl
-     00000098  _SCON                              sysctrl
-     00000099  G$SBUF$0_0$0                       sysctrl
-     00000099  G$TI$0_0$0                         sysctrl
-     00000099  _SBUF                              sysctrl
-     00000099  _TI                                sysctrl
-     0000009A  G$RB8$0_0$0                        sysctrl
-     0000009A  _RB8                               sysctrl
-     0000009B  G$TB8$0_0$0                        sysctrl
-     0000009B  _TB8                               sysctrl
-     0000009C  G$REN$0_0$0                        sysctrl
-     0000009C  _REN                               sysctrl
-     0000009D  G$SM2$0_0$0                        sysctrl
-     0000009D  _SM2                               sysctrl
-     0000009E  G$SM1$0_0$0                        sysctrl
-     0000009E  _SM1                               sysctrl
-     0000009F  G$SM0$0_0$0                        sysctrl
-     0000009F  _SM0                               sysctrl
-     000000A0  G$P2$0_0$0                         sysctrl
-     000000A0  G$P2_0$0_0$0                       sysctrl
-     000000A0  _P2                                sysctrl
-     000000A0  _P2_0                              sysctrl
-     000000A0  __XPAGE                            
-     000000A1  G$P2_1$0_0$0                       sysctrl
      000000A1  _P2_1                              sysctrl
-     000000A2  G$P2_2$0_0$0                       sysctrl
-ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
      000000A2  _P2_2                              sysctrl
-     000000A3  G$P2_3$0_0$0                       sysctrl
      000000A3  _P2_3                              sysctrl
-     000000A4  G$P2_4$0_0$0                       sysctrl
      000000A4  _P2_4                              sysctrl
-     000000A5  G$P2_5$0_0$0                       sysctrl
      000000A5  _P2_5                              sysctrl
-     000000A6  G$P2_6$0_0$0                       sysctrl
      000000A6  _P2_6                              sysctrl
-     000000A7  G$P2_7$0_0$0                       sysctrl
      000000A7  _P2_7                              sysctrl
-     000000A8  G$EX0$0_0$0                        sysctrl
-     000000A8  G$IE$0_0$0                         sysctrl
      000000A8  _EX0                               sysctrl
      000000A8  _IE                                sysctrl
-     000000A9  G$ET0$0_0$0                        sysctrl
      000000A9  _ET0                               sysctrl
-     000000AA  G$EX1$0_0$0                        sysctrl
      000000AA  _EX1                               sysctrl
-     000000AB  G$ET1$0_0$0                        sysctrl
      000000AB  _ET1                               sysctrl
-     000000AC  G$ES$0_0$0                         sysctrl
      000000AC  _ES                                sysctrl
-     000000AF  G$EA$0_0$0                         sysctrl
      000000AF  _EA                                sysctrl
-     000000B0  G$P3$0_0$0                         sysctrl
-     000000B0  G$P3_0$0_0$0                       sysctrl
-     000000B0  G$RXD$0_0$0                        sysctrl
      000000B0  _P3                                sysctrl
      000000B0  _P3_0                              sysctrl
      000000B0  _RXD                               sysctrl
-     000000B1  G$P3_1$0_0$0                       sysctrl
-     000000B1  G$TXD$0_0$0                        sysctrl
      000000B1  _P3_1                              sysctrl
      000000B1  _TXD                               sysctrl
-     000000B2  G$INT0$0_0$0                       sysctrl
-     000000B2  G$P3_2$0_0$0                       sysctrl
      000000B2  _INT0                              sysctrl
      000000B2  _P3_2                              sysctrl
-     000000B3  G$INT1$0_0$0                       sysctrl
-     000000B3  G$P3_3$0_0$0                       sysctrl
      000000B3  _INT1                              sysctrl
      000000B3  _P3_3                              sysctrl
-     000000B4  G$P3_4$0_0$0                       sysctrl
-     000000B4  G$T0$0_0$0                         sysctrl
      000000B4  _P3_4                              sysctrl
      000000B4  _T0                                sysctrl
-     000000B5  G$P3_5$0_0$0                       sysctrl
-     000000B5  G$T1$0_0$0                         sysctrl
      000000B5  _P3_5                              sysctrl
      000000B5  _T1                                sysctrl
-ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-.  .ABS.                            00000000    00000000 =           0. bytes (ABS,CON)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-     000000B6  G$P3_6$0_0$0                       sysctrl
-     000000B6  G$WR$0_0$0                         sysctrl
      000000B6  _P3_6                              sysctrl
      000000B6  _WR                                sysctrl
-     000000B7  G$P3_7$0_0$0                       sysctrl
-     000000B7  G$RD$0_0$0                         sysctrl
      000000B7  _P3_7                              sysctrl
      000000B7  _RD                                sysctrl
-     000000B8  G$IP$0_0$0                         sysctrl
-     000000B8  G$PX0$0_0$0                        sysctrl
      000000B8  _IP                                sysctrl
      000000B8  _PX0                               sysctrl
-     000000B9  G$PT0$0_0$0                        sysctrl
      000000B9  _PT0                               sysctrl
-     000000BA  G$PX1$0_0$0                        sysctrl
      000000BA  _PX1                               sysctrl
-     000000BB  G$PT1$0_0$0                        sysctrl
      000000BB  _PT1                               sysctrl
-     000000BC  G$PS$0_0$0                         sysctrl
      000000BC  _PS                                sysctrl
-     000000D0  G$P$0_0$0                          sysctrl
-     000000D0  G$PSW$0_0$0                        sysctrl
      000000D0  _P                                 sysctrl
      000000D0  _PSW                               sysctrl
-     000000D1  G$F1$0_0$0                         sysctrl
      000000D1  _F1                                sysctrl
-     000000D2  G$OV$0_0$0                         sysctrl
      000000D2  _OV                                sysctrl
-     000000D3  G$RS0$0_0$0                        sysctrl
      000000D3  _RS0                               sysctrl
-     000000D4  G$RS1$0_0$0                        sysctrl
      000000D4  _RS1                               sysctrl
-     000000D5  G$F0$0_0$0                         sysctrl
      000000D5  _F0                                sysctrl
-     000000D6  G$AC$0_0$0                         sysctrl
      000000D6  _AC                                sysctrl
-     000000D7  G$CY$0_0$0                         sysctrl
      000000D7  _CY                                sysctrl
-     000000E0  G$ACC$0_0$0                        sysctrl
      000000E0  _ACC                               sysctrl
-     000000F0  G$B$0_0$0                          sysctrl
      000000F0  _B                                 sysctrl
      000000F5  _B_5                               _gptrget
      000000F6  _B_6                               _gptrget
      000000F7  _B_7                               _gptrget
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -328,81 +213,62 @@ REG_BANK_0                          00000000    00000008 =           8. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+DSEG                                00000000    00000080 =         128. bytes (REL,CON)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+SSEG                                0000001C    000000E4 =         228. bytes (REL,OVR)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+     0000001C  __start__stack                     main
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-DSEG                                00000000    00000052 =          82. bytes (REL,CON)
+XSEG                                0000A000    00000233 =         563. bytes (REL,CON,XDATA)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000008  Lcompactflash.cfReadSector$i$1_0   compactflash
-     0000000A  Lmain.main$dst$2_0$22              main
-     0000000C  Lsio.sioTXBuf$i$1_0$26             sio
-     0000000E  Lsio.sioRXStr$i$1_0$33             sio
-     00000010  Lsio.sioRXBuf$i$1_0$36             sio
+D:   0000A004  _cfReadSector_PARM_2               compactflash
+D:   0000A007  _cfReadSector_PARM_3               compactflash
+D:   0000A00B  _cfReadSector_PARM_4               compactflash
+D:   0000A00E  _cfTest_PARM_2                     compactflash
+D:   0000A012  _buf                               main
+D:   0000A218  _sioTX_PARM_2                      sio
+D:   0000A219  _sioTXStr_PARM_2                   sio
+D:   0000A21D  _sioTXBuf_PARM_2                   sio
+D:   0000A220  _sioTXBuf_PARM_3                   sio
+D:   0000A224  _sioRXStr_PARM_2                   sio
+D:   0000A227  _sioRXStr_PARM_3                   sio
+D:   0000A22A  _sioRXBuf_PARM_2                   sio
+D:   0000A22D  _sioRXBuf_PARM_3                   sio
+D:   0000A232  __gptrput_PARM_2                   _gptrput
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-SSEG                                00000012    00000040 =          64. bytes (REL,OVR)
+XISEG                               0000A233    00000001 =           1. bytes (REL,CON,XDATA)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-     00000012  __start__stack                     main
+D:   0000A233  _PSBANK                            main
 
 ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-XSEG                                00004000    00000229 =         553. bytes (REL,CON,XDATA)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-D:   00004000  Lcompactflash.cfInit$device$1_0$   compactflash
-D:   00004001  Lcompactflash.cfWaitIdle$device$   compactflash
-D:   00004002  Lcompactflash.cfWaitCommandReady   compactflash
-D:   00004003  Lcompactflash.cfWaitDataReady$de   compactflash
-D:   00004004  Lcompactflash.cfReadSector$buf$1   compactflash
-D:   00004004  _cfReadSector_PARM_2               compactflash
-D:   00004007  Lcompactflash.cfReadSector$secto   compactflash
-D:   00004007  _cfReadSector_PARM_3               compactflash
-D:   00004009  Lcompactflash.cfReadSector$devic   compactflash
-D:   0000400A  Lcompactflash.cfTest$buf$1_0$22    compactflash
-D:   0000400A  _cfTest_PARM_2                     compactflash
-D:   0000400D  Lcompactflash.cfTest$device$1_0$   compactflash
-D:   0000400E  G$buf$0_0$0                        main
-D:   0000400E  _buf                               main
-D:   0000420E  Lpio.pioTest$device$1_0$4          pio
-D:   0000420F  Lsio.sioTX$d$1_0$20                sio
-D:   0000420F  _sioTX_PARM_2                      sio
-D:   00004210  Lsio.sioTXStr$s$1_0$22             sio
-D:   00004210  _sioTXStr_PARM_2                   sio
-D:   00004213  Lsio.sioTXStr$device$1_0$22        sio
-D:   00004214  Lsio.sioTXBuf$buf$1_0$25           sio
-D:   00004214  _sioTXBuf_PARM_2                   sio
-D:   00004217  Lsio.sioTXBuf$size$1_0$25          sio
-D:   00004217  _sioTXBuf_PARM_3                   sio
-D:   00004219  Lsio.sioTXBuf$device$1_0$25        sio
-D:   0000421A  Lsio.sioRXStr$s$1_0$32             sio
-D:   0000421A  _sioRXStr_PARM_2                   sio
-D:   0000421D  Lsio.sioRXStr$size$1_0$32          sio
-D:   0000421D  _sioRXStr_PARM_3                   sio
-D:   0000421F  Lsio.sioRXStr$device$1_0$32        sio
-D:   00004220  Lsio.sioRXBuf$buf$1_0$35           sio
-D:   00004220  _sioRXBuf_PARM_2                   sio
-D:   00004223  Lsio.sioRXBuf$size$1_0$35          sio
-D:   00004223  _sioRXBuf_PARM_3                   sio
-D:   00004225  Lsio.sioRXBuf$device$1_0$35        sio
-D:   00004226  Lsio.sioTest1$device$1_0$38        sio
-D:   00004227  Lsio.sioTest2$device$1_0$41        sio
-D:   00004228  __gptrput_PARM_2                   _gptrput
-
-ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -411,13 +277,10 @@ HOME                                00000000    0000001B =          27. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000000  A$mainDebug\main$384               main
-C:   00000003  A$mainDebug\main$406               main
 C:   00000003  __sdcc_program_startup             main
 C:   00000006  __sdcc_banked_call                 
 C:   00000018  __sdcc_banked_ret                  
-
-ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -428,7 +291,7 @@ GSINIT0                             0000001B    00000003 =           3. bytes (R
       -----  --------------------------------   ------------------------
 C:   0000001B  __sdcc_gsinit_startup              
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -437,7 +300,7 @@ GSINIT2                             0000001E    0000000A =          10. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -448,7 +311,7 @@ GSINIT3                             00000028    00000022 =          34. bytes (R
       -----  --------------------------------   ------------------------
 C:   00000028  __mcs51_genXINIT                   
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -460,7 +323,7 @@ GSINIT4                             0000004A    0000002A =          42. bytes (R
 C:   0000004A  __mcs51_genRAMCLEAR                
 C:   00000050  __mcs51_genXRAMCLEAR               
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
@@ -469,1656 +332,63 @@ GSFINAL                             00000074    00000003 =           3. bytes (R
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000074  A$mainDebug\main$399               main
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
 
+Area                                    Addr        Size        Decimal Bytes (Attributes)
+--------------------------------        ----        ----        ------- ----- ------------
+CSEG                                00000077    0000091E =        2334. bytes (REL,CON,CODE)
+
+      Value  Global                              Global Defined In Module
+      -----  --------------------------------   ------------------------
+C:   00000077  _cfInit                            compactflash
+C:   000000AE  _cfWaitIdle                        compactflash
+C:   000000DA  _cfWaitCommandReady                compactflash
+C:   0000010E  _cfWaitDataReady                   compactflash
+C:   00000142  _cfReadSector                      compactflash
+C:   0000034C  _cfTest                            compactflash
+C:   0000042A  _delay_us                          delay
+C:   0000043D  _delay_ms                          delay
+C:   00000460  _ledTest                           led
+C:   000004DB  _main                              main
+C:   000005C6  _pioTest                           pio
+C:   0000069F  _sioInit                           sio
+C:   000006BC  _sioClose                          sio
+C:   000006CA  _sioWaitTXDone                     sio
+C:   000006D0  _sioTX                             sio
+C:   000006DE  _sioTXStr                          sio
+C:   0000072E  _sioTXBuf                          sio
+C:   000007A5  _sioWaitRXDone                     sio
+C:   000007AB  _sioRX                             sio
+C:   000007C0  _sioRXStr                          sio
+C:   00000840  _sioRXBuf                          sio
+C:   000008BD  _sioTest1                          sio
+C:   000008FB  _sioTest2                          sio
+C:   00000957  _sioTest3                          sio
+C:   0000095A  __gptrput                          _gptrput
+C:   00000975  __gptrget                          _gptrget
+C:   00000991  __sdcc_external_startup            _startup
 ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
+CONST                               00000995    00000047 =          71. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   00000077  A$compactflashmpactflash$438       compactflash
-C:   00000077  C$compactflash.c$3$0_0$8           compactflash
-C:   00000077  G$cfInit$0$0                       compactflash
-C:   00000077  _cfInit                            compactflash
-C:   00000079  A$compactflashmpactflash$439       compactflash
-C:   0000007C  A$compactflashmpactflash$440       compactflash
-C:   0000007D  A$compactflashmpactflash$443       compactflash
-C:   0000007D  C$compactflash.c$5$1_0$8           compactflash
-C:   0000007E  A$compactflashmpactflash$444       compactflash
-C:   0000007F  A$compactflashmpactflash$445       compactflash
-C:   00000080  A$compactflashmpactflash$446       compactflash
-C:   00000081  A$compactflashmpactflash$447       compactflash
-C:   00000083  A$compactflashmpactflash$448       compactflash
-C:   00000084  A$compactflashmpactflash$449       compactflash
-C:   00000085  A$compactflashmpactflash$450       compactflash
-C:   00000086  A$compactflashmpactflash$451       compactflash
-C:   00000087  A$compactflashmpactflash$452       compactflash
-C:   00000088  A$compactflashmpactflash$453       compactflash
-C:   0000008A  A$compactflashmpactflash$454       compactflash
-C:   0000008B  A$compactflashmpactflash$455       compactflash
-C:   0000008C  A$compactflashmpactflash$456       compactflash
-C:   0000008D  A$compactflashmpactflash$457       compactflash
-C:   0000008F  A$compactflashmpactflash$458       compactflash
-C:   00000090  A$compactflashmpactflash$459       compactflash
-C:   00000091  A$compactflashmpactflash$460       compactflash
-C:   00000093  A$compactflashmpactflash$461       compactflash
-C:   00000094  A$compactflashmpactflash$462       compactflash
-C:   00000095  A$compactflashmpactflash$463       compactflash
-C:   00000097  A$compactflashmpactflash$464       compactflash
-C:   00000099  A$compactflashmpactflash$465       compactflash
-C:   0000009B  A$compactflashmpactflash$466       compactflash
-C:   0000009C  A$compactflashmpactflash$469       compactflash
-C:   0000009C  C$compactflash.c$7$1_0$8           compactflash
-C:   0000009E  A$compactflashmpactflash$470       compactflash
-C:   0000009F  A$compactflashmpactflash$471       compactflash
-C:   000000A0  A$compactflashmpactflash$472       compactflash
-C:   000000A2  A$compactflashmpactflash$473       compactflash
-C:   000000A3  A$compactflashmpactflash$474       compactflash
-C:   000000A4  A$compactflashmpactflash$475       compactflash
-C:   000000A6  A$compactflashmpactflash$476       compactflash
-C:   000000A8  A$compactflashmpactflash$477       compactflash
-C:   000000AA  A$compactflashmpactflash$478       compactflash
-C:   000000AB  A$compactflashmpactflash$483       compactflash
-C:   000000AB  C$compactflash.c$8$1_0$8           compactflash
-C:   000000AB  XG$cfInit$0$0                      compactflash
-C:   000000AE  A$compactflashmpactflash$497       compactflash
-C:   000000AE  C$compactflash.c$10$1_0$10         compactflash
-C:   000000AE  G$cfWaitIdle$0$0                   compactflash
-C:   000000AE  _cfWaitIdle                        compactflash
-C:   000000B0  A$compactflashmpactflash$498       compactflash
+C:   00000995  _data                              sio
+
 ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
 Hexadecimal  [32-Bits]
 
 Area                                    Addr        Size        Decimal Bytes (Attributes)
 --------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
+XINIT                               000009DC    00000001 =           1. bytes (REL,CON,CODE)
 
       Value  Global                              Global Defined In Module
       -----  --------------------------------   ------------------------
-C:   000000B3  A$compactflashmpactflash$499       compactflash
-C:   000000B4  A$compactflashmpactflash$502       compactflash
-C:   000000B4  C$compactflash.c$13$2_0$11         compactflash
-C:   000000B5  A$compactflashmpactflash$503       compactflash
-C:   000000B6  A$compactflashmpactflash$507       compactflash
-C:   000000B6  C$compactflash.c$15$2_0$11         compactflash
-C:   000000B8  A$compactflashmpactflash$508       compactflash
-C:   000000B9  A$compactflashmpactflash$509       compactflash
-C:   000000BA  A$compactflashmpactflash$510       compactflash
-C:   000000BC  A$compactflashmpactflash$511       compactflash
-C:   000000BD  A$compactflashmpactflash$512       compactflash
-C:   000000BE  A$compactflashmpactflash$513       compactflash
-C:   000000BF  A$compactflashmpactflash$514       compactflash
-C:   000000C0  A$compactflashmpactflash$515       compactflash
-C:   000000C1  A$compactflashmpactflash$516       compactflash
-C:   000000C3  A$compactflashmpactflash$517       compactflash
-C:   000000C4  A$compactflashmpactflash$518       compactflash
-C:   000000C5  A$compactflashmpactflash$519       compactflash
-C:   000000C6  A$compactflashmpactflash$520       compactflash
-C:   000000C8  A$compactflashmpactflash$521       compactflash
-C:   000000C9  A$compactflashmpactflash$522       compactflash
-C:   000000CA  A$compactflashmpactflash$523       compactflash
-C:   000000CC  A$compactflashmpactflash$524       compactflash
-C:   000000CD  A$compactflashmpactflash$525       compactflash
-C:   000000CE  A$compactflashmpactflash$526       compactflash
-C:   000000D0  A$compactflashmpactflash$527       compactflash
-C:   000000D2  A$compactflashmpactflash$528       compactflash
-C:   000000D3  A$compactflashmpactflash$531       compactflash
-C:   000000D3  C$compactflash.c$17$1_0$10         compactflash
-C:   000000D4  A$compactflashmpactflash$532       compactflash
-C:   000000D7  A$compactflashmpactflash$537       compactflash
-C:   000000D7  C$compactflash.c$18$1_0$10         compactflash
-C:   000000D7  XG$cfWaitIdle$0$0                  compactflash
-C:   000000DA  A$compactflashmpactflash$551       compactflash
-C:   000000DA  C$compactflash.c$20$1_0$13         compactflash
-C:   000000DA  G$cfWaitCommandReady$0$0           compactflash
-C:   000000DA  _cfWaitCommandReady                compactflash
-C:   000000DC  A$compactflashmpactflash$552       compactflash
-C:   000000DF  A$compactflashmpactflash$553       compactflash
-C:   000000E0  A$compactflashmpactflash$556       compactflash
-C:   000000E0  C$compactflash.c$24$2_0$14         compactflash
-C:   000000E1  A$compactflashmpactflash$557       compactflash
-C:   000000E2  A$compactflashmpactflash$561       compactflash
-C:   000000E2  C$compactflash.c$26$2_0$14         compactflash
-C:   000000E4  A$compactflashmpactflash$562       compactflash
-C:   000000E5  A$compactflashmpactflash$563       compactflash
-C:   000000E6  A$compactflashmpactflash$564       compactflash
-C:   000000E8  A$compactflashmpactflash$565       compactflash
-C:   000000E9  A$compactflashmpactflash$566       compactflash
-C:   000000EA  A$compactflashmpactflash$567       compactflash
-C:   000000EB  A$compactflashmpactflash$568       compactflash
 ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000000EC  A$compactflashmpactflash$569       compactflash
-C:   000000ED  A$compactflashmpactflash$570       compactflash
-C:   000000EF  A$compactflashmpactflash$571       compactflash
-C:   000000F0  A$compactflashmpactflash$572       compactflash
-C:   000000F1  A$compactflashmpactflash$573       compactflash
-C:   000000F2  A$compactflashmpactflash$574       compactflash
-C:   000000F4  A$compactflashmpactflash$575       compactflash
-C:   000000F5  A$compactflashmpactflash$576       compactflash
-C:   000000F6  A$compactflashmpactflash$577       compactflash
-C:   000000F8  A$compactflashmpactflash$578       compactflash
-C:   000000F9  A$compactflashmpactflash$579       compactflash
-C:   000000FA  A$compactflashmpactflash$580       compactflash
-C:   000000FC  A$compactflashmpactflash$581       compactflash
-C:   000000FE  A$compactflashmpactflash$582       compactflash
-C:   000000FF  A$compactflashmpactflash$583       compactflash
-C:   00000100  A$compactflashmpactflash$586       compactflash
-C:   00000100  C$compactflash.c$28$1_0$13         compactflash
-C:   00000103  A$compactflashmpactflash$587       compactflash
-C:   00000105  A$compactflashmpactflash$588       compactflash
-C:   00000108  A$compactflashmpactflash$589       compactflash
-C:   0000010B  A$compactflashmpactflash$594       compactflash
-C:   0000010B  C$compactflash.c$29$1_0$13         compactflash
-C:   0000010B  XG$cfWaitCommandReady$0$0          compactflash
-C:   0000010E  A$compactflashmpactflash$608       compactflash
-C:   0000010E  C$compactflash.c$31$1_0$16         compactflash
-C:   0000010E  G$cfWaitDataReady$0$0              compactflash
-C:   0000010E  _cfWaitDataReady                   compactflash
-C:   00000110  A$compactflashmpactflash$609       compactflash
-C:   00000113  A$compactflashmpactflash$610       compactflash
-C:   00000114  A$compactflashmpactflash$613       compactflash
-C:   00000114  C$compactflash.c$34$2_0$17         compactflash
-C:   00000115  A$compactflashmpactflash$614       compactflash
-C:   00000116  A$compactflashmpactflash$618       compactflash
-C:   00000116  C$compactflash.c$36$2_0$17         compactflash
-C:   00000118  A$compactflashmpactflash$619       compactflash
-C:   00000119  A$compactflashmpactflash$620       compactflash
-C:   0000011A  A$compactflashmpactflash$621       compactflash
-C:   0000011C  A$compactflashmpactflash$622       compactflash
-C:   0000011D  A$compactflashmpactflash$623       compactflash
-C:   0000011E  A$compactflashmpactflash$624       compactflash
-C:   0000011F  A$compactflashmpactflash$625       compactflash
-C:   00000120  A$compactflashmpactflash$626       compactflash
-C:   00000121  A$compactflashmpactflash$627       compactflash
-C:   00000123  A$compactflashmpactflash$628       compactflash
-C:   00000124  A$compactflashmpactflash$629       compactflash
-C:   00000125  A$compactflashmpactflash$630       compactflash
-C:   00000126  A$compactflashmpactflash$631       compactflash
-C:   00000128  A$compactflashmpactflash$632       compactflash
-C:   00000129  A$compactflashmpactflash$633       compactflash
-C:   0000012A  A$compactflashmpactflash$634       compactflash
-C:   0000012C  A$compactflashmpactflash$635       compactflash
-ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   0000012D  A$compactflashmpactflash$636       compactflash
-C:   0000012E  A$compactflashmpactflash$637       compactflash
-C:   00000130  A$compactflashmpactflash$638       compactflash
-C:   00000132  A$compactflashmpactflash$639       compactflash
-C:   00000133  A$compactflashmpactflash$640       compactflash
-C:   00000134  A$compactflashmpactflash$643       compactflash
-C:   00000134  C$compactflash.c$38$1_0$16         compactflash
-C:   00000137  A$compactflashmpactflash$644       compactflash
-C:   00000139  A$compactflashmpactflash$645       compactflash
-C:   0000013C  A$compactflashmpactflash$646       compactflash
-C:   0000013F  A$compactflashmpactflash$651       compactflash
-C:   0000013F  C$compactflash.c$39$1_0$16         compactflash
-C:   0000013F  XG$cfWaitDataReady$0$0             compactflash
-C:   00000142  A$compactflashmpactflash$669       compactflash
-C:   00000142  C$compactflash.c$41$1_0$19         compactflash
-C:   00000142  G$cfReadSector$0$0                 compactflash
-C:   00000142  _cfReadSector                      compactflash
-C:   00000144  A$compactflashmpactflash$670       compactflash
-C:   00000147  A$compactflashmpactflash$671       compactflash
-C:   00000148  A$compactflashmpactflash$674       compactflash
-C:   00000148  C$compactflash.c$49$1_0$19         compactflash
-C:   0000014B  A$compactflashmpactflash$677       compactflash
-C:   0000014B  C$compactflash.c$50$1_0$19         compactflash
-C:   0000014C  A$compactflashmpactflash$678       compactflash
-C:   0000014D  A$compactflashmpactflash$679       compactflash
-C:   0000014F  A$compactflashmpactflash$680       compactflash
-C:   00000151  A$compactflashmpactflash$681       compactflash
-C:   00000153  A$compactflashmpactflash$682       compactflash
-C:   00000155  A$compactflashmpactflash$683       compactflash
-C:   00000157  A$compactflashmpactflash$684       compactflash
-C:   0000015A  A$compactflashmpactflash$685       compactflash
-C:   0000015C  A$compactflashmpactflash$688       compactflash
-C:   0000015C  C$compactflash.c$52$1_0$19         compactflash
-C:   0000015F  A$compactflashmpactflash$691       compactflash
-C:   0000015F  C$compactflash.c$53$1_0$19         compactflash
-C:   00000161  A$compactflashmpactflash$692       compactflash
-C:   00000162  A$compactflashmpactflash$693       compactflash
-C:   00000163  A$compactflashmpactflash$694       compactflash
-C:   00000164  A$compactflashmpactflash$695       compactflash
-C:   00000165  A$compactflashmpactflash$696       compactflash
-C:   00000166  A$compactflashmpactflash$697       compactflash
-C:   00000167  A$compactflashmpactflash$698       compactflash
-C:   00000169  A$compactflashmpactflash$699       compactflash
-C:   0000016A  A$compactflashmpactflash$700       compactflash
-C:   0000016B  A$compactflashmpactflash$701       compactflash
-C:   0000016C  A$compactflashmpactflash$702       compactflash
-C:   0000016E  A$compactflashmpactflash$703       compactflash
-C:   0000016F  A$compactflashmpactflash$704       compactflash
-C:   00000170  A$compactflashmpactflash$705       compactflash
-C:   00000172  A$compactflashmpactflash$706       compactflash
-C:   00000173  A$compactflashmpactflash$707       compactflash
-ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000174  A$compactflashmpactflash$708       compactflash
-C:   00000176  A$compactflashmpactflash$709       compactflash
-C:   00000178  A$compactflashmpactflash$710       compactflash
-C:   0000017A  A$compactflashmpactflash$711       compactflash
-C:   0000017B  A$compactflashmpactflash$714       compactflash
-C:   0000017B  C$compactflash.c$55$1_0$19         compactflash
-C:   0000017E  A$compactflashmpactflash$717       compactflash
-C:   0000017E  C$compactflash.c$56$1_0$19         compactflash
-C:   00000180  A$compactflashmpactflash$718       compactflash
-C:   00000182  A$compactflashmpactflash$719       compactflash
-C:   00000184  A$compactflashmpactflash$720       compactflash
-C:   00000186  A$compactflashmpactflash$721       compactflash
-C:   00000188  A$compactflashmpactflash$722       compactflash
-C:   0000018A  A$compactflashmpactflash$723       compactflash
-C:   0000018C  A$compactflashmpactflash$724       compactflash
-C:   0000018F  A$compactflashmpactflash$725       compactflash
-C:   00000191  A$compactflashmpactflash$726       compactflash
-C:   00000193  A$compactflashmpactflash$727       compactflash
-C:   00000195  A$compactflashmpactflash$730       compactflash
-C:   00000195  C$compactflash.c$58$1_0$19         compactflash
-C:   00000198  A$compactflashmpactflash$733       compactflash
-C:   00000198  C$compactflash.c$59$1_0$19         compactflash
-C:   0000019A  A$compactflashmpactflash$734       compactflash
-C:   0000019B  A$compactflashmpactflash$735       compactflash
-C:   0000019C  A$compactflashmpactflash$736       compactflash
-C:   0000019E  A$compactflashmpactflash$737       compactflash
-C:   0000019F  A$compactflashmpactflash$738       compactflash
-C:   000001A0  A$compactflashmpactflash$739       compactflash
-C:   000001A2  A$compactflashmpactflash$740       compactflash
-C:   000001A4  A$compactflashmpactflash$741       compactflash
-C:   000001A5  A$compactflashmpactflash$742       compactflash
-C:   000001A6  A$compactflashmpactflash$745       compactflash
-C:   000001A6  C$compactflash.c$61$1_0$19         compactflash
-C:   000001A9  A$compactflashmpactflash$748       compactflash
-C:   000001A9  C$compactflash.c$62$1_0$19         compactflash
-C:   000001AB  A$compactflashmpactflash$749       compactflash
-C:   000001AD  A$compactflashmpactflash$750       compactflash
-C:   000001AF  A$compactflashmpactflash$751       compactflash
-C:   000001B1  A$compactflashmpactflash$752       compactflash
-C:   000001B3  A$compactflashmpactflash$753       compactflash
-C:   000001B5  A$compactflashmpactflash$754       compactflash
-C:   000001B7  A$compactflashmpactflash$755       compactflash
-C:   000001BA  A$compactflashmpactflash$756       compactflash
-C:   000001BC  A$compactflashmpactflash$757       compactflash
-C:   000001BE  A$compactflashmpactflash$758       compactflash
-C:   000001C0  A$compactflashmpactflash$761       compactflash
-C:   000001C0  C$compactflash.c$64$1_0$19         compactflash
-C:   000001C3  A$compactflashmpactflash$764       compactflash
-C:   000001C3  C$compactflash.c$65$1_0$19         compactflash
-C:   000001C5  A$compactflashmpactflash$765       compactflash
-C:   000001C6  A$compactflashmpactflash$766       compactflash
-ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000001C7  A$compactflashmpactflash$767       compactflash
-C:   000001C9  A$compactflashmpactflash$768       compactflash
-C:   000001CA  A$compactflashmpactflash$769       compactflash
-C:   000001CB  A$compactflashmpactflash$770       compactflash
-C:   000001CD  A$compactflashmpactflash$771       compactflash
-C:   000001CF  A$compactflashmpactflash$772       compactflash
-C:   000001D0  A$compactflashmpactflash$773       compactflash
-C:   000001D1  A$compactflashmpactflash$776       compactflash
-C:   000001D1  C$compactflash.c$67$1_0$19         compactflash
-C:   000001D4  A$compactflashmpactflash$779       compactflash
-C:   000001D4  C$compactflash.c$68$1_0$19         compactflash
-C:   000001D6  A$compactflashmpactflash$780       compactflash
-C:   000001D8  A$compactflashmpactflash$781       compactflash
-C:   000001DA  A$compactflashmpactflash$782       compactflash
-C:   000001DC  A$compactflashmpactflash$783       compactflash
-C:   000001DE  A$compactflashmpactflash$784       compactflash
-C:   000001E0  A$compactflashmpactflash$785       compactflash
-C:   000001E2  A$compactflashmpactflash$786       compactflash
-C:   000001E5  A$compactflashmpactflash$787       compactflash
-C:   000001E7  A$compactflashmpactflash$788       compactflash
-C:   000001E9  A$compactflashmpactflash$789       compactflash
-C:   000001EB  A$compactflashmpactflash$792       compactflash
-C:   000001EB  C$compactflash.c$70$1_0$19         compactflash
-C:   000001EE  A$compactflashmpactflash$795       compactflash
-C:   000001EE  C$compactflash.c$71$1_0$19         compactflash
-C:   000001F0  A$compactflashmpactflash$796       compactflash
-C:   000001F1  A$compactflashmpactflash$797       compactflash
-C:   000001F2  A$compactflashmpactflash$798       compactflash
-C:   000001F4  A$compactflashmpactflash$799       compactflash
-C:   000001F5  A$compactflashmpactflash$800       compactflash
-C:   000001F6  A$compactflashmpactflash$801       compactflash
-C:   000001F8  A$compactflashmpactflash$802       compactflash
-C:   000001FA  A$compactflashmpactflash$803       compactflash
-C:   000001FB  A$compactflashmpactflash$804       compactflash
-C:   000001FC  A$compactflashmpactflash$807       compactflash
-C:   000001FC  C$compactflash.c$73$1_0$19         compactflash
-C:   000001FF  A$compactflashmpactflash$810       compactflash
-C:   000001FF  C$compactflash.c$74$1_0$19         compactflash
-C:   00000201  A$compactflashmpactflash$811       compactflash
-C:   00000203  A$compactflashmpactflash$812       compactflash
-C:   00000205  A$compactflashmpactflash$813       compactflash
-C:   00000207  A$compactflashmpactflash$814       compactflash
-C:   00000209  A$compactflashmpactflash$815       compactflash
-C:   0000020B  A$compactflashmpactflash$816       compactflash
-C:   0000020D  A$compactflashmpactflash$817       compactflash
-C:   00000210  A$compactflashmpactflash$818       compactflash
-C:   00000212  A$compactflashmpactflash$819       compactflash
-C:   00000214  A$compactflashmpactflash$820       compactflash
-C:   00000216  A$compactflashmpactflash$823       compactflash
-C:   00000216  C$compactflash.c$76$1_0$19         compactflash
-C:   00000219  A$compactflashmpactflash$826       compactflash
-ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000219  C$compactflash.c$77$1_0$19         compactflash
-C:   0000021B  A$compactflashmpactflash$827       compactflash
-C:   0000021C  A$compactflashmpactflash$828       compactflash
-C:   0000021D  A$compactflashmpactflash$829       compactflash
-C:   0000021F  A$compactflashmpactflash$830       compactflash
-C:   00000220  A$compactflashmpactflash$831       compactflash
-C:   00000221  A$compactflashmpactflash$832       compactflash
-C:   00000223  A$compactflashmpactflash$833       compactflash
-C:   00000225  A$compactflashmpactflash$834       compactflash
-C:   00000227  A$compactflashmpactflash$835       compactflash
-C:   00000228  A$compactflashmpactflash$841       compactflash
-C:   00000228  C$compactflash.c$82$2_0$20         compactflash
-C:   00000228  C$compactflash.c$84$2_0$20         compactflash
-C:   0000022B  A$compactflashmpactflash$844       compactflash
-C:   0000022B  C$compactflash.c$85$2_0$20         compactflash
-C:   0000022D  A$compactflashmpactflash$845       compactflash
-C:   0000022F  A$compactflashmpactflash$846       compactflash
-C:   00000231  A$compactflashmpactflash$847       compactflash
-C:   00000233  A$compactflashmpactflash$848       compactflash
-C:   00000235  A$compactflashmpactflash$849       compactflash
-C:   00000238  A$compactflashmpactflash$850       compactflash
-C:   0000023A  A$compactflashmpactflash$853       compactflash
-C:   0000023A  C$compactflash.c$87$2_0$20         compactflash
-C:   0000023D  A$compactflashmpactflash$856       compactflash
-C:   0000023D  C$compactflash.c$88$2_0$20         compactflash
-C:   0000023F  A$compactflashmpactflash$857       compactflash
-C:   00000240  A$compactflashmpactflash$858       compactflash
-C:   00000241  A$compactflashmpactflash$859       compactflash
-C:   00000242  A$compactflashmpactflash$860       compactflash
-C:   00000243  A$compactflashmpactflash$861       compactflash
-C:   00000244  A$compactflashmpactflash$862       compactflash
-C:   00000245  A$compactflashmpactflash$863       compactflash
-C:   00000247  A$compactflashmpactflash$864       compactflash
-C:   00000248  A$compactflashmpactflash$865       compactflash
-C:   00000249  A$compactflashmpactflash$866       compactflash
-C:   0000024A  A$compactflashmpactflash$867       compactflash
-C:   0000024C  A$compactflashmpactflash$868       compactflash
-C:   0000024D  A$compactflashmpactflash$869       compactflash
-C:   0000024E  A$compactflashmpactflash$870       compactflash
-C:   00000250  A$compactflashmpactflash$871       compactflash
-C:   00000251  A$compactflashmpactflash$872       compactflash
-C:   00000252  A$compactflashmpactflash$873       compactflash
-C:   00000254  A$compactflashmpactflash$874       compactflash
-C:   00000256  A$compactflashmpactflash$875       compactflash
-C:   00000258  A$compactflashmpactflash$876       compactflash
-C:   00000259  A$compactflashmpactflash$879       compactflash
-C:   00000259  C$compactflash.c$90$2_0$20         compactflash
-C:   0000025C  A$compactflashmpactflash$882       compactflash
-C:   0000025C  C$compactflash.c$91$2_0$20         compactflash
-C:   0000025E  A$compactflashmpactflash$883       compactflash
-C:   00000260  A$compactflashmpactflash$884       compactflash
-ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000262  A$compactflashmpactflash$885       compactflash
-C:   00000264  A$compactflashmpactflash$886       compactflash
-C:   00000266  A$compactflashmpactflash$887       compactflash
-C:   00000268  A$compactflashmpactflash$888       compactflash
-C:   0000026A  A$compactflashmpactflash$889       compactflash
-C:   0000026D  A$compactflashmpactflash$890       compactflash
-C:   0000026F  A$compactflashmpactflash$891       compactflash
-C:   00000271  A$compactflashmpactflash$892       compactflash
-C:   00000273  A$compactflashmpactflash$895       compactflash
-C:   00000273  C$compactflash.c$93$2_0$20         compactflash
-C:   00000276  A$compactflashmpactflash$898       compactflash
-C:   00000276  C$compactflash.c$94$2_0$20         compactflash
-C:   00000278  A$compactflashmpactflash$899       compactflash
-C:   0000027A  A$compactflashmpactflash$900       compactflash
-C:   0000027B  A$compactflashmpactflash$905       compactflash
-C:   0000027B  C$compactflash.c$96$2_0$20         compactflash
-C:   0000027B  C$compactflash.c$98$1_0$19         compactflash
-C:   0000027E  A$compactflashmpactflash$906       compactflash
-C:   00000281  A$compactflashmpactflash$909       compactflash
-C:   00000281  C$compactflash.c$101$2_0$21        compactflash
-C:   00000284  A$compactflashmpactflash$910       compactflash
-C:   00000285  A$compactflashmpactflash$911       compactflash
-C:   00000286  A$compactflashmpactflash$912       compactflash
-C:   00000289  A$compactflashmpactflash$913       compactflash
-C:   0000028A  A$compactflashmpactflash$914       compactflash
-C:   0000028B  A$compactflashmpactflash$915       compactflash
-C:   0000028C  A$compactflashmpactflash$916       compactflash
-C:   0000028D  A$compactflashmpactflash$917       compactflash
-C:   0000028E  A$compactflashmpactflash$918       compactflash
-C:   0000028F  A$compactflashmpactflash$919       compactflash
-C:   00000290  A$compactflashmpactflash$920       compactflash
-C:   00000291  A$compactflashmpactflash$921       compactflash
-C:   00000292  A$compactflashmpactflash$922       compactflash
-C:   00000294  A$compactflashmpactflash$923       compactflash
-C:   00000296  A$compactflashmpactflash$925       compactflash
-C:   00000298  A$compactflashmpactflash$926       compactflash
-C:   0000029A  A$compactflashmpactflash$927       compactflash
-C:   0000029C  A$compactflashmpactflash$928       compactflash
-C:   0000029D  A$compactflashmpactflash$929       compactflash
-C:   000002A0  A$compactflashmpactflash$930       compactflash
-C:   000002A2  A$compactflashmpactflash$932       compactflash
-C:   000002A4  A$compactflashmpactflash$933       compactflash
-C:   000002A5  A$compactflashmpactflash$934       compactflash
-C:   000002A7  A$compactflashmpactflash$937       compactflash
-C:   000002A7  C$compactflash.c$103$2_0$21        compactflash
-C:   000002AA  A$compactflashmpactflash$940       compactflash
-C:   000002AA  C$compactflash.c$104$2_0$21        compactflash
-C:   000002AC  A$compactflashmpactflash$941       compactflash
-C:   000002AE  A$compactflashmpactflash$942       compactflash
-C:   000002B0  A$compactflashmpactflash$943       compactflash
-C:   000002B2  A$compactflashmpactflash$944       compactflash
-ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000002B4  A$compactflashmpactflash$945       compactflash
-C:   000002B6  A$compactflashmpactflash$946       compactflash
-C:   000002B8  A$compactflashmpactflash$947       compactflash
-C:   000002BA  A$compactflashmpactflash$948       compactflash
-C:   000002BD  A$compactflashmpactflash$949       compactflash
-C:   000002BF  A$compactflashmpactflash$950       compactflash
-C:   000002C1  A$compactflashmpactflash$951       compactflash
-C:   000002C3  A$compactflashmpactflash$952       compactflash
-C:   000002C5  A$compactflashmpactflash$955       compactflash
-C:   000002C5  C$compactflash.c$106$2_0$21        compactflash
-C:   000002C8  A$compactflashmpactflash$958       compactflash
-C:   000002C8  C$compactflash.c$107$2_0$21        compactflash
-C:   000002CA  A$compactflashmpactflash$959       compactflash
-C:   000002CB  A$compactflashmpactflash$960       compactflash
-C:   000002CC  A$compactflashmpactflash$961       compactflash
-C:   000002CE  A$compactflashmpactflash$962       compactflash
-C:   000002CF  A$compactflashmpactflash$963       compactflash
-C:   000002D0  A$compactflashmpactflash$964       compactflash
-C:   000002D2  A$compactflashmpactflash$965       compactflash
-C:   000002D4  A$compactflashmpactflash$966       compactflash
-C:   000002D6  A$compactflashmpactflash$967       compactflash
-C:   000002D8  A$compactflashmpactflash$968       compactflash
-C:   000002DA  A$compactflashmpactflash$969       compactflash
-C:   000002DB  A$compactflashmpactflash$970       compactflash
-C:   000002DC  A$compactflashmpactflash$971       compactflash
-C:   000002DD  A$compactflashmpactflash$972       compactflash
-C:   000002DE  A$compactflashmpactflash$973       compactflash
-C:   000002DF  A$compactflashmpactflash$974       compactflash
-C:   000002E0  A$compactflashmpactflash$975       compactflash
-C:   000002E2  A$compactflashmpactflash$976       compactflash
-C:   000002E3  A$compactflashmpactflash$977       compactflash
-C:   000002E4  A$compactflashmpactflash$978       compactflash
-C:   000002E5  A$compactflashmpactflash$979       compactflash
-C:   000002E7  A$compactflashmpactflash$980       compactflash
-C:   000002E8  A$compactflashmpactflash$981       compactflash
-C:   000002E9  A$compactflashmpactflash$982       compactflash
-C:   000002EB  A$compactflashmpactflash$983       compactflash
-C:   000002EC  A$compactflashmpactflash$984       compactflash
-C:   000002ED  A$compactflashmpactflash$985       compactflash
-C:   000002EF  A$compactflashmpactflash$986       compactflash
-C:   000002F1  A$compactflashmpactflash$987       compactflash
-C:   000002F2  A$compactflashmpactflash$988       compactflash
-C:   000002F4  A$compactflashmpactflash$989       compactflash
-C:   000002F6  A$compactflashmpactflash$990       compactflash
-C:   000002F8  A$compactflashmpactflash$991       compactflash
-C:   000002FB  A$compactflashmpactflash$994       compactflash
-C:   000002FB  C$compactflash.c$109$2_0$21        compactflash
-C:   000002FE  A$compactflashmpactflash$995       compactflash
-C:   00000300  A$compactflashmpactflash$996       compactflash
-C:   00000302  A$compactflashmpactflash$997       compactflash
-C:   00000304  A$compactflashmpactflash$998       compactflash
-ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000306  A$compactflashmpactflash$1002      compactflash
-C:   00000306  C$compactflash.c$114$1_0$19        compactflash
-C:   00000309  A$compactflashmpactflash$1007      compactflash
-C:   00000309  C$compactflash.c$115$1_0$19        compactflash
-C:   00000309  XG$cfReadSector$0$0                compactflash
-C:   0000030C  A$compactflashmpactflash$1021      compactflash
-C:   0000030C  C$compactflash.c$119$1_0$23        compactflash
-C:   0000030C  G$cfTest$0$0                       compactflash
-C:   0000030C  _cfTest                            compactflash
-C:   0000030E  A$compactflashmpactflash$1022      compactflash
-C:   00000311  A$compactflashmpactflash$1023      compactflash
-C:   00000312  A$compactflashmpactflash$1026      compactflash
-C:   00000312  C$compactflash.c$124$1_0$23        compactflash
-C:   00000315  A$compactflashmpactflash$1029      compactflash
-C:   00000315  C$compactflash.c$125$1_0$23        compactflash
-C:   00000316  A$compactflashmpactflash$1030      compactflash
-C:   00000317  A$compactflashmpactflash$1031      compactflash
-C:   00000319  A$compactflashmpactflash$1032      compactflash
-C:   0000031B  A$compactflashmpactflash$1033      compactflash
-C:   0000031D  A$compactflashmpactflash$1034      compactflash
-C:   0000031F  A$compactflashmpactflash$1035      compactflash
-C:   00000321  A$compactflashmpactflash$1036      compactflash
-C:   00000324  A$compactflashmpactflash$1037      compactflash
-C:   00000326  A$compactflashmpactflash$1040      compactflash
-C:   00000326  C$compactflash.c$127$1_0$23        compactflash
-C:   00000329  A$compactflashmpactflash$1043      compactflash
-C:   00000329  C$compactflash.c$128$1_0$23        compactflash
-C:   0000032C  A$compactflashmpactflash$1044      compactflash
-C:   0000032D  A$compactflashmpactflash$1045      compactflash
-C:   0000032E  A$compactflashmpactflash$1046      compactflash
-C:   0000032F  A$compactflashmpactflash$1047      compactflash
-C:   00000330  A$compactflashmpactflash$1048      compactflash
-C:   00000331  A$compactflashmpactflash$1049      compactflash
-C:   00000332  A$compactflashmpactflash$1050      compactflash
-C:   00000333  A$compactflashmpactflash$1051      compactflash
-C:   00000334  A$compactflashmpactflash$1052      compactflash
-C:   00000337  A$compactflashmpactflash$1053      compactflash
-C:   00000338  A$compactflashmpactflash$1054      compactflash
-C:   00000339  A$compactflashmpactflash$1055      compactflash
-C:   0000033A  A$compactflashmpactflash$1056      compactflash
-C:   0000033B  A$compactflashmpactflash$1057      compactflash
-C:   0000033C  A$compactflashmpactflash$1058      compactflash
-C:   0000033D  A$compactflashmpactflash$1059      compactflash
-C:   0000033E  A$compactflashmpactflash$1060      compactflash
-C:   0000033F  A$compactflashmpactflash$1061      compactflash
-C:   00000342  A$compactflashmpactflash$1062      compactflash
-C:   00000344  A$compactflashmpactflash$1063      compactflash
-C:   00000345  A$compactflashmpactflash$1064      compactflash
-C:   00000346  A$compactflashmpactflash$1065      compactflash
-C:   00000347  A$compactflashmpactflash$1066      compactflash
-C:   00000348  A$compactflashmpactflash$1067      compactflash
-ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   0000034A  A$compactflashmpactflash$1068      compactflash
-C:   0000034C  A$compactflashmpactflash$1069      compactflash
-C:   0000034E  A$compactflashmpactflash$1070      compactflash
-C:   00000350  A$compactflashmpactflash$1071      compactflash
-C:   00000353  A$compactflashmpactflash$1074      compactflash
-C:   00000353  C$compactflash.c$130$1_0$23        compactflash
-C:   00000356  A$compactflashmpactflash$1079      compactflash
-C:   00000356  C$compactflash.c$133$1_0$23        compactflash
-C:   00000356  XG$cfTest$0$0                      compactflash
-C:   00000359  A$delayebug\delay$400              delay
-C:   00000359  C$delay.c$19$1_0$4                 delay
-C:   00000359  C$delay.c$5$0_0$4                  delay
-C:   00000359  G$delay_us$0$0                     delay
-C:   00000359  _delay_us                          delay
-C:   0000035B  A$delayebug\delay$401              delay
-C:   0000035D  A$delayebug\delay$402              delay
-C:   0000035F  A$delayebug\delay$404              delay
-C:   00000361  A$delayebug\delay$406              delay
-C:   00000363  A$delayebug\delay$407              delay
-C:   00000365  A$delayebug\delay$408              delay
-C:   00000367  A$delayebug\delay$409              delay
-C:   00000369  A$delayebug\delay$414              delay
-C:   00000369  C$delay.c$20$1_0$4                 delay
-C:   00000369  XG$delay_us$0$0                    delay
-C:   0000036C  A$delayebug\delay$429              delay
-C:   0000036C  C$delay.c$22$1_0$6                 delay
-C:   0000036C  C$delay.c$42$1_0$6                 delay
-C:   0000036C  G$delay_ms$0$0                     delay
-C:   0000036C  _delay_ms                          delay
-C:   0000036E  A$delayebug\delay$430              delay
-C:   00000370  A$delayebug\delay$431              delay
-C:   00000372  A$delayebug\delay$432              delay
-C:   00000374  A$delayebug\delay$433              delay
-C:   00000376  A$delayebug\delay$435              delay
-C:   00000378  A$delayebug\delay$437              delay
-C:   0000037A  A$delayebug\delay$439              delay
-C:   0000037C  A$delayebug\delay$441              delay
-C:   0000037E  A$delayebug\delay$442              delay
-C:   00000380  A$delayebug\delay$443              delay
-C:   00000382  A$delayebug\delay$444              delay
-C:   00000384  A$delayebug\delay$445              delay
-C:   00000386  A$delayebug\delay$446              delay
-C:   00000388  A$delayebug\delay$447              delay
-C:   0000038A  A$delayebug\delay$448              delay
-C:   0000038C  A$delayebug\delay$453              delay
-C:   0000038C  C$delay.c$43$1_0$6                 delay
-C:   0000038C  XG$delay_ms$0$0                    delay
-C:   0000038F  A$led\Debug\led$398                led
-C:   0000038F  C$led.c$6$0_0$3                    led
-C:   0000038F  C$led.c$8$1_0$3                    led
-C:   0000038F  G$ledTest$0$0                      led
-ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   0000038F  _ledTest                           led
-C:   00000392  A$led\Debug\led$401                led
-C:   00000392  C$led.c$9$1_0$3                    led
-C:   00000395  A$led\Debug\led$402                led
-C:   00000397  A$led\Debug\led$403                led
-C:   00000399  A$led\Debug\led$404                led
-C:   0000039B  A$led\Debug\led$405                led
-C:   0000039E  A$led\Debug\led$408                led
-C:   0000039E  C$led.c$11$1_0$3                   led
-C:   000003A1  A$led\Debug\led$411                led
-C:   000003A1  C$led.c$12$1_0$3                   led
-C:   000003A4  A$led\Debug\led$412                led
-C:   000003A6  A$led\Debug\led$413                led
-C:   000003A8  A$led\Debug\led$414                led
-C:   000003AA  A$led\Debug\led$415                led
-C:   000003AD  A$led\Debug\led$418                led
-C:   000003AD  C$led.c$14$1_0$3                   led
-C:   000003B0  A$led\Debug\led$421                led
-C:   000003B0  C$led.c$15$1_0$3                   led
-C:   000003B3  A$led\Debug\led$422                led
-C:   000003B5  A$led\Debug\led$423                led
-C:   000003B7  A$led\Debug\led$424                led
-C:   000003B9  A$led\Debug\led$425                led
-C:   000003BC  A$led\Debug\led$428                led
-C:   000003BC  C$led.c$17$1_0$3                   led
-C:   000003BF  A$led\Debug\led$431                led
-C:   000003BF  C$led.c$18$1_0$3                   led
-C:   000003C2  A$led\Debug\led$432                led
-C:   000003C4  A$led\Debug\led$433                led
-C:   000003C6  A$led\Debug\led$434                led
-C:   000003C8  A$led\Debug\led$435                led
-C:   000003CB  A$led\Debug\led$438                led
-C:   000003CB  C$led.c$20$1_0$3                   led
-C:   000003CE  A$led\Debug\led$441                led
-C:   000003CE  C$led.c$21$1_0$3                   led
-C:   000003D1  A$led\Debug\led$442                led
-C:   000003D3  A$led\Debug\led$443                led
-C:   000003D5  A$led\Debug\led$444                led
-C:   000003D7  A$led\Debug\led$445                led
-C:   000003DA  A$led\Debug\led$448                led
-C:   000003DA  C$led.c$23$1_0$3                   led
-C:   000003DD  A$led\Debug\led$451                led
-C:   000003DD  C$led.c$24$1_0$3                   led
-C:   000003E0  A$led\Debug\led$452                led
-C:   000003E2  A$led\Debug\led$453                led
-C:   000003E4  A$led\Debug\led$454                led
-C:   000003E6  A$led\Debug\led$455                led
-C:   000003E9  A$led\Debug\led$458                led
-C:   000003E9  C$led.c$26$1_0$3                   led
-C:   000003EC  A$led\Debug\led$461                led
-C:   000003EC  C$led.c$27$1_0$3                   led
-ASxxxx Linker V03.00 + NoICE + sdld,  page 29.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000003EF  A$led\Debug\led$462                led
-C:   000003F1  A$led\Debug\led$463                led
-C:   000003F3  A$led\Debug\led$464                led
-C:   000003F5  A$led\Debug\led$465                led
-C:   000003F8  A$led\Debug\led$468                led
-C:   000003F8  C$led.c$29$1_0$3                   led
-C:   000003FB  A$led\Debug\led$471                led
-C:   000003FB  C$led.c$30$1_0$3                   led
-C:   000003FE  A$led\Debug\led$472                led
-C:   00000400  A$led\Debug\led$473                led
-C:   00000402  A$led\Debug\led$474                led
-C:   00000404  A$led\Debug\led$475                led
-C:   00000407  A$led\Debug\led$480                led
-C:   00000407  C$led.c$31$1_0$3                   led
-C:   00000407  XG$ledTest$0$0                     led
-C:   0000040A  A$mainDebug\main$437               main
-C:   0000040A  C$main.c$20$1_0$21                 main
-C:   0000040A  C$main.c$9$0_0$21                  main
-C:   0000040A  G$main$0$0                         main
-C:   0000040A  _main                              main
-C:   0000040D  A$mainDebug\main$440               main
-C:   0000040D  C$main.c$21$2_0$22                 main
-C:   00000410  A$mainDebug\main$441               main
-C:   00000411  A$mainDebug\main$442               main
-C:   00000412  A$mainDebug\main$443               main
-C:   00000413  A$mainDebug\main$444               main
-C:   00000415  A$mainDebug\main$445               main
-C:   00000418  A$mainDebug\main$446               main
-C:   00000419  A$mainDebug\main$447               main
-C:   0000041A  A$mainDebug\main$448               main
-C:   0000041C  A$mainDebug\main$449               main
-C:   0000041E  A$mainDebug\main$450               main
-C:   00000420  A$mainDebug\main$452               main
-C:   00000422  A$mainDebug\main$453               main
-C:   00000424  A$mainDebug\main$454               main
-C:   00000425  A$mainDebug\main$455               main
-C:   00000428  A$mainDebug\main$456               main
-C:   00000429  A$mainDebug\main$458               main
-C:   0000042A  A$mainDebug\main$459               main
-C:   0000042B  A$mainDebug\main$460               main
-C:   0000042D  A$mainDebug\main$461               main
-C:   0000042F  A$mainDebug\main$462               main
-C:   00000431  A$mainDebug\main$463               main
-C:   00000432  A$mainDebug\main$464               main
-C:   00000433  A$mainDebug\main$465               main
-C:   00000434  A$mainDebug\main$466               main
-C:   00000435  A$mainDebug\main$467               main
-C:   00000437  A$mainDebug\main$468               main
-C:   00000439  A$mainDebug\main$469               main
-C:   0000043B  A$mainDebug\main$470               main
-C:   0000043D  A$mainDebug\main$471               main
-ASxxxx Linker V03.00 + NoICE + sdld,  page 30.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   0000043E  A$mainDebug\main$472               main
-C:   0000043F  A$mainDebug\main$473               main
-C:   00000440  A$mainDebug\main$474               main
-C:   00000442  A$mainDebug\main$475               main
-C:   00000444  A$mainDebug\main$476               main
-C:   00000446  A$mainDebug\main$480               main
-C:   00000446  C$main.c$23$1_0$21                 main
-C:   00000449  A$mainDebug\main$483               main
-C:   00000449  C$main.c$24$1_0$21                 main
-C:   0000044C  A$mainDebug\main$484               main
-C:   0000044D  A$mainDebug\main$485               main
-C:   0000044E  A$mainDebug\main$488               main
-C:   0000044E  C$main.c$26$1_0$21                 main
-C:   00000451  A$mainDebug\main$491               main
-C:   00000451  C$main.c$31$2_0$23                 main
-C:   00000453  A$mainDebug\main$492               main
-C:   00000455  A$mainDebug\main$493               main
-C:   00000457  A$mainDebug\main$494               main
-C:   0000045A  A$mainDebug\main$497               main
-C:   0000045A  C$main.c$35$2_0$23                 main
-C:   0000045D  A$mainDebug\main$500               main
-C:   0000045D  C$main.c$38$2_0$23                 main
-C:   00000460  A$mainDebug\main$503               main
-C:   00000460  C$main.c$41$2_0$23                 main
-C:   00000463  A$mainDebug\main$506               main
-C:   00000463  C$main.c$69$2_0$23                 main
-C:   00000466  A$mainDebug\main$509               main
-C:   00000466  C$main.c$72$2_0$23                 main
-C:   00000469  A$mainDebug\main$512               main
-C:   00000469  C$main.c$75$2_0$23                 main
-C:   0000046C  A$mainDebug\main$515               main
-C:   0000046C  C$main.c$78$2_0$23                 main
-C:   0000046F  A$mainDebug\main$518               main
-C:   0000046F  C$main.c$79$2_0$23                 main
-C:   00000472  A$mainDebug\main$519               main
-C:   00000474  A$mainDebug\main$520               main
-C:   00000476  A$mainDebug\main$521               main
-C:   00000478  A$mainDebug\main$522               main
-C:   0000047B  A$mainDebug\main$525               main
-C:   0000047B  C$main.c$80$2_0$23                 main
-C:   0000047E  A$mainDebug\main$526               main
-C:   00000480  A$mainDebug\main$527               main
-C:   00000481  A$mainDebug\main$528               main
-C:   00000483  A$mainDebug\main$529               main
-C:   00000484  A$mainDebug\main$530               main
-C:   00000485  A$mainDebug\main$531               main
-C:   00000486  A$mainDebug\main$532               main
-C:   00000487  A$mainDebug\main$533               main
-C:   00000488  A$mainDebug\main$534               main
-C:   0000048B  A$mainDebug\main$535               main
-C:   0000048D  A$mainDebug\main$536               main
-ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   0000048F  A$mainDebug\main$537               main
-C:   00000491  A$mainDebug\main$538               main
-C:   00000494  A$mainDebug\main$541               main
-C:   00000494  C$main.c$81$2_0$23                 main
-C:   00000497  A$mainDebug\main$542               main
-C:   00000499  A$mainDebug\main$543               main
-C:   0000049A  A$mainDebug\main$544               main
-C:   0000049C  A$mainDebug\main$545               main
-C:   0000049D  A$mainDebug\main$546               main
-C:   0000049E  A$mainDebug\main$547               main
-C:   0000049F  A$mainDebug\main$548               main
-C:   000004A0  A$mainDebug\main$549               main
-C:   000004A1  A$mainDebug\main$550               main
-C:   000004A4  A$mainDebug\main$551               main
-C:   000004A5  A$mainDebug\main$552               main
-C:   000004A7  A$mainDebug\main$553               main
-C:   000004A8  A$mainDebug\main$554               main
-C:   000004A9  A$mainDebug\main$555               main
-C:   000004AC  A$mainDebug\main$556               main
-C:   000004AE  A$mainDebug\main$557               main
-C:   000004B0  A$mainDebug\main$558               main
-C:   000004B2  A$mainDebug\main$559               main
-C:   000004B5  A$mainDebug\main$562               main
-C:   000004B5  C$main.c$86$2_0$23                 main
-C:   000004B8  A$mainDebug\main$569               main
-C:   000004B8  C$main.c$90$1_0$21                 main
-C:   000004B8  C$main.c$92$1_0$21                 main
-C:   000004B8  XG$main$0$0                        main
-C:   000004BB  A$pio\Debug\pio$402                pio
-C:   000004BB  C$pio.c$4$0_0$5                    pio
-C:   000004BB  G$pioTest$0$0                      pio
-C:   000004BB  _pioTest                           pio
-C:   000004BD  A$pio\Debug\pio$403                pio
-C:   000004C0  A$pio\Debug\pio$404                pio
-C:   000004C1  A$pio\Debug\pio$407                pio
-C:   000004C1  C$pio.c$7$1_0$5                    pio
-C:   000004C2  A$pio\Debug\pio$408                pio
-C:   000004C3  A$pio\Debug\pio$409                pio
-C:   000004C5  A$pio\Debug\pio$410                pio
-C:   000004C7  A$pio\Debug\pio$411                pio
-C:   000004C8  A$pio\Debug\pio$412                pio
-C:   000004C9  A$pio\Debug\pio$413                pio
-C:   000004CB  A$pio\Debug\pio$414                pio
-C:   000004CC  A$pio\Debug\pio$415                pio
-C:   000004CD  A$pio\Debug\pio$416                pio
-C:   000004CF  A$pio\Debug\pio$417                pio
-C:   000004D0  A$pio\Debug\pio$418                pio
-C:   000004D1  A$pio\Debug\pio$419                pio
-C:   000004D2  A$pio\Debug\pio$420                pio
-C:   000004D3  A$pio\Debug\pio$421                pio
-C:   000004D4  A$pio\Debug\pio$422                pio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 32.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000004D6  A$pio\Debug\pio$423                pio
-C:   000004D7  A$pio\Debug\pio$424                pio
-C:   000004D8  A$pio\Debug\pio$425                pio
-C:   000004D9  A$pio\Debug\pio$426                pio
-C:   000004DB  A$pio\Debug\pio$427                pio
-C:   000004DD  A$pio\Debug\pio$428                pio
-C:   000004DF  A$pio\Debug\pio$429                pio
-C:   000004E0  A$pio\Debug\pio$432                pio
-C:   000004E0  C$pio.c$10$2_0$6                   pio
-C:   000004E2  A$pio\Debug\pio$433                pio
-C:   000004E3  A$pio\Debug\pio$434                pio
-C:   000004E4  A$pio\Debug\pio$435                pio
-C:   000004E6  A$pio\Debug\pio$436                pio
-C:   000004E7  A$pio\Debug\pio$437                pio
-C:   000004E8  A$pio\Debug\pio$438                pio
-C:   000004E9  A$pio\Debug\pio$439                pio
-C:   000004EA  A$pio\Debug\pio$440                pio
-C:   000004EB  A$pio\Debug\pio$441                pio
-C:   000004ED  A$pio\Debug\pio$442                pio
-C:   000004EE  A$pio\Debug\pio$443                pio
-C:   000004EF  A$pio\Debug\pio$444                pio
-C:   000004F0  A$pio\Debug\pio$445                pio
-C:   000004F2  A$pio\Debug\pio$449                pio
-C:   000004F2  C$pio.c$12$2_0$6                   pio
-C:   000004F5  A$pio\Debug\pio$450                pio
-C:   000004F7  A$pio\Debug\pio$451                pio
-C:   000004F9  A$pio\Debug\pio$452                pio
-C:   000004FB  A$pio\Debug\pio$453                pio
-C:   000004FD  A$pio\Debug\pio$454                pio
-C:   000004FF  A$pio\Debug\pio$455                pio
-C:   00000501  A$pio\Debug\pio$456                pio
-C:   00000504  A$pio\Debug\pio$457                pio
-C:   00000506  A$pio\Debug\pio$458                pio
-C:   00000508  A$pio\Debug\pio$459                pio
-C:   0000050A  A$pio\Debug\pio$462                pio
-C:   0000050A  C$pio.c$13$2_0$6                   pio
-C:   0000050C  A$pio\Debug\pio$463                pio
-C:   0000050E  A$pio\Debug\pio$464                pio
-C:   0000050F  A$pio\Debug\pio$465                pio
-C:   00000510  A$pio\Debug\pio$468                pio
-C:   00000510  C$pio.c$14$1_0$5                   pio
-C:   00000512  A$pio\Debug\pio$469                pio
-C:   00000513  A$pio\Debug\pio$470                pio
-C:   00000514  A$pio\Debug\pio$471                pio
-C:   00000516  A$pio\Debug\pio$474                pio
-C:   00000516  C$pio.c$17$2_0$7                   pio
-C:   00000519  A$pio\Debug\pio$475                pio
-C:   0000051A  A$pio\Debug\pio$476                pio
-C:   0000051B  A$pio\Debug\pio$477                pio
-C:   0000051D  A$pio\Debug\pio$481                pio
-C:   0000051D  C$pio.c$19$2_0$7                   pio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 33.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000520  A$pio\Debug\pio$482                pio
-C:   00000522  A$pio\Debug\pio$483                pio
-C:   00000524  A$pio\Debug\pio$484                pio
-C:   00000526  A$pio\Debug\pio$485                pio
-C:   00000528  A$pio\Debug\pio$486                pio
-C:   0000052A  A$pio\Debug\pio$487                pio
-C:   0000052D  A$pio\Debug\pio$488                pio
-C:   0000052F  A$pio\Debug\pio$489                pio
-C:   00000531  A$pio\Debug\pio$492                pio
-C:   00000531  C$pio.c$20$2_0$7                   pio
-C:   00000533  A$pio\Debug\pio$493                pio
-C:   00000535  A$pio\Debug\pio$494                pio
-C:   00000537  A$pio\Debug\pio$495                pio
-C:   00000538  A$pio\Debug\pio$496                pio
-C:   00000539  A$pio\Debug\pio$497                pio
-C:   0000053B  A$pio\Debug\pio$498                pio
-C:   0000053C  A$pio\Debug\pio$499                pio
-C:   0000053D  A$pio\Debug\pio$500                pio
-C:   0000053F  A$pio\Debug\pio$501                pio
-C:   00000540  A$pio\Debug\pio$502                pio
-C:   00000541  A$pio\Debug\pio$503                pio
-C:   00000542  A$pio\Debug\pio$504                pio
-C:   00000543  A$pio\Debug\pio$505                pio
-C:   00000544  A$pio\Debug\pio$506                pio
-C:   00000546  A$pio\Debug\pio$507                pio
-C:   00000547  A$pio\Debug\pio$508                pio
-C:   00000548  A$pio\Debug\pio$509                pio
-C:   00000549  A$pio\Debug\pio$510                pio
-C:   0000054B  A$pio\Debug\pio$511                pio
-C:   0000054D  A$pio\Debug\pio$512                pio
-C:   0000054E  A$pio\Debug\pio$513                pio
-C:   0000054F  A$pio\Debug\pio$516                pio
-C:   0000054F  C$pio.c$21$1_0$5                   pio
-C:   00000551  A$pio\Debug\pio$517                pio
-C:   00000552  A$pio\Debug\pio$518                pio
-C:   00000553  A$pio\Debug\pio$519                pio
-C:   00000555  A$pio\Debug\pio$522                pio
-C:   00000555  C$pio.c$24$2_0$8                   pio
-C:   00000557  A$pio\Debug\pio$523                pio
-C:   00000558  A$pio\Debug\pio$524                pio
-C:   00000559  A$pio\Debug\pio$525                pio
-C:   0000055B  A$pio\Debug\pio$526                pio
-C:   0000055C  A$pio\Debug\pio$527                pio
-C:   0000055E  A$pio\Debug\pio$528                pio
-C:   0000055F  A$pio\Debug\pio$529                pio
-C:   00000561  A$pio\Debug\pio$530                pio
-C:   00000562  A$pio\Debug\pio$531                pio
-C:   00000563  A$pio\Debug\pio$532                pio
-C:   00000564  A$pio\Debug\pio$533                pio
-C:   00000565  A$pio\Debug\pio$534                pio
-C:   00000566  A$pio\Debug\pio$535                pio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 34.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000568  A$pio\Debug\pio$536                pio
-C:   00000569  A$pio\Debug\pio$537                pio
-C:   0000056A  A$pio\Debug\pio$538                pio
-C:   0000056B  A$pio\Debug\pio$539                pio
-C:   0000056D  A$pio\Debug\pio$543                pio
-C:   0000056D  C$pio.c$26$2_0$8                   pio
-C:   00000570  A$pio\Debug\pio$544                pio
-C:   00000572  A$pio\Debug\pio$545                pio
-C:   00000574  A$pio\Debug\pio$546                pio
-C:   00000576  A$pio\Debug\pio$547                pio
-C:   00000578  A$pio\Debug\pio$548                pio
-C:   0000057A  A$pio\Debug\pio$549                pio
-C:   0000057C  A$pio\Debug\pio$550                pio
-C:   0000057F  A$pio\Debug\pio$551                pio
-C:   00000581  A$pio\Debug\pio$552                pio
-C:   00000583  A$pio\Debug\pio$553                pio
-C:   00000585  A$pio\Debug\pio$556                pio
-C:   00000585  C$pio.c$27$2_0$8                   pio
-C:   00000587  A$pio\Debug\pio$557                pio
-C:   00000589  A$pio\Debug\pio$558                pio
-C:   0000058A  A$pio\Debug\pio$559                pio
-C:   0000058B  A$pio\Debug\pio$562                pio
-C:   0000058B  C$pio.c$28$1_0$5                   pio
-C:   0000058D  A$pio\Debug\pio$563                pio
-C:   0000058E  A$pio\Debug\pio$564                pio
-C:   0000058F  A$pio\Debug\pio$565                pio
-C:   00000591  A$pio\Debug\pio$570                pio
-C:   00000591  C$pio.c$29$1_0$5                   pio
-C:   00000591  XG$pioTest$0$0                     pio
-C:   00000594  A$sio\Debug\sio$472                sio
-C:   00000594  C$sio.c$5$0_0$15                   sio
-C:   00000594  C$sio.c$9$1_0$15                   sio
-C:   00000594  G$sioInit$0$0                      sio
-C:   00000594  _sioInit                           sio
-C:   00000597  A$sio\Debug\sio$475                sio
-C:   00000597  C$sio.c$10$1_0$15                  sio
-C:   00000599  A$sio\Debug\sio$476                sio
-C:   0000059C  A$sio\Debug\sio$477                sio
-C:   0000059E  A$sio\Debug\sio$478                sio
-C:   000005A1  A$sio\Debug\sio$479                sio
-C:   000005A3  A$sio\Debug\sio$482                sio
-C:   000005A3  C$sio.c$11$1_0$15                  sio
-C:   000005A6  A$sio\Debug\sio$485                sio
-C:   000005A6  C$sio.c$14$1_0$15                  sio
-C:   000005A9  A$sio\Debug\sio$488                sio
-C:   000005A9  C$sio.c$15$1_0$15                  sio
-C:   000005AC  A$sio\Debug\sio$492                sio
-C:   000005AC  C$sio.c$16$1_0$15                  sio
-C:   000005AE  A$sio\Debug\sio$497                sio
-C:   000005AE  C$sio.c$19$1_0$15                  sio
-C:   000005AE  XG$sioInit$0$0                     sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 35.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000005B1  A$sio\Debug\sio$512                sio
-C:   000005B1  C$sio.c$21$1_0$17                  sio
-C:   000005B1  C$sio.c$25$1_0$17                  sio
-C:   000005B1  G$sioClose$0$0                     sio
-C:   000005B1  _sioClose                          sio
-C:   000005B4  A$sio\Debug\sio$515                sio
-C:   000005B4  C$sio.c$26$1_0$17                  sio
-C:   000005B7  A$sio\Debug\sio$518                sio
-C:   000005B7  C$sio.c$27$1_0$17                  sio
-C:   000005BA  A$sio\Debug\sio$522                sio
-C:   000005BA  C$sio.c$28$1_0$17                  sio
-C:   000005BC  A$sio\Debug\sio$527                sio
-C:   000005BC  C$sio.c$29$1_0$17                  sio
-C:   000005BC  XG$sioClose$0$0                    sio
-C:   000005BF  A$sio\Debug\sio$543                sio
-C:   000005BF  C$sio.c$31$1_0$19                  sio
-C:   000005BF  C$sio.c$35$1_0$19                  sio
-C:   000005BF  G$sioWaitTXDone$0$0                sio
-C:   000005BF  _sioWaitTXDone                     sio
-C:   000005C2  A$sio\Debug\sio$548                sio
-C:   000005C2  C$sio.c$36$1_0$19                  sio
-C:   000005C2  XG$sioWaitTXDone$0$0               sio
-C:   000005C5  A$sio\Debug\sio$565                sio
-C:   000005C5  C$sio.c$38$1_0$21                  sio
-C:   000005C5  C$sio.c$42$1_0$21                  sio
-C:   000005C5  G$sioTX$0$0                        sio
-C:   000005C5  _sioTX                             sio
-C:   000005C7  A$sio\Debug\sio$568                sio
-C:   000005C7  C$sio.c$43$1_0$21                  sio
-C:   000005CA  A$sio\Debug\sio$569                sio
-C:   000005CB  A$sio\Debug\sio$570                sio
-C:   000005CD  A$sio\Debug\sio$574                sio
-C:   000005CD  C$sio.c$44$1_0$21                  sio
-C:   000005D0  A$sio\Debug\sio$579                sio
-C:   000005D0  C$sio.c$45$1_0$21                  sio
-C:   000005D0  XG$sioTX$0$0                       sio
-C:   000005D3  A$sio\Debug\sio$593                sio
-C:   000005D3  C$sio.c$47$1_0$23                  sio
-C:   000005D3  G$sioTXStr$0$0                     sio
-C:   000005D3  _sioTXStr                          sio
-C:   000005D5  A$sio\Debug\sio$594                sio
-C:   000005D8  A$sio\Debug\sio$595                sio
-C:   000005D9  A$sio\Debug\sio$598                sio
-C:   000005D9  C$sio.c$51$2_0$24                  sio
-C:   000005DA  A$sio\Debug\sio$599                sio
-C:   000005DB  A$sio\Debug\sio$600                sio
-C:   000005DE  A$sio\Debug\sio$601                sio
-C:   000005DF  A$sio\Debug\sio$602                sio
-C:   000005E0  A$sio\Debug\sio$603                sio
-C:   000005E1  A$sio\Debug\sio$604                sio
-C:   000005E2  A$sio\Debug\sio$605                sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 36.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000005E3  A$sio\Debug\sio$606                sio
-C:   000005E4  A$sio\Debug\sio$607                sio
-C:   000005E5  A$sio\Debug\sio$608                sio
-C:   000005E6  A$sio\Debug\sio$612                sio
-C:   000005E6  C$sio.c$53$2_0$24                  sio
-C:   000005E8  A$sio\Debug\sio$613                sio
-C:   000005EA  A$sio\Debug\sio$614                sio
-C:   000005EC  A$sio\Debug\sio$615                sio
-C:   000005EF  A$sio\Debug\sio$616                sio
-C:   000005F2  A$sio\Debug\sio$617                sio
-C:   000005F3  A$sio\Debug\sio$618                sio
-C:   000005F5  A$sio\Debug\sio$619                sio
-C:   000005F7  A$sio\Debug\sio$620                sio
-C:   000005F9  A$sio\Debug\sio$621                sio
-C:   000005FB  A$sio\Debug\sio$622                sio
-C:   000005FD  A$sio\Debug\sio$623                sio
-C:   000005FF  A$sio\Debug\sio$624                sio
-C:   00000601  A$sio\Debug\sio$625                sio
-C:   00000603  A$sio\Debug\sio$626                sio
-C:   00000606  A$sio\Debug\sio$627                sio
-C:   00000608  A$sio\Debug\sio$628                sio
-C:   0000060A  A$sio\Debug\sio$629                sio
-C:   0000060C  A$sio\Debug\sio$630                sio
-C:   0000060E  A$sio\Debug\sio$633                sio
-C:   0000060E  C$sio.c$54$1_0$23                  sio
-C:   00000610  A$sio\Debug\sio$634                sio
-C:   00000612  A$sio\Debug\sio$635                sio
-C:   00000614  A$sio\Debug\sio$636                sio
-C:   00000617  A$sio\Debug\sio$637                sio
-C:   00000618  A$sio\Debug\sio$638                sio
-C:   00000619  A$sio\Debug\sio$639                sio
-C:   0000061B  A$sio\Debug\sio$640                sio
-C:   0000061D  A$sio\Debug\sio$641                sio
-C:   0000061E  A$sio\Debug\sio$642                sio
-C:   00000620  A$sio\Debug\sio$647                sio
-C:   00000620  C$sio.c$55$1_0$23                  sio
-C:   00000620  XG$sioTXStr$0$0                    sio
-C:   00000623  A$sio\Debug\sio$663                sio
-C:   00000623  C$sio.c$57$1_0$26                  sio
-C:   00000623  G$sioTXBuf$0$0                     sio
-C:   00000623  _sioTXBuf                          sio
-C:   00000625  A$sio\Debug\sio$664                sio
-C:   00000628  A$sio\Debug\sio$665                sio
-C:   00000629  A$sio\Debug\sio$668                sio
-C:   00000629  C$sio.c$63$2_0$27                  sio
-C:   0000062A  A$sio\Debug\sio$669                sio
-C:   0000062B  A$sio\Debug\sio$670                sio
-C:   0000062E  A$sio\Debug\sio$671                sio
-C:   0000062F  A$sio\Debug\sio$672                sio
-C:   00000630  A$sio\Debug\sio$673                sio
-C:   00000631  A$sio\Debug\sio$674                sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 37.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000632  A$sio\Debug\sio$675                sio
-C:   00000633  A$sio\Debug\sio$676                sio
-C:   00000634  A$sio\Debug\sio$677                sio
-C:   00000635  A$sio\Debug\sio$678                sio
-C:   00000636  A$sio\Debug\sio$679                sio
-C:   00000637  A$sio\Debug\sio$680                sio
-C:   00000639  A$sio\Debug\sio$681                sio
-C:   0000063B  A$sio\Debug\sio$682                sio
-C:   0000063E  A$sio\Debug\sio$683                sio
-C:   0000063F  A$sio\Debug\sio$684                sio
-C:   00000640  A$sio\Debug\sio$685                sio
-C:   00000641  A$sio\Debug\sio$686                sio
-C:   00000642  A$sio\Debug\sio$687                sio
-C:   00000643  A$sio\Debug\sio$689                sio
-C:   00000645  A$sio\Debug\sio$690                sio
-C:   00000647  A$sio\Debug\sio$691                sio
-C:   00000648  A$sio\Debug\sio$692                sio
-C:   0000064B  A$sio\Debug\sio$693                sio
-C:   0000064C  A$sio\Debug\sio$695                sio
-C:   0000064D  A$sio\Debug\sio$696                sio
-C:   0000064E  A$sio\Debug\sio$697                sio
-C:   00000650  A$sio\Debug\sio$700                sio
-C:   00000650  C$sio.c$65$1_0$26                  sio
-C:   00000652  A$sio\Debug\sio$701                sio
-C:   00000654  A$sio\Debug\sio$702                sio
-C:   00000656  A$sio\Debug\sio$703                sio
-C:   00000658  A$sio\Debug\sio$704                sio
-C:   0000065A  A$sio\Debug\sio$705                sio
-C:   0000065B  A$sio\Debug\sio$706                sio
-C:   0000065E  A$sio\Debug\sio$707                sio
-C:   00000660  A$sio\Debug\sio$709                sio
-C:   00000661  A$sio\Debug\sio$710                sio
-C:   00000662  A$sio\Debug\sio$711                sio
-C:   00000663  A$sio\Debug\sio$712                sio
-C:   00000664  A$sio\Debug\sio$713                sio
-C:   00000665  A$sio\Debug\sio$714                sio
-C:   00000666  A$sio\Debug\sio$715                sio
-C:   00000668  A$sio\Debug\sio$716                sio
-C:   0000066A  A$sio\Debug\sio$717                sio
-C:   0000066C  A$sio\Debug\sio$718                sio
-C:   0000066E  A$sio\Debug\sio$719                sio
-C:   00000671  A$sio\Debug\sio$720                sio
-C:   00000674  A$sio\Debug\sio$721                sio
-C:   00000675  A$sio\Debug\sio$722                sio
-C:   00000677  A$sio\Debug\sio$723                sio
-C:   00000679  A$sio\Debug\sio$724                sio
-C:   0000067B  A$sio\Debug\sio$725                sio
-C:   0000067D  A$sio\Debug\sio$726                sio
-C:   0000067F  A$sio\Debug\sio$727                sio
-C:   00000681  A$sio\Debug\sio$728                sio
-C:   00000683  A$sio\Debug\sio$729                sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 38.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000685  A$sio\Debug\sio$730                sio
-C:   00000687  A$sio\Debug\sio$731                sio
-C:   00000689  A$sio\Debug\sio$732                sio
-C:   0000068C  A$sio\Debug\sio$733                sio
-C:   0000068E  A$sio\Debug\sio$734                sio
-C:   00000690  A$sio\Debug\sio$735                sio
-C:   00000692  A$sio\Debug\sio$736                sio
-C:   00000694  A$sio\Debug\sio$737                sio
-C:   00000696  A$sio\Debug\sio$738                sio
-C:   00000698  A$sio\Debug\sio$739                sio
-C:   0000069A  A$sio\Debug\sio$740                sio
-C:   0000069C  A$sio\Debug\sio$741                sio
-C:   0000069E  A$sio\Debug\sio$747                sio
-C:   0000069E  C$sio.c$67$1_0$26                  sio
-C:   0000069E  XG$sioTXBuf$0$0                    sio
-C:   000006A1  A$sio\Debug\sio$763                sio
-C:   000006A1  C$sio.c$69$1_0$29                  sio
-C:   000006A1  C$sio.c$73$1_0$29                  sio
-C:   000006A1  G$sioWaitRXDone$0$0                sio
-C:   000006A1  _sioWaitRXDone                     sio
-C:   000006A4  A$sio\Debug\sio$768                sio
-C:   000006A4  C$sio.c$74$1_0$29                  sio
-C:   000006A4  XG$sioWaitRXDone$0$0               sio
-C:   000006A7  A$sio\Debug\sio$785                sio
-C:   000006A7  C$sio.c$76$1_0$31                  sio
-C:   000006A7  C$sio.c$82$1_0$31                  sio
-C:   000006A7  G$sioRX$0$0                        sio
-C:   000006A7  _sioRX                             sio
-C:   000006AA  A$sio\Debug\sio$788                sio
-C:   000006AA  C$sio.c$83$1_0$31                  sio
-C:   000006AC  A$sio\Debug\sio$792                sio
-C:   000006AC  C$sio.c$84$1_0$31                  sio
-C:   000006AE  A$sio\Debug\sio$795                sio
-C:   000006AE  C$sio.c$86$1_0$31                  sio
-C:   000006B0  A$sio\Debug\sio$800                sio
-C:   000006B0  C$sio.c$87$1_0$31                  sio
-C:   000006B0  XG$sioRX$0$0                       sio
-C:   000006B3  A$sio\Debug\sio$816                sio
-C:   000006B3  C$sio.c$89$1_0$33                  sio
-C:   000006B3  G$sioRXStr$0$0                     sio
-C:   000006B3  _sioRXStr                          sio
-C:   000006B5  A$sio\Debug\sio$817                sio
-C:   000006B8  A$sio\Debug\sio$818                sio
-C:   000006B9  A$sio\Debug\sio$821                sio
-C:   000006B9  C$sio.c$95$2_0$34                  sio
-C:   000006BC  A$sio\Debug\sio$822                sio
-C:   000006BD  A$sio\Debug\sio$823                sio
-C:   000006BE  A$sio\Debug\sio$824                sio
-C:   000006BF  A$sio\Debug\sio$825                sio
-C:   000006C0  A$sio\Debug\sio$826                sio
-C:   000006C1  A$sio\Debug\sio$827                sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 39.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000006C2  A$sio\Debug\sio$828                sio
-C:   000006C3  A$sio\Debug\sio$829                sio
-C:   000006C4  A$sio\Debug\sio$830                sio
-C:   000006C7  A$sio\Debug\sio$831                sio
-C:   000006C8  A$sio\Debug\sio$832                sio
-C:   000006C9  A$sio\Debug\sio$833                sio
-C:   000006CA  A$sio\Debug\sio$834                sio
-C:   000006CC  A$sio\Debug\sio$835                sio
-C:   000006CE  A$sio\Debug\sio$836                sio
-C:   000006D1  A$sio\Debug\sio$837                sio
-C:   000006D2  A$sio\Debug\sio$838                sio
-C:   000006D3  A$sio\Debug\sio$839                sio
-C:   000006D4  A$sio\Debug\sio$840                sio
-C:   000006D5  A$sio\Debug\sio$841                sio
-C:   000006D6  A$sio\Debug\sio$843                sio
-C:   000006D8  A$sio\Debug\sio$844                sio
-C:   000006DA  A$sio\Debug\sio$845                sio
-C:   000006DB  A$sio\Debug\sio$846                sio
-C:   000006DE  A$sio\Debug\sio$847                sio
-C:   000006DF  A$sio\Debug\sio$849                sio
-C:   000006E0  A$sio\Debug\sio$850                sio
-C:   000006E1  A$sio\Debug\sio$851                sio
-C:   000006E3  A$sio\Debug\sio$854                sio
-C:   000006E3  C$sio.c$97$1_0$33                  sio
-C:   000006E5  A$sio\Debug\sio$855                sio
-C:   000006E7  A$sio\Debug\sio$856                sio
-C:   000006E9  A$sio\Debug\sio$857                sio
-C:   000006EB  A$sio\Debug\sio$858                sio
-C:   000006ED  A$sio\Debug\sio$859                sio
-C:   000006EE  A$sio\Debug\sio$860                sio
-C:   000006F1  A$sio\Debug\sio$861                sio
-C:   000006F3  A$sio\Debug\sio$863                sio
-C:   000006F4  A$sio\Debug\sio$864                sio
-C:   000006F5  A$sio\Debug\sio$865                sio
-C:   000006F6  A$sio\Debug\sio$866                sio
-C:   000006F7  A$sio\Debug\sio$867                sio
-C:   000006F8  A$sio\Debug\sio$868                sio
-C:   000006F9  A$sio\Debug\sio$869                sio
-C:   000006FB  A$sio\Debug\sio$870                sio
-C:   000006FD  A$sio\Debug\sio$871                sio
-C:   000006FF  A$sio\Debug\sio$872                sio
-C:   00000701  A$sio\Debug\sio$873                sio
-C:   00000703  A$sio\Debug\sio$874                sio
-C:   00000705  A$sio\Debug\sio$875                sio
-C:   00000707  A$sio\Debug\sio$876                sio
-C:   00000709  A$sio\Debug\sio$877                sio
-C:   0000070B  A$sio\Debug\sio$878                sio
-C:   0000070D  A$sio\Debug\sio$879                sio
-C:   0000070F  A$sio\Debug\sio$880                sio
-C:   00000711  A$sio\Debug\sio$881                sio
-C:   00000714  A$sio\Debug\sio$882                sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 40.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000716  A$sio\Debug\sio$883                sio
-C:   00000718  A$sio\Debug\sio$884                sio
-C:   0000071A  A$sio\Debug\sio$885                sio
-C:   0000071C  A$sio\Debug\sio$886                sio
-C:   0000071E  A$sio\Debug\sio$887                sio
-C:   00000720  A$sio\Debug\sio$888                sio
-C:   00000722  A$sio\Debug\sio$889                sio
-C:   00000724  A$sio\Debug\sio$890                sio
-C:   00000726  A$sio\Debug\sio$891                sio
-C:   00000728  A$sio\Debug\sio$892                sio
-C:   0000072A  A$sio\Debug\sio$893                sio
-C:   0000072B  A$sio\Debug\sio$894                sio
-C:   0000072E  A$sio\Debug\sio$895                sio
-C:   00000730  A$sio\Debug\sio$896                sio
-C:   00000732  A$sio\Debug\sio$897                sio
-C:   00000734  A$sio\Debug\sio$905                sio
-C:   00000734  C$sio.c$100$1_0$33                 sio
-C:   00000734  C$sio.c$98$1_0$33                  sio
-C:   00000734  XG$sioRXStr$0$0                    sio
-C:   00000737  A$sio\Debug\sio$921                sio
-C:   00000737  C$sio.c$102$1_0$36                 sio
-C:   00000737  G$sioRXBuf$0$0                     sio
-C:   00000737  _sioRXBuf                          sio
-C:   00000739  A$sio\Debug\sio$922                sio
-C:   0000073C  A$sio\Debug\sio$923                sio
-C:   0000073D  A$sio\Debug\sio$926                sio
-C:   0000073D  C$sio.c$108$2_0$37                 sio
-C:   00000740  A$sio\Debug\sio$927                sio
-C:   00000741  A$sio\Debug\sio$928                sio
-C:   00000742  A$sio\Debug\sio$929                sio
-C:   00000743  A$sio\Debug\sio$930                sio
-C:   00000744  A$sio\Debug\sio$931                sio
-C:   00000745  A$sio\Debug\sio$932                sio
-C:   00000746  A$sio\Debug\sio$933                sio
-C:   00000747  A$sio\Debug\sio$934                sio
-C:   00000748  A$sio\Debug\sio$935                sio
-C:   0000074B  A$sio\Debug\sio$936                sio
-C:   0000074C  A$sio\Debug\sio$937                sio
-C:   0000074D  A$sio\Debug\sio$938                sio
-C:   0000074E  A$sio\Debug\sio$939                sio
-C:   00000750  A$sio\Debug\sio$940                sio
-C:   00000752  A$sio\Debug\sio$941                sio
-C:   00000755  A$sio\Debug\sio$942                sio
-C:   00000756  A$sio\Debug\sio$943                sio
-C:   00000757  A$sio\Debug\sio$944                sio
-C:   00000758  A$sio\Debug\sio$945                sio
-C:   00000759  A$sio\Debug\sio$946                sio
-C:   0000075A  A$sio\Debug\sio$948                sio
-C:   0000075C  A$sio\Debug\sio$949                sio
-C:   0000075E  A$sio\Debug\sio$950                sio
-C:   0000075F  A$sio\Debug\sio$951                sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 41.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000762  A$sio\Debug\sio$952                sio
-C:   00000763  A$sio\Debug\sio$954                sio
-C:   00000764  A$sio\Debug\sio$955                sio
-C:   00000765  A$sio\Debug\sio$956                sio
-C:   00000767  A$sio\Debug\sio$959                sio
-C:   00000767  C$sio.c$110$1_0$36                 sio
-C:   00000769  A$sio\Debug\sio$960                sio
-C:   0000076B  A$sio\Debug\sio$961                sio
-C:   0000076D  A$sio\Debug\sio$962                sio
-C:   0000076F  A$sio\Debug\sio$963                sio
-C:   00000771  A$sio\Debug\sio$964                sio
-C:   00000772  A$sio\Debug\sio$965                sio
-C:   00000775  A$sio\Debug\sio$966                sio
-C:   00000777  A$sio\Debug\sio$968                sio
-C:   00000778  A$sio\Debug\sio$969                sio
-C:   00000779  A$sio\Debug\sio$970                sio
-C:   0000077A  A$sio\Debug\sio$971                sio
-C:   0000077B  A$sio\Debug\sio$972                sio
-C:   0000077C  A$sio\Debug\sio$973                sio
-C:   0000077D  A$sio\Debug\sio$974                sio
-C:   0000077F  A$sio\Debug\sio$975                sio
-C:   00000781  A$sio\Debug\sio$976                sio
-C:   00000783  A$sio\Debug\sio$977                sio
-C:   00000785  A$sio\Debug\sio$978                sio
-C:   00000787  A$sio\Debug\sio$979                sio
-C:   00000789  A$sio\Debug\sio$980                sio
-C:   0000078B  A$sio\Debug\sio$981                sio
-C:   0000078D  A$sio\Debug\sio$982                sio
-C:   0000078F  A$sio\Debug\sio$983                sio
-C:   00000791  A$sio\Debug\sio$984                sio
-C:   00000793  A$sio\Debug\sio$985                sio
-C:   00000795  A$sio\Debug\sio$986                sio
-C:   00000798  A$sio\Debug\sio$987                sio
-C:   0000079A  A$sio\Debug\sio$988                sio
-C:   0000079C  A$sio\Debug\sio$989                sio
-C:   0000079E  A$sio\Debug\sio$990                sio
-C:   000007A0  A$sio\Debug\sio$991                sio
-C:   000007A2  A$sio\Debug\sio$992                sio
-C:   000007A4  A$sio\Debug\sio$993                sio
-C:   000007A6  A$sio\Debug\sio$994                sio
-C:   000007A8  A$sio\Debug\sio$995                sio
-C:   000007AA  A$sio\Debug\sio$996                sio
-C:   000007AC  A$sio\Debug\sio$997                sio
-C:   000007AE  A$sio\Debug\sio$998                sio
-C:   000007AF  A$sio\Debug\sio$999                sio
-C:   000007B2  A$sio\Debug\sio$1000               sio
-C:   000007B4  A$sio\Debug\sio$1001               sio
-C:   000007B6  A$sio\Debug\sio$1002               sio
-C:   000007B8  A$sio\Debug\sio$1008               sio
-C:   000007B8  C$sio.c$112$1_0$36                 sio
-C:   000007B8  XG$sioRXBuf$0$0                    sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 42.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   000007BB  A$sio\Debug\sio$1021               sio
-C:   000007BB  C$sio.c$114$1_0$39                 sio
-C:   000007BB  G$sioTest1$0$0                     sio
-C:   000007BB  _sioTest1                          sio
-C:   000007BD  A$sio\Debug\sio$1022               sio
-C:   000007C0  A$sio\Debug\sio$1023               sio
-C:   000007C1  A$sio\Debug\sio$1026               sio
-C:   000007C1  C$sio.c$116$1_0$39                 sio
-C:   000007C2  A$sio\Debug\sio$1027               sio
-C:   000007C3  A$sio\Debug\sio$1028               sio
-C:   000007C5  A$sio\Debug\sio$1029               sio
-C:   000007C7  A$sio\Debug\sio$1030               sio
-C:   000007C9  A$sio\Debug\sio$1031               sio
-C:   000007CB  A$sio\Debug\sio$1032               sio
-C:   000007CD  A$sio\Debug\sio$1033               sio
-C:   000007D0  A$sio\Debug\sio$1034               sio
-C:   000007D2  A$sio\Debug\sio$1040               sio
-C:   000007D2  C$sio.c$117$1_0$39                 sio
-C:   000007D2  C$sio.c$119$2_0$40                 sio
-C:   000007D4  A$sio\Debug\sio$1041               sio
-C:   000007D6  A$sio\Debug\sio$1042               sio
-C:   000007D8  A$sio\Debug\sio$1043               sio
-C:   000007DA  A$sio\Debug\sio$1044               sio
-C:   000007DC  A$sio\Debug\sio$1045               sio
-C:   000007DF  A$sio\Debug\sio$1046               sio
-C:   000007E1  A$sio\Debug\sio$1047               sio
-C:   000007E3  A$sio\Debug\sio$1048               sio
-C:   000007E6  A$sio\Debug\sio$1049               sio
-C:   000007E7  A$sio\Debug\sio$1050               sio
-C:   000007E8  A$sio\Debug\sio$1051               sio
-C:   000007EA  A$sio\Debug\sio$1052               sio
-C:   000007EC  A$sio\Debug\sio$1053               sio
-C:   000007EE  A$sio\Debug\sio$1054               sio
-C:   000007F0  A$sio\Debug\sio$1055               sio
-C:   000007F2  A$sio\Debug\sio$1056               sio
-C:   000007F5  A$sio\Debug\sio$1057               sio
-C:   000007F7  A$sio\Debug\sio$1062               sio
-C:   000007F7  C$sio.c$121$1_0$39                 sio
-C:   000007F7  XG$sioTest1$0$0                    sio
-C:   000007F9  A$sio\Debug\sio$1075               sio
-C:   000007F9  C$sio.c$133$1_0$42                 sio
-C:   000007F9  G$sioTest2$0$0                     sio
-C:   000007F9  _sioTest2                          sio
-C:   000007FB  A$sio\Debug\sio$1076               sio
-C:   000007FE  A$sio\Debug\sio$1077               sio
-C:   000007FF  A$sio\Debug\sio$1080               sio
-C:   000007FF  C$sio.c$135$1_0$42                 sio
-C:   00000800  A$sio\Debug\sio$1081               sio
-C:   00000801  A$sio\Debug\sio$1082               sio
-C:   00000803  A$sio\Debug\sio$1083               sio
-C:   00000805  A$sio\Debug\sio$1084               sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 43.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000807  A$sio\Debug\sio$1085               sio
-C:   00000809  A$sio\Debug\sio$1086               sio
-C:   0000080B  A$sio\Debug\sio$1087               sio
-C:   0000080E  A$sio\Debug\sio$1088               sio
-C:   00000810  A$sio\Debug\sio$1094               sio
-C:   00000810  C$sio.c$136$1_0$42                 sio
-C:   00000810  C$sio.c$138$2_0$43                 sio
-C:   00000813  A$sio\Debug\sio$1095               sio
-C:   00000815  A$sio\Debug\sio$1096               sio
-C:   00000816  A$sio\Debug\sio$1097               sio
-C:   00000818  A$sio\Debug\sio$1098               sio
-C:   00000819  A$sio\Debug\sio$1099               sio
-C:   0000081A  A$sio\Debug\sio$1100               sio
-C:   0000081C  A$sio\Debug\sio$1101               sio
-C:   0000081D  A$sio\Debug\sio$1102               sio
-C:   0000081E  A$sio\Debug\sio$1103               sio
-C:   00000820  A$sio\Debug\sio$1104               sio
-C:   00000822  A$sio\Debug\sio$1105               sio
-C:   00000824  A$sio\Debug\sio$1106               sio
-C:   00000826  A$sio\Debug\sio$1107               sio
-C:   00000828  A$sio\Debug\sio$1108               sio
-C:   0000082B  A$sio\Debug\sio$1109               sio
-C:   0000082D  A$sio\Debug\sio$1112               sio
-C:   0000082D  C$sio.c$139$2_0$43                 sio
-C:   00000830  A$sio\Debug\sio$1113               sio
-C:   00000832  A$sio\Debug\sio$1114               sio
-C:   00000833  A$sio\Debug\sio$1115               sio
-C:   00000835  A$sio\Debug\sio$1116               sio
-C:   00000836  A$sio\Debug\sio$1117               sio
-C:   00000837  A$sio\Debug\sio$1118               sio
-C:   00000839  A$sio\Debug\sio$1119               sio
-C:   0000083A  A$sio\Debug\sio$1120               sio
-C:   0000083B  A$sio\Debug\sio$1121               sio
-C:   0000083E  A$sio\Debug\sio$1122               sio
-C:   00000840  A$sio\Debug\sio$1123               sio
-C:   00000841  A$sio\Debug\sio$1124               sio
-C:   00000842  A$sio\Debug\sio$1125               sio
-C:   00000843  A$sio\Debug\sio$1126               sio
-C:   00000844  A$sio\Debug\sio$1127               sio
-C:   00000846  A$sio\Debug\sio$1128               sio
-C:   00000848  A$sio\Debug\sio$1129               sio
-C:   0000084A  A$sio\Debug\sio$1130               sio
-C:   0000084C  A$sio\Debug\sio$1131               sio
-C:   0000084E  A$sio\Debug\sio$1132               sio
-C:   00000851  A$sio\Debug\sio$1133               sio
-C:   00000853  A$sio\Debug\sio$1138               sio
-C:   00000853  C$sio.c$141$1_0$42                 sio
-C:   00000853  XG$sioTest2$0$0                    sio
-C:   00000855  A$sio\Debug\sio$1157               sio
-C:   00000855  C$sio.c$143$1_0$45                 sio
-C:   00000855  C$sio.c$145$1_0$45                 sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 44.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CSEG                                00000077    0000081C =        2076. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000855  C$sio.c$146$1_0$45                 sio
-C:   00000855  G$sioTest3$0$0                     sio
-C:   00000855  XG$sioTest3$0$0                    sio
-C:   00000855  _sioTest3                          sio
-C:   00000858  __gptrput                          _gptrput
-C:   00000873  __gptrget                          _gptrget
-C:   0000088F  __sdcc_external_startup            _startup
-ASxxxx Linker V03.00 + NoICE + sdld,  page 45.
-Hexadecimal  [32-Bits]
-
-Area                                    Addr        Size        Decimal Bytes (Attributes)
---------------------------------        ----        ----        ------- ----- ------------
-CONST                               00000893    00000047 =          71. bytes (REL,CON,CODE)
-
-      Value  Global                              Global Defined In Module
-      -----  --------------------------------   ------------------------
-C:   00000893  G$data$0_0$0                       sio
-C:   00000893  _data                              sio
-C:   000008C7  Fsio$__str_0$0_0$0                 sio
-ASxxxx Linker V03.00 + NoICE + sdld,  page 46.
 
 Files Linked                              [ module(s) ]
 
@@ -2152,16 +422,14 @@ C:\Program Files (x86)\SDCC\bin\..\lib\huge/libsdcc.lib
 C:\Program Files (x86)\SDCC\bin\..\lib\huge/libsdcc.lib
                                           [ _startup.rel ]
 
-ASxxxx Linker V03.00 + NoICE + sdld,  page 47.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
 
 User Base Address Definitions
 
 HOME = 0x0000
-XSEG = 0x4000
-PSEG = 0x4000
+XSEG = 0xa000
+PSEG = 0xa000
 ISEG = 0x0000
 BSEG = 0x0000
-SSEG = 0x0020
 
 
-?ASlink-Warning-Undefined Global '_PSBANK' referenced by module ''

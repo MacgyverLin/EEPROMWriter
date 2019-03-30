@@ -59,7 +59,7 @@ extern void cfInit(char device);
 extern void cfWaitIdle(char device);
 extern void cfWaitCommandReady(char device);
 extern void cfWaitDataReady(char device);
-extern void cfReadSector(char device, char* buf, unsigned int sectorCount);
+extern void cfReadSector(char device, char* buf, unsigned long LBA, unsigned int sectorCount);
 extern void cfTest(char device, char* buf);
 
 #ifdef __cplusplus

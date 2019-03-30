@@ -1,4 +1,5 @@
 #include "compactflash.h"
+#include "sio.h"
 
 void cfInit(char device)
 {
@@ -9,7 +10,7 @@ void cfInit(char device)
 
 void cfWaitIdle(char device)
 {
-    __data char status;
+    char status;
     do
     {
         status = cfReadStatus(device);
@@ -19,7 +20,7 @@ void cfWaitIdle(char device)
 
 void cfWaitCommandReady(char device)
 {
-    __data char status;
+    char status;
 
     do
     {
@@ -30,7 +31,7 @@ void cfWaitCommandReady(char device)
 
 void cfWaitDataReady(char device)
 {
-    __data char status;
+    char status;
     do
     {
         status = cfReadStatus(device);
@@ -38,47 +39,57 @@ void cfWaitDataReady(char device)
     while((status & 0x88)!=0x08);
 }
 
-void cfReadSector(char device, char* buf, unsigned int sectorCount)
+void cfReadSector(char device, char* buf, unsigned long LBA, unsigned int sectorCount)
 {
-    __data char status;
-    __data unsigned int i;
-    __data unsigned int idx;
+    char status;
+    unsigned int i;
+    unsigned int idx;
 
     sectorCount;
 
+    //sioTXStr(0, "cfReadSector 1\r\n");
     P1 = 0xe1;
     cfWaitIdle(device);
 
+    //sioTXStr(0, "cfReadSector 2\r\n");
     P1 = 0xe2;
     cfWriteSectorCount(device, 0x01);
 
+    //sioTXStr(0, "cfReadSector 3\r\n");
     P1 = 0xe3;
     cfWaitIdle(device);
 
+    //sioTXStr(0, "cfReadSector 4\r\n");
     P1 = 0xe4;
-    cfWriteLBA0(device, 0x00);
+    cfWriteLBA0(device, ((LBA    ) & 0xff) );
 
+    //sioTXStr(0, "cfReadSector 5\r\n");
     P1 = 0xe5;
     cfWaitIdle(device);
 
+    //sioTXStr(0, "cfReadSector 6\r\n");
     P1 = 0xe6;
-    cfWriteLBA1(device, 0x00);
+    cfWriteLBA1(device, ((LBA>>8 ) & 0xff) );
 
+    //sioTXStr(0, "cfReadSector 7\r\n");
     P1 = 0xe7;
     cfWaitIdle(device);
 
+    //sioTXStr(0, "cfReadSector 8\r\n");
     P1 = 0xe8;
-    cfWriteLBA2(device, 0x00);
+    cfWriteLBA2(device, ((LBA>>16) & 0xff) );
 
+    //sioTXStr(0, "cfReadSector 9\r\n");
     P1 = 0xe9;
     cfWaitIdle(device);
 
+    //sioTXStr(0, "cfReadSector 10\r\n");
     P1 = 0xea;
-    cfWriteLBA3(device, 0xe0);
+    cfWriteLBA3(device, (0xe0 | 0x00 | ((LBA>>24) & 0x0f)) );
 
     idx = 0;
-    //while(sectorCount--)
-    //{
+    while(sectorCount--)
+    {
         do
         {
             P1 = 0xeb;
@@ -88,7 +99,7 @@ void cfReadSector(char device, char* buf, unsigned int sectorCount)
             cfWriteCommand(device, 0x20);
 
             P1 = 0xed;
-            cfWaitDataReady(device);
+            //cfWaitDataReady(device);
 
             P1 = 0xee;
             status = cfReadStatus(device);
@@ -97,8 +108,7 @@ void cfReadSector(char device, char* buf, unsigned int sectorCount)
         }
         while((status & 0x01)!=0);
 
-        i = 0;
-        while(i++ < SECTOR_SIZE)
+        for(i=0; i<SECTOR_SIZE; i++)
         {
             P1 = 0xf0;
             cfWaitDataReady(device);
@@ -107,9 +117,9 @@ void cfReadSector(char device, char* buf, unsigned int sectorCount)
             buf[i+idx] = cfReadData(device);
 
             P1 = 0xf2;
-        }
+        };
         idx += SECTOR_SIZE;
-    //};
+    };
 
     P1 = 0xf3;
 }
@@ -121,13 +131,16 @@ void cfTest(char device, char* buf)
     //P1 = 0xc1;
     //uart0Init();
 
-    P1 = 0xc2;
+    //sioTXStr(0, "cfTest 1\r\n");
     cfInit(device);
 
-    P1 = 0xc3;
-    cfReadSector(device, buf, 1);
+    //sioTXStr(0, "cfTest 2\r\n");
+    cfReadSector(device, buf, 0, 1);
+    sioTXBuf(0, buf, 512);
+    //sioTXStr(0, "cfTest 3\r\n");
 
-    P1 = 0xc4;
-    //uart0TXBuf(buf, SECTOR_SIZE);
-    //P1 = 0xc5;
+    //sioTXStr(0, "cfTest 4\r\n");
+    cfReadSector(device, buf, 1, 1);
+    sioTXBuf(0, buf, 512);
+    //sioTXStr(0, "cfTest 5\r\n");
 }

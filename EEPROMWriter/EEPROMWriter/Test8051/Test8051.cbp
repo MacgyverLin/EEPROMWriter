@@ -13,16 +13,19 @@
 				<Option type="5" />
 				<Option compiler="sdcc" />
 				<Compiler>
-					<Add option="--std-c99" />
-					<Add option="--debug" />
+					<Add option="-mz80" />
+					<Add option="--opt-code-size" />
+					<Add option="--std-sdcc99" />
+					<Add option="--stack-auto" />
+					<Add directory="FATFS/src" />
+					<Add directory="FATFS/option" />
+					<Add directory="../Test8051" />
 				</Compiler>
 				<Linker>
-					<Add option="--xram-loc 0x4000" />
-					<Add option="--xram-size 0xBF00" />
+					<Add option="--xram-loc 0xA000" />
+					<Add option="--xram-size 0x5F00" />
 					<Add option="--code-loc 0x0000" />
-					<Add option="--code-size 0x4000" />
-					<Add option="--stack-loc 0x20" />
-					<Add option="--stack-size 0x40" />
+					<Add option="--code-size 0xA000" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -55,6 +58,21 @@
 		<ExtraCommands>
 			<Add after='cmd /c &quot;packihx &lt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).ihx &gt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).hex&quot;' />
 		</ExtraCommands>
+		<Unit filename="FATFS/option/unicode.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="FATFS/src/diskio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="FATFS/src/diskio.h" />
+		<Unit filename="FATFS/src/exfuns.h" />
+		<Unit filename="FATFS/src/fattester.h" />
+		<Unit filename="FATFS/src/ff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="FATFS/src/ff.h" />
+		<Unit filename="FATFS/src/ffconf.h" />
+		<Unit filename="FATFS/src/integer.h" />
 		<Unit filename="compactflash.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -63,11 +81,20 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="delay.h" />
+		<Unit filename="fat.c">
+			<Option compilerVar="CC" />
+		</Unit>
 		<Unit filename="led.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="led.h" />
 		<Unit filename="main.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="sio.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sysctrl.c">
