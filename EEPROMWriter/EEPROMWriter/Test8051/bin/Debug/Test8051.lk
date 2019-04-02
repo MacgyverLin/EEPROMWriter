@@ -3,16 +3,17 @@
 -M
 -Y
 -I 0x0100
--X 0x5f00
--C 0xa000
+-X 0xbf00
+-C 0x4000
+-y
 -b HOME = 0x0000
--b XSEG = 0xa000
--b PSEG = 0xa000
+-b XSEG = 0x4000
+-b PSEG = 0x4000
 -b ISEG = 0x0000
 -b BSEG = 0x0000
--k ..\..\..\..\..\Program Files (x86)\SDCC\lib\z80
+-k C:\Program Files (x86)\SDCC\lib\large-stack-auto
 -k C:\Program Files (x86)\SDCC\lib
--k C:\Program Files (x86)\SDCC\bin\..\lib\huge
+-k C:\Program Files (x86)\SDCC\bin\..\lib\large-stack-auto
 -l mcs51
 -l libsdcc
 -l libint
@@ -22,8 +23,12 @@ obj\Debug\compactflash.rel
 obj\Debug\delay.rel
 obj\Debug\led.rel
 obj\Debug\main.rel
+obj\Debug\pff3a\diskio.rel
+obj\Debug\pff3a\pff.rel
 obj\Debug\pio.rel
 obj\Debug\sio.rel
+obj\Debug\SIOFS\siofatfs.rel
 obj\Debug\sysctrl.rel
+obj\Debug\test.rel
 
 -e

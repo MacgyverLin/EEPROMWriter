@@ -32,8 +32,6 @@ extern "C"
 #define pioReadPortB(device)  IOREAD((PIO0_PORT_B + (device)<<4))
 #define pioReadPortC(device)  IOREAD((PIO0_PORT_C + (device)<<4))
 
-extern void pioTest(char device);
-
 #ifdef __cplusplus
 };
 #endif

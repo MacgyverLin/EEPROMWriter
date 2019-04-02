@@ -1,18 +1,16 @@
 # depslib dependency file v1.0
-1553766131 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\main.c
+1554112731 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\main.c
 	<mcs51/8051.h>
-	"pio.h"
-	"compactflash.h"
-	"uart.h"
-	"sysctrl.h"
-	"led.h"
+	"test.h"
 
-1548655783 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ff.c
+1553852770 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ff.c
 	"ff.h"
 	"diskio.h"
+	<mcs51/8051.h>
+	"sio.h"
 	<stdarg.h>
 
-1548645967 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ff.h
+1553793516 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ff.h
 	"integer.h"
 	"ffconf.h"
 
@@ -20,15 +18,15 @@
 	<windows.h>
 	<tchar.h>
 
-1548670490 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ffconf.h
+1553850138 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ffconf.h
 
-1547434628 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\diskio.h
+1553850255 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\diskio.h
 	"integer.h"
 
-1553765953 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\compactflash.c
+1554096509 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\compactflash.c
 	"compactflash.h"
 
-1553765113 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\compactflash.h
+1554095965 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\compactflash.h
 	<mcs51/8051.h>
 	"sysctrl.h"
 
@@ -41,48 +39,50 @@
 1553762821 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\delay.h
 	<mcs51/8051.h>
 
-1553766009 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\led.c
+1554092759 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\led.c
 	"led.h"
 	"delay.h"
 
-1553766005 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\led.h
+1554092715 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\led.h
 	<mcs51/8051.h>
 
-1553765074 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sysctrl.h
+1553828223 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sysctrl.h
 	<mcs51/8051.h>
 
 1553765085 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sysctrl.c
 	"sysctrl.h"
 
-1553765897 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pio.c
+1554092505 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pio.c
 	"pio.h"
-	"delay.h"
 
-1553765869 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pio.h
+1554092458 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pio.h
 	<mcs51/8051.h>
 	"sysctrl.h"
 
 1553765191 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\uart.h
 	<mcs51/8051.h>
 
-1553944409 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\compactflash.c
-	"compactflash.h"
+1554092576 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sio.h
+	<mcs51/8051.h>
+
+1554092526 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sio.c
 	"sio.h"
 
-1553884473 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\compactflash.h
+1553772207 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\siodisk.h
 	<mcs51/8051.h>
 	"sysctrl.h"
 
-1553879475 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sysctrl.h
-	<mcs51/8051.h>
+1553854322 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\diskio.c
+	<stdlib.h>
+	"diskio.h"
+	"../../compactflash.h"
+	"../../sioDisk.h"
 
-1553879043 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\delay.c
-	"delay.h"
+1553827027 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\siodisk.c
+	"sioDisk.h"
+	"sio.h"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\delay.h
-	<mcs51/8051.h>
-
-1553879043 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\unicode.c
+1553788792 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\unicode.c
 	"ff.h"
 	"cc932.c"
 	"cc936.c"
@@ -90,84 +90,167 @@
 	"cc950.c"
 	"ccsbcs.c"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ff.h
-	"integer.h"
-	"ffconf.h"
-
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\integer.h
-	<windows.h>
-	<tchar.h>
-
-1553881310 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ffconf.h
-
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\cc932.c
+1547434628 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\cc932.c
 	"../ff.h"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\cc936.c
+1547434628 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\cc936.c
 	"./ff.h"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\cc949.c
+1547434628 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\cc949.c
 	"../ff.h"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\cc950.c
+1547434628 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\cc950.c
 	"../ff.h"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\ccsbcs.c
+1553788806 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\option\ccsbcs.c
 	"ff.h"
 
-1553948066 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\ff.c
-	"ff.h"
-	"diskio.h"
-	<mcs51/8051.h>
-	<stdarg.h>
+1385804106 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_access.c
+	<string.h>
+	"fat_defs.h"
+	"fat_access.h"
+	"fat_table.h"
+	"fat_write.h"
+	"fat_string.h"
+	"fat_misc.h"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\diskio.h
-	"integer.h"
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_defs.h
+	"fat_opts.h"
+	"fat_types.h"
 
-1553879043 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\led.c
-	"led.h"
-	"delay.h"
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_opts.h
+	"fat_custom.h"
+	<stdio.h>
+	<time.h>
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\led.h
-	<mcs51/8051.h>
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_types.h
 
-1553948774 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\main.c
-	<mcs51/8051.h>
-	"pio.h"
-	"sio.h"
-	"compactflash.h"
-	"sysctrl.h"
-	"led.h"
-	"fat.h"
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_access.h
+	"fat_defs.h"
+	"fat_opts.h"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pio.h
-	<mcs51/8051.h>
-	"sysctrl.h"
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_table.h
+	"fat_opts.h"
+	"fat_misc.h"
 
-1553879043 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sio.h
-	<mcs51/8051.h>
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_misc.h
+	"fat_defs.h"
+	"fat_opts.h"
 
-1553939145 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs\src\diskio.c
-	"diskio.h"
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_write.h
+	"fat_defs.h"
+	"fat_opts.h"
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_string.h
+
+1385804106 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_cache.c
+	<string.h>
+	"fat_cache.h"
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_cache.h
+	"fat_filelib.h"
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_filelib.h
+	"fat_opts.h"
+	"fat_access.h"
+	"fat_list.h"
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_list.h
+
+1385804106 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_format.c
+	<string.h>
+	"fat_defs.h"
+	"fat_access.h"
+	"fat_table.h"
+	"fat_write.h"
+	"fat_string.h"
+	"fat_misc.h"
+	"fat_format.h"
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_format.h
+	"fat_defs.h"
+	"fat_opts.h"
+	"fat_access.h"
+
+1385804106 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_misc.c
 	<stdlib.h>
-	"../../compactflash.h"
+	<string.h>
+	"fat_misc.h"
 
-1553879485 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pio.c
-	"pio.h"
-	"delay.h"
+1385804106 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_string.c
+	<string.h>
+	<assert.h>
+	"fat_string.h"
 
-1553931999 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sio.c
-	"sio.h"
+1385804106 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_table.c
+	<string.h>
+	"fat_defs.h"
+	"fat_access.h"
+	"fat_table.h"
 
-1553879043 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\sysctrl.c
-	"sysctrl.h"
+1385804106 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat\fat_write.c
+	<string.h>
+	"fat_defs.h"
+	"fat_access.h"
+	"fat_table.h"
+	"fat_write.h"
+	"fat_string.h"
+	"fat_misc.h"
 
-1553938841 source:c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat.c
-	"fat.h"
-	"sio.h"
-	"compactflash.h"
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs2\fat_filelib.h
+	"fat_opts.h"
+	"fat_access.h"
+	"fat_list.h"
 
-1553886771 c:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fat.h
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs2\fat_opts.h
+	"fat_custom.h"
+	<stdio.h>
+	<time.h>
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs2\fat_access.h
+	"fat_defs.h"
+	"fat_opts.h"
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs2\fat_defs.h
+	"fat_opts.h"
+	"fat_types.h"
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs2\fat_types.h
+
+1385804106 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\fatfs2\fat_list.h
+
+1554093633 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\test.h
 	<mcs51/8051.h>
-	"ff.h"
+	"test.h"
+	"compactflash.h"
+	"pio.h"
+	"sio.h"
+
+1554112712 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pff3a\diskio.c
+	"diskio.h"
+	"../compactflash.h"
+
+1554093866 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pff3a\diskio.h
+	"pff.h"
+
+1548850104 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pff3a\pff.h
+	"pffconf.h"
+	<windows.h>
+	<stdint.h>
+
+1554104874 e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pff3a\pffconf.h
+
+1554112640 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\pff3a\pff.c
+	"pff.h"
+	"diskio.h"
+	<mcs51/8051.h>
+
+1554113247 source:e:\project\eepromwriter\eepromwriter\eepromwriter\test8051\test.c
+	"test.h"
+	"compactflash.h"
+	"pio.h"
+	"sio.h"
+	"delay.h"
+	"pff.h"
+	"pffconf.h"
 

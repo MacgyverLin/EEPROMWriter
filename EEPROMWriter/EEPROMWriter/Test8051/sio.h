@@ -18,9 +18,6 @@ extern void sioWaitRXDone(char device);
 extern char sioRX(char device);
 extern void sioRXStr(char device, char* s, unsigned int size);
 extern void sioRXBuf(char device, char* buf, unsigned int size);
-extern void sioTest1(char device);
-extern void sioTest2(char device);
-extern void sioTest3(char device);
 
 #ifdef __cplusplus
 };

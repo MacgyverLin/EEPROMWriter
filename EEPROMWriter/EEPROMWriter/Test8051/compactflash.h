@@ -17,7 +17,7 @@ extern "C"
 ;|  BSY  | DRDY  |  DWF  |  DSC  |  DRQ  | CORR  |  IDX  |  ERR  |
 ;+-------+-------+-------+-------+-------+-------+-------+-------+
 ;****************************************************************/
-#define SECTOR_SIZE 512
+#define CF_SECTOR_SIZE 512
 
 #define CF0_BASE                        0x0FF20
 #define CF0_PORT_DATA                   (CF0_BASE+0)
@@ -60,7 +60,8 @@ extern void cfWaitIdle(char device);
 extern void cfWaitCommandReady(char device);
 extern void cfWaitDataReady(char device);
 extern void cfReadSector(char device, char* buf, unsigned long LBA, unsigned int sectorCount);
-extern void cfTest(char device, char* buf);
+extern void cfWriteSector(char device, const char* buf, unsigned long LBA, unsigned int sectorCount);
+extern unsigned long cfDiskGetSectorCount(char device);
 
 #ifdef __cplusplus
 };

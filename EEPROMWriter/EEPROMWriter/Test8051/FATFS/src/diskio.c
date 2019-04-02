@@ -6,15 +6,17 @@
 /* This is an example of glue functions to attach various exsisting      */
 /* storage control module to the FatFs module with a defined API.        */
 /*-----------------------------------------------------------------------*/
-#include "diskio.h"		/* FatFs lower layer API */
 #include <stdlib.h>
+#include "diskio.h"
 #include "../../compactflash.h"
+#include "../../sioDisk.h"
+
 /* Definitions of physical drive number for each media */
 #define COMPACT_FLASH		    0
-#define SIO_DRIVE_0        	    1
-#define SIO_DRIVE_1        	    2
-#define SIO_DRIVE_2        	    3
-#define SIO_DRIVE_3        	    4
+#define SIODISK0             	1
+#define SIODISK1             	2
+#define SIODISK2             	3
+#define SIODISK3             	4
 
 /*-----------------------------------------------------------------------*/
 /* Inidialize a Drive                                                    */
@@ -22,96 +24,123 @@
 /* Physical drive nmuber (0..) */
 DSTATUS disk_initialize(BYTE pdrv)
 {
+    DSTATUS res;
+
     switch (pdrv)
     {
-    default:
     case COMPACT_FLASH:
-        //stat = SD_Initialize();//添加SD卡的初始化
         cfInit(0);
-        return RES_OK;
 
-    case SIO_DRIVE_0:
-        return RES_OK;
+        res = RES_OK;
 
-    case SIO_DRIVE_1:
-        return RES_OK;
+        return res;
 
-    case SIO_DRIVE_2:
-        return RES_OK;
+    case SIODISK0:
+        sioDiskInit(0);
+        res = RES_OK;
 
-    case SIO_DRIVE_3:
-        return RES_OK;
+        return res;
+
+    case SIODISK1:
+        sioDiskInit(1);
+        res = RES_OK;
+
+        return res;
+
+    case SIODISK2:
+        sioDiskInit(2);
+        res = RES_OK;
+
+        return res;
+
+    case SIODISK3:
+        sioDiskInit(3);
+        res = RES_OK;
+
+        return res;
     };
+
+    return STA_NOINIT;
 }
 
 /*-----------------------------------------------------------------------*/
 /* Get Disk Status                                                       */
 /*-----------------------------------------------------------------------*/
-
-DSTATUS disk_status (
-    BYTE pdrv		/* Physical drive nmuber (0..) */
-)
+/* Physical drive nmuber (0..) */
+DSTATUS disk_status(BYTE pdrv)
 {
+    DSTATUS res;
+
     switch (pdrv)
     {
-    default:
-        return RES_OK;
+    case COMPACT_FLASH :
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_0:
-        return RES_OK;
+    case SIODISK0:
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_1:
-        return RES_OK;
+    case SIODISK1:
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_2:
-        return RES_OK;
+    case SIODISK2:
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_3:
-        return RES_OK;
-    };
+    case SIODISK3:
+        res = RES_OK;
+        return res;
+    }
+    return STA_NOINIT;
 }
-
-
 
 /*-----------------------------------------------------------------------*/
 /* Read Sector(s)                                                        */
 /*-----------------------------------------------------------------------*/
-
-DRESULT disk_read (
+DRESULT disk_read(
     BYTE pdrv,		/* Physical drive nmuber (0..) */
     BYTE *buff,		/* Data buffer to store read data */
     DWORD sector,	/* Sector address (LBA) */
     UINT count		/* Number of sectors to read (1..128) */
 )
 {
+    DRESULT res;
+
     switch (pdrv)
     {
-    default:
     case COMPACT_FLASH:
         cfReadSector(0, buff, sector, count);
-        //res = SD_ReadDisk(buff, sector, count);//添加SD的读扇区功能
-        return RES_OK;
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_0:
-        return RES_OK;
+    case SIODISK0:
+        sioDiskReadSector(0, buff, sector, count);
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_1:
-        return RES_OK;
+    case SIODISK1:
+        sioDiskReadSector(1, buff, sector, count);
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_2:
-        return RES_OK;
+    case SIODISK2:
+        sioDiskReadSector(2, buff, sector, count);
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_3:
-        return RES_OK;
-    };
+    case SIODISK3:
+        sioDiskReadSector(3, buff, sector, count);
+        res = RES_OK;
+        return res;
+    }
+    return RES_PARERR;
 }
-
-
 
 /*-----------------------------------------------------------------------*/
 /* Write Sector(s)                                                       */
 /*-----------------------------------------------------------------------*/
-
 #if _USE_WRITE
 DRESULT disk_write (
     BYTE pdrv,			/* Physical drive nmuber (0..) */
@@ -120,33 +149,36 @@ DRESULT disk_write (
     UINT count			/* Number of sectors to write (1..128) */
 )
 {
+    DRESULT res;
+
     switch (pdrv)
     {
-    default:
     case COMPACT_FLASH:
-        //cfWriteSector(0, buff, sector<<9, count);
-        //res = SD_WriteDisk((u8*)buff, sector, count);//添加SD卡的写扇区功能
-        return RES_OK;
+        cfWriteSector(0, buff, sector, count);
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_0:
-        return RES_OK;
+    case SIODISK0:
+        sioDiskWriteSector(0, buff, sector, count);
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_1:
-        return RES_OK;
+    case SIODISK1:
+        sioDiskWriteSector(1, buff, sector, count);
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_2:
-        return RES_OK;
+    case SIODISK2:
+        sioDiskWriteSector(2, buff, sector, count);
+        res = RES_OK;
+        return res;
 
-    case SIO_DRIVE_3:
-        return RES_OK;
-    };
-    /*
-    if(res==0x00)
-    {
-    	return RES_OK;
+    case SIODISK3:
+        sioDiskWriteSector(3, buff, sector, count);
+        res = RES_OK;
+        return res;
     }
-    else return RES_ERROR;
-    */
+    return RES_ERROR;
 }
 #endif
 
@@ -162,149 +194,115 @@ DRESULT disk_ioctl (
     void *buff		/* Buffer to send/receive control data */
 )
 {
-    DRESULT res;
-
     switch (pdrv)
     {
-    default:
     case COMPACT_FLASH:
     {
         switch(cmd)
         {
         case CTRL_SYNC:
-            res=RES_OK;
-            break;
-        case GET_SECTOR_SIZE:
-            *(DWORD*)buff=512;
-            res=RES_OK;
-            break;
-        case GET_BLOCK_SIZE:
-            *(DWORD*)buff=8;
-            res=RES_OK;
-            break;
-        case GET_SECTOR_COUNT:
-            *(DWORD*)buff = 10000;//SD_GetSectorCount();
-            res=RES_OK;
-            break;
-        default:
-            res = RES_PARERR;
-            break;
-        };
-    }
-    break;
+            return RES_OK;
 
-    case SIO_DRIVE_0:
+        case GET_SECTOR_SIZE:
+            *(DWORD*)buff = CF_SECTOR_SIZE;
+            return RES_OK;
+
+        case GET_BLOCK_SIZE:
+            *(DWORD*)buff = 8;
+            return RES_OK;
+
+        case GET_SECTOR_COUNT:
+            *(DWORD*)buff = cfDiskGetSectorCount(0);
+            return RES_OK;
+
+        default:
+            return RES_PARERR;
+        }
+    }
+
+    case SIODISK0:
     {
         switch(cmd)
         {
         case CTRL_SYNC:
-            res=RES_OK;
-            break;
+            return RES_OK;
         case GET_SECTOR_SIZE:
-            *(DWORD*)buff=512;
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = SIODISK_SECTOR_SIZE;
+            return RES_OK;
         case GET_BLOCK_SIZE:
-            *(DWORD*)buff=8;
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = 8;
+            return RES_OK;
         case GET_SECTOR_COUNT:
-            *(DWORD*)buff = 10000;// SD_GetSectorCount();
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = sioDiskGetSectorCount(0);
+            return RES_OK;
         default:
-            res = RES_PARERR;
-            break;
+            return RES_PARERR;
         }
     }
-    break;
 
-    case SIO_DRIVE_1:
+    case SIODISK1:
     {
         switch(cmd)
         {
         case CTRL_SYNC:
-            res=RES_OK;
-            break;
+            return RES_OK;
         case GET_SECTOR_SIZE:
-            *(DWORD*)buff=512;
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = SIODISK_SECTOR_SIZE;
+            return RES_OK;
         case GET_BLOCK_SIZE:
-            *(DWORD*)buff=8;
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = 8;
+            return RES_OK;
         case GET_SECTOR_COUNT:
-            *(DWORD*)buff = 10000;// SD_GetSectorCount();
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = sioDiskGetSectorCount(1);
+            return RES_OK;
         default:
-            res = RES_PARERR;
-            break;
+            return RES_PARERR;
         }
     }
-    break;
 
-    case SIO_DRIVE_2:
+    case SIODISK2:
     {
         switch(cmd)
         {
         case CTRL_SYNC:
-            res=RES_OK;
-            break;
+            return RES_OK;
         case GET_SECTOR_SIZE:
-            *(DWORD*)buff=512;
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = SIODISK_SECTOR_SIZE;
+            return RES_OK;
         case GET_BLOCK_SIZE:
-            *(DWORD*)buff=8;
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = 8;
+            return RES_OK;
         case GET_SECTOR_COUNT:
-            *(DWORD*)buff = 10000;// SD_GetSectorCount();
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = sioDiskGetSectorCount(2);
+            return RES_OK;
         default:
-            res = RES_PARERR;
-            break;
+            return RES_PARERR;
         }
     }
-    break;
 
-    case SIO_DRIVE_3:
+    case SIODISK3:
     {
         switch(cmd)
         {
         case CTRL_SYNC:
-            res=RES_OK;
-            break;
+            return RES_OK;
         case GET_SECTOR_SIZE:
-            *(DWORD*)buff=512;
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = SIODISK_SECTOR_SIZE;
+            return RES_OK;
         case GET_BLOCK_SIZE:
-            *(DWORD*)buff=8;
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = 8;
+            return RES_OK;
         case GET_SECTOR_COUNT:
-            *(DWORD*)buff = 10000;// SD_GetSectorCount();
-            res=RES_OK;
-            break;
+            *(DWORD*)buff = sioDiskGetSectorCount(3);
+            return RES_OK;
         default:
-            res = RES_PARERR;
-            break;
+            return RES_PARERR;
         }
     }
-    break;
+
+    default:
+        return RES_ERROR;
     }
-    /*
-    if(res==0x00)
-    {
-    	return RES_OK;
-    }
-    else return RES_ERROR;
-    */
-    return res;
 }
 
 DWORD get_fattime (void)
@@ -314,12 +312,20 @@ DWORD get_fattime (void)
 
 void *ff_memalloc (UINT size)
 {
-    return malloc(size);
+#ifdef USE_MYMEM
+    return (void*)mymalloc(size);
+#else
+    return (void*)malloc(size);
+#endif
 }
 
 void ff_memfree (void* mf)
 {
+#ifdef USE_MYMEM
+    myfree(mf);
+#else
     free(mf);
+#endif
 }
 
 #endif

@@ -115,9 +115,9 @@
 
 #include "ff.h"			/* Declarations of FatFs API */
 #include "diskio.h"		/* Declarations of disk I/O functions */
+
 #include <mcs51/8051.h>
-
-
+#include "sio.h"
 
 /*--------------------------------------------------------------------------
 
@@ -226,7 +226,7 @@ typedef struct {
 #elif _CODE_PAGE == 737	/* Greek (OEM) */
 #define _DF1S	0
 #define _EXCVT {0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8A,0x8B,0x8C,0x8D,0x8E,0x8F,0x90,0x92,0x92,0x93,0x94,0x95,0x96,0x97,0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87, \
-				0x88,0x89,0x8A,0x8B,0x8C,0x8D,0x8E,0x8F,0x90,0x91,0xAA,0x92,0x93,0x94,0x95,0x96,0xB0,0xB1,0xB2,0xB3,0xB4,0xB5,0xB6,0xB7,0xB8,0xB9,0xBA,0xBB,0xBC,0xBD,0xBE,0xBF, \
+				0x88,0x89,0x8A,0x8B,0x8C,0x8D,0x8E,0x8F,0x90,0x91,0xAA,0x92,0x93,0x94,0x95,0x96,0xB0,0xB1,0xB20xB20xB2,0xB3,0xB4,0xB5,0xB6,0xB7,0xB8,0xB9,0xBA,0xBB,0xBC,0xBD,0xBE,0xBF, \
 				0xC0,0xC1,0xC2,0xC3,0xC4,0xC5,0xC6,0xC7,0xC8,0xC9,0xCA,0xCB,0xCC,0xCD,0xCE,0xCF,0xD0,0xD1,0xD2,0xD3,0xD4,0xD5,0xD6,0xD7,0xD8,0xD9,0xDA,0xDB,0xDC,0xDD,0xDE,0xDF, \
 				0x97,0xEA,0xEB,0xEC,0xE4,0xED,0xEE,0xE7,0xE8,0xF1,0xEA,0xEB,0xEC,0xED,0xEE,0xEF,0xF0,0xF1,0xF2,0xF3,0xF4,0xF5,0xF6,0xF7,0xF8,0xF9,0xFA,0xFB,0xFC,0xFD,0xFE,0xFF}
 
@@ -2080,7 +2080,7 @@ int get_ldnumber (		/* Returns logical drive number (-1:invalid drive) */
 	UINT i;
 	int vol = -1;
 
-
+    sioTXStr(0, "get_ldnumber1\r\n");
 	if (*path) {	/* If the pointer is not a null */
 		for (tt = *path; (UINT)*tt >= (_USE_LFN ? ' ' : '!') && *tt != ':'; tt++) ;	/* Find ':' in the path */
 		if (*tt == ':') {	/* If a ':' is exist in the path name */
@@ -2112,6 +2112,8 @@ int get_ldnumber (		/* Returns logical drive number (-1:invalid drive) */
 				}
 #endif
 			}
+
+			sioTXStr(0, "get_ldnumber2\r\n");
 			return vol;
 		}
 #if _FS_RPATH && _VOLUMES >= 2
@@ -2120,6 +2122,8 @@ int get_ldnumber (		/* Returns logical drive number (-1:invalid drive) */
 		vol = 0;		/* Drive 0 */
 #endif
 	}
+
+	sioTXStr(0, "get_ldnumber3\r\n");
 	return vol;
 }
 
@@ -2163,230 +2167,193 @@ FRESULT find_volume (	/* FR_OK(0): successful, !=0: any error occurred */
 	BYTE wmode			/* !=0: Check write protection for write access */
 )
 {
-    BYTE fmt1;
-	int vol1;
-	DSTATUS stat1;
-	DWORD bsect1, fasize1, tsect1, sysect1, nclst1, szbfat1;
-	WORD nrsv1;
-    FATFS *fs1;
-
-    P1 = 0xd1;
+	BYTE fmt;
+	int vol;
+	DSTATUS stat;
+	DWORD bsect, fasize, tsect, sysect, nclst, szbfat;
+	WORD nrsv;
+	FATFS *fs;
+    sioTXStr(0, "find_volume0\r\n");
 	/* Get logical drive number from the path name */
 	*rfs = 0;
-	P1 = 0xd2;
-	vol1 = get_ldnumber(path);
-	P1 = 0xd3;
-	if (vol1 < 0)
-    {
-        P1 = 0xd4;
+
+	sioTXStr(0, "find_volume1\r\n");
+	vol = get_ldnumber(path);
+	if (vol < 0)
         return FR_INVALID_DRIVE;
-    }
 
-	P1 = 0xd5;
+	sioTXStr(0, "find_volume2\r\n");
+
 	/* Check if the file system object is valid or not */
-	fs1 = FatFs[vol1];					/* Get pointer to the file system object */
-	P1 = 0xd6;
-	if(!fs1)
-    {
-        P1 = 0xd7;
+	fs = FatFs[vol];					/* Get pointer to the file system object */
+	if(!fs)
         return FR_NOT_ENABLED;		/* Is the file system object available? */
-    }
 
-	P1 = 0xd8;
-	ENTER_FF(fs1);						/* Lock the volume */
-	*rfs = fs1;							/* Return pointer to the file system object */
+	sioTXStr(0, "find_volume3\r\n");
 
-	P1 = 0xd9;
-	if (fs1->fs_type)
-    {					/* If the volume has been mounted */
-        P1 = 0xda;
-		stat1 = disk_status(fs1->drv);
-        P1 = 0xdb;
-		if (!(stat1 & STA_NOINIT))
+	sioTXStr(0, "find_volume4\r\n");
+	ENTER_FF(fs);						/* Lock the volume */
+
+	sioTXStr(0, "find_volume5\r\n");
+	*rfs = fs;							/* Return pointer to the file system object */
+
+	sioTXStr(0, "find_volume6\r\n");
+    if (fs->fs_type)
+    {
+        /* If the volume has been mounted */
+        sioTXStr(0, "find_volume7\r\n");
+		stat = disk_status(fs->drv);
+
+        sioTXStr(0, "find_volume8\r\n");
+		if (!(stat & STA_NOINIT))
         {
+            sioTXStr(0, "find_volume9\r\n");
             /* and the physical drive is kept initialized */
-            P1 = 0xde;
-			if (!_FS_READONLY && wmode && (stat1 & STA_PROTECT))	/* Check write protection if needed */
-			{
-                P1 = 0xdf;
+			if (!_FS_READONLY && wmode && (stat & STA_PROTECT))	/* Check write protection if needed */
 				return FR_WRITE_PROTECTED;
-			}
-			P1 = 0xe1;
+
+            sioTXStr(0, "find_volume10\r\n");
 			return FR_OK;				/* The file system object is valid */
 		}
 	}
-	P1 = 0xe2;
 
 	/* The file system object is not valid. */
 	/* Following code attempts to mount the volume. (analyze BPB and initialize the fs object) */
 
-	fs1->fs_type = 0;					/* Clear the file system object */
-	P1 = 0xe3;
-	fs1->drv = LD2PD(vol1);				/* Bind the logical drive and a physical drive */
-	P1 = 0xe4;
-	stat1 = disk_initialize(fs1->drv);	/* Initialize the physical drive */
-	P1 = 0xe5;
-	if (stat1 & STA_NOINIT)				/* Check if the initialization succeeded */
-    {
-        P1 = 0xe6;
+	sioTXStr(0, "find_volume11\r\n");
+	fs->fs_type = 0;					/* Clear the file system object */
+	fs->drv = LD2PD(vol);				/* Bind the logical drive and a physical drive */
+
+	sioTXStr(0, "find_volume12\r\n");
+	stat = disk_initialize(fs->drv);	/* Initialize the physical drive */
+	if (stat & STA_NOINIT)				/* Check if the initialization succeeded */
 		return FR_NOT_READY;			/* Failed to initialize due to no medium or hard error */
-    }
-	if (!_FS_READONLY && wmode && (stat1 & STA_PROTECT))	/* Check disk write protection if needed */
-    {
-        P1 = 0xe7;
+
+    sioTXStr(0, "find_volume13\r\n");
+	if (!_FS_READONLY && wmode && (stat & STA_PROTECT))	/* Check disk write protection if needed */
 		return FR_WRITE_PROTECTED;
-    }
+
+    sioTXStr(0, "find_volume14\r\n");
 #if _MAX_SS != _MIN_SS						/* Get sector size (multiple sector size cfg only) */
-	if (disk_ioctl(fs1->drv, GET_SECTOR_SIZE, &SS(fs1)) != RES_OK
-		|| SS(fs1) < _MIN_SS || SS(fs1) > _MAX_SS)
-    {
-        hhh
-        P1 = 0xe8;
-		return FR_DISK_ERR;
-    }
+	if (disk_ioctl(fs->drv, GET_SECTOR_SIZE, &SS(fs)) != RES_OK
+		|| SS(fs) < _MIN_SS || SS(fs) > _MAX_SS) return FR_DISK_ERR;
 #endif
 
-    P1 = 0xe9;
+    sioTXStr(0, "find_volume15\r\n");
 	/* Find an FAT partition on the drive. Supports only generic partitioning, FDISK and SFD. */
-	bsect1 = 0;
-	P1 = 0xea;
-	fmt1 = check_fs(fs1, bsect1);					/* Load sector 0 and check if it is an FAT boot sector as SFD */
-	P1 = 0xeb;
-	if (fmt1 == 1 || (!fmt1 && (LD2PT(vol1))))
-    {	/* Not an FAT boot sector or forced partition number */
+	bsect = 0;
+	fmt = check_fs(fs, bsect);					/* Load sector 0 and check if it is an FAT boot sector as SFD */
+	if (fmt == 1 || (!fmt && (LD2PT(vol)))) {	/* Not an FAT boot sector or forced partition number */
 		UINT i;
 		DWORD br[4];
 
-		P1 = 0xec;
-		for (i = 0; i < 4; i++)
-        {
-            /* Get partition offset */
-			BYTE *pt = fs1->win+MBR_Table + i * SZ_PTE;
+		for (i = 0; i < 4; i++) {			/* Get partition offset */
+			BYTE *pt = fs->win+MBR_Table + i * SZ_PTE;
 			br[i] = pt[4] ? LD_DWORD(&pt[8]) : 0;
 		}
-
-		P1 = 0xed;
 		i = LD2PT(vol);						/* Partition number: 0:auto, 1-4:forced */
 		if (i) i--;
-		do
-        {								/* Find an FAT volume */
-			bsect1 = br[i];
-			fmt1 = bsect1 ? check_fs(fs1, bsect1) : 2;	/* Check the partition */
-		} while (!LD2PT(vol1) && fmt1 && ++i < 4);
-		P1 = 0xee;
+		do {								/* Find an FAT volume */
+			bsect = br[i];
+			fmt = bsect ? check_fs(fs, bsect) : 2;	/* Check the partition */
+		} while (!LD2PT(vol) && fmt && ++i < 4);
 	}
 
-	P1 = 0xef;
-	if(fmt1 == 3)
-        return FR_DISK_ERR;		/* An error occured in the disk I/O layer */
+	sioTXStr(0, "find_volume16\r\n");
+	if (fmt == 3) return FR_DISK_ERR;		/* An error occured in the disk I/O layer */
+	if (fmt) return FR_NO_FILESYSTEM;		/* No FAT volume is found */
 
-    P1 = 0xf1;
-	if(fmt1)
-        return FR_NO_FILESYSTEM;		/* No FAT volume is found */
-
-	P1 = 0xf2;
 	/* An FAT volume is found. Following code initializes the file system object */
-	if (LD_WORD(fs1->win+BPB_BytsPerSec) != SS(fs1))		/* (BPB_BytsPerSec must be equal to the physical sector size) */
+    sioTXStr(0, "find_volume17\r\n");
+	if (LD_WORD(fs->win+BPB_BytsPerSec) != SS(fs))		/* (BPB_BytsPerSec must be equal to the physical sector size) */
 		return FR_NO_FILESYSTEM;
 
-    P1 = 0xf3;
-	fasize1 = LD_WORD(fs1->win+BPB_FATSz16);				/* Number of sectors per FAT */
-	if (!fasize1) fasize1 = LD_DWORD(fs1->win+BPB_FATSz32);
-	fs1->fsize = fasize1;
+	fasize = LD_WORD(fs->win+BPB_FATSz16);				/* Number of sectors per FAT */
+	if (!fasize) fasize = LD_DWORD(fs->win+BPB_FATSz32);
+	fs->fsize = fasize;
 
-	P1 = 0xf4;
-	fs1->n_fats = fs1->win[BPB_NumFATs];					/* Number of FAT copies */
-	if (fs1->n_fats != 1 && fs1->n_fats != 2)				/* (Must be 1 or 2) */
+	fs->n_fats = fs->win[BPB_NumFATs];					/* Number of FAT copies */
+	if (fs->n_fats != 1 && fs->n_fats != 2)				/* (Must be 1 or 2) */
 		return FR_NO_FILESYSTEM;
-	fasize1 *= fs1->n_fats;								/* Number of sectors for FAT area */
+	fasize *= fs->n_fats;								/* Number of sectors for FAT area */
 
-	P1 = 0xf5;
-	fs1->csize = fs1->win[BPB_SecPerClus];				/* Number of sectors per cluster */
-	if (!fs1->csize || (fs1->csize & (fs1->csize - 1)))	/* (Must be power of 2) */
+	fs->csize = fs->win[BPB_SecPerClus];				/* Number of sectors per cluster */
+	if (!fs->csize || (fs->csize & (fs->csize - 1)))	/* (Must be power of 2) */
 		return FR_NO_FILESYSTEM;
 
-    P1 = 0xf6;
-	fs1->n_rootdir = LD_WORD(fs1->win+BPB_RootEntCnt);	/* Number of root directory entries */
-	if (fs1->n_rootdir % (SS(fs1) / SZ_DIR))				/* (Must be sector aligned) */
+	fs->n_rootdir = LD_WORD(fs->win+BPB_RootEntCnt);	/* Number of root directory entries */
+	if (fs->n_rootdir % (SS(fs) / SZ_DIR))				/* (Must be sector aligned) */
 		return FR_NO_FILESYSTEM;
 
-    P1 = 0xf7;
-	tsect1 = LD_WORD(fs1->win+BPB_TotSec16);				/* Number of sectors on the volume */
-	if (!tsect1) tsect1 = LD_DWORD(fs1->win+BPB_TotSec32);
+	tsect = LD_WORD(fs->win+BPB_TotSec16);				/* Number of sectors on the volume */
+	if (!tsect) tsect = LD_DWORD(fs->win+BPB_TotSec32);
 
-	P1 = 0xf8;
-	nrsv1 = LD_WORD(fs1->win+BPB_RsvdSecCnt);				/* Number of reserved sectors */
-	if (!nrsv1) return FR_NO_FILESYSTEM;					/* (Must not be 0) */
+	nrsv = LD_WORD(fs->win+BPB_RsvdSecCnt);				/* Number of reserved sectors */
+	if (!nrsv) return FR_NO_FILESYSTEM;					/* (Must not be 0) */
 
-	P1 = 0xf9;
 	/* Determine the FAT sub type */
-	sysect1 = nrsv1 + fasize1 + fs1->n_rootdir / (SS(fs1) / SZ_DIR);	/* RSV+FAT+DIR */
-	if (tsect1 < sysect1) return FR_NO_FILESYSTEM;		/* (Invalid volume size) */
-	nclst1 = (tsect1 - sysect1) / fs1->csize;				/* Number of clusters */
-	if (!nclst1) return FR_NO_FILESYSTEM;				/* (Invalid volume size) */
-	fmt1 = FS_FAT12;
-	if (nclst1 >= MIN_FAT16) fmt1 = FS_FAT16;
-	if (nclst1 >= MIN_FAT32) fmt1 = FS_FAT32;
+	sysect = nrsv + fasize + fs->n_rootdir / (SS(fs) / SZ_DIR);	/* RSV+FAT+DIR */
+	if (tsect < sysect) return FR_NO_FILESYSTEM;		/* (Invalid volume size) */
+	nclst = (tsect - sysect) / fs->csize;				/* Number of clusters */
+	if (!nclst) return FR_NO_FILESYSTEM;				/* (Invalid volume size) */
+	fmt = FS_FAT12;
+	if (nclst >= MIN_FAT16) fmt = FS_FAT16;
+	if (nclst >= MIN_FAT32) fmt = FS_FAT32;
 
-	P1 = 0xfa;
 	/* Boundaries and Limits */
-	fs1->n_fatent = nclst1 + 2;							/* Number of FAT entries */
-	fs1->volbase = bsect1;								/* Volume start sector */
-	fs1->fatbase = bsect1 + nrsv1; 						/* FAT start sector */
-	fs1->database = bsect1 + sysect1;						/* Data start sector */
-	if (fmt1 == FS_FAT32) {
-		if (fs1->n_rootdir) return FR_NO_FILESYSTEM;		/* (BPB_RootEntCnt must be 0) */
-		fs1->dirbase = LD_DWORD(fs1->win+BPB_RootClus);	/* Root directory start cluster */
-		szbfat1 = fs1->n_fatent * 4;						/* (Needed FAT size) */
+	fs->n_fatent = nclst + 2;							/* Number of FAT entries */
+	fs->volbase = bsect;								/* Volume start sector */
+	fs->fatbase = bsect + nrsv; 						/* FAT start sector */
+	fs->database = bsect + sysect;						/* Data start sector */
+	if (fmt == FS_FAT32) {
+		if (fs->n_rootdir) return FR_NO_FILESYSTEM;		/* (BPB_RootEntCnt must be 0) */
+		fs->dirbase = LD_DWORD(fs->win+BPB_RootClus);	/* Root directory start cluster */
+		szbfat = fs->n_fatent * 4;						/* (Needed FAT size) */
 	} else {
-		if (!fs1->n_rootdir)	return FR_NO_FILESYSTEM;	/* (BPB_RootEntCnt must not be 0) */
-		fs1->dirbase = fs1->fatbase + fasize1;				/* Root directory start sector */
-		szbfat1 = (fmt1 == FS_FAT16) ?					/* (Needed FAT size) */
-			fs1->n_fatent * 2 : fs1->n_fatent * 3 / 2 + (fs1->n_fatent & 1);
+		if (!fs->n_rootdir)	return FR_NO_FILESYSTEM;	/* (BPB_RootEntCnt must not be 0) */
+		fs->dirbase = fs->fatbase + fasize;				/* Root directory start sector */
+		szbfat = (fmt == FS_FAT16) ?					/* (Needed FAT size) */
+			fs->n_fatent * 2 : fs->n_fatent * 3 / 2 + (fs->n_fatent & 1);
 	}
-	P1 = 0xfb;
-	if (fs1->fsize < (szbfat1 + (SS(fs1) - 1)) / SS(fs1))	/* (BPB_FATSz must not be less than needed) */
+	if (fs->fsize < (szbfat + (SS(fs) - 1)) / SS(fs))	/* (BPB_FATSz must not be less than needed) */
 		return FR_NO_FILESYSTEM;
 
-    P1 = 0xfc;
 #if !_FS_READONLY
 	/* Initialize cluster allocation information */
-	fs1->last_clust = fs1->free_clust = 0xFFFFFFFF;
+	fs->last_clust = fs->free_clust = 0xFFFFFFFF;
 
-	P1 = 0xfd;
 	/* Get fsinfo if available */
-	fs1->fsi_flag = 0x80;
+	fs->fsi_flag = 0x80;
 #if (_FS_NOFSINFO & 3) != 3
-	if (fmt1 == FS_FAT32				/* Enable FSINFO only if FAT32 and BPB_FSInfo is 1 */
-		&& LD_WORD(fs1->win+BPB_FSInfo) == 1
-		&& move_window(fs1, bsect1 + 1) == FR_OK)
+	if (fmt == FS_FAT32				/* Enable FSINFO only if FAT32 and BPB_FSInfo is 1 */
+		&& LD_WORD(fs->win+BPB_FSInfo) == 1
+		&& move_window(fs, bsect + 1) == FR_OK)
 	{
-		fs1->fsi_flag = 0;
-		if (LD_WORD(fs1->win+BS_55AA) == 0xAA55	/* Load FSINFO data if available */
-			&& LD_DWORD(fs1->win+FSI_LeadSig) == 0x41615252
-			&& LD_DWORD(fs1->win+FSI_StrucSig) == 0x61417272)
+		fs->fsi_flag = 0;
+		if (LD_WORD(fs->win+BS_55AA) == 0xAA55	/* Load FSINFO data if available */
+			&& LD_DWORD(fs->win+FSI_LeadSig) == 0x41615252
+			&& LD_DWORD(fs->win+FSI_StrucSig) == 0x61417272)
 		{
 #if (_FS_NOFSINFO & 1) == 0
-			fs1->free_clust = LD_DWORD(fs1->win+FSI_Free_Count);
+			fs->free_clust = LD_DWORD(fs->win+FSI_Free_Count);
 #endif
 #if (_FS_NOFSINFO & 2) == 0
-			fs1->last_clust = LD_DWORD(fs1->win+FSI_Nxt_Free);
+			fs->last_clust = LD_DWORD(fs->win+FSI_Nxt_Free);
 #endif
 		}
 	}
 #endif
 #endif
-    P1 = 0xfe;
-	fs1->fs_type = fmt1;	/* FAT sub-type */
-	fs1->id = ++Fsid;	/* File system mount ID */
+	fs->fs_type = fmt;	/* FAT sub-type */
+	fs->id = ++Fsid;	/* File system mount ID */
 #if _FS_RPATH
-	fs1->cdir = 0;		/* Set current directory to root */
+	fs->cdir = 0;		/* Set current directory to root */
 #endif
 #if _FS_LOCK			/* Clear file lock semaphores */
-	clear_lock(fs1);
+	clear_lock(fs);
 #endif
-    P1 = 0xff;
 
+    sioTXStr(0, "find_volume18\r\n");
 	return FR_OK;
 }
 
@@ -2442,33 +2409,53 @@ FRESULT f_mount (
 	FRESULT res;
 	const TCHAR *rp = path;
 
-
+    sioTXStr(0, "f_mount1\r\n");
 	vol = get_ldnumber(&rp);
-	if (vol < 0) return FR_INVALID_DRIVE;
+
+	sioTXStr(0, "f_mount2\r\n");
+	if (vol < 0)
+        return FR_INVALID_DRIVE;
+
+    sioTXStr(0, "f_mount3\r\n");
 	cfs = FatFs[vol];					/* Pointer to fs object */
 
-	if (cfs) {
+    sioTXStr(0, "f_mount4\r\n");
+	if (cfs)
+    {
+        sioTXStr(0, "f_mount5\r\n");
 #if _FS_LOCK
 		clear_lock(cfs);
 #endif
 #if _FS_REENTRANT						/* Discard sync object of the current volume */
-		if (!ff_del_syncobj(cfs->sobj)) return FR_INT_ERR;
+		if (!ff_del_syncobj(cfs->sobj))
+            return FR_INT_ERR;
 #endif
 		cfs->fs_type = 0;				/* Clear old fs object */
 	}
 
-	if (fs) {
+	if (fs)
+    {
+        sioTXStr(0, "f_mount6\r\n");
 		fs->fs_type = 0;				/* Clear new fs object */
 #if _FS_REENTRANT						/* Create sync object for the new volume */
 		if (!ff_cre_syncobj((BYTE)vol, &fs->sobj)) return FR_INT_ERR;
 #endif
 	}
+
+	sioTXStr(0, "f_mount7\r\n");
 	FatFs[vol] = fs;					/* Register new fs object */
 
-	if (!fs || opt != 1) return FR_OK;	/* Do not mount now, it will be mounted later */
+	sioTXStr(0, "f_mount8\r\n");
+	if (!fs || opt != 1)
+        return FR_OK;	/* Do not mount now, it will be mounted later */
 
+    sioTXStr(0, "f_mount9\r\n");
 	res = find_volume(&fs, &path, 0);	/* Force mounted the volume */
+
+	sioTXStr(0, "f_mount10\r\n");
 	LEAVE_FF(fs, res);
+
+	sioTXStr(0, "f_mount11\r\n");
 }
 
 
@@ -2489,71 +2476,97 @@ FRESULT f_open (
 	BYTE *dir;
 	DEF_NAMEBUF;
 
-    P1 = 0xC1;
-	if (!fp)
+    sioTXStr(0, "f_open1\r\n");
+	if(!fp)
         return FR_INVALID_OBJECT;
+
+    sioTXStr(0, "f_open2\r\n");
 	fp->fs = 0;			/* Clear file object */
 
-	P1 = 0xC2;
+	sioTXStr(0, "f_open3\r\n");
 	/* Get logical drive number */
 #if !_FS_READONLY
 	mode &= FA_READ | FA_WRITE | FA_CREATE_ALWAYS | FA_OPEN_ALWAYS | FA_CREATE_NEW;
+
+	sioTXStr(0, "f_open4\r\n");
 	res = find_volume(&dj.fs, &path, (BYTE)(mode & ~FA_READ));
 #else
-    P1 = 0xC3;
+    sioTXStr(0, "f_open5\r\n");
 	mode &= FA_READ;
+
+	sioTXStr(0, "f_open6\r\n");
 	res = find_volume(&dj.fs, &path, 0);
-	P1 = 0xC4;
 #endif
-    P1 = 0xC5;
+
+    sioTXStr(0, "f_open77\r\n");
 	if (res == FR_OK)
-    {
-        P1 = 0xC6;
+	{
+        sioTXStr(0, "f_open7\r\n");
 		INIT_BUF(dj);
 
-        P1 = 0xC7;
+        sioTXStr(0, "f_open8\r\n");
 		res = follow_path(&dj, path);	/* Follow the file path */
+
+		sioTXStr(0, "f_open9\r\n");
 		dir = dj.dir;
 
-		P1 = 0xC8;
+		sioTXStr(0, "f_open10\r\n");
 #if !_FS_READONLY	/* R/W configuration */
 		if (res == FR_OK)
         {
+            sioTXStr(0, "f_open11\r\n");
 			if (!dir)	/* Default directory itself */
+			{
+                sioTXStr(0, "f_open12\r\n");
 				res = FR_INVALID_NAME;
+			}
 #if _FS_LOCK
 			else
+            {
+                sioTXStr(0, "f_open13\r\n");
 				res = chk_lock(&dj, (mode & ~FA_READ) ? 1 : 0);
+				sioTXStr(0, "f_open14\r\n");
+            }
 #endif
 		}
 
-		P1 = 0xC9;
+		sioTXStr(0, "f_open15\r\n");
 		/* Create or Open a file */
 		if (mode & (FA_CREATE_ALWAYS | FA_OPEN_ALWAYS | FA_CREATE_NEW))
         {
 			DWORD dw, cl;
-			P1 = 0xCA;
 
-			if (res != FR_OK)
-            {					/* No file, create new */
+			if(res != FR_OK)/* No file, create new */
+            {
+                sioTXStr(0, "f_open15\r\n");
 				if (res == FR_NO_FILE)			/* There is no file to open, create a new entry */
 #if _FS_LOCK
 					res = enq_lock() ? dir_register(&dj) : FR_TOO_MANY_OPEN_FILES;
 #else
 					res = dir_register(&dj);
 #endif
+                sioTXStr(0, "f_open16\r\n");
 				mode |= FA_CREATE_ALWAYS;		/* File is created */
 				dir = dj.dir;					/* New entry */
 			}
-			else {								/* Any object is already existing */
-				if (dir[DIR_Attr] & (AM_RDO | AM_DIR)) {	/* Cannot overwrite it (R/O or DIR) */
+			else                                /* Any object is already existing */
+            {
+                sioTXStr(0, "f_open17\r\n");
+				if (dir[DIR_Attr] & (AM_RDO | AM_DIR))
+				{	/* Cannot overwrite it (R/O or DIR) */
 					res = FR_DENIED;
-				} else {
+				}
+                else
+                {
+                    sioTXStr(0, "f_open18\r\n");
 					if (mode & FA_CREATE_NEW)	/* Cannot create as new file */
 						res = FR_EXIST;
 				}
 			}
-			if (res == FR_OK && (mode & FA_CREATE_ALWAYS)) {	/* Truncate it if overwrite mode */
+			if (res == FR_OK && (mode & FA_CREATE_ALWAYS))
+            {
+                sioTXStr(0, "f_open19\r\n");
+                /* Truncate it if overwrite mode */
 				dw = get_fattime();				/* Created time */
 				ST_DWORD(dir+DIR_CrtTime, dw);
 				dir[DIR_Attr] = 0;				/* Reset attribute */
@@ -2573,20 +2586,25 @@ FRESULT f_open (
 		}
 		else
         {
-            P1 = 0xCB;
             /* Open an existing file */
-			if (res == FR_OK) {					/* Follow succeeded */
-				if (dir[DIR_Attr] & AM_DIR) {	/* It is a directory */
+			if (res == FR_OK)
+			{
+			    /* Follow succeeded */
+				if (dir[DIR_Attr] & AM_DIR)
+				{	/* It is a directory */
 					res = FR_NO_FILE;
-				} else {
+				}
+                else
+                {
 					if ((mode & FA_WRITE) && (dir[DIR_Attr] & AM_RDO)) /* R/O violation */
 						res = FR_DENIED;
 				}
 			}
 		}
+
+		sioTXStr(0, "f_open21\r\n");
 		if (res == FR_OK)
         {
-            P1 = 0xCC;
 			if (mode & FA_CREATE_ALWAYS)		/* Set file change flag if created or overwritten */
 				mode |= FA__WRITTEN;
 			fp->dir_sect = dj.fs->winsect;		/* Pointer to the directory entry */
@@ -2598,9 +2616,7 @@ FRESULT f_open (
 		}
 
 #else				/* R/O configuration */
-		if (res == FR_OK)
-		{					/* Follow succeeded */
-            P1 = 0xCD;
+		if (res == FR_OK) {					/* Follow succeeded */
 			dir = dj.dir;
 			if (!dir) {						/* Current directory itself */
 				res = FR_INVALID_NAME;
@@ -2610,12 +2626,13 @@ FRESULT f_open (
 			}
 		}
 #endif
-        P1 = 0xCE;
+        sioTXStr(0, "f_open22\r\n");
 		FREE_BUF();
 
-        P1 = 0xCF;
+		sioTXStr(0, "f_open23\r\n");
 		if (res == FR_OK)
         {
+            sioTXStr(0, "f_open24\r\n");
 			fp->flag = mode;					/* File access mode */
 			fp->err = 0;						/* Clear error flag */
 			fp->sclust = ld_clust(dj.fs, dir);	/* File start cluster */
@@ -2630,10 +2647,11 @@ FRESULT f_open (
 		}
 	}
 
-	P1 = 0xD1;
+	sioTXStr(0, "f_open25\r\n");
+
 	LEAVE_FF(dj.fs, res);
 
-	P1 = 0xD2;
+    sioTXStr(0, "f_open26\r\n");
 }
 
 

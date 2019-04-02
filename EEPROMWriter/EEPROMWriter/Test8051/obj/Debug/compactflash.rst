@@ -3,1048 +3,1159 @@
                                       3 ; Version 3.8.0 #10562 (MINGW32)
                                       4 ;--------------------------------------------------------
                                       5 	.module compactflash
-                                      6 	.optsdcc -mmcs51 --model-huge
+                                      6 	.optsdcc -mmcs51 --model-large
                                       7 	
                                       8 ;--------------------------------------------------------
                                       9 ; Public variables in this module
                                      10 ;--------------------------------------------------------
-                                     11 	.globl _sioTXBuf
-                                     12 	.globl _CY
-                                     13 	.globl _AC
-                                     14 	.globl _F0
-                                     15 	.globl _RS1
-                                     16 	.globl _RS0
-                                     17 	.globl _OV
-                                     18 	.globl _F1
-                                     19 	.globl _P
-                                     20 	.globl _PS
-                                     21 	.globl _PT1
-                                     22 	.globl _PX1
-                                     23 	.globl _PT0
-                                     24 	.globl _PX0
-                                     25 	.globl _RD
-                                     26 	.globl _WR
-                                     27 	.globl _T1
-                                     28 	.globl _T0
-                                     29 	.globl _INT1
-                                     30 	.globl _INT0
-                                     31 	.globl _TXD
-                                     32 	.globl _RXD
-                                     33 	.globl _P3_7
-                                     34 	.globl _P3_6
-                                     35 	.globl _P3_5
-                                     36 	.globl _P3_4
-                                     37 	.globl _P3_3
-                                     38 	.globl _P3_2
-                                     39 	.globl _P3_1
-                                     40 	.globl _P3_0
-                                     41 	.globl _EA
-                                     42 	.globl _ES
-                                     43 	.globl _ET1
-                                     44 	.globl _EX1
-                                     45 	.globl _ET0
-                                     46 	.globl _EX0
-                                     47 	.globl _P2_7
-                                     48 	.globl _P2_6
-                                     49 	.globl _P2_5
-                                     50 	.globl _P2_4
-                                     51 	.globl _P2_3
-                                     52 	.globl _P2_2
-                                     53 	.globl _P2_1
-                                     54 	.globl _P2_0
-                                     55 	.globl _SM0
-                                     56 	.globl _SM1
-                                     57 	.globl _SM2
-                                     58 	.globl _REN
-                                     59 	.globl _TB8
-                                     60 	.globl _RB8
-                                     61 	.globl _TI
-                                     62 	.globl _RI
-                                     63 	.globl _P1_7
-                                     64 	.globl _P1_6
-                                     65 	.globl _P1_5
-                                     66 	.globl _P1_4
-                                     67 	.globl _P1_3
-                                     68 	.globl _P1_2
-                                     69 	.globl _P1_1
-                                     70 	.globl _P1_0
-                                     71 	.globl _TF1
-                                     72 	.globl _TR1
-                                     73 	.globl _TF0
-                                     74 	.globl _TR0
-                                     75 	.globl _IE1
-                                     76 	.globl _IT1
-                                     77 	.globl _IE0
-                                     78 	.globl _IT0
-                                     79 	.globl _P0_7
-                                     80 	.globl _P0_6
-                                     81 	.globl _P0_5
-                                     82 	.globl _P0_4
-                                     83 	.globl _P0_3
-                                     84 	.globl _P0_2
-                                     85 	.globl _P0_1
-                                     86 	.globl _P0_0
-                                     87 	.globl _B
-                                     88 	.globl _ACC
-                                     89 	.globl _PSW
-                                     90 	.globl _IP
-                                     91 	.globl _P3
-                                     92 	.globl _IE
-                                     93 	.globl _P2
-                                     94 	.globl _SBUF
-                                     95 	.globl _SCON
-                                     96 	.globl _P1
-                                     97 	.globl _TH1
-                                     98 	.globl _TH0
-                                     99 	.globl _TL1
-                                    100 	.globl _TL0
-                                    101 	.globl _TMOD
-                                    102 	.globl _TCON
-                                    103 	.globl _PCON
-                                    104 	.globl _DPH
-                                    105 	.globl _DPL
-                                    106 	.globl _SP
-                                    107 	.globl _P0
-                                    108 	.globl _cfTest_PARM_2
-                                    109 	.globl _cfReadSector_PARM_4
-                                    110 	.globl _cfReadSector_PARM_3
-                                    111 	.globl _cfReadSector_PARM_2
-                                    112 	.globl _cfInit
-                                    113 	.globl _cfWaitIdle
-                                    114 	.globl _cfWaitCommandReady
-                                    115 	.globl _cfWaitDataReady
-                                    116 	.globl _cfReadSector
-                                    117 	.globl _cfTest
-                                    118 ;--------------------------------------------------------
-                                    119 ; special function registers
-                                    120 ;--------------------------------------------------------
-                                    121 	.area RSEG    (ABS,DATA)
-      000000                        122 	.org 0x0000
-                           000080   123 _P0	=	0x0080
-                           000081   124 _SP	=	0x0081
-                           000082   125 _DPL	=	0x0082
+                                     11 	.globl _CY
+                                     12 	.globl _AC
+                                     13 	.globl _F0
+                                     14 	.globl _RS1
+                                     15 	.globl _RS0
+                                     16 	.globl _OV
+                                     17 	.globl _F1
+                                     18 	.globl _P
+                                     19 	.globl _PS
+                                     20 	.globl _PT1
+                                     21 	.globl _PX1
+                                     22 	.globl _PT0
+                                     23 	.globl _PX0
+                                     24 	.globl _RD
+                                     25 	.globl _WR
+                                     26 	.globl _T1
+                                     27 	.globl _T0
+                                     28 	.globl _INT1
+                                     29 	.globl _INT0
+                                     30 	.globl _TXD
+                                     31 	.globl _RXD
+                                     32 	.globl _P3_7
+                                     33 	.globl _P3_6
+                                     34 	.globl _P3_5
+                                     35 	.globl _P3_4
+                                     36 	.globl _P3_3
+                                     37 	.globl _P3_2
+                                     38 	.globl _P3_1
+                                     39 	.globl _P3_0
+                                     40 	.globl _EA
+                                     41 	.globl _ES
+                                     42 	.globl _ET1
+                                     43 	.globl _EX1
+                                     44 	.globl _ET0
+                                     45 	.globl _EX0
+                                     46 	.globl _P2_7
+                                     47 	.globl _P2_6
+                                     48 	.globl _P2_5
+                                     49 	.globl _P2_4
+                                     50 	.globl _P2_3
+                                     51 	.globl _P2_2
+                                     52 	.globl _P2_1
+                                     53 	.globl _P2_0
+                                     54 	.globl _SM0
+                                     55 	.globl _SM1
+                                     56 	.globl _SM2
+                                     57 	.globl _REN
+                                     58 	.globl _TB8
+                                     59 	.globl _RB8
+                                     60 	.globl _TI
+                                     61 	.globl _RI
+                                     62 	.globl _P1_7
+                                     63 	.globl _P1_6
+                                     64 	.globl _P1_5
+                                     65 	.globl _P1_4
+                                     66 	.globl _P1_3
+                                     67 	.globl _P1_2
+                                     68 	.globl _P1_1
+                                     69 	.globl _P1_0
+                                     70 	.globl _TF1
+                                     71 	.globl _TR1
+                                     72 	.globl _TF0
+                                     73 	.globl _TR0
+                                     74 	.globl _IE1
+                                     75 	.globl _IT1
+                                     76 	.globl _IE0
+                                     77 	.globl _IT0
+                                     78 	.globl _P0_7
+                                     79 	.globl _P0_6
+                                     80 	.globl _P0_5
+                                     81 	.globl _P0_4
+                                     82 	.globl _P0_3
+                                     83 	.globl _P0_2
+                                     84 	.globl _P0_1
+                                     85 	.globl _P0_0
+                                     86 	.globl _B
+                                     87 	.globl _ACC
+                                     88 	.globl _PSW
+                                     89 	.globl _IP
+                                     90 	.globl _P3
+                                     91 	.globl _IE
+                                     92 	.globl _P2
+                                     93 	.globl _SBUF
+                                     94 	.globl _SCON
+                                     95 	.globl _P1
+                                     96 	.globl _TH1
+                                     97 	.globl _TH0
+                                     98 	.globl _TL1
+                                     99 	.globl _TL0
+                                    100 	.globl _TMOD
+                                    101 	.globl _TCON
+                                    102 	.globl _PCON
+                                    103 	.globl _DPH
+                                    104 	.globl _DPL
+                                    105 	.globl _SP
+                                    106 	.globl _P0
+                                    107 	.globl _cfInit
+                                    108 	.globl _cfWaitIdle
+                                    109 	.globl _cfWaitCommandReady
+                                    110 	.globl _cfWaitDataReady
+                                    111 	.globl _cfReadSector
+                                    112 	.globl _cfWriteSector
+                                    113 	.globl _cfDiskGetSectorCount
+                                    114 ;--------------------------------------------------------
+                                    115 ; special function registers
+                                    116 ;--------------------------------------------------------
+                                    117 	.area RSEG    (ABS,DATA)
+      000000                        118 	.org 0x0000
+                           000080   119 G$P0$0_0$0 == 0x0080
+                           000080   120 _P0	=	0x0080
+                           000081   121 G$SP$0_0$0 == 0x0081
+                           000081   122 _SP	=	0x0081
+                           000082   123 G$DPL$0_0$0 == 0x0082
+                           000082   124 _DPL	=	0x0082
+                           000083   125 G$DPH$0_0$0 == 0x0083
                            000083   126 _DPH	=	0x0083
-                           000087   127 _PCON	=	0x0087
-                           000088   128 _TCON	=	0x0088
-                           000089   129 _TMOD	=	0x0089
-                           00008A   130 _TL0	=	0x008a
-                           00008B   131 _TL1	=	0x008b
-                           00008C   132 _TH0	=	0x008c
-                           00008D   133 _TH1	=	0x008d
-                           000090   134 _P1	=	0x0090
-                           000098   135 _SCON	=	0x0098
-                           000099   136 _SBUF	=	0x0099
-                           0000A0   137 _P2	=	0x00a0
-                           0000A8   138 _IE	=	0x00a8
-                           0000B0   139 _P3	=	0x00b0
-                           0000B8   140 _IP	=	0x00b8
-                           0000D0   141 _PSW	=	0x00d0
-                           0000E0   142 _ACC	=	0x00e0
-                           0000F0   143 _B	=	0x00f0
-                                    144 ;--------------------------------------------------------
-                                    145 ; special function bits
-                                    146 ;--------------------------------------------------------
-                                    147 	.area RSEG    (ABS,DATA)
-      000000                        148 	.org 0x0000
-                           000080   149 _P0_0	=	0x0080
-                           000081   150 _P0_1	=	0x0081
-                           000082   151 _P0_2	=	0x0082
-                           000083   152 _P0_3	=	0x0083
-                           000084   153 _P0_4	=	0x0084
-                           000085   154 _P0_5	=	0x0085
-                           000086   155 _P0_6	=	0x0086
-                           000087   156 _P0_7	=	0x0087
-                           000088   157 _IT0	=	0x0088
-                           000089   158 _IE0	=	0x0089
-                           00008A   159 _IT1	=	0x008a
-                           00008B   160 _IE1	=	0x008b
-                           00008C   161 _TR0	=	0x008c
-                           00008D   162 _TF0	=	0x008d
-                           00008E   163 _TR1	=	0x008e
-                           00008F   164 _TF1	=	0x008f
-                           000090   165 _P1_0	=	0x0090
-                           000091   166 _P1_1	=	0x0091
-                           000092   167 _P1_2	=	0x0092
-                           000093   168 _P1_3	=	0x0093
-                           000094   169 _P1_4	=	0x0094
-                           000095   170 _P1_5	=	0x0095
-                           000096   171 _P1_6	=	0x0096
-                           000097   172 _P1_7	=	0x0097
-                           000098   173 _RI	=	0x0098
-                           000099   174 _TI	=	0x0099
-                           00009A   175 _RB8	=	0x009a
-                           00009B   176 _TB8	=	0x009b
-                           00009C   177 _REN	=	0x009c
-                           00009D   178 _SM2	=	0x009d
-                           00009E   179 _SM1	=	0x009e
-                           00009F   180 _SM0	=	0x009f
-                           0000A0   181 _P2_0	=	0x00a0
-                           0000A1   182 _P2_1	=	0x00a1
-                           0000A2   183 _P2_2	=	0x00a2
-                           0000A3   184 _P2_3	=	0x00a3
-                           0000A4   185 _P2_4	=	0x00a4
-                           0000A5   186 _P2_5	=	0x00a5
-                           0000A6   187 _P2_6	=	0x00a6
-                           0000A7   188 _P2_7	=	0x00a7
-                           0000A8   189 _EX0	=	0x00a8
-                           0000A9   190 _ET0	=	0x00a9
-                           0000AA   191 _EX1	=	0x00aa
-                           0000AB   192 _ET1	=	0x00ab
-                           0000AC   193 _ES	=	0x00ac
-                           0000AF   194 _EA	=	0x00af
-                           0000B0   195 _P3_0	=	0x00b0
-                           0000B1   196 _P3_1	=	0x00b1
-                           0000B2   197 _P3_2	=	0x00b2
-                           0000B3   198 _P3_3	=	0x00b3
-                           0000B4   199 _P3_4	=	0x00b4
-                           0000B5   200 _P3_5	=	0x00b5
-                           0000B6   201 _P3_6	=	0x00b6
-                           0000B7   202 _P3_7	=	0x00b7
-                           0000B0   203 _RXD	=	0x00b0
-                           0000B1   204 _TXD	=	0x00b1
-                           0000B2   205 _INT0	=	0x00b2
-                           0000B3   206 _INT1	=	0x00b3
-                           0000B4   207 _T0	=	0x00b4
-                           0000B5   208 _T1	=	0x00b5
-                           0000B6   209 _WR	=	0x00b6
-                           0000B7   210 _RD	=	0x00b7
-                           0000B8   211 _PX0	=	0x00b8
-                           0000B9   212 _PT0	=	0x00b9
-                           0000BA   213 _PX1	=	0x00ba
-                           0000BB   214 _PT1	=	0x00bb
-                           0000BC   215 _PS	=	0x00bc
-                           0000D0   216 _P	=	0x00d0
-                           0000D1   217 _F1	=	0x00d1
-                           0000D2   218 _OV	=	0x00d2
-                           0000D3   219 _RS0	=	0x00d3
-                           0000D4   220 _RS1	=	0x00d4
-                           0000D5   221 _F0	=	0x00d5
-                           0000D6   222 _AC	=	0x00d6
-                           0000D7   223 _CY	=	0x00d7
-                                    224 ;--------------------------------------------------------
-                                    225 ; overlayable register banks
-                                    226 ;--------------------------------------------------------
-                                    227 	.area REG_BANK_0	(REL,OVR,DATA)
-      000000                        228 	.ds 8
-                                    229 ;--------------------------------------------------------
-                                    230 ; internal ram data
-                                    231 ;--------------------------------------------------------
-                                    232 	.area DSEG    (DATA)
-      000008                        233 _cfReadSector_sloc0_1_0:
-      000008                        234 	.ds 2
-      00000A                        235 _cfReadSector_sloc1_1_0:
-      00000A                        236 	.ds 4
-      00000E                        237 _cfReadSector_sloc2_1_0:
-      00000E                        238 	.ds 2
-      000010                        239 _cfReadSector_sloc3_1_0:
-      000010                        240 	.ds 3
-                                    241 ;--------------------------------------------------------
-                                    242 ; overlayable items in internal ram 
-                                    243 ;--------------------------------------------------------
-                                    244 ;--------------------------------------------------------
-                                    245 ; indirectly addressable internal ram data
-                                    246 ;--------------------------------------------------------
-                                    247 	.area ISEG    (DATA)
-                                    248 ;--------------------------------------------------------
-                                    249 ; absolute internal ram data
-                                    250 ;--------------------------------------------------------
-                                    251 	.area IABS    (ABS,DATA)
-                                    252 	.area IABS    (ABS,DATA)
-                                    253 ;--------------------------------------------------------
-                                    254 ; bit data
-                                    255 ;--------------------------------------------------------
-                                    256 	.area BSEG    (BIT)
-                                    257 ;--------------------------------------------------------
-                                    258 ; paged external ram data
-                                    259 ;--------------------------------------------------------
-                                    260 	.area PSEG    (PAG,XDATA)
-                                    261 ;--------------------------------------------------------
-                                    262 ; external ram data
-                                    263 ;--------------------------------------------------------
-                                    264 	.area XSEG    (XDATA)
-      00A000                        265 _cfInit_device_65536_20:
-      00A000                        266 	.ds 1
-      00A001                        267 _cfWaitIdle_device_65536_22:
-      00A001                        268 	.ds 1
-      00A002                        269 _cfWaitCommandReady_device_65536_25:
-      00A002                        270 	.ds 1
-      00A003                        271 _cfWaitDataReady_device_65536_28:
-      00A003                        272 	.ds 1
-      00A004                        273 _cfReadSector_PARM_2:
-      00A004                        274 	.ds 3
-      00A007                        275 _cfReadSector_PARM_3:
-      00A007                        276 	.ds 4
-      00A00B                        277 _cfReadSector_PARM_4:
-      00A00B                        278 	.ds 2
-      00A00D                        279 _cfReadSector_device_65536_31:
-      00A00D                        280 	.ds 1
-      00A00E                        281 _cfTest_PARM_2:
-      00A00E                        282 	.ds 3
-      00A011                        283 _cfTest_device_65536_37:
-      00A011                        284 	.ds 1
-                                    285 ;--------------------------------------------------------
-                                    286 ; absolute external ram data
-                                    287 ;--------------------------------------------------------
-                                    288 	.area XABS    (ABS,XDATA)
-                                    289 ;--------------------------------------------------------
-                                    290 ; external initialized ram data
-                                    291 ;--------------------------------------------------------
-                                    292 	.area XISEG   (XDATA)
-                                    293 	.area HOME    (CODE)
-                                    294 	.area GSINIT0 (CODE)
-                                    295 	.area GSINIT1 (CODE)
-                                    296 	.area GSINIT2 (CODE)
-                                    297 	.area GSINIT3 (CODE)
-                                    298 	.area GSINIT4 (CODE)
-                                    299 	.area GSINIT5 (CODE)
-                                    300 	.area GSINIT  (CODE)
-                                    301 	.area GSFINAL (CODE)
-                                    302 	.area CSEG    (CODE)
-                                    303 ;--------------------------------------------------------
-                                    304 ; global & static initialisations
-                                    305 ;--------------------------------------------------------
-                                    306 	.area HOME    (CODE)
-                                    307 	.area GSINIT  (CODE)
-                                    308 	.area GSFINAL (CODE)
-                                    309 	.area GSINIT  (CODE)
-                                    310 ;--------------------------------------------------------
-                                    311 ; Home
-                                    312 ;--------------------------------------------------------
-                                    313 	.area HOME    (CODE)
-                                    314 	.area HOME    (CODE)
-                                    315 ;--------------------------------------------------------
-                                    316 ; code
-                                    317 ;--------------------------------------------------------
-                                    318 	.area CSEG    (CODE)
-                                    319 ;------------------------------------------------------------
-                                    320 ;Allocation info for local variables in function 'cfInit'
-                                    321 ;------------------------------------------------------------
-                                    322 ;device                    Allocated with name '_cfInit_device_65536_20'
-                                    323 ;------------------------------------------------------------
-                                    324 ;	compactflash.c:4: void cfInit(char device)
-                                    325 ;	-----------------------------------------
-                                    326 ;	 function cfInit
-                                    327 ;	-----------------------------------------
-      000077                        328 _cfInit:
-                           000007   329 	ar7 = 0x07
-                           000006   330 	ar6 = 0x06
-                           000005   331 	ar5 = 0x05
-                           000004   332 	ar4 = 0x04
-                           000003   333 	ar3 = 0x03
-                           000002   334 	ar2 = 0x02
-                           000001   335 	ar1 = 0x01
-                           000000   336 	ar0 = 0x00
-      000077 E5 82            [12]  337 	mov	a,dpl
-      000079 90 A0 00         [24]  338 	mov	dptr,#_cfInit_device_65536_20
-      00007C F0               [24]  339 	movx	@dptr,a
-                                    340 ;	compactflash.c:6: cfWriteFeatures(device, 0x01); //  set 8 bit mode to features port
-      00007D E0               [24]  341 	movx	a,@dptr
-      00007E FF               [12]  342 	mov	r7,a
-      00007F E4               [12]  343 	clr	a
-      000080 C4               [12]  344 	swap	a
-      000081 54 F0            [12]  345 	anl	a,#0xf0
-      000083 CF               [12]  346 	xch	a,r7
-      000084 C4               [12]  347 	swap	a
-      000085 CF               [12]  348 	xch	a,r7
-      000086 6F               [12]  349 	xrl	a,r7
-      000087 CF               [12]  350 	xch	a,r7
-      000088 54 F0            [12]  351 	anl	a,#0xf0
-      00008A CF               [12]  352 	xch	a,r7
-      00008B 6F               [12]  353 	xrl	a,r7
-      00008C FE               [12]  354 	mov	r6,a
-      00008D 74 21            [12]  355 	mov	a,#0x21
-      00008F 2F               [12]  356 	add	a,r7
-      000090 FC               [12]  357 	mov	r4,a
-      000091 74 FF            [12]  358 	mov	a,#0xff
-      000093 3E               [12]  359 	addc	a,r6
-      000094 FD               [12]  360 	mov	r5,a
-      000095 8C 82            [24]  361 	mov	dpl,r4
-      000097 8D 83            [24]  362 	mov	dph,r5
-      000099 74 01            [12]  363 	mov	a,#0x01
-      00009B F0               [24]  364 	movx	@dptr,a
-                                    365 ;	compactflash.c:8: cfWriteCommand(device, 0xef);  // command 'set features'
-      00009C 74 27            [12]  366 	mov	a,#0x27
-      00009E 2F               [12]  367 	add	a,r7
-      00009F FF               [12]  368 	mov	r7,a
-      0000A0 74 FF            [12]  369 	mov	a,#0xff
-      0000A2 3E               [12]  370 	addc	a,r6
-      0000A3 FE               [12]  371 	mov	r6,a
-      0000A4 8F 82            [24]  372 	mov	dpl,r7
-      0000A6 8E 83            [24]  373 	mov	dph,r6
-      0000A8 74 EF            [12]  374 	mov	a,#0xef
-      0000AA F0               [24]  375 	movx	@dptr,a
-                                    376 ;	compactflash.c:9: }
-      0000AB 02 00 18         [24]  377 	ljmp	__sdcc_banked_ret
-                                    378 ;------------------------------------------------------------
-                                    379 ;Allocation info for local variables in function 'cfWaitIdle'
-                                    380 ;------------------------------------------------------------
-                                    381 ;device                    Allocated with name '_cfWaitIdle_device_65536_22'
-                                    382 ;status                    Allocated with name '_cfWaitIdle_status_65536_23'
+                           000087   127 G$PCON$0_0$0 == 0x0087
+                           000087   128 _PCON	=	0x0087
+                           000088   129 G$TCON$0_0$0 == 0x0088
+                           000088   130 _TCON	=	0x0088
+                           000089   131 G$TMOD$0_0$0 == 0x0089
+                           000089   132 _TMOD	=	0x0089
+                           00008A   133 G$TL0$0_0$0 == 0x008a
+                           00008A   134 _TL0	=	0x008a
+                           00008B   135 G$TL1$0_0$0 == 0x008b
+                           00008B   136 _TL1	=	0x008b
+                           00008C   137 G$TH0$0_0$0 == 0x008c
+                           00008C   138 _TH0	=	0x008c
+                           00008D   139 G$TH1$0_0$0 == 0x008d
+                           00008D   140 _TH1	=	0x008d
+                           000090   141 G$P1$0_0$0 == 0x0090
+                           000090   142 _P1	=	0x0090
+                           000098   143 G$SCON$0_0$0 == 0x0098
+                           000098   144 _SCON	=	0x0098
+                           000099   145 G$SBUF$0_0$0 == 0x0099
+                           000099   146 _SBUF	=	0x0099
+                           0000A0   147 G$P2$0_0$0 == 0x00a0
+                           0000A0   148 _P2	=	0x00a0
+                           0000A8   149 G$IE$0_0$0 == 0x00a8
+                           0000A8   150 _IE	=	0x00a8
+                           0000B0   151 G$P3$0_0$0 == 0x00b0
+                           0000B0   152 _P3	=	0x00b0
+                           0000B8   153 G$IP$0_0$0 == 0x00b8
+                           0000B8   154 _IP	=	0x00b8
+                           0000D0   155 G$PSW$0_0$0 == 0x00d0
+                           0000D0   156 _PSW	=	0x00d0
+                           0000E0   157 G$ACC$0_0$0 == 0x00e0
+                           0000E0   158 _ACC	=	0x00e0
+                           0000F0   159 G$B$0_0$0 == 0x00f0
+                           0000F0   160 _B	=	0x00f0
+                                    161 ;--------------------------------------------------------
+                                    162 ; special function bits
+                                    163 ;--------------------------------------------------------
+                                    164 	.area RSEG    (ABS,DATA)
+      000000                        165 	.org 0x0000
+                           000080   166 G$P0_0$0_0$0 == 0x0080
+                           000080   167 _P0_0	=	0x0080
+                           000081   168 G$P0_1$0_0$0 == 0x0081
+                           000081   169 _P0_1	=	0x0081
+                           000082   170 G$P0_2$0_0$0 == 0x0082
+                           000082   171 _P0_2	=	0x0082
+                           000083   172 G$P0_3$0_0$0 == 0x0083
+                           000083   173 _P0_3	=	0x0083
+                           000084   174 G$P0_4$0_0$0 == 0x0084
+                           000084   175 _P0_4	=	0x0084
+                           000085   176 G$P0_5$0_0$0 == 0x0085
+                           000085   177 _P0_5	=	0x0085
+                           000086   178 G$P0_6$0_0$0 == 0x0086
+                           000086   179 _P0_6	=	0x0086
+                           000087   180 G$P0_7$0_0$0 == 0x0087
+                           000087   181 _P0_7	=	0x0087
+                           000088   182 G$IT0$0_0$0 == 0x0088
+                           000088   183 _IT0	=	0x0088
+                           000089   184 G$IE0$0_0$0 == 0x0089
+                           000089   185 _IE0	=	0x0089
+                           00008A   186 G$IT1$0_0$0 == 0x008a
+                           00008A   187 _IT1	=	0x008a
+                           00008B   188 G$IE1$0_0$0 == 0x008b
+                           00008B   189 _IE1	=	0x008b
+                           00008C   190 G$TR0$0_0$0 == 0x008c
+                           00008C   191 _TR0	=	0x008c
+                           00008D   192 G$TF0$0_0$0 == 0x008d
+                           00008D   193 _TF0	=	0x008d
+                           00008E   194 G$TR1$0_0$0 == 0x008e
+                           00008E   195 _TR1	=	0x008e
+                           00008F   196 G$TF1$0_0$0 == 0x008f
+                           00008F   197 _TF1	=	0x008f
+                           000090   198 G$P1_0$0_0$0 == 0x0090
+                           000090   199 _P1_0	=	0x0090
+                           000091   200 G$P1_1$0_0$0 == 0x0091
+                           000091   201 _P1_1	=	0x0091
+                           000092   202 G$P1_2$0_0$0 == 0x0092
+                           000092   203 _P1_2	=	0x0092
+                           000093   204 G$P1_3$0_0$0 == 0x0093
+                           000093   205 _P1_3	=	0x0093
+                           000094   206 G$P1_4$0_0$0 == 0x0094
+                           000094   207 _P1_4	=	0x0094
+                           000095   208 G$P1_5$0_0$0 == 0x0095
+                           000095   209 _P1_5	=	0x0095
+                           000096   210 G$P1_6$0_0$0 == 0x0096
+                           000096   211 _P1_6	=	0x0096
+                           000097   212 G$P1_7$0_0$0 == 0x0097
+                           000097   213 _P1_7	=	0x0097
+                           000098   214 G$RI$0_0$0 == 0x0098
+                           000098   215 _RI	=	0x0098
+                           000099   216 G$TI$0_0$0 == 0x0099
+                           000099   217 _TI	=	0x0099
+                           00009A   218 G$RB8$0_0$0 == 0x009a
+                           00009A   219 _RB8	=	0x009a
+                           00009B   220 G$TB8$0_0$0 == 0x009b
+                           00009B   221 _TB8	=	0x009b
+                           00009C   222 G$REN$0_0$0 == 0x009c
+                           00009C   223 _REN	=	0x009c
+                           00009D   224 G$SM2$0_0$0 == 0x009d
+                           00009D   225 _SM2	=	0x009d
+                           00009E   226 G$SM1$0_0$0 == 0x009e
+                           00009E   227 _SM1	=	0x009e
+                           00009F   228 G$SM0$0_0$0 == 0x009f
+                           00009F   229 _SM0	=	0x009f
+                           0000A0   230 G$P2_0$0_0$0 == 0x00a0
+                           0000A0   231 _P2_0	=	0x00a0
+                           0000A1   232 G$P2_1$0_0$0 == 0x00a1
+                           0000A1   233 _P2_1	=	0x00a1
+                           0000A2   234 G$P2_2$0_0$0 == 0x00a2
+                           0000A2   235 _P2_2	=	0x00a2
+                           0000A3   236 G$P2_3$0_0$0 == 0x00a3
+                           0000A3   237 _P2_3	=	0x00a3
+                           0000A4   238 G$P2_4$0_0$0 == 0x00a4
+                           0000A4   239 _P2_4	=	0x00a4
+                           0000A5   240 G$P2_5$0_0$0 == 0x00a5
+                           0000A5   241 _P2_5	=	0x00a5
+                           0000A6   242 G$P2_6$0_0$0 == 0x00a6
+                           0000A6   243 _P2_6	=	0x00a6
+                           0000A7   244 G$P2_7$0_0$0 == 0x00a7
+                           0000A7   245 _P2_7	=	0x00a7
+                           0000A8   246 G$EX0$0_0$0 == 0x00a8
+                           0000A8   247 _EX0	=	0x00a8
+                           0000A9   248 G$ET0$0_0$0 == 0x00a9
+                           0000A9   249 _ET0	=	0x00a9
+                           0000AA   250 G$EX1$0_0$0 == 0x00aa
+                           0000AA   251 _EX1	=	0x00aa
+                           0000AB   252 G$ET1$0_0$0 == 0x00ab
+                           0000AB   253 _ET1	=	0x00ab
+                           0000AC   254 G$ES$0_0$0 == 0x00ac
+                           0000AC   255 _ES	=	0x00ac
+                           0000AF   256 G$EA$0_0$0 == 0x00af
+                           0000AF   257 _EA	=	0x00af
+                           0000B0   258 G$P3_0$0_0$0 == 0x00b0
+                           0000B0   259 _P3_0	=	0x00b0
+                           0000B1   260 G$P3_1$0_0$0 == 0x00b1
+                           0000B1   261 _P3_1	=	0x00b1
+                           0000B2   262 G$P3_2$0_0$0 == 0x00b2
+                           0000B2   263 _P3_2	=	0x00b2
+                           0000B3   264 G$P3_3$0_0$0 == 0x00b3
+                           0000B3   265 _P3_3	=	0x00b3
+                           0000B4   266 G$P3_4$0_0$0 == 0x00b4
+                           0000B4   267 _P3_4	=	0x00b4
+                           0000B5   268 G$P3_5$0_0$0 == 0x00b5
+                           0000B5   269 _P3_5	=	0x00b5
+                           0000B6   270 G$P3_6$0_0$0 == 0x00b6
+                           0000B6   271 _P3_6	=	0x00b6
+                           0000B7   272 G$P3_7$0_0$0 == 0x00b7
+                           0000B7   273 _P3_7	=	0x00b7
+                           0000B0   274 G$RXD$0_0$0 == 0x00b0
+                           0000B0   275 _RXD	=	0x00b0
+                           0000B1   276 G$TXD$0_0$0 == 0x00b1
+                           0000B1   277 _TXD	=	0x00b1
+                           0000B2   278 G$INT0$0_0$0 == 0x00b2
+                           0000B2   279 _INT0	=	0x00b2
+                           0000B3   280 G$INT1$0_0$0 == 0x00b3
+                           0000B3   281 _INT1	=	0x00b3
+                           0000B4   282 G$T0$0_0$0 == 0x00b4
+                           0000B4   283 _T0	=	0x00b4
+                           0000B5   284 G$T1$0_0$0 == 0x00b5
+                           0000B5   285 _T1	=	0x00b5
+                           0000B6   286 G$WR$0_0$0 == 0x00b6
+                           0000B6   287 _WR	=	0x00b6
+                           0000B7   288 G$RD$0_0$0 == 0x00b7
+                           0000B7   289 _RD	=	0x00b7
+                           0000B8   290 G$PX0$0_0$0 == 0x00b8
+                           0000B8   291 _PX0	=	0x00b8
+                           0000B9   292 G$PT0$0_0$0 == 0x00b9
+                           0000B9   293 _PT0	=	0x00b9
+                           0000BA   294 G$PX1$0_0$0 == 0x00ba
+                           0000BA   295 _PX1	=	0x00ba
+                           0000BB   296 G$PT1$0_0$0 == 0x00bb
+                           0000BB   297 _PT1	=	0x00bb
+                           0000BC   298 G$PS$0_0$0 == 0x00bc
+                           0000BC   299 _PS	=	0x00bc
+                           0000D0   300 G$P$0_0$0 == 0x00d0
+                           0000D0   301 _P	=	0x00d0
+                           0000D1   302 G$F1$0_0$0 == 0x00d1
+                           0000D1   303 _F1	=	0x00d1
+                           0000D2   304 G$OV$0_0$0 == 0x00d2
+                           0000D2   305 _OV	=	0x00d2
+                           0000D3   306 G$RS0$0_0$0 == 0x00d3
+                           0000D3   307 _RS0	=	0x00d3
+                           0000D4   308 G$RS1$0_0$0 == 0x00d4
+                           0000D4   309 _RS1	=	0x00d4
+                           0000D5   310 G$F0$0_0$0 == 0x00d5
+                           0000D5   311 _F0	=	0x00d5
+                           0000D6   312 G$AC$0_0$0 == 0x00d6
+                           0000D6   313 _AC	=	0x00d6
+                           0000D7   314 G$CY$0_0$0 == 0x00d7
+                           0000D7   315 _CY	=	0x00d7
+                                    316 ;--------------------------------------------------------
+                                    317 ; overlayable register banks
+                                    318 ;--------------------------------------------------------
+                                    319 	.area REG_BANK_0	(REL,OVR,DATA)
+      000000                        320 	.ds 8
+                                    321 ;--------------------------------------------------------
+                                    322 ; internal ram data
+                                    323 ;--------------------------------------------------------
+                                    324 	.area DSEG    (DATA)
+                                    325 ;--------------------------------------------------------
+                                    326 ; overlayable items in internal ram 
+                                    327 ;--------------------------------------------------------
+                                    328 ;--------------------------------------------------------
+                                    329 ; indirectly addressable internal ram data
+                                    330 ;--------------------------------------------------------
+                                    331 	.area ISEG    (DATA)
+                                    332 ;--------------------------------------------------------
+                                    333 ; absolute internal ram data
+                                    334 ;--------------------------------------------------------
+                                    335 	.area IABS    (ABS,DATA)
+                                    336 	.area IABS    (ABS,DATA)
+                                    337 ;--------------------------------------------------------
+                                    338 ; bit data
+                                    339 ;--------------------------------------------------------
+                                    340 	.area BSEG    (BIT)
+                                    341 ;--------------------------------------------------------
+                                    342 ; paged external ram data
+                                    343 ;--------------------------------------------------------
+                                    344 	.area PSEG    (PAG,XDATA)
+                                    345 ;--------------------------------------------------------
+                                    346 ; external ram data
+                                    347 ;--------------------------------------------------------
+                                    348 	.area XSEG    (XDATA)
+                                    349 ;--------------------------------------------------------
+                                    350 ; absolute external ram data
+                                    351 ;--------------------------------------------------------
+                                    352 	.area XABS    (ABS,XDATA)
+                                    353 ;--------------------------------------------------------
+                                    354 ; external initialized ram data
+                                    355 ;--------------------------------------------------------
+                                    356 	.area XISEG   (XDATA)
+                                    357 	.area HOME    (CODE)
+                                    358 	.area GSINIT0 (CODE)
+                                    359 	.area GSINIT1 (CODE)
+                                    360 	.area GSINIT2 (CODE)
+                                    361 	.area GSINIT3 (CODE)
+                                    362 	.area GSINIT4 (CODE)
+                                    363 	.area GSINIT5 (CODE)
+                                    364 	.area GSINIT  (CODE)
+                                    365 	.area GSFINAL (CODE)
+                                    366 	.area CSEG    (CODE)
+                                    367 ;--------------------------------------------------------
+                                    368 ; global & static initialisations
+                                    369 ;--------------------------------------------------------
+                                    370 	.area HOME    (CODE)
+                                    371 	.area GSINIT  (CODE)
+                                    372 	.area GSFINAL (CODE)
+                                    373 	.area GSINIT  (CODE)
+                                    374 ;--------------------------------------------------------
+                                    375 ; Home
+                                    376 ;--------------------------------------------------------
+                                    377 	.area HOME    (CODE)
+                                    378 	.area HOME    (CODE)
+                                    379 ;--------------------------------------------------------
+                                    380 ; code
+                                    381 ;--------------------------------------------------------
+                                    382 	.area CSEG    (CODE)
                                     383 ;------------------------------------------------------------
-                                    384 ;	compactflash.c:11: void cfWaitIdle(char device)
-                                    385 ;	-----------------------------------------
-                                    386 ;	 function cfWaitIdle
-                                    387 ;	-----------------------------------------
-      0000AE                        388 _cfWaitIdle:
-      0000AE E5 82            [12]  389 	mov	a,dpl
-      0000B0 90 A0 01         [24]  390 	mov	dptr,#_cfWaitIdle_device_65536_22
-      0000B3 F0               [24]  391 	movx	@dptr,a
-                                    392 ;	compactflash.c:14: do
-      0000B4 E0               [24]  393 	movx	a,@dptr
-      0000B5 FF               [12]  394 	mov	r7,a
-      0000B6                        395 00101$:
-                                    396 ;	compactflash.c:16: status = cfReadStatus(device);
-      0000B6 8F 05            [24]  397 	mov	ar5,r7
-      0000B8 E4               [12]  398 	clr	a
-      0000B9 C4               [12]  399 	swap	a
-      0000BA 54 F0            [12]  400 	anl	a,#0xf0
-      0000BC CD               [12]  401 	xch	a,r5
-      0000BD C4               [12]  402 	swap	a
-      0000BE CD               [12]  403 	xch	a,r5
-      0000BF 6D               [12]  404 	xrl	a,r5
-      0000C0 CD               [12]  405 	xch	a,r5
-      0000C1 54 F0            [12]  406 	anl	a,#0xf0
-      0000C3 CD               [12]  407 	xch	a,r5
-      0000C4 6D               [12]  408 	xrl	a,r5
-      0000C5 FE               [12]  409 	mov	r6,a
-      0000C6 74 27            [12]  410 	mov	a,#0x27
-      0000C8 2D               [12]  411 	add	a,r5
-      0000C9 FD               [12]  412 	mov	r5,a
-      0000CA 74 FF            [12]  413 	mov	a,#0xff
-      0000CC 3E               [12]  414 	addc	a,r6
-      0000CD FE               [12]  415 	mov	r6,a
-      0000CE 8D 82            [24]  416 	mov	dpl,r5
-      0000D0 8E 83            [24]  417 	mov	dph,r6
-      0000D2 E0               [24]  418 	movx	a,@dptr
-                                    419 ;	compactflash.c:18: while((status & 0x80)!=0);
-      0000D3 FE               [12]  420 	mov	r6,a
-      0000D4 20 E7 DF         [24]  421 	jb	acc.7,00101$
-                                    422 ;	compactflash.c:19: }
-      0000D7 02 00 18         [24]  423 	ljmp	__sdcc_banked_ret
-                                    424 ;------------------------------------------------------------
-                                    425 ;Allocation info for local variables in function 'cfWaitCommandReady'
-                                    426 ;------------------------------------------------------------
-                                    427 ;device                    Allocated with name '_cfWaitCommandReady_device_65536_25'
-                                    428 ;status                    Allocated with name '_cfWaitCommandReady_status_65536_26'
-                                    429 ;------------------------------------------------------------
-                                    430 ;	compactflash.c:21: void cfWaitCommandReady(char device)
-                                    431 ;	-----------------------------------------
-                                    432 ;	 function cfWaitCommandReady
-                                    433 ;	-----------------------------------------
-      0000DA                        434 _cfWaitCommandReady:
-      0000DA E5 82            [12]  435 	mov	a,dpl
-      0000DC 90 A0 02         [24]  436 	mov	dptr,#_cfWaitCommandReady_device_65536_25
-      0000DF F0               [24]  437 	movx	@dptr,a
-                                    438 ;	compactflash.c:25: do
-      0000E0 E0               [24]  439 	movx	a,@dptr
-      0000E1 FF               [12]  440 	mov	r7,a
-      0000E2                        441 00101$:
-                                    442 ;	compactflash.c:27: status = cfReadStatus(device);
-      0000E2 8F 05            [24]  443 	mov	ar5,r7
-      0000E4 E4               [12]  444 	clr	a
-      0000E5 C4               [12]  445 	swap	a
-      0000E6 54 F0            [12]  446 	anl	a,#0xf0
-      0000E8 CD               [12]  447 	xch	a,r5
-      0000E9 C4               [12]  448 	swap	a
-      0000EA CD               [12]  449 	xch	a,r5
-      0000EB 6D               [12]  450 	xrl	a,r5
-      0000EC CD               [12]  451 	xch	a,r5
-      0000ED 54 F0            [12]  452 	anl	a,#0xf0
-      0000EF CD               [12]  453 	xch	a,r5
-      0000F0 6D               [12]  454 	xrl	a,r5
-      0000F1 FE               [12]  455 	mov	r6,a
-      0000F2 74 27            [12]  456 	mov	a,#0x27
-      0000F4 2D               [12]  457 	add	a,r5
-      0000F5 FD               [12]  458 	mov	r5,a
-      0000F6 74 FF            [12]  459 	mov	a,#0xff
-      0000F8 3E               [12]  460 	addc	a,r6
-      0000F9 FE               [12]  461 	mov	r6,a
-      0000FA 8D 82            [24]  462 	mov	dpl,r5
-      0000FC 8E 83            [24]  463 	mov	dph,r6
-      0000FE E0               [24]  464 	movx	a,@dptr
-      0000FF FE               [12]  465 	mov	r6,a
-                                    466 ;	compactflash.c:29: while((status & 0xc0)!=0x40);
-      000100 53 06 C0         [24]  467 	anl	ar6,#0xc0
-      000103 7D 00            [12]  468 	mov	r5,#0x00
-      000105 BE 40 DA         [24]  469 	cjne	r6,#0x40,00101$
-      000108 BD 00 D7         [24]  470 	cjne	r5,#0x00,00101$
-                                    471 ;	compactflash.c:30: }
-      00010B 02 00 18         [24]  472 	ljmp	__sdcc_banked_ret
-                                    473 ;------------------------------------------------------------
-                                    474 ;Allocation info for local variables in function 'cfWaitDataReady'
-                                    475 ;------------------------------------------------------------
-                                    476 ;device                    Allocated with name '_cfWaitDataReady_device_65536_28'
-                                    477 ;status                    Allocated with name '_cfWaitDataReady_status_65536_29'
-                                    478 ;------------------------------------------------------------
-                                    479 ;	compactflash.c:32: void cfWaitDataReady(char device)
-                                    480 ;	-----------------------------------------
-                                    481 ;	 function cfWaitDataReady
-                                    482 ;	-----------------------------------------
-      00010E                        483 _cfWaitDataReady:
-      00010E E5 82            [12]  484 	mov	a,dpl
-      000110 90 A0 03         [24]  485 	mov	dptr,#_cfWaitDataReady_device_65536_28
-      000113 F0               [24]  486 	movx	@dptr,a
-                                    487 ;	compactflash.c:35: do
-      000114 E0               [24]  488 	movx	a,@dptr
-      000115 FF               [12]  489 	mov	r7,a
-      000116                        490 00101$:
-                                    491 ;	compactflash.c:37: status = cfReadStatus(device);
-      000116 8F 05            [24]  492 	mov	ar5,r7
-      000118 E4               [12]  493 	clr	a
-      000119 C4               [12]  494 	swap	a
-      00011A 54 F0            [12]  495 	anl	a,#0xf0
-      00011C CD               [12]  496 	xch	a,r5
-      00011D C4               [12]  497 	swap	a
-      00011E CD               [12]  498 	xch	a,r5
-      00011F 6D               [12]  499 	xrl	a,r5
-      000120 CD               [12]  500 	xch	a,r5
-      000121 54 F0            [12]  501 	anl	a,#0xf0
-      000123 CD               [12]  502 	xch	a,r5
-      000124 6D               [12]  503 	xrl	a,r5
-      000125 FE               [12]  504 	mov	r6,a
-      000126 74 27            [12]  505 	mov	a,#0x27
-      000128 2D               [12]  506 	add	a,r5
-      000129 FD               [12]  507 	mov	r5,a
-      00012A 74 FF            [12]  508 	mov	a,#0xff
-      00012C 3E               [12]  509 	addc	a,r6
-      00012D FE               [12]  510 	mov	r6,a
-      00012E 8D 82            [24]  511 	mov	dpl,r5
-      000130 8E 83            [24]  512 	mov	dph,r6
-      000132 E0               [24]  513 	movx	a,@dptr
-      000133 FE               [12]  514 	mov	r6,a
-                                    515 ;	compactflash.c:39: while((status & 0x88)!=0x08);
-      000134 53 06 88         [24]  516 	anl	ar6,#0x88
-      000137 7D 00            [12]  517 	mov	r5,#0x00
-      000139 BE 08 DA         [24]  518 	cjne	r6,#0x08,00101$
-      00013C BD 00 D7         [24]  519 	cjne	r5,#0x00,00101$
-                                    520 ;	compactflash.c:40: }
-      00013F 02 00 18         [24]  521 	ljmp	__sdcc_banked_ret
+                                    384 ;Allocation info for local variables in function 'cfInit'
+                                    385 ;------------------------------------------------------------
+                                    386 ;device                    Allocated to registers r7 
+                                    387 ;------------------------------------------------------------
+                           000000   388 	G$cfInit$0$0 ==.
+                           000000   389 	C$compactflash.c$3$0_0$9 ==.
+                                    390 ;	compactflash.c:3: void cfInit(char device)
+                                    391 ;	-----------------------------------------
+                                    392 ;	 function cfInit
+                                    393 ;	-----------------------------------------
+      000062                        394 _cfInit:
+                           000007   395 	ar7 = 0x07
+                           000006   396 	ar6 = 0x06
+                           000005   397 	ar5 = 0x05
+                           000004   398 	ar4 = 0x04
+                           000003   399 	ar3 = 0x03
+                           000002   400 	ar2 = 0x02
+                           000001   401 	ar1 = 0x01
+                           000000   402 	ar0 = 0x00
+                           000000   403 	C$compactflash.c$5$1_0$9 ==.
+                                    404 ;	compactflash.c:5: cfWaitIdle(device);
+      000062 AF 82            [24]  405 	mov  r7,dpl
+      000064 C0 07            [24]  406 	push	ar7
+      000066 12 00 7D         [24]  407 	lcall	_cfWaitIdle
+      000069 D0 07            [24]  408 	pop	ar7
+                           000009   409 	C$compactflash.c$7$1_0$9 ==.
+                                    410 ;	compactflash.c:7: cfWriteFeatures(device, 0x01); //  set 8 bit mode to features port
+      00006B 90 FF 21         [24]  411 	mov	dptr,#0xff21
+      00006E 74 01            [12]  412 	mov	a,#0x01
+      000070 F0               [24]  413 	movx	@dptr,a
+                           00000F   414 	C$compactflash.c$9$1_0$9 ==.
+                                    415 ;	compactflash.c:9: cfWaitIdle(device);
+      000071 8F 82            [24]  416 	mov	dpl,r7
+      000073 12 00 7D         [24]  417 	lcall	_cfWaitIdle
+                           000014   418 	C$compactflash.c$11$1_0$9 ==.
+                                    419 ;	compactflash.c:11: cfWriteCommand(device, 0xef);  // command 'set features'
+      000076 90 FF 27         [24]  420 	mov	dptr,#0xff27
+      000079 74 EF            [12]  421 	mov	a,#0xef
+      00007B F0               [24]  422 	movx	@dptr,a
+                           00001A   423 	C$compactflash.c$12$1_0$9 ==.
+                                    424 ;	compactflash.c:12: }
+                           00001A   425 	C$compactflash.c$12$1_0$9 ==.
+                           00001A   426 	XG$cfInit$0$0 ==.
+      00007C 22               [24]  427 	ret
+                                    428 ;------------------------------------------------------------
+                                    429 ;Allocation info for local variables in function 'cfWaitIdle'
+                                    430 ;------------------------------------------------------------
+                                    431 ;device                    Allocated to registers 
+                                    432 ;status                    Allocated to registers r7 
+                                    433 ;------------------------------------------------------------
+                           00001B   434 	G$cfWaitIdle$0$0 ==.
+                           00001B   435 	C$compactflash.c$14$1_0$11 ==.
+                                    436 ;	compactflash.c:14: void cfWaitIdle(char device)
+                                    437 ;	-----------------------------------------
+                                    438 ;	 function cfWaitIdle
+                                    439 ;	-----------------------------------------
+      00007D                        440 _cfWaitIdle:
+                           00001B   441 	C$compactflash.c$17$1_0$11 ==.
+                                    442 ;	compactflash.c:17: do
+      00007D                        443 00101$:
+                           00001B   444 	C$compactflash.c$19$2_0$12 ==.
+                                    445 ;	compactflash.c:19: status = cfReadStatus(device);
+      00007D 90 FF 27         [24]  446 	mov	dptr,#0xff27
+      000080 E0               [24]  447 	movx	a,@dptr
+                           00001F   448 	C$compactflash.c$21$1_0$11 ==.
+                                    449 ;	compactflash.c:21: while((status & 0x80)!=0);
+      000081 20 E7 F9         [24]  450 	jb	acc.7,00101$
+                           000022   451 	C$compactflash.c$22$1_0$11 ==.
+                                    452 ;	compactflash.c:22: }
+                           000022   453 	C$compactflash.c$22$1_0$11 ==.
+                           000022   454 	XG$cfWaitIdle$0$0 ==.
+      000084 22               [24]  455 	ret
+                                    456 ;------------------------------------------------------------
+                                    457 ;Allocation info for local variables in function 'cfWaitCommandReady'
+                                    458 ;------------------------------------------------------------
+                                    459 ;device                    Allocated to registers 
+                                    460 ;status                    Allocated to registers r7 
+                                    461 ;------------------------------------------------------------
+                           000023   462 	G$cfWaitCommandReady$0$0 ==.
+                           000023   463 	C$compactflash.c$24$1_0$14 ==.
+                                    464 ;	compactflash.c:24: void cfWaitCommandReady(char device)
+                                    465 ;	-----------------------------------------
+                                    466 ;	 function cfWaitCommandReady
+                                    467 ;	-----------------------------------------
+      000085                        468 _cfWaitCommandReady:
+                           000023   469 	C$compactflash.c$28$1_0$14 ==.
+                                    470 ;	compactflash.c:28: do
+      000085                        471 00101$:
+                           000023   472 	C$compactflash.c$30$2_0$15 ==.
+                                    473 ;	compactflash.c:30: status = cfReadStatus(device);
+      000085 90 FF 27         [24]  474 	mov	dptr,#0xff27
+      000088 E0               [24]  475 	movx	a,@dptr
+      000089 FF               [12]  476 	mov	r7,a
+                           000028   477 	C$compactflash.c$32$1_0$14 ==.
+                                    478 ;	compactflash.c:32: while((status & 0xc0)!=0x40);
+      00008A 53 07 C0         [24]  479 	anl	ar7,#0xc0
+      00008D 7E 00            [12]  480 	mov	r6,#0x00
+      00008F BF 40 F3         [24]  481 	cjne	r7,#0x40,00101$
+      000092 BE 00 F0         [24]  482 	cjne	r6,#0x00,00101$
+                           000033   483 	C$compactflash.c$33$1_0$14 ==.
+                                    484 ;	compactflash.c:33: }
+                           000033   485 	C$compactflash.c$33$1_0$14 ==.
+                           000033   486 	XG$cfWaitCommandReady$0$0 ==.
+      000095 22               [24]  487 	ret
+                                    488 ;------------------------------------------------------------
+                                    489 ;Allocation info for local variables in function 'cfWaitDataReady'
+                                    490 ;------------------------------------------------------------
+                                    491 ;device                    Allocated to registers 
+                                    492 ;status                    Allocated to registers r7 
+                                    493 ;------------------------------------------------------------
+                           000034   494 	G$cfWaitDataReady$0$0 ==.
+                           000034   495 	C$compactflash.c$35$1_0$17 ==.
+                                    496 ;	compactflash.c:35: void cfWaitDataReady(char device)
+                                    497 ;	-----------------------------------------
+                                    498 ;	 function cfWaitDataReady
+                                    499 ;	-----------------------------------------
+      000096                        500 _cfWaitDataReady:
+                           000034   501 	C$compactflash.c$38$1_0$17 ==.
+                                    502 ;	compactflash.c:38: do
+      000096                        503 00101$:
+                           000034   504 	C$compactflash.c$40$2_0$18 ==.
+                                    505 ;	compactflash.c:40: status = cfReadStatus(device);
+      000096 90 FF 27         [24]  506 	mov	dptr,#0xff27
+      000099 E0               [24]  507 	movx	a,@dptr
+      00009A FF               [12]  508 	mov	r7,a
+                           000039   509 	C$compactflash.c$42$1_0$17 ==.
+                                    510 ;	compactflash.c:42: while((status & 0x88)!=0x08);
+      00009B 53 07 88         [24]  511 	anl	ar7,#0x88
+      00009E 7E 00            [12]  512 	mov	r6,#0x00
+      0000A0 BF 08 F3         [24]  513 	cjne	r7,#0x08,00101$
+      0000A3 BE 00 F0         [24]  514 	cjne	r6,#0x00,00101$
+                           000044   515 	C$compactflash.c$43$1_0$17 ==.
+                                    516 ;	compactflash.c:43: }
+                           000044   517 	C$compactflash.c$43$1_0$17 ==.
+                           000044   518 	XG$cfWaitDataReady$0$0 ==.
+      0000A6 22               [24]  519 	ret
+                                    520 ;------------------------------------------------------------
+                                    521 ;Allocation info for local variables in function 'cfReadSector'
                                     522 ;------------------------------------------------------------
-                                    523 ;Allocation info for local variables in function 'cfReadSector'
-                                    524 ;------------------------------------------------------------
-                                    525 ;sloc0                     Allocated with name '_cfReadSector_sloc0_1_0'
-                                    526 ;sloc1                     Allocated with name '_cfReadSector_sloc1_1_0'
-                                    527 ;sloc2                     Allocated with name '_cfReadSector_sloc2_1_0'
-                                    528 ;sloc3                     Allocated with name '_cfReadSector_sloc3_1_0'
-                                    529 ;buf                       Allocated with name '_cfReadSector_PARM_2'
-                                    530 ;LBA                       Allocated with name '_cfReadSector_PARM_3'
-                                    531 ;sectorCount               Allocated with name '_cfReadSector_PARM_4'
-                                    532 ;device                    Allocated with name '_cfReadSector_device_65536_31'
-                                    533 ;status                    Allocated with name '_cfReadSector_status_65536_32'
-                                    534 ;i                         Allocated with name '_cfReadSector_i_65536_32'
-                                    535 ;idx                       Allocated with name '_cfReadSector_idx_65536_32'
-                                    536 ;------------------------------------------------------------
-                                    537 ;	compactflash.c:42: void cfReadSector(char device, char* buf, unsigned long LBA, unsigned int sectorCount)
-                                    538 ;	-----------------------------------------
-                                    539 ;	 function cfReadSector
-                                    540 ;	-----------------------------------------
-      000142                        541 _cfReadSector:
-      000142 E5 82            [12]  542 	mov	a,dpl
-      000144 90 A0 0D         [24]  543 	mov	dptr,#_cfReadSector_device_65536_31
-      000147 F0               [24]  544 	movx	@dptr,a
-                                    545 ;	compactflash.c:51: P1 = 0xe1;
-      000148 75 90 E1         [24]  546 	mov	_P1,#0xe1
-                                    547 ;	compactflash.c:52: cfWaitIdle(device);
-      00014B E0               [24]  548 	movx	a,@dptr
-      00014C FF               [12]  549 	mov	r7,a
-      00014D F5 82            [12]  550 	mov	dpl,a
-      00014F C0 07            [24]  551 	push	ar7
-      000151 78 AE            [12]  552 	mov	r0,#_cfWaitIdle
-      000153 79 00            [12]  553 	mov	r1,#(_cfWaitIdle >> 8)
-      000155 7A 00            [12]  554 	mov	r2,#(_cfWaitIdle >> 16)
-      000157 12 00 06         [24]  555 	lcall	__sdcc_banked_call
-      00015A D0 07            [24]  556 	pop	ar7
-                                    557 ;	compactflash.c:55: P1 = 0xe2;
-      00015C 75 90 E2         [24]  558 	mov	_P1,#0xe2
-                                    559 ;	compactflash.c:56: cfWriteSectorCount(device, 0x01);
-      00015F 8F 05            [24]  560 	mov	ar5,r7
-      000161 E4               [12]  561 	clr	a
-      000162 CD               [12]  562 	xch	a,r5
-      000163 C4               [12]  563 	swap	a
-      000164 CD               [12]  564 	xch	a,r5
-      000165 6D               [12]  565 	xrl	a,r5
-      000166 CD               [12]  566 	xch	a,r5
-      000167 54 F0            [12]  567 	anl	a,#0xf0
-      000169 CD               [12]  568 	xch	a,r5
-      00016A 6D               [12]  569 	xrl	a,r5
-      00016B FE               [12]  570 	mov	r6,a
-      00016C 74 22            [12]  571 	mov	a,#0x22
-      00016E 2D               [12]  572 	add	a,r5
-      00016F FB               [12]  573 	mov	r3,a
-      000170 74 FF            [12]  574 	mov	a,#0xff
-      000172 3E               [12]  575 	addc	a,r6
-      000173 FC               [12]  576 	mov	r4,a
-      000174 8B 82            [24]  577 	mov	dpl,r3
-      000176 8C 83            [24]  578 	mov	dph,r4
-      000178 74 01            [12]  579 	mov	a,#0x01
-      00017A F0               [24]  580 	movx	@dptr,a
-                                    581 ;	compactflash.c:59: P1 = 0xe3;
-      00017B 75 90 E3         [24]  582 	mov	_P1,#0xe3
-                                    583 ;	compactflash.c:60: cfWaitIdle(device);
-      00017E 8F 82            [24]  584 	mov	dpl,r7
-      000180 C0 07            [24]  585 	push	ar7
-      000182 C0 06            [24]  586 	push	ar6
-      000184 C0 05            [24]  587 	push	ar5
-      000186 78 AE            [12]  588 	mov	r0,#_cfWaitIdle
-      000188 79 00            [12]  589 	mov	r1,#(_cfWaitIdle >> 8)
-      00018A 7A 00            [12]  590 	mov	r2,#(_cfWaitIdle >> 16)
-      00018C 12 00 06         [24]  591 	lcall	__sdcc_banked_call
-      00018F D0 05            [24]  592 	pop	ar5
-      000191 D0 06            [24]  593 	pop	ar6
-      000193 D0 07            [24]  594 	pop	ar7
-                                    595 ;	compactflash.c:63: P1 = 0xe4;
-      000195 75 90 E4         [24]  596 	mov	_P1,#0xe4
-                                    597 ;	compactflash.c:64: cfWriteLBA0(device, ((LBA    ) & 0xff) );
-      000198 74 23            [12]  598 	mov	a,#0x23
-      00019A 2D               [12]  599 	add	a,r5
-      00019B FB               [12]  600 	mov	r3,a
-      00019C 74 FF            [12]  601 	mov	a,#0xff
-      00019E 3E               [12]  602 	addc	a,r6
-      00019F FC               [12]  603 	mov	r4,a
-      0001A0 8B 08            [24]  604 	mov	_cfReadSector_sloc0_1_0,r3
-      0001A2 8C 09            [24]  605 	mov	(_cfReadSector_sloc0_1_0 + 1),r4
-      0001A4 90 A0 07         [24]  606 	mov	dptr,#_cfReadSector_PARM_3
-      0001A7 E0               [24]  607 	movx	a,@dptr
-      0001A8 F5 0A            [12]  608 	mov	_cfReadSector_sloc1_1_0,a
-      0001AA A3               [24]  609 	inc	dptr
-      0001AB E0               [24]  610 	movx	a,@dptr
-      0001AC F5 0B            [12]  611 	mov	(_cfReadSector_sloc1_1_0 + 1),a
-      0001AE A3               [24]  612 	inc	dptr
-      0001AF E0               [24]  613 	movx	a,@dptr
-      0001B0 F5 0C            [12]  614 	mov	(_cfReadSector_sloc1_1_0 + 2),a
-      0001B2 A3               [24]  615 	inc	dptr
-      0001B3 E0               [24]  616 	movx	a,@dptr
-      0001B4 F5 0D            [12]  617 	mov	(_cfReadSector_sloc1_1_0 + 3),a
-      0001B6 AB 0A            [24]  618 	mov	r3,_cfReadSector_sloc1_1_0
-      0001B8 85 08 82         [24]  619 	mov	dpl,_cfReadSector_sloc0_1_0
-      0001BB 85 09 83         [24]  620 	mov	dph,(_cfReadSector_sloc0_1_0 + 1)
-      0001BE EB               [12]  621 	mov	a,r3
-      0001BF F0               [24]  622 	movx	@dptr,a
-                                    623 ;	compactflash.c:67: P1 = 0xe5;
-      0001C0 75 90 E5         [24]  624 	mov	_P1,#0xe5
-                                    625 ;	compactflash.c:68: cfWaitIdle(device);
-      0001C3 8F 82            [24]  626 	mov	dpl,r7
-      0001C5 C0 07            [24]  627 	push	ar7
-      0001C7 C0 06            [24]  628 	push	ar6
-      0001C9 C0 05            [24]  629 	push	ar5
-      0001CB 78 AE            [12]  630 	mov	r0,#_cfWaitIdle
-      0001CD 79 00            [12]  631 	mov	r1,#(_cfWaitIdle >> 8)
-      0001CF 7A 00            [12]  632 	mov	r2,#(_cfWaitIdle >> 16)
-      0001D1 12 00 06         [24]  633 	lcall	__sdcc_banked_call
-      0001D4 D0 05            [24]  634 	pop	ar5
-      0001D6 D0 06            [24]  635 	pop	ar6
-      0001D8 D0 07            [24]  636 	pop	ar7
-                                    637 ;	compactflash.c:71: P1 = 0xe6;
-      0001DA 75 90 E6         [24]  638 	mov	_P1,#0xe6
-                                    639 ;	compactflash.c:72: cfWriteLBA1(device, ((LBA>>8 ) & 0xff) );
-      0001DD 74 24            [12]  640 	mov	a,#0x24
-      0001DF 2D               [12]  641 	add	a,r5
-      0001E0 FB               [12]  642 	mov	r3,a
-      0001E1 74 FF            [12]  643 	mov	a,#0xff
-      0001E3 3E               [12]  644 	addc	a,r6
-      0001E4 FC               [12]  645 	mov	r4,a
-      0001E5 8B 82            [24]  646 	mov	dpl,r3
-      0001E7 8C 83            [24]  647 	mov	dph,r4
-      0001E9 E5 0B            [12]  648 	mov	a,(_cfReadSector_sloc1_1_0 + 1)
-      0001EB F0               [24]  649 	movx	@dptr,a
-                                    650 ;	compactflash.c:75: P1 = 0xe7;
-      0001EC 75 90 E7         [24]  651 	mov	_P1,#0xe7
-                                    652 ;	compactflash.c:76: cfWaitIdle(device);
-      0001EF 8F 82            [24]  653 	mov	dpl,r7
-      0001F1 C0 07            [24]  654 	push	ar7
-      0001F3 C0 06            [24]  655 	push	ar6
-      0001F5 C0 05            [24]  656 	push	ar5
-      0001F7 78 AE            [12]  657 	mov	r0,#_cfWaitIdle
-      0001F9 79 00            [12]  658 	mov	r1,#(_cfWaitIdle >> 8)
-      0001FB 7A 00            [12]  659 	mov	r2,#(_cfWaitIdle >> 16)
-      0001FD 12 00 06         [24]  660 	lcall	__sdcc_banked_call
-      000200 D0 05            [24]  661 	pop	ar5
-      000202 D0 06            [24]  662 	pop	ar6
-      000204 D0 07            [24]  663 	pop	ar7
-                                    664 ;	compactflash.c:79: P1 = 0xe8;
-      000206 75 90 E8         [24]  665 	mov	_P1,#0xe8
-                                    666 ;	compactflash.c:80: cfWriteLBA2(device, ((LBA>>16) & 0xff) );
-      000209 74 25            [12]  667 	mov	a,#0x25
-      00020B 2D               [12]  668 	add	a,r5
-      00020C FB               [12]  669 	mov	r3,a
-      00020D 74 FF            [12]  670 	mov	a,#0xff
-      00020F 3E               [12]  671 	addc	a,r6
-      000210 FC               [12]  672 	mov	r4,a
-      000211 8B 82            [24]  673 	mov	dpl,r3
-      000213 8C 83            [24]  674 	mov	dph,r4
-      000215 E5 0C            [12]  675 	mov	a,(_cfReadSector_sloc1_1_0 + 2)
-      000217 F0               [24]  676 	movx	@dptr,a
-                                    677 ;	compactflash.c:83: P1 = 0xe9;
-      000218 75 90 E9         [24]  678 	mov	_P1,#0xe9
-                                    679 ;	compactflash.c:84: cfWaitIdle(device);
-      00021B 8F 82            [24]  680 	mov	dpl,r7
-      00021D C0 07            [24]  681 	push	ar7
-      00021F C0 06            [24]  682 	push	ar6
-      000221 C0 05            [24]  683 	push	ar5
-      000223 78 AE            [12]  684 	mov	r0,#_cfWaitIdle
-      000225 79 00            [12]  685 	mov	r1,#(_cfWaitIdle >> 8)
-      000227 7A 00            [12]  686 	mov	r2,#(_cfWaitIdle >> 16)
-      000229 12 00 06         [24]  687 	lcall	__sdcc_banked_call
-      00022C D0 05            [24]  688 	pop	ar5
-      00022E D0 06            [24]  689 	pop	ar6
-      000230 D0 07            [24]  690 	pop	ar7
-                                    691 ;	compactflash.c:87: P1 = 0xea;
-      000232 75 90 EA         [24]  692 	mov	_P1,#0xea
-                                    693 ;	compactflash.c:88: cfWriteLBA3(device, (0xe0 | 0x00 | ((LBA>>24) & 0x0f)) );
-      000235 74 26            [12]  694 	mov	a,#0x26
-      000237 2D               [12]  695 	add	a,r5
-      000238 FD               [12]  696 	mov	r5,a
-      000239 74 FF            [12]  697 	mov	a,#0xff
-      00023B 3E               [12]  698 	addc	a,r6
-      00023C FE               [12]  699 	mov	r6,a
-      00023D 8D 82            [24]  700 	mov	dpl,r5
-      00023F 8E 83            [24]  701 	mov	dph,r6
-      000241 AE 0D            [24]  702 	mov	r6,(_cfReadSector_sloc1_1_0 + 3)
-      000243 53 06 0F         [24]  703 	anl	ar6,#0x0f
-      000246 7D 00            [12]  704 	mov	r5,#0x00
-      000248 43 06 E0         [24]  705 	orl	ar6,#0xe0
-      00024B EE               [12]  706 	mov	a,r6
-      00024C F0               [24]  707 	movx	@dptr,a
-                                    708 ;	compactflash.c:91: while(sectorCount--)
-      00024D 8F 06            [24]  709 	mov	ar6,r7
-      00024F 90 A0 04         [24]  710 	mov	dptr,#_cfReadSector_PARM_2
-      000252 E0               [24]  711 	movx	a,@dptr
-      000253 F5 10            [12]  712 	mov	_cfReadSector_sloc3_1_0,a
-      000255 A3               [24]  713 	inc	dptr
-      000256 E0               [24]  714 	movx	a,@dptr
-      000257 F5 11            [12]  715 	mov	(_cfReadSector_sloc3_1_0 + 1),a
-      000259 A3               [24]  716 	inc	dptr
-      00025A E0               [24]  717 	movx	a,@dptr
-      00025B F5 12            [12]  718 	mov	(_cfReadSector_sloc3_1_0 + 2),a
-      00025D E4               [12]  719 	clr	a
-      00025E F5 08            [12]  720 	mov	_cfReadSector_sloc0_1_0,a
-      000260 F5 09            [12]  721 	mov	(_cfReadSector_sloc0_1_0 + 1),a
-      000262 90 A0 0B         [24]  722 	mov	dptr,#_cfReadSector_PARM_4
-      000265 E0               [24]  723 	movx	a,@dptr
-      000266 F5 0A            [12]  724 	mov	_cfReadSector_sloc1_1_0,a
-      000268 A3               [24]  725 	inc	dptr
-      000269 E0               [24]  726 	movx	a,@dptr
-      00026A F5 0B            [12]  727 	mov	(_cfReadSector_sloc1_1_0 + 1),a
-      00026C                        728 00105$:
-      00026C A8 0A            [24]  729 	mov	r0,_cfReadSector_sloc1_1_0
-      00026E AA 0B            [24]  730 	mov	r2,(_cfReadSector_sloc1_1_0 + 1)
-      000270 15 0A            [12]  731 	dec	_cfReadSector_sloc1_1_0
-      000272 74 FF            [12]  732 	mov	a,#0xff
-      000274 B5 0A 02         [24]  733 	cjne	a,_cfReadSector_sloc1_1_0,00134$
-      000277 15 0B            [12]  734 	dec	(_cfReadSector_sloc1_1_0 + 1)
-      000279                        735 00134$:
-      000279 E8               [12]  736 	mov	a,r0
-      00027A 4A               [12]  737 	orl	a,r2
-      00027B 70 03            [24]  738 	jnz	00135$
-      00027D 02 03 46         [24]  739 	ljmp	00107$
-      000280                        740 00135$:
-                                    741 ;	compactflash.c:93: do
-      000280                        742 00101$:
-                                    743 ;	compactflash.c:95: P1 = 0xeb;
-      000280 75 90 EB         [24]  744 	mov	_P1,#0xeb
-                                    745 ;	compactflash.c:96: cfWaitCommandReady(device);
-      000283 8E 82            [24]  746 	mov	dpl,r6
-      000285 C0 07            [24]  747 	push	ar7
-      000287 C0 06            [24]  748 	push	ar6
-      000289 78 DA            [12]  749 	mov	r0,#_cfWaitCommandReady
-      00028B 79 00            [12]  750 	mov	r1,#(_cfWaitCommandReady >> 8)
-      00028D 7A 00            [12]  751 	mov	r2,#(_cfWaitCommandReady >> 16)
-      00028F 12 00 06         [24]  752 	lcall	__sdcc_banked_call
-      000292 D0 06            [24]  753 	pop	ar6
-      000294 D0 07            [24]  754 	pop	ar7
-                                    755 ;	compactflash.c:98: P1 = 0xec;
-      000296 75 90 EC         [24]  756 	mov	_P1,#0xec
-                                    757 ;	compactflash.c:99: cfWriteCommand(device, 0x20);
-      000299 8E 01            [24]  758 	mov	ar1,r6
-      00029B E4               [12]  759 	clr	a
-      00029C C9               [12]  760 	xch	a,r1
-      00029D C4               [12]  761 	swap	a
-      00029E C9               [12]  762 	xch	a,r1
-      00029F 69               [12]  763 	xrl	a,r1
-      0002A0 C9               [12]  764 	xch	a,r1
-      0002A1 54 F0            [12]  765 	anl	a,#0xf0
-      0002A3 C9               [12]  766 	xch	a,r1
-      0002A4 69               [12]  767 	xrl	a,r1
-      0002A5 FA               [12]  768 	mov	r2,a
-      0002A6 74 27            [12]  769 	mov	a,#0x27
-      0002A8 29               [12]  770 	add	a,r1
-      0002A9 F9               [12]  771 	mov	r1,a
-      0002AA 74 FF            [12]  772 	mov	a,#0xff
-      0002AC 3A               [12]  773 	addc	a,r2
-      0002AD FA               [12]  774 	mov	r2,a
-      0002AE 89 82            [24]  775 	mov	dpl,r1
-      0002B0 8A 83            [24]  776 	mov	dph,r2
-      0002B2 74 20            [12]  777 	mov	a,#0x20
-      0002B4 F0               [24]  778 	movx	@dptr,a
-                                    779 ;	compactflash.c:101: P1 = 0xed;
-      0002B5 75 90 ED         [24]  780 	mov	_P1,#0xed
-                                    781 ;	compactflash.c:104: P1 = 0xee;
-      0002B8 75 90 EE         [24]  782 	mov	_P1,#0xee
-                                    783 ;	compactflash.c:105: status = cfReadStatus(device);
-      0002BB 89 82            [24]  784 	mov	dpl,r1
-      0002BD 8A 83            [24]  785 	mov	dph,r2
-      0002BF E0               [24]  786 	movx	a,@dptr
-                                    787 ;	compactflash.c:107: P1 = 0xef;
-                                    788 ;	compactflash.c:109: while((status & 0x01)!=0);
-      0002C0 75 90 EF         [24]  789 	mov	_P1,#0xef
-      0002C3 20 E0 BA         [24]  790 	jb	acc.0,00101$
-                                    791 ;	compactflash.c:111: for(i=0; i<SECTOR_SIZE; i++)
-      0002C6 A9 08            [24]  792 	mov	r1,_cfReadSector_sloc0_1_0
-      0002C8 AA 09            [24]  793 	mov	r2,(_cfReadSector_sloc0_1_0 + 1)
-      0002CA E4               [12]  794 	clr	a
-      0002CB F5 0E            [12]  795 	mov	_cfReadSector_sloc2_1_0,a
-      0002CD F5 0F            [12]  796 	mov	(_cfReadSector_sloc2_1_0 + 1),a
-      0002CF                        797 00108$:
-                                    798 ;	compactflash.c:113: P1 = 0xf0;
-      0002CF C0 06            [24]  799 	push	ar6
-      0002D1 75 90 F0         [24]  800 	mov	_P1,#0xf0
-                                    801 ;	compactflash.c:114: cfWaitDataReady(device);
-      0002D4 8F 82            [24]  802 	mov	dpl,r7
-      0002D6 C0 07            [24]  803 	push	ar7
-      0002D8 C0 06            [24]  804 	push	ar6
-      0002DA C0 02            [24]  805 	push	ar2
-      0002DC C0 01            [24]  806 	push	ar1
-      0002DE 78 0E            [12]  807 	mov	r0,#_cfWaitDataReady
-      0002E0 79 01            [12]  808 	mov	r1,#(_cfWaitDataReady >> 8)
-      0002E2 7A 00            [12]  809 	mov	r2,#(_cfWaitDataReady >> 16)
-      0002E4 12 00 06         [24]  810 	lcall	__sdcc_banked_call
-      0002E7 D0 01            [24]  811 	pop	ar1
-      0002E9 D0 02            [24]  812 	pop	ar2
-      0002EB D0 06            [24]  813 	pop	ar6
-      0002ED D0 07            [24]  814 	pop	ar7
-                                    815 ;	compactflash.c:116: P1 = 0xf1;
-      0002EF 75 90 F1         [24]  816 	mov	_P1,#0xf1
-                                    817 ;	compactflash.c:117: buf[i+idx] = cfReadData(device);
-      0002F2 E9               [12]  818 	mov	a,r1
-      0002F3 25 0E            [12]  819 	add	a,_cfReadSector_sloc2_1_0
-      0002F5 F8               [12]  820 	mov	r0,a
-      0002F6 EA               [12]  821 	mov	a,r2
-      0002F7 35 0F            [12]  822 	addc	a,(_cfReadSector_sloc2_1_0 + 1)
-      0002F9 FE               [12]  823 	mov	r6,a
-      0002FA E8               [12]  824 	mov	a,r0
-      0002FB 25 10            [12]  825 	add	a,_cfReadSector_sloc3_1_0
-      0002FD F8               [12]  826 	mov	r0,a
-      0002FE EE               [12]  827 	mov	a,r6
-      0002FF 35 11            [12]  828 	addc	a,(_cfReadSector_sloc3_1_0 + 1)
-      000301 FD               [12]  829 	mov	r5,a
-      000302 AE 12            [24]  830 	mov	r6,(_cfReadSector_sloc3_1_0 + 2)
-      000304 8F 03            [24]  831 	mov	ar3,r7
-      000306 E4               [12]  832 	clr	a
-      000307 CB               [12]  833 	xch	a,r3
-      000308 C4               [12]  834 	swap	a
-      000309 CB               [12]  835 	xch	a,r3
-      00030A 6B               [12]  836 	xrl	a,r3
-      00030B CB               [12]  837 	xch	a,r3
-      00030C 54 F0            [12]  838 	anl	a,#0xf0
-      00030E CB               [12]  839 	xch	a,r3
-      00030F 6B               [12]  840 	xrl	a,r3
-      000310 FC               [12]  841 	mov	r4,a
-      000311 74 20            [12]  842 	mov	a,#0x20
-      000313 2B               [12]  843 	add	a,r3
-      000314 FB               [12]  844 	mov	r3,a
-      000315 74 FF            [12]  845 	mov	a,#0xff
-      000317 3C               [12]  846 	addc	a,r4
-      000318 FC               [12]  847 	mov	r4,a
-      000319 8B 82            [24]  848 	mov	dpl,r3
-      00031B 8C 83            [24]  849 	mov	dph,r4
-      00031D E0               [24]  850 	movx	a,@dptr
-      00031E FC               [12]  851 	mov	r4,a
-      00031F 88 82            [24]  852 	mov	dpl,r0
-      000321 8D 83            [24]  853 	mov	dph,r5
-      000323 8E F0            [24]  854 	mov	b,r6
-      000325 12 09 5A         [24]  855 	lcall	__gptrput
-                                    856 ;	compactflash.c:119: P1 = 0xf2;
-      000328 75 90 F2         [24]  857 	mov	_P1,#0xf2
-                                    858 ;	compactflash.c:111: for(i=0; i<SECTOR_SIZE; i++)
-      00032B 05 0E            [12]  859 	inc	_cfReadSector_sloc2_1_0
-      00032D E4               [12]  860 	clr	a
-      00032E B5 0E 02         [24]  861 	cjne	a,_cfReadSector_sloc2_1_0,00137$
-      000331 05 0F            [12]  862 	inc	(_cfReadSector_sloc2_1_0 + 1)
-      000333                        863 00137$:
-      000333 C3               [12]  864 	clr	c
-      000334 E5 0F            [12]  865 	mov	a,(_cfReadSector_sloc2_1_0 + 1)
-      000336 94 02            [12]  866 	subb	a,#0x02
-      000338 D0 06            [24]  867 	pop	ar6
-      00033A 40 93            [24]  868 	jc	00108$
-                                    869 ;	compactflash.c:121: idx += SECTOR_SIZE;
-      00033C 89 08            [24]  870 	mov	_cfReadSector_sloc0_1_0,r1
-      00033E 74 02            [12]  871 	mov	a,#0x02
-      000340 2A               [12]  872 	add	a,r2
-      000341 F5 09            [12]  873 	mov	(_cfReadSector_sloc0_1_0 + 1),a
-      000343 02 02 6C         [24]  874 	ljmp	00105$
-      000346                        875 00107$:
-                                    876 ;	compactflash.c:124: P1 = 0xf3;
-      000346 75 90 F3         [24]  877 	mov	_P1,#0xf3
-                                    878 ;	compactflash.c:125: }
-      000349 02 00 18         [24]  879 	ljmp	__sdcc_banked_ret
-                                    880 ;------------------------------------------------------------
-                                    881 ;Allocation info for local variables in function 'cfTest'
-                                    882 ;------------------------------------------------------------
-                                    883 ;buf                       Allocated with name '_cfTest_PARM_2'
-                                    884 ;device                    Allocated with name '_cfTest_device_65536_37'
-                                    885 ;------------------------------------------------------------
-                                    886 ;	compactflash.c:129: void cfTest(char device, char* buf)
-                                    887 ;	-----------------------------------------
-                                    888 ;	 function cfTest
-                                    889 ;	-----------------------------------------
-      00034C                        890 _cfTest:
-      00034C E5 82            [12]  891 	mov	a,dpl
-      00034E 90 A0 11         [24]  892 	mov	dptr,#_cfTest_device_65536_37
-      000351 F0               [24]  893 	movx	@dptr,a
-                                    894 ;	compactflash.c:135: cfInit(device);
-      000352 E0               [24]  895 	movx	a,@dptr
-      000353 FF               [12]  896 	mov	r7,a
-      000354 F5 82            [12]  897 	mov	dpl,a
-      000356 C0 07            [24]  898 	push	ar7
-      000358 78 77            [12]  899 	mov	r0,#_cfInit
-      00035A 79 00            [12]  900 	mov	r1,#(_cfInit >> 8)
-      00035C 7A 00            [12]  901 	mov	r2,#(_cfInit >> 16)
-      00035E 12 00 06         [24]  902 	lcall	__sdcc_banked_call
-      000361 D0 07            [24]  903 	pop	ar7
-                                    904 ;	compactflash.c:138: cfReadSector(device, buf, 0, 1);
-      000363 90 A0 0E         [24]  905 	mov	dptr,#_cfTest_PARM_2
-      000366 E0               [24]  906 	movx	a,@dptr
-      000367 FC               [12]  907 	mov	r4,a
-      000368 A3               [24]  908 	inc	dptr
-      000369 E0               [24]  909 	movx	a,@dptr
-      00036A FD               [12]  910 	mov	r5,a
-      00036B A3               [24]  911 	inc	dptr
-      00036C E0               [24]  912 	movx	a,@dptr
-      00036D FE               [12]  913 	mov	r6,a
-      00036E 90 A0 04         [24]  914 	mov	dptr,#_cfReadSector_PARM_2
-      000371 EC               [12]  915 	mov	a,r4
-      000372 F0               [24]  916 	movx	@dptr,a
-      000373 ED               [12]  917 	mov	a,r5
-      000374 A3               [24]  918 	inc	dptr
-      000375 F0               [24]  919 	movx	@dptr,a
-      000376 EE               [12]  920 	mov	a,r6
-      000377 A3               [24]  921 	inc	dptr
-      000378 F0               [24]  922 	movx	@dptr,a
-      000379 90 A0 07         [24]  923 	mov	dptr,#_cfReadSector_PARM_3
-      00037C E4               [12]  924 	clr	a
-      00037D F0               [24]  925 	movx	@dptr,a
-      00037E A3               [24]  926 	inc	dptr
-      00037F F0               [24]  927 	movx	@dptr,a
-      000380 A3               [24]  928 	inc	dptr
-      000381 F0               [24]  929 	movx	@dptr,a
-      000382 A3               [24]  930 	inc	dptr
-      000383 F0               [24]  931 	movx	@dptr,a
-      000384 90 A0 0B         [24]  932 	mov	dptr,#_cfReadSector_PARM_4
-      000387 04               [12]  933 	inc	a
-      000388 F0               [24]  934 	movx	@dptr,a
-      000389 E4               [12]  935 	clr	a
-      00038A A3               [24]  936 	inc	dptr
-      00038B F0               [24]  937 	movx	@dptr,a
-      00038C 8F 82            [24]  938 	mov	dpl,r7
-      00038E C0 07            [24]  939 	push	ar7
-      000390 78 42            [12]  940 	mov	r0,#_cfReadSector
-      000392 79 01            [12]  941 	mov	r1,#(_cfReadSector >> 8)
-      000394 7A 00            [12]  942 	mov	r2,#(_cfReadSector >> 16)
-      000396 12 00 06         [24]  943 	lcall	__sdcc_banked_call
-                                    944 ;	compactflash.c:139: sioTXBuf(0, buf, 512);
-      000399 90 A0 0E         [24]  945 	mov	dptr,#_cfTest_PARM_2
-      00039C E0               [24]  946 	movx	a,@dptr
-      00039D FC               [12]  947 	mov	r4,a
-      00039E A3               [24]  948 	inc	dptr
-      00039F E0               [24]  949 	movx	a,@dptr
-      0003A0 FD               [12]  950 	mov	r5,a
-      0003A1 A3               [24]  951 	inc	dptr
-      0003A2 E0               [24]  952 	movx	a,@dptr
-      0003A3 FE               [12]  953 	mov	r6,a
-      0003A4 90 A2 1D         [24]  954 	mov	dptr,#_sioTXBuf_PARM_2
-      0003A7 EC               [12]  955 	mov	a,r4
-      0003A8 F0               [24]  956 	movx	@dptr,a
-      0003A9 ED               [12]  957 	mov	a,r5
-      0003AA A3               [24]  958 	inc	dptr
-      0003AB F0               [24]  959 	movx	@dptr,a
-      0003AC EE               [12]  960 	mov	a,r6
-      0003AD A3               [24]  961 	inc	dptr
-      0003AE F0               [24]  962 	movx	@dptr,a
-      0003AF 90 A2 20         [24]  963 	mov	dptr,#_sioTXBuf_PARM_3
-      0003B2 E4               [12]  964 	clr	a
-      0003B3 F0               [24]  965 	movx	@dptr,a
-      0003B4 74 02            [12]  966 	mov	a,#0x02
-      0003B6 A3               [24]  967 	inc	dptr
-      0003B7 F0               [24]  968 	movx	@dptr,a
-      0003B8 75 82 00         [24]  969 	mov	dpl,#0x00
-      0003BB 78 2E            [12]  970 	mov	r0,#_sioTXBuf
-      0003BD 79 07            [12]  971 	mov	r1,#(_sioTXBuf >> 8)
-      0003BF 7A 00            [12]  972 	mov	r2,#(_sioTXBuf >> 16)
-      0003C1 12 00 06         [24]  973 	lcall	__sdcc_banked_call
-      0003C4 D0 07            [24]  974 	pop	ar7
-                                    975 ;	compactflash.c:143: cfReadSector(device, buf, 1, 1);
-      0003C6 90 A0 0E         [24]  976 	mov	dptr,#_cfTest_PARM_2
-      0003C9 E0               [24]  977 	movx	a,@dptr
-      0003CA FC               [12]  978 	mov	r4,a
-      0003CB A3               [24]  979 	inc	dptr
-      0003CC E0               [24]  980 	movx	a,@dptr
-      0003CD FD               [12]  981 	mov	r5,a
-      0003CE A3               [24]  982 	inc	dptr
-      0003CF E0               [24]  983 	movx	a,@dptr
-      0003D0 FE               [12]  984 	mov	r6,a
-      0003D1 90 A0 04         [24]  985 	mov	dptr,#_cfReadSector_PARM_2
-      0003D4 EC               [12]  986 	mov	a,r4
-      0003D5 F0               [24]  987 	movx	@dptr,a
-      0003D6 ED               [12]  988 	mov	a,r5
-      0003D7 A3               [24]  989 	inc	dptr
-      0003D8 F0               [24]  990 	movx	@dptr,a
-      0003D9 EE               [12]  991 	mov	a,r6
-      0003DA A3               [24]  992 	inc	dptr
-      0003DB F0               [24]  993 	movx	@dptr,a
-      0003DC 90 A0 07         [24]  994 	mov	dptr,#_cfReadSector_PARM_3
-      0003DF 74 01            [12]  995 	mov	a,#0x01
-      0003E1 F0               [24]  996 	movx	@dptr,a
-      0003E2 E4               [12]  997 	clr	a
-      0003E3 A3               [24]  998 	inc	dptr
-      0003E4 F0               [24]  999 	movx	@dptr,a
-      0003E5 A3               [24] 1000 	inc	dptr
-      0003E6 F0               [24] 1001 	movx	@dptr,a
-      0003E7 A3               [24] 1002 	inc	dptr
-      0003E8 F0               [24] 1003 	movx	@dptr,a
-      0003E9 90 A0 0B         [24] 1004 	mov	dptr,#_cfReadSector_PARM_4
-      0003EC 04               [12] 1005 	inc	a
-      0003ED F0               [24] 1006 	movx	@dptr,a
-      0003EE E4               [12] 1007 	clr	a
-      0003EF A3               [24] 1008 	inc	dptr
-      0003F0 F0               [24] 1009 	movx	@dptr,a
-      0003F1 8F 82            [24] 1010 	mov	dpl,r7
-      0003F3 78 42            [12] 1011 	mov	r0,#_cfReadSector
-      0003F5 79 01            [12] 1012 	mov	r1,#(_cfReadSector >> 8)
-      0003F7 7A 00            [12] 1013 	mov	r2,#(_cfReadSector >> 16)
-      0003F9 12 00 06         [24] 1014 	lcall	__sdcc_banked_call
-                                   1015 ;	compactflash.c:144: sioTXBuf(0, buf, 512);
-      0003FC 90 A0 0E         [24] 1016 	mov	dptr,#_cfTest_PARM_2
-      0003FF E0               [24] 1017 	movx	a,@dptr
-      000400 FD               [12] 1018 	mov	r5,a
-      000401 A3               [24] 1019 	inc	dptr
-      000402 E0               [24] 1020 	movx	a,@dptr
-      000403 FE               [12] 1021 	mov	r6,a
-      000404 A3               [24] 1022 	inc	dptr
-      000405 E0               [24] 1023 	movx	a,@dptr
-      000406 FF               [12] 1024 	mov	r7,a
-      000407 90 A2 1D         [24] 1025 	mov	dptr,#_sioTXBuf_PARM_2
-      00040A ED               [12] 1026 	mov	a,r5
-      00040B F0               [24] 1027 	movx	@dptr,a
-      00040C EE               [12] 1028 	mov	a,r6
-      00040D A3               [24] 1029 	inc	dptr
-      00040E F0               [24] 1030 	movx	@dptr,a
-      00040F EF               [12] 1031 	mov	a,r7
-      000410 A3               [24] 1032 	inc	dptr
-      000411 F0               [24] 1033 	movx	@dptr,a
-      000412 90 A2 20         [24] 1034 	mov	dptr,#_sioTXBuf_PARM_3
-      000415 E4               [12] 1035 	clr	a
-      000416 F0               [24] 1036 	movx	@dptr,a
-      000417 74 02            [12] 1037 	mov	a,#0x02
-      000419 A3               [24] 1038 	inc	dptr
-      00041A F0               [24] 1039 	movx	@dptr,a
-      00041B 75 82 00         [24] 1040 	mov	dpl,#0x00
-      00041E 78 2E            [12] 1041 	mov	r0,#_sioTXBuf
-      000420 79 07            [12] 1042 	mov	r1,#(_sioTXBuf >> 8)
-      000422 7A 00            [12] 1043 	mov	r2,#(_sioTXBuf >> 16)
-      000424 12 00 06         [24] 1044 	lcall	__sdcc_banked_call
-                                   1045 ;	compactflash.c:146: }
-      000427 02 00 18         [24] 1046 	ljmp	__sdcc_banked_ret
-                                   1047 	.area CSEG    (CODE)
-                                   1048 	.area CONST   (CODE)
-                                   1049 	.area XINIT   (CODE)
-                                   1050 	.area CABS    (ABS,CODE)
+                                    523 ;buf                       Allocated to stack - _bp -5
+                                    524 ;LBA                       Allocated to stack - _bp -9
+                                    525 ;sectorCount               Allocated to stack - _bp -11
+                                    526 ;device                    Allocated to registers r7 
+                                    527 ;status                    Allocated to registers r6 
+                                    528 ;i                         Allocated to stack - _bp +1
+                                    529 ;idx                       Allocated to stack - _bp +3
+                                    530 ;------------------------------------------------------------
+                           000045   531 	G$cfReadSector$0$0 ==.
+                           000045   532 	C$compactflash.c$45$1_0$20 ==.
+                                    533 ;	compactflash.c:45: void cfReadSector(char device, char* buf, unsigned long LBA, unsigned int sectorCount)
+                                    534 ;	-----------------------------------------
+                                    535 ;	 function cfReadSector
+                                    536 ;	-----------------------------------------
+      0000A7                        537 _cfReadSector:
+      0000A7 C0 08            [24]  538 	push	_bp
+      0000A9 E5 81            [12]  539 	mov	a,sp
+      0000AB F5 08            [12]  540 	mov	_bp,a
+      0000AD 24 04            [12]  541 	add	a,#0x04
+      0000AF F5 81            [12]  542 	mov	sp,a
+                           00004F   543 	C$compactflash.c$53$1_0$20 ==.
+                                    544 ;	compactflash.c:53: P1 = 0xe1;
+                           00004F   545 	C$compactflash.c$54$1_0$20 ==.
+                                    546 ;	compactflash.c:54: cfWaitIdle(device);
+      0000B1 AF 82            [24]  547 	mov	r7,dpl
+      0000B3 75 90 E1         [24]  548 	mov	_P1,#0xe1
+      0000B6 C0 07            [24]  549 	push	ar7
+      0000B8 12 00 7D         [24]  550 	lcall	_cfWaitIdle
+      0000BB D0 07            [24]  551 	pop	ar7
+                           00005B   552 	C$compactflash.c$56$1_0$20 ==.
+                                    553 ;	compactflash.c:56: P1 = 0xe2;
+      0000BD 75 90 E2         [24]  554 	mov	_P1,#0xe2
+                           00005E   555 	C$compactflash.c$57$1_0$20 ==.
+                                    556 ;	compactflash.c:57: cfWriteSectorCount(device, 0x01);
+      0000C0 90 FF 22         [24]  557 	mov	dptr,#0xff22
+      0000C3 74 01            [12]  558 	mov	a,#0x01
+      0000C5 F0               [24]  559 	movx	@dptr,a
+                           000064   560 	C$compactflash.c$59$1_0$20 ==.
+                                    561 ;	compactflash.c:59: P1 = 0xe3;
+      0000C6 75 90 E3         [24]  562 	mov	_P1,#0xe3
+                           000067   563 	C$compactflash.c$60$1_0$20 ==.
+                                    564 ;	compactflash.c:60: cfWaitIdle(device);
+      0000C9 8F 82            [24]  565 	mov	dpl,r7
+      0000CB C0 07            [24]  566 	push	ar7
+      0000CD 12 00 7D         [24]  567 	lcall	_cfWaitIdle
+      0000D0 D0 07            [24]  568 	pop	ar7
+                           000070   569 	C$compactflash.c$62$1_0$20 ==.
+                                    570 ;	compactflash.c:62: P1 = 0xe4;
+      0000D2 75 90 E4         [24]  571 	mov	_P1,#0xe4
+                           000073   572 	C$compactflash.c$63$1_0$20 ==.
+                                    573 ;	compactflash.c:63: cfWriteLBA0(device, ((LBA   ) & 0xff) );
+      0000D5 E5 08            [12]  574 	mov	a,_bp
+      0000D7 24 F7            [12]  575 	add	a,#0xf7
+      0000D9 F8               [12]  576 	mov	r0,a
+      0000DA 86 06            [24]  577 	mov	ar6,@r0
+      0000DC 90 FF 23         [24]  578 	mov	dptr,#0xff23
+      0000DF EE               [12]  579 	mov	a,r6
+      0000E0 F0               [24]  580 	movx	@dptr,a
+                           00007F   581 	C$compactflash.c$65$1_0$20 ==.
+                                    582 ;	compactflash.c:65: P1 = 0xe5;
+      0000E1 75 90 E5         [24]  583 	mov	_P1,#0xe5
+                           000082   584 	C$compactflash.c$66$1_0$20 ==.
+                                    585 ;	compactflash.c:66: cfWaitIdle(device);
+      0000E4 8F 82            [24]  586 	mov	dpl,r7
+      0000E6 C0 07            [24]  587 	push	ar7
+      0000E8 12 00 7D         [24]  588 	lcall	_cfWaitIdle
+      0000EB D0 07            [24]  589 	pop	ar7
+                           00008B   590 	C$compactflash.c$68$1_0$20 ==.
+                                    591 ;	compactflash.c:68: P1 = 0xe6;
+      0000ED 75 90 E6         [24]  592 	mov	_P1,#0xe6
+                           00008E   593 	C$compactflash.c$69$1_0$20 ==.
+                                    594 ;	compactflash.c:69: cfWriteLBA1(device, ((LBA>>8) & 0xff) );
+      0000F0 E5 08            [12]  595 	mov	a,_bp
+      0000F2 24 F7            [12]  596 	add	a,#0xf7
+      0000F4 F8               [12]  597 	mov	r0,a
+      0000F5 08               [12]  598 	inc	r0
+      0000F6 86 06            [24]  599 	mov	ar6,@r0
+      0000F8 90 FF 24         [24]  600 	mov	dptr,#0xff24
+      0000FB EE               [12]  601 	mov	a,r6
+      0000FC F0               [24]  602 	movx	@dptr,a
+                           00009B   603 	C$compactflash.c$71$1_0$20 ==.
+                                    604 ;	compactflash.c:71: P1 = 0xe7;
+      0000FD 75 90 E7         [24]  605 	mov	_P1,#0xe7
+                           00009E   606 	C$compactflash.c$72$1_0$20 ==.
+                                    607 ;	compactflash.c:72: cfWaitIdle(device);
+      000100 8F 82            [24]  608 	mov	dpl,r7
+      000102 C0 07            [24]  609 	push	ar7
+      000104 12 00 7D         [24]  610 	lcall	_cfWaitIdle
+      000107 D0 07            [24]  611 	pop	ar7
+                           0000A7   612 	C$compactflash.c$74$1_0$20 ==.
+                                    613 ;	compactflash.c:74: P1 = 0xe8;
+      000109 75 90 E8         [24]  614 	mov	_P1,#0xe8
+                           0000AA   615 	C$compactflash.c$75$1_0$20 ==.
+                                    616 ;	compactflash.c:75: cfWriteLBA2(device, ((LBA>>16) & 0xff) );
+      00010C E5 08            [12]  617 	mov	a,_bp
+      00010E 24 F7            [12]  618 	add	a,#0xf7
+      000110 F8               [12]  619 	mov	r0,a
+      000111 08               [12]  620 	inc	r0
+      000112 08               [12]  621 	inc	r0
+      000113 86 06            [24]  622 	mov	ar6,@r0
+      000115 90 FF 25         [24]  623 	mov	dptr,#0xff25
+      000118 EE               [12]  624 	mov	a,r6
+      000119 F0               [24]  625 	movx	@dptr,a
+                           0000B8   626 	C$compactflash.c$77$1_0$20 ==.
+                                    627 ;	compactflash.c:77: P1 = 0xe9;
+      00011A 75 90 E9         [24]  628 	mov	_P1,#0xe9
+                           0000BB   629 	C$compactflash.c$78$1_0$20 ==.
+                                    630 ;	compactflash.c:78: cfWaitIdle(device);
+      00011D 8F 82            [24]  631 	mov	dpl,r7
+      00011F C0 07            [24]  632 	push	ar7
+      000121 12 00 7D         [24]  633 	lcall	_cfWaitIdle
+      000124 D0 07            [24]  634 	pop	ar7
+                           0000C4   635 	C$compactflash.c$80$1_0$20 ==.
+                                    636 ;	compactflash.c:80: P1 = 0xea;
+      000126 75 90 EA         [24]  637 	mov	_P1,#0xea
+                           0000C7   638 	C$compactflash.c$81$1_0$20 ==.
+                                    639 ;	compactflash.c:81: cfWriteLBA3(device, (( ((LBA>>24) & 0x1f) | 0xe0)) );
+      000129 E5 08            [12]  640 	mov	a,_bp
+      00012B 24 F7            [12]  641 	add	a,#0xf7
+      00012D F8               [12]  642 	mov	r0,a
+      00012E 08               [12]  643 	inc	r0
+      00012F 08               [12]  644 	inc	r0
+      000130 08               [12]  645 	inc	r0
+      000131 86 06            [24]  646 	mov	ar6,@r0
+      000133 53 06 1F         [24]  647 	anl	ar6,#0x1f
+      000136 7D 00            [12]  648 	mov	r5,#0x00
+      000138 43 06 E0         [24]  649 	orl	ar6,#0xe0
+      00013B 90 FF 26         [24]  650 	mov	dptr,#0xff26
+      00013E EE               [12]  651 	mov	a,r6
+      00013F F0               [24]  652 	movx	@dptr,a
+                           0000DE   653 	C$compactflash.c$84$1_0$20 ==.
+                                    654 ;	compactflash.c:84: while(sectorCount--)
+      000140 E5 08            [12]  655 	mov	a,_bp
+      000142 24 03            [12]  656 	add	a,#0x03
+      000144 F8               [12]  657 	mov	r0,a
+      000145 E4               [12]  658 	clr	a
+      000146 F6               [12]  659 	mov	@r0,a
+      000147 08               [12]  660 	inc	r0
+      000148 F6               [12]  661 	mov	@r0,a
+      000149 E5 08            [12]  662 	mov	a,_bp
+      00014B 24 F5            [12]  663 	add	a,#0xf5
+      00014D F8               [12]  664 	mov	r0,a
+      00014E 86 03            [24]  665 	mov	ar3,@r0
+      000150 08               [12]  666 	inc	r0
+      000151 86 04            [24]  667 	mov	ar4,@r0
+      000153                        668 00107$:
+      000153 8B 02            [24]  669 	mov	ar2,r3
+      000155 8C 06            [24]  670 	mov	ar6,r4
+      000157 1B               [12]  671 	dec	r3
+      000158 BB FF 01         [24]  672 	cjne	r3,#0xff,00134$
+      00015B 1C               [12]  673 	dec	r4
+      00015C                        674 00134$:
+      00015C EA               [12]  675 	mov	a,r2
+      00015D 4E               [12]  676 	orl	a,r6
+      00015E 70 03            [24]  677 	jnz	00135$
+      000160 02 02 1A         [24]  678 	ljmp	00109$
+      000163                        679 00135$:
+                           000101   680 	C$compactflash.c$86$2_0$21 ==.
+                                    681 ;	compactflash.c:86: do
+      000163                        682 00101$:
+                           000101   683 	C$compactflash.c$88$3_0$22 ==.
+                                    684 ;	compactflash.c:88: P1 = 0xeb;
+      000163 75 90 EB         [24]  685 	mov	_P1,#0xeb
+                           000104   686 	C$compactflash.c$89$3_0$22 ==.
+                                    687 ;	compactflash.c:89: cfWaitCommandReady(device);
+      000166 8F 82            [24]  688 	mov	dpl,r7
+      000168 C0 07            [24]  689 	push	ar7
+      00016A C0 04            [24]  690 	push	ar4
+      00016C C0 03            [24]  691 	push	ar3
+      00016E 12 00 85         [24]  692 	lcall	_cfWaitCommandReady
+      000171 D0 03            [24]  693 	pop	ar3
+      000173 D0 04            [24]  694 	pop	ar4
+      000175 D0 07            [24]  695 	pop	ar7
+                           000115   696 	C$compactflash.c$91$3_0$22 ==.
+                                    697 ;	compactflash.c:91: P1 = 0xec;
+      000177 75 90 EC         [24]  698 	mov	_P1,#0xec
+                           000118   699 	C$compactflash.c$92$3_0$22 ==.
+                                    700 ;	compactflash.c:92: cfWriteCommand(device, 0x20);
+      00017A 90 FF 27         [24]  701 	mov	dptr,#0xff27
+      00017D 74 20            [12]  702 	mov	a,#0x20
+      00017F F0               [24]  703 	movx	@dptr,a
+                           00011E   704 	C$compactflash.c$94$3_0$22 ==.
+                                    705 ;	compactflash.c:94: P1 = 0xed;
+      000180 75 90 ED         [24]  706 	mov	_P1,#0xed
+                           000121   707 	C$compactflash.c$95$3_0$22 ==.
+                                    708 ;	compactflash.c:95: cfWaitDataReady(device);
+      000183 8F 82            [24]  709 	mov	dpl,r7
+      000185 C0 07            [24]  710 	push	ar7
+      000187 C0 04            [24]  711 	push	ar4
+      000189 C0 03            [24]  712 	push	ar3
+      00018B 12 00 96         [24]  713 	lcall	_cfWaitDataReady
+      00018E D0 03            [24]  714 	pop	ar3
+      000190 D0 04            [24]  715 	pop	ar4
+      000192 D0 07            [24]  716 	pop	ar7
+                           000132   717 	C$compactflash.c$97$3_0$22 ==.
+                                    718 ;	compactflash.c:97: P1 = 0xee;
+      000194 75 90 EE         [24]  719 	mov	_P1,#0xee
+                           000135   720 	C$compactflash.c$98$3_0$22 ==.
+                                    721 ;	compactflash.c:98: status = cfReadStatus(device);
+      000197 90 FF 27         [24]  722 	mov	dptr,#0xff27
+      00019A E0               [24]  723 	movx	a,@dptr
+                           000139   724 	C$compactflash.c$100$3_0$22 ==.
+                                    725 ;	compactflash.c:100: P1 = 0xef;
+                           000139   726 	C$compactflash.c$102$2_0$21 ==.
+                                    727 ;	compactflash.c:102: while((status & 0x01)!=0);
+      00019B FE               [12]  728 	mov	r6,a
+      00019C 75 90 EF         [24]  729 	mov	_P1,#0xef
+      00019F 20 E0 C1         [24]  730 	jb	acc.0,00101$
+                           000140   731 	C$compactflash.c$105$1_0$20 ==.
+                                    732 ;	compactflash.c:105: while(i < CF_SECTOR_SIZE)
+      0001A2 A8 08            [24]  733 	mov	r0,_bp
+      0001A4 08               [12]  734 	inc	r0
+      0001A5 E4               [12]  735 	clr	a
+      0001A6 F6               [12]  736 	mov	@r0,a
+      0001A7 08               [12]  737 	inc	r0
+      0001A8 F6               [12]  738 	mov	@r0,a
+      0001A9                        739 00104$:
+      0001A9 A8 08            [24]  740 	mov	r0,_bp
+      0001AB 08               [12]  741 	inc	r0
+      0001AC C3               [12]  742 	clr	c
+      0001AD 08               [12]  743 	inc	r0
+      0001AE E6               [12]  744 	mov	a,@r0
+      0001AF 94 02            [12]  745 	subb	a,#0x02
+      0001B1 50 5A            [24]  746 	jnc	00106$
+                           000151   747 	C$compactflash.c$107$1_0$20 ==.
+                                    748 ;	compactflash.c:107: P1 = 0xf0;
+      0001B3 C0 03            [24]  749 	push	ar3
+      0001B5 C0 04            [24]  750 	push	ar4
+      0001B7 75 90 F0         [24]  751 	mov	_P1,#0xf0
+                           000158   752 	C$compactflash.c$108$3_0$23 ==.
+                                    753 ;	compactflash.c:108: cfWaitDataReady(device);
+      0001BA 8F 82            [24]  754 	mov	dpl,r7
+      0001BC C0 07            [24]  755 	push	ar7
+      0001BE C0 04            [24]  756 	push	ar4
+      0001C0 C0 03            [24]  757 	push	ar3
+      0001C2 12 00 96         [24]  758 	lcall	_cfWaitDataReady
+      0001C5 D0 03            [24]  759 	pop	ar3
+      0001C7 D0 04            [24]  760 	pop	ar4
+      0001C9 D0 07            [24]  761 	pop	ar7
+                           000169   762 	C$compactflash.c$110$3_0$23 ==.
+                                    763 ;	compactflash.c:110: P1 = 0xf1;
+      0001CB 75 90 F1         [24]  764 	mov	_P1,#0xf1
+                           00016C   765 	C$compactflash.c$111$3_0$23 ==.
+                                    766 ;	compactflash.c:111: buf[i+idx] = cfReadData(device);
+      0001CE A8 08            [24]  767 	mov	r0,_bp
+      0001D0 08               [12]  768 	inc	r0
+      0001D1 E5 08            [12]  769 	mov	a,_bp
+      0001D3 24 03            [12]  770 	add	a,#0x03
+      0001D5 F9               [12]  771 	mov	r1,a
+      0001D6 E7               [12]  772 	mov	a,@r1
+      0001D7 26               [12]  773 	add	a,@r0
+      0001D8 FA               [12]  774 	mov	r2,a
+      0001D9 09               [12]  775 	inc	r1
+      0001DA E7               [12]  776 	mov	a,@r1
+      0001DB 08               [12]  777 	inc	r0
+      0001DC 36               [12]  778 	addc	a,@r0
+      0001DD FC               [12]  779 	mov	r4,a
+      0001DE E5 08            [12]  780 	mov	a,_bp
+      0001E0 24 FB            [12]  781 	add	a,#0xfb
+      0001E2 F8               [12]  782 	mov	r0,a
+      0001E3 EA               [12]  783 	mov	a,r2
+      0001E4 26               [12]  784 	add	a,@r0
+      0001E5 FA               [12]  785 	mov	r2,a
+      0001E6 EC               [12]  786 	mov	a,r4
+      0001E7 08               [12]  787 	inc	r0
+      0001E8 36               [12]  788 	addc	a,@r0
+      0001E9 FC               [12]  789 	mov	r4,a
+      0001EA 08               [12]  790 	inc	r0
+      0001EB 86 03            [24]  791 	mov	ar3,@r0
+      0001ED 90 FF 20         [24]  792 	mov	dptr,#0xff20
+      0001F0 E0               [24]  793 	movx	a,@dptr
+      0001F1 FE               [12]  794 	mov	r6,a
+      0001F2 8A 82            [24]  795 	mov	dpl,r2
+      0001F4 8C 83            [24]  796 	mov	dph,r4
+      0001F6 8B F0            [24]  797 	mov	b,r3
+      0001F8 12 3A 22         [24]  798 	lcall	__gptrput
+                           000199   799 	C$compactflash.c$113$3_0$23 ==.
+                                    800 ;	compactflash.c:113: i++;
+      0001FB A8 08            [24]  801 	mov	r0,_bp
+      0001FD 08               [12]  802 	inc	r0
+      0001FE 06               [12]  803 	inc	@r0
+      0001FF B6 00 02         [24]  804 	cjne	@r0,#0x00,00138$
+      000202 08               [12]  805 	inc	r0
+      000203 06               [12]  806 	inc	@r0
+      000204                        807 00138$:
+                           0001A2   808 	C$compactflash.c$115$3_0$23 ==.
+                                    809 ;	compactflash.c:115: P1 = 0xf2;
+      000204 75 90 F2         [24]  810 	mov	_P1,#0xf2
+      000207 D0 04            [24]  811 	pop	ar4
+      000209 D0 03            [24]  812 	pop	ar3
+      00020B 80 9C            [24]  813 	sjmp	00104$
+      00020D                        814 00106$:
+                           0001AB   815 	C$compactflash.c$117$2_0$21 ==.
+                                    816 ;	compactflash.c:117: idx += CF_SECTOR_SIZE;
+      00020D E5 08            [12]  817 	mov	a,_bp
+      00020F 24 03            [12]  818 	add	a,#0x03
+      000211 F8               [12]  819 	mov	r0,a
+      000212 74 02            [12]  820 	mov	a,#0x02
+      000214 08               [12]  821 	inc	r0
+      000215 26               [12]  822 	add	a,@r0
+      000216 F6               [12]  823 	mov	@r0,a
+      000217 02 01 53         [24]  824 	ljmp	00107$
+      00021A                        825 00109$:
+                           0001B8   826 	C$compactflash.c$120$1_0$20 ==.
+                                    827 ;	compactflash.c:120: P1 = 0xf3;
+      00021A 75 90 F3         [24]  828 	mov	_P1,#0xf3
+                           0001BB   829 	C$compactflash.c$121$1_0$20 ==.
+                                    830 ;	compactflash.c:121: }
+      00021D 85 08 81         [24]  831 	mov	sp,_bp
+      000220 D0 08            [24]  832 	pop	_bp
+                           0001C0   833 	C$compactflash.c$121$1_0$20 ==.
+                           0001C0   834 	XG$cfReadSector$0$0 ==.
+      000222 22               [24]  835 	ret
+                                    836 ;------------------------------------------------------------
+                                    837 ;Allocation info for local variables in function 'cfWriteSector'
+                                    838 ;------------------------------------------------------------
+                                    839 ;buf                       Allocated to stack - _bp -5
+                                    840 ;LBA                       Allocated to stack - _bp -9
+                                    841 ;sectorCount               Allocated to stack - _bp -11
+                                    842 ;device                    Allocated to registers r7 
+                                    843 ;status                    Allocated to registers r6 
+                                    844 ;i                         Allocated to registers r5 r6 
+                                    845 ;idx                       Allocated to stack - _bp +1
+                                    846 ;------------------------------------------------------------
+                           0001C1   847 	G$cfWriteSector$0$0 ==.
+                           0001C1   848 	C$compactflash.c$123$1_0$25 ==.
+                                    849 ;	compactflash.c:123: void cfWriteSector(char device, const char* buf, unsigned long LBA, unsigned int sectorCount)
+                                    850 ;	-----------------------------------------
+                                    851 ;	 function cfWriteSector
+                                    852 ;	-----------------------------------------
+      000223                        853 _cfWriteSector:
+      000223 C0 08            [24]  854 	push	_bp
+      000225 85 81 08         [24]  855 	mov	_bp,sp
+      000228 05 81            [12]  856 	inc	sp
+      00022A 05 81            [12]  857 	inc	sp
+                           0001CA   858 	C$compactflash.c$131$1_0$25 ==.
+                                    859 ;	compactflash.c:131: P1 = 0xe1;
+                           0001CA   860 	C$compactflash.c$132$1_0$25 ==.
+                                    861 ;	compactflash.c:132: cfWaitIdle(device);
+      00022C AF 82            [24]  862 	mov	r7,dpl
+      00022E 75 90 E1         [24]  863 	mov	_P1,#0xe1
+      000231 C0 07            [24]  864 	push	ar7
+      000233 12 00 7D         [24]  865 	lcall	_cfWaitIdle
+      000236 D0 07            [24]  866 	pop	ar7
+                           0001D6   867 	C$compactflash.c$134$1_0$25 ==.
+                                    868 ;	compactflash.c:134: P1 = 0xe2;
+      000238 75 90 E2         [24]  869 	mov	_P1,#0xe2
+                           0001D9   870 	C$compactflash.c$135$1_0$25 ==.
+                                    871 ;	compactflash.c:135: cfWriteSectorCount(device, 0x01);
+      00023B 90 FF 22         [24]  872 	mov	dptr,#0xff22
+      00023E 74 01            [12]  873 	mov	a,#0x01
+      000240 F0               [24]  874 	movx	@dptr,a
+                           0001DF   875 	C$compactflash.c$137$1_0$25 ==.
+                                    876 ;	compactflash.c:137: P1 = 0xe3;
+      000241 75 90 E3         [24]  877 	mov	_P1,#0xe3
+                           0001E2   878 	C$compactflash.c$138$1_0$25 ==.
+                                    879 ;	compactflash.c:138: cfWaitIdle(device);
+      000244 8F 82            [24]  880 	mov	dpl,r7
+      000246 C0 07            [24]  881 	push	ar7
+      000248 12 00 7D         [24]  882 	lcall	_cfWaitIdle
+      00024B D0 07            [24]  883 	pop	ar7
+                           0001EB   884 	C$compactflash.c$140$1_0$25 ==.
+                                    885 ;	compactflash.c:140: P1 = 0xe4;
+      00024D 75 90 E4         [24]  886 	mov	_P1,#0xe4
+                           0001EE   887 	C$compactflash.c$141$1_0$25 ==.
+                                    888 ;	compactflash.c:141: cfWriteLBA0(device, ((LBA   ) & 0xff) );
+      000250 E5 08            [12]  889 	mov	a,_bp
+      000252 24 F7            [12]  890 	add	a,#0xf7
+      000254 F8               [12]  891 	mov	r0,a
+      000255 86 06            [24]  892 	mov	ar6,@r0
+      000257 90 FF 23         [24]  893 	mov	dptr,#0xff23
+      00025A EE               [12]  894 	mov	a,r6
+      00025B F0               [24]  895 	movx	@dptr,a
+                           0001FA   896 	C$compactflash.c$143$1_0$25 ==.
+                                    897 ;	compactflash.c:143: P1 = 0xe5;
+      00025C 75 90 E5         [24]  898 	mov	_P1,#0xe5
+                           0001FD   899 	C$compactflash.c$144$1_0$25 ==.
+                                    900 ;	compactflash.c:144: cfWaitIdle(device);
+      00025F 8F 82            [24]  901 	mov	dpl,r7
+      000261 C0 07            [24]  902 	push	ar7
+      000263 12 00 7D         [24]  903 	lcall	_cfWaitIdle
+      000266 D0 07            [24]  904 	pop	ar7
+                           000206   905 	C$compactflash.c$146$1_0$25 ==.
+                                    906 ;	compactflash.c:146: P1 = 0xe6;
+      000268 75 90 E6         [24]  907 	mov	_P1,#0xe6
+                           000209   908 	C$compactflash.c$147$1_0$25 ==.
+                                    909 ;	compactflash.c:147: cfWriteLBA1(device, ((LBA>>8) & 0xff) );
+      00026B E5 08            [12]  910 	mov	a,_bp
+      00026D 24 F7            [12]  911 	add	a,#0xf7
+      00026F F8               [12]  912 	mov	r0,a
+      000270 08               [12]  913 	inc	r0
+      000271 86 06            [24]  914 	mov	ar6,@r0
+      000273 90 FF 24         [24]  915 	mov	dptr,#0xff24
+      000276 EE               [12]  916 	mov	a,r6
+      000277 F0               [24]  917 	movx	@dptr,a
+                           000216   918 	C$compactflash.c$149$1_0$25 ==.
+                                    919 ;	compactflash.c:149: P1 = 0xe7;
+      000278 75 90 E7         [24]  920 	mov	_P1,#0xe7
+                           000219   921 	C$compactflash.c$150$1_0$25 ==.
+                                    922 ;	compactflash.c:150: cfWaitIdle(device);
+      00027B 8F 82            [24]  923 	mov	dpl,r7
+      00027D C0 07            [24]  924 	push	ar7
+      00027F 12 00 7D         [24]  925 	lcall	_cfWaitIdle
+      000282 D0 07            [24]  926 	pop	ar7
+                           000222   927 	C$compactflash.c$152$1_0$25 ==.
+                                    928 ;	compactflash.c:152: P1 = 0xe8;
+      000284 75 90 E8         [24]  929 	mov	_P1,#0xe8
+                           000225   930 	C$compactflash.c$153$1_0$25 ==.
+                                    931 ;	compactflash.c:153: cfWriteLBA2(device, ((LBA>>16) & 0xff) );
+      000287 E5 08            [12]  932 	mov	a,_bp
+      000289 24 F7            [12]  933 	add	a,#0xf7
+      00028B F8               [12]  934 	mov	r0,a
+      00028C 08               [12]  935 	inc	r0
+      00028D 08               [12]  936 	inc	r0
+      00028E 86 06            [24]  937 	mov	ar6,@r0
+      000290 90 FF 25         [24]  938 	mov	dptr,#0xff25
+      000293 EE               [12]  939 	mov	a,r6
+      000294 F0               [24]  940 	movx	@dptr,a
+                           000233   941 	C$compactflash.c$155$1_0$25 ==.
+                                    942 ;	compactflash.c:155: P1 = 0xe9;
+      000295 75 90 E9         [24]  943 	mov	_P1,#0xe9
+                           000236   944 	C$compactflash.c$156$1_0$25 ==.
+                                    945 ;	compactflash.c:156: cfWaitIdle(device);
+      000298 8F 82            [24]  946 	mov	dpl,r7
+      00029A C0 07            [24]  947 	push	ar7
+      00029C 12 00 7D         [24]  948 	lcall	_cfWaitIdle
+      00029F D0 07            [24]  949 	pop	ar7
+                           00023F   950 	C$compactflash.c$158$1_0$25 ==.
+                                    951 ;	compactflash.c:158: P1 = 0xea;
+      0002A1 75 90 EA         [24]  952 	mov	_P1,#0xea
+                           000242   953 	C$compactflash.c$159$1_0$25 ==.
+                                    954 ;	compactflash.c:159: cfWriteLBA3(device, (((LBA>>24) | 0xe0) & 0xff) );
+      0002A4 E5 08            [12]  955 	mov	a,_bp
+      0002A6 24 F7            [12]  956 	add	a,#0xf7
+      0002A8 F8               [12]  957 	mov	r0,a
+      0002A9 08               [12]  958 	inc	r0
+      0002AA 08               [12]  959 	inc	r0
+      0002AB 08               [12]  960 	inc	r0
+      0002AC 86 06            [24]  961 	mov	ar6,@r0
+      0002AE 7D 00            [12]  962 	mov	r5,#0x00
+      0002B0 43 06 E0         [24]  963 	orl	ar6,#0xe0
+      0002B3 90 FF 26         [24]  964 	mov	dptr,#0xff26
+      0002B6 EE               [12]  965 	mov	a,r6
+      0002B7 F0               [24]  966 	movx	@dptr,a
+                           000256   967 	C$compactflash.c$162$1_0$25 ==.
+                                    968 ;	compactflash.c:162: while(sectorCount--)
+      0002B8 A8 08            [24]  969 	mov	r0,_bp
+      0002BA 08               [12]  970 	inc	r0
+      0002BB E4               [12]  971 	clr	a
+      0002BC F6               [12]  972 	mov	@r0,a
+      0002BD 08               [12]  973 	inc	r0
+      0002BE F6               [12]  974 	mov	@r0,a
+      0002BF E5 08            [12]  975 	mov	a,_bp
+      0002C1 24 F5            [12]  976 	add	a,#0xf5
+      0002C3 F8               [12]  977 	mov	r0,a
+      0002C4 86 03            [24]  978 	mov	ar3,@r0
+      0002C6 08               [12]  979 	inc	r0
+      0002C7 86 04            [24]  980 	mov	ar4,@r0
+      0002C9                        981 00107$:
+      0002C9 8B 02            [24]  982 	mov	ar2,r3
+      0002CB 8C 06            [24]  983 	mov	ar6,r4
+      0002CD 1B               [12]  984 	dec	r3
+      0002CE BB FF 01         [24]  985 	cjne	r3,#0xff,00134$
+      0002D1 1C               [12]  986 	dec	r4
+      0002D2                        987 00134$:
+      0002D2 EA               [12]  988 	mov	a,r2
+      0002D3 4E               [12]  989 	orl	a,r6
+      0002D4 70 03            [24]  990 	jnz	00135$
+      0002D6 02 03 83         [24]  991 	ljmp	00109$
+      0002D9                        992 00135$:
+                           000277   993 	C$compactflash.c$164$2_0$26 ==.
+                                    994 ;	compactflash.c:164: do
+      0002D9                        995 00101$:
+                           000277   996 	C$compactflash.c$166$3_0$27 ==.
+                                    997 ;	compactflash.c:166: P1 = 0xeb;
+      0002D9 75 90 EB         [24]  998 	mov	_P1,#0xeb
+                           00027A   999 	C$compactflash.c$167$3_0$27 ==.
+                                   1000 ;	compactflash.c:167: cfWaitCommandReady(device);
+      0002DC 8F 82            [24] 1001 	mov	dpl,r7
+      0002DE C0 07            [24] 1002 	push	ar7
+      0002E0 C0 04            [24] 1003 	push	ar4
+      0002E2 C0 03            [24] 1004 	push	ar3
+      0002E4 12 00 85         [24] 1005 	lcall	_cfWaitCommandReady
+      0002E7 D0 03            [24] 1006 	pop	ar3
+      0002E9 D0 04            [24] 1007 	pop	ar4
+      0002EB D0 07            [24] 1008 	pop	ar7
+                           00028B  1009 	C$compactflash.c$169$3_0$27 ==.
+                                   1010 ;	compactflash.c:169: P1 = 0xec;
+      0002ED 75 90 EC         [24] 1011 	mov	_P1,#0xec
+                           00028E  1012 	C$compactflash.c$170$3_0$27 ==.
+                                   1013 ;	compactflash.c:170: cfWriteCommand(device, 0x30);
+      0002F0 90 FF 27         [24] 1014 	mov	dptr,#0xff27
+      0002F3 74 30            [12] 1015 	mov	a,#0x30
+      0002F5 F0               [24] 1016 	movx	@dptr,a
+                           000294  1017 	C$compactflash.c$172$3_0$27 ==.
+                                   1018 ;	compactflash.c:172: P1 = 0xed;
+      0002F6 75 90 ED         [24] 1019 	mov	_P1,#0xed
+                           000297  1020 	C$compactflash.c$173$3_0$27 ==.
+                                   1021 ;	compactflash.c:173: cfWaitDataReady(device);
+      0002F9 8F 82            [24] 1022 	mov	dpl,r7
+      0002FB C0 07            [24] 1023 	push	ar7
+      0002FD C0 04            [24] 1024 	push	ar4
+      0002FF C0 03            [24] 1025 	push	ar3
+      000301 12 00 96         [24] 1026 	lcall	_cfWaitDataReady
+      000304 D0 03            [24] 1027 	pop	ar3
+      000306 D0 04            [24] 1028 	pop	ar4
+      000308 D0 07            [24] 1029 	pop	ar7
+                           0002A8  1030 	C$compactflash.c$175$3_0$27 ==.
+                                   1031 ;	compactflash.c:175: P1 = 0xee;
+      00030A 75 90 EE         [24] 1032 	mov	_P1,#0xee
+                           0002AB  1033 	C$compactflash.c$176$3_0$27 ==.
+                                   1034 ;	compactflash.c:176: status = cfReadStatus(device);
+      00030D 90 FF 27         [24] 1035 	mov	dptr,#0xff27
+      000310 E0               [24] 1036 	movx	a,@dptr
+                           0002AF  1037 	C$compactflash.c$178$3_0$27 ==.
+                                   1038 ;	compactflash.c:178: P1 = 0xef;
+                           0002AF  1039 	C$compactflash.c$180$2_0$26 ==.
+                                   1040 ;	compactflash.c:180: while((status & 0x01)!=0);
+      000311 75 90 EF         [24] 1041 	mov	_P1,#0xef
+      000314 20 E0 C2         [24] 1042 	jb	acc.0,00101$
+                           0002B5  1043 	C$compactflash.c$183$1_0$25 ==.
+                                   1044 ;	compactflash.c:183: while(i < CF_SECTOR_SIZE)
+      000317 7D 00            [12] 1045 	mov	r5,#0x00
+      000319 7E 00            [12] 1046 	mov	r6,#0x00
+      00031B                       1047 00104$:
+      00031B 74 FE            [12] 1048 	mov	a,#0x100 - 0x02
+      00031D 2E               [12] 1049 	add	a,r6
+      00031E 40 58            [24] 1050 	jc	00106$
+                           0002BE  1051 	C$compactflash.c$185$1_0$25 ==.
+                                   1052 ;	compactflash.c:185: P1 = 0xf0;
+      000320 C0 03            [24] 1053 	push	ar3
+      000322 C0 04            [24] 1054 	push	ar4
+      000324 75 90 F0         [24] 1055 	mov	_P1,#0xf0
+                           0002C5  1056 	C$compactflash.c$186$3_0$28 ==.
+                                   1057 ;	compactflash.c:186: cfWaitDataReady(device);
+      000327 8F 82            [24] 1058 	mov	dpl,r7
+      000329 C0 07            [24] 1059 	push	ar7
+      00032B C0 06            [24] 1060 	push	ar6
+      00032D C0 05            [24] 1061 	push	ar5
+      00032F C0 04            [24] 1062 	push	ar4
+      000331 C0 03            [24] 1063 	push	ar3
+      000333 12 00 96         [24] 1064 	lcall	_cfWaitDataReady
+      000336 D0 03            [24] 1065 	pop	ar3
+      000338 D0 04            [24] 1066 	pop	ar4
+      00033A D0 05            [24] 1067 	pop	ar5
+      00033C D0 06            [24] 1068 	pop	ar6
+      00033E D0 07            [24] 1069 	pop	ar7
+                           0002DE  1070 	C$compactflash.c$188$3_0$28 ==.
+                                   1071 ;	compactflash.c:188: P1 = 0xf1;
+      000340 75 90 F1         [24] 1072 	mov	_P1,#0xf1
+                           0002E1  1073 	C$compactflash.c$189$3_0$28 ==.
+                                   1074 ;	compactflash.c:189: cfWriteData(device, buf[i+idx]);
+      000343 A8 08            [24] 1075 	mov	r0,_bp
+      000345 08               [12] 1076 	inc	r0
+      000346 E6               [12] 1077 	mov	a,@r0
+      000347 2D               [12] 1078 	add	a,r5
+      000348 FA               [12] 1079 	mov	r2,a
+      000349 08               [12] 1080 	inc	r0
+      00034A E6               [12] 1081 	mov	a,@r0
+      00034B 3E               [12] 1082 	addc	a,r6
+      00034C FC               [12] 1083 	mov	r4,a
+      00034D E5 08            [12] 1084 	mov	a,_bp
+      00034F 24 FB            [12] 1085 	add	a,#0xfb
+      000351 F8               [12] 1086 	mov	r0,a
+      000352 EA               [12] 1087 	mov	a,r2
+      000353 26               [12] 1088 	add	a,@r0
+      000354 FA               [12] 1089 	mov	r2,a
+      000355 EC               [12] 1090 	mov	a,r4
+      000356 08               [12] 1091 	inc	r0
+      000357 36               [12] 1092 	addc	a,@r0
+      000358 FC               [12] 1093 	mov	r4,a
+      000359 08               [12] 1094 	inc	r0
+      00035A 86 03            [24] 1095 	mov	ar3,@r0
+      00035C 8A 82            [24] 1096 	mov	dpl,r2
+      00035E 8C 83            [24] 1097 	mov	dph,r4
+      000360 8B F0            [24] 1098 	mov	b,r3
+      000362 12 3A E3         [24] 1099 	lcall	__gptrget
+      000365 FA               [12] 1100 	mov	r2,a
+      000366 90 FF 20         [24] 1101 	mov	dptr,#0xff20
+      000369 F0               [24] 1102 	movx	@dptr,a
+                           000308  1103 	C$compactflash.c$191$3_0$28 ==.
+                                   1104 ;	compactflash.c:191: i++;
+      00036A 0D               [12] 1105 	inc	r5
+      00036B BD 00 01         [24] 1106 	cjne	r5,#0x00,00138$
+      00036E 0E               [12] 1107 	inc	r6
+      00036F                       1108 00138$:
+                           00030D  1109 	C$compactflash.c$193$3_0$28 ==.
+                                   1110 ;	compactflash.c:193: P1 = 0xf2;
+      00036F 75 90 F2         [24] 1111 	mov	_P1,#0xf2
+      000372 D0 04            [24] 1112 	pop	ar4
+      000374 D0 03            [24] 1113 	pop	ar3
+      000376 80 A3            [24] 1114 	sjmp	00104$
+      000378                       1115 00106$:
+                           000316  1116 	C$compactflash.c$195$2_0$26 ==.
+                                   1117 ;	compactflash.c:195: idx += CF_SECTOR_SIZE;
+      000378 A8 08            [24] 1118 	mov	r0,_bp
+      00037A 08               [12] 1119 	inc	r0
+      00037B 74 02            [12] 1120 	mov	a,#0x02
+      00037D 08               [12] 1121 	inc	r0
+      00037E 26               [12] 1122 	add	a,@r0
+      00037F F6               [12] 1123 	mov	@r0,a
+      000380 02 02 C9         [24] 1124 	ljmp	00107$
+      000383                       1125 00109$:
+                           000321  1126 	C$compactflash.c$198$1_0$25 ==.
+                                   1127 ;	compactflash.c:198: P1 = 0xf3;
+      000383 75 90 F3         [24] 1128 	mov	_P1,#0xf3
+                           000324  1129 	C$compactflash.c$199$1_0$25 ==.
+                                   1130 ;	compactflash.c:199: }
+      000386 85 08 81         [24] 1131 	mov	sp,_bp
+      000389 D0 08            [24] 1132 	pop	_bp
+                           000329  1133 	C$compactflash.c$199$1_0$25 ==.
+                           000329  1134 	XG$cfWriteSector$0$0 ==.
+      00038B 22               [24] 1135 	ret
+                                   1136 ;------------------------------------------------------------
+                                   1137 ;Allocation info for local variables in function 'cfDiskGetSectorCount'
+                                   1138 ;------------------------------------------------------------
+                                   1139 ;device                    Allocated to registers 
+                                   1140 ;------------------------------------------------------------
+                           00032A  1141 	G$cfDiskGetSectorCount$0$0 ==.
+                           00032A  1142 	C$compactflash.c$201$1_0$30 ==.
+                                   1143 ;	compactflash.c:201: unsigned long cfDiskGetSectorCount(char device)
+                                   1144 ;	-----------------------------------------
+                                   1145 ;	 function cfDiskGetSectorCount
+                                   1146 ;	-----------------------------------------
+      00038C                       1147 _cfDiskGetSectorCount:
+                           00032A  1148 	C$compactflash.c$203$1_0$30 ==.
+                                   1149 ;	compactflash.c:203: return 10000;
+      00038C 90 27 10         [24] 1150 	mov	dptr,#0x2710
+      00038F E4               [12] 1151 	clr	a
+      000390 F5 F0            [12] 1152 	mov	b,a
+                           000330  1153 	C$compactflash.c$204$1_0$30 ==.
+                                   1154 ;	compactflash.c:204: }
+                           000330  1155 	C$compactflash.c$204$1_0$30 ==.
+                           000330  1156 	XG$cfDiskGetSectorCount$0$0 ==.
+      000392 22               [24] 1157 	ret
+                                   1158 	.area CSEG    (CODE)
+                                   1159 	.area CONST   (CODE)
+                                   1160 	.area XINIT   (CODE)
+                                   1161 	.area CABS    (ABS,CODE)

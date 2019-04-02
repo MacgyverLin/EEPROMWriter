@@ -56,12 +56,14 @@ void sioTXStr(char device, const char* s)
 
 void sioTXBuf(char device, const char* buf, unsigned int size)
 {
-    unsigned int i;
+    unsigned int i = 0;
 
-    for(i=0; i<size; i++)
+    device;
+
+    while(size--)
     {
-		sioTX(device, buf[i]);
-    };
+		sioTX(device, buf[i++]);
+    }
 }
 
 void sioWaitRXDone(char device)
@@ -86,53 +88,25 @@ char sioRX(char device)
 
 void sioRXStr(char device, char* s, unsigned int size)
 {
-    unsigned int i;
+    unsigned int i = 0;
 
-    for(i=0; i<size; i++)
+    device;
+
+    while(size--)
     {
-        if((s[i] = sioRX(device))==0)
+        if((s[i++] = sioRX(device))==0)
             break;
     }
 }
 
 void sioRXBuf(char device, char* buf, unsigned int size)
 {
-    unsigned int i;
+    unsigned int i = 0;
 
-    for(i=0; i<size; i++)
-        buf[i] = sioRX(device);
-}
-
-void sioTest1(char device)
-{
-	sioInit(device);
-    while(1)
-    {
-		sioTX(device, sioRX(device));
-    };
-}
-
-const char data[] =
-{
-    'a','b','c','d','e','f','g','h',
-    'i','j','k','l','m','n','o','p',
-    'q','r','s','t','u','v','w','x','y','z',
-    'A','B','C','D','E','F','G','H',
-    'I','J','K','L','M','N','O','P',
-    'Q','R','S','T','U','V','W','X','Y','Z'
-};
-
-void sioTest2(char device)
-{
-	sioInit(device);
-    while(1)
-    {
-        sioTXStr(device, "Fuck you now!!!!\r\n");
-        sioTXBuf(device, data, 26*2);
-    };
-}
-
-void sioTest3(char device)
-{
     device;
+
+    while(size--)
+    {
+        buf[i++] = sioRX(device);
+    }
 }

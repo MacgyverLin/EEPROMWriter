@@ -3,15 +3,16 @@
 ; Version 3.8.0 #10562 (MINGW32)
 ;--------------------------------------------------------
 	.module main
-	.optsdcc -mmcs51 --model-huge
+	.optsdcc -mmcs51 --model-large
 	
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
-	.globl _ledTest
+	.globl _sysLoadProgram
+	.globl _FATTest
 	.globl _cfTest
-	.globl _sioInit
+	.globl _ledTest
 	.globl _CY
 	.globl _AC
 	.globl _F0
@@ -108,113 +109,207 @@
 	.globl _DPL
 	.globl _SP
 	.globl _P0
-	.globl _PSBANK
-	.globl _buf
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
 	.area RSEG    (ABS,DATA)
 	.org 0x0000
+G$P0$0_0$0 == 0x0080
 _P0	=	0x0080
+G$SP$0_0$0 == 0x0081
 _SP	=	0x0081
+G$DPL$0_0$0 == 0x0082
 _DPL	=	0x0082
+G$DPH$0_0$0 == 0x0083
 _DPH	=	0x0083
+G$PCON$0_0$0 == 0x0087
 _PCON	=	0x0087
+G$TCON$0_0$0 == 0x0088
 _TCON	=	0x0088
+G$TMOD$0_0$0 == 0x0089
 _TMOD	=	0x0089
+G$TL0$0_0$0 == 0x008a
 _TL0	=	0x008a
+G$TL1$0_0$0 == 0x008b
 _TL1	=	0x008b
+G$TH0$0_0$0 == 0x008c
 _TH0	=	0x008c
+G$TH1$0_0$0 == 0x008d
 _TH1	=	0x008d
+G$P1$0_0$0 == 0x0090
 _P1	=	0x0090
+G$SCON$0_0$0 == 0x0098
 _SCON	=	0x0098
+G$SBUF$0_0$0 == 0x0099
 _SBUF	=	0x0099
+G$P2$0_0$0 == 0x00a0
 _P2	=	0x00a0
+G$IE$0_0$0 == 0x00a8
 _IE	=	0x00a8
+G$P3$0_0$0 == 0x00b0
 _P3	=	0x00b0
+G$IP$0_0$0 == 0x00b8
 _IP	=	0x00b8
+G$PSW$0_0$0 == 0x00d0
 _PSW	=	0x00d0
+G$ACC$0_0$0 == 0x00e0
 _ACC	=	0x00e0
+G$B$0_0$0 == 0x00f0
 _B	=	0x00f0
 ;--------------------------------------------------------
 ; special function bits
 ;--------------------------------------------------------
 	.area RSEG    (ABS,DATA)
 	.org 0x0000
+G$P0_0$0_0$0 == 0x0080
 _P0_0	=	0x0080
+G$P0_1$0_0$0 == 0x0081
 _P0_1	=	0x0081
+G$P0_2$0_0$0 == 0x0082
 _P0_2	=	0x0082
+G$P0_3$0_0$0 == 0x0083
 _P0_3	=	0x0083
+G$P0_4$0_0$0 == 0x0084
 _P0_4	=	0x0084
+G$P0_5$0_0$0 == 0x0085
 _P0_5	=	0x0085
+G$P0_6$0_0$0 == 0x0086
 _P0_6	=	0x0086
+G$P0_7$0_0$0 == 0x0087
 _P0_7	=	0x0087
+G$IT0$0_0$0 == 0x0088
 _IT0	=	0x0088
+G$IE0$0_0$0 == 0x0089
 _IE0	=	0x0089
+G$IT1$0_0$0 == 0x008a
 _IT1	=	0x008a
+G$IE1$0_0$0 == 0x008b
 _IE1	=	0x008b
+G$TR0$0_0$0 == 0x008c
 _TR0	=	0x008c
+G$TF0$0_0$0 == 0x008d
 _TF0	=	0x008d
+G$TR1$0_0$0 == 0x008e
 _TR1	=	0x008e
+G$TF1$0_0$0 == 0x008f
 _TF1	=	0x008f
+G$P1_0$0_0$0 == 0x0090
 _P1_0	=	0x0090
+G$P1_1$0_0$0 == 0x0091
 _P1_1	=	0x0091
+G$P1_2$0_0$0 == 0x0092
 _P1_2	=	0x0092
+G$P1_3$0_0$0 == 0x0093
 _P1_3	=	0x0093
+G$P1_4$0_0$0 == 0x0094
 _P1_4	=	0x0094
+G$P1_5$0_0$0 == 0x0095
 _P1_5	=	0x0095
+G$P1_6$0_0$0 == 0x0096
 _P1_6	=	0x0096
+G$P1_7$0_0$0 == 0x0097
 _P1_7	=	0x0097
+G$RI$0_0$0 == 0x0098
 _RI	=	0x0098
+G$TI$0_0$0 == 0x0099
 _TI	=	0x0099
+G$RB8$0_0$0 == 0x009a
 _RB8	=	0x009a
+G$TB8$0_0$0 == 0x009b
 _TB8	=	0x009b
+G$REN$0_0$0 == 0x009c
 _REN	=	0x009c
+G$SM2$0_0$0 == 0x009d
 _SM2	=	0x009d
+G$SM1$0_0$0 == 0x009e
 _SM1	=	0x009e
+G$SM0$0_0$0 == 0x009f
 _SM0	=	0x009f
+G$P2_0$0_0$0 == 0x00a0
 _P2_0	=	0x00a0
+G$P2_1$0_0$0 == 0x00a1
 _P2_1	=	0x00a1
+G$P2_2$0_0$0 == 0x00a2
 _P2_2	=	0x00a2
+G$P2_3$0_0$0 == 0x00a3
 _P2_3	=	0x00a3
+G$P2_4$0_0$0 == 0x00a4
 _P2_4	=	0x00a4
+G$P2_5$0_0$0 == 0x00a5
 _P2_5	=	0x00a5
+G$P2_6$0_0$0 == 0x00a6
 _P2_6	=	0x00a6
+G$P2_7$0_0$0 == 0x00a7
 _P2_7	=	0x00a7
+G$EX0$0_0$0 == 0x00a8
 _EX0	=	0x00a8
+G$ET0$0_0$0 == 0x00a9
 _ET0	=	0x00a9
+G$EX1$0_0$0 == 0x00aa
 _EX1	=	0x00aa
+G$ET1$0_0$0 == 0x00ab
 _ET1	=	0x00ab
+G$ES$0_0$0 == 0x00ac
 _ES	=	0x00ac
+G$EA$0_0$0 == 0x00af
 _EA	=	0x00af
+G$P3_0$0_0$0 == 0x00b0
 _P3_0	=	0x00b0
+G$P3_1$0_0$0 == 0x00b1
 _P3_1	=	0x00b1
+G$P3_2$0_0$0 == 0x00b2
 _P3_2	=	0x00b2
+G$P3_3$0_0$0 == 0x00b3
 _P3_3	=	0x00b3
+G$P3_4$0_0$0 == 0x00b4
 _P3_4	=	0x00b4
+G$P3_5$0_0$0 == 0x00b5
 _P3_5	=	0x00b5
+G$P3_6$0_0$0 == 0x00b6
 _P3_6	=	0x00b6
+G$P3_7$0_0$0 == 0x00b7
 _P3_7	=	0x00b7
+G$RXD$0_0$0 == 0x00b0
 _RXD	=	0x00b0
+G$TXD$0_0$0 == 0x00b1
 _TXD	=	0x00b1
+G$INT0$0_0$0 == 0x00b2
 _INT0	=	0x00b2
+G$INT1$0_0$0 == 0x00b3
 _INT1	=	0x00b3
+G$T0$0_0$0 == 0x00b4
 _T0	=	0x00b4
+G$T1$0_0$0 == 0x00b5
 _T1	=	0x00b5
+G$WR$0_0$0 == 0x00b6
 _WR	=	0x00b6
+G$RD$0_0$0 == 0x00b7
 _RD	=	0x00b7
+G$PX0$0_0$0 == 0x00b8
 _PX0	=	0x00b8
+G$PT0$0_0$0 == 0x00b9
 _PT0	=	0x00b9
+G$PX1$0_0$0 == 0x00ba
 _PX1	=	0x00ba
+G$PT1$0_0$0 == 0x00bb
 _PT1	=	0x00bb
+G$PS$0_0$0 == 0x00bc
 _PS	=	0x00bc
+G$P$0_0$0 == 0x00d0
 _P	=	0x00d0
+G$F1$0_0$0 == 0x00d1
 _F1	=	0x00d1
+G$OV$0_0$0 == 0x00d2
 _OV	=	0x00d2
+G$RS0$0_0$0 == 0x00d3
 _RS0	=	0x00d3
+G$RS1$0_0$0 == 0x00d4
 _RS1	=	0x00d4
+G$F0$0_0$0 == 0x00d5
 _F0	=	0x00d5
+G$AC$0_0$0 == 0x00d6
 _AC	=	0x00d6
+G$CY$0_0$0 == 0x00d7
 _CY	=	0x00d7
 ;--------------------------------------------------------
 ; overlayable register banks
@@ -256,14 +351,6 @@ __start__stack:
 ; external ram data
 ;--------------------------------------------------------
 	.area XSEG    (XDATA)
-_buf::
-	.ds 512
-_main_res_65536_57:
-	.ds 1
-_main_dst_131072_58:
-	.ds 2
-_main_dst_131072_59:
-	.ds 2
 ;--------------------------------------------------------
 ; absolute external ram data
 ;--------------------------------------------------------
@@ -272,8 +359,6 @@ _main_dst_131072_59:
 ; external initialized ram data
 ;--------------------------------------------------------
 	.area XISEG   (XDATA)
-_PSBANK::
-	.ds 1
 	.area HOME    (CODE)
 	.area GSINIT0 (CODE)
 	.area GSINIT1 (CODE)
@@ -318,22 +403,15 @@ __sdcc_program_startup:
 ;--------------------------------------------------------
 	.area CSEG    (CODE)
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'main'
+;Allocation info for local variables in function 'sysLoadProgram'
 ;------------------------------------------------------------
-;res                       Allocated with name '_main_res_65536_57'
-;br                        Allocated with name '_main_br_65536_57'
-;src                       Allocated with name '_main_src_131072_58'
-;dst                       Allocated with name '_main_dst_131072_58'
-;count                     Allocated with name '_main_count_131072_58'
-;src                       Allocated with name '_main_src_131072_59'
-;dst                       Allocated with name '_main_dst_131072_59'
-;count                     Allocated with name '_main_count_131072_59'
-;------------------------------------------------------------
-;	main.c:12: void main()
+	G$sysLoadProgram$0$0 ==.
+	C$main.c$4$0_0$25 ==.
+;	main.c:4: void sysLoadProgram()
 ;	-----------------------------------------
-;	 function main
+;	 function sysLoadProgram
 ;	-----------------------------------------
-_main:
+_sysLoadProgram:
 	ar7 = 0x07
 	ar6 = 0x06
 	ar5 = 0x05
@@ -342,9 +420,87 @@ _main:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	main.c:24: P1 = 0x01;
+	C$main.c$67$1_0$25 ==.
+;	main.c:67: __endasm;
+	PUSH	ar4
+	PUSH	ar5
+	PUSH	DPL
+	PUSH	DPH
+	MOV	SCON, #0x50
+	MOV	TMOD, #0x21
+	MOV	PCON, #0x80
+	MOV	TH1, #0xFA
+	MOV	TL1, #0xFA
+	SETB	TR1
+	INC	P1
+	    WAIT_RX1:
+	JNB	RI, WAIT_RX1
+	MOV	A, SBUF
+	MOV	R4, A
+	CLR	RI
+	INC	P1
+	    WAIT_RX2:
+	JNB	RI, WAIT_RX2
+	MOV	A, SBUF
+	MOV	R5, A
+	CLR	RI
+	INC	P1
+	MOV	DPTR, #0x0000
+	    sysLoadProgram_LP:
+	CLR	A
+	CLR	C
+	    WAIT_RX3:
+	JNB	RI, WAIT_RX3
+	MOV	A, SBUF
+	CLR	RI
+	INC	P1
+	MOVX	@DPTR, A
+	INC	DPTR
+	MOV	A, DPL
+	SUBB	A, R4
+	JNZ	sysLoadProgram_LP
+	MOV	A, DPH
+	SUBB	A, R5
+	JNZ	sysLoadProgram_LP
+	POP	DPH
+	POP	DPL
+	POP	ar5
+	POP	ar4
+	MOV	DPTR, #0xFF70
+	MOVX	A, @DPTR
+	MOV	DPTR, #0x0000
+	CLR	A
+	JMP	@A+DPTR
+	C$main.c$68$1_0$25 ==.
+;	main.c:68: }
+	C$main.c$68$1_0$25 ==.
+	XG$sysLoadProgram$0$0 ==.
+	ret
+;------------------------------------------------------------
+;Allocation info for local variables in function 'main'
+;------------------------------------------------------------
+;res                       Allocated to stack - _bp +1
+;br                        Allocated to stack - _bp +2
+;src                       Allocated to registers 
+;dst                       Allocated to stack - _bp +1
+;count                     Allocated to registers r2 r3 
+;------------------------------------------------------------
+	G$main$0$0 ==.
+	C$main.c$70$1_0$26 ==.
+;	main.c:70: void main()
+;	-----------------------------------------
+;	 function main
+;	-----------------------------------------
+_main:
+	push	_bp
+	mov	_bp,sp
+	inc	sp
+	inc	sp
+	C$main.c$75$1_0$26 ==.
+;	main.c:75: P1 = 0x01;
 	mov	_P1,#0x01
-;	main.c:25: sysCopyBIOS(0x0000, 0x0000, 0xA000);
+	C$main.c$76$2_0$27 ==.
+;	main.c:76: sysCopyBIOS(0x0000, 0x0000, 0x8000);
 	mov	dptr,#0x0000
 	clr	a
 	movc	a,@a+dptr
@@ -355,17 +511,17 @@ _main:
 	mov	r4,a
 	mov	r5,#0x00
 	mov	r2,#0x00
-	mov	r3,#0xa0
+	mov	r3,#0x80
 00101$:
 	mov	ar0,r2
 	mov	ar1,r3
 	dec	r2
-	cjne	r2,#0xff,00146$
+	cjne	r2,#0xff,00125$
 	dec	r3
-00146$:
+00125$:
 	mov	a,r0
 	orl	a,r1
-	jz	00103$
+	jz	00104$
 	mov	dpl,r6
 	mov	dph,r7
 	clr	a
@@ -381,127 +537,38 @@ _main:
 	inc	dptr
 	mov	r4,dpl
 	mov	r5,dph
+	C$main.c$79$1_0$26 ==.
+;	main.c:79: if(1)
 	sjmp	00101$
-00103$:
-;	main.c:27: P1 = 0x02;
-	mov	_P1,#0x02
-;	main.c:29: sysCheckBIOS(res, 0x0000, 0x0000, 0xA000);
-	mov	dptr,#0x0000
-	clr	a
-	movc	a,@a+dptr
-	mov	r6,a
-	mov	r7,#0x00
-	mov	dptr,#0x0000
-	movx	a,@dptr
-	mov	r4,a
-	mov	r5,#0x00
-	mov	dptr,#_main_res_65536_57
-	mov	a,#0x01
-	movx	@dptr,a
-	mov	r2,#0x00
-	mov	r3,#0xa0
-00106$:
-	mov	ar0,r2
-	mov	ar1,r3
-	dec	r2
-	cjne	r2,#0xff,00148$
-	dec	r3
-00148$:
-	mov	a,r0
-	orl	a,r1
-	jz	00108$
-	mov	dpl,r4
-	mov	dph,r5
-	movx	a,@dptr
-	mov	r1,a
-	inc	dptr
-	mov	r4,dpl
-	mov	r5,dph
-	mov	dpl,r6
-	mov	dph,r7
-	clr	a
-	movc	a,@a+dptr
-	mov	r0,a
-	inc	dptr
-	mov	r6,dpl
-	mov	r7,dph
-	mov	a,r1
-	cjne	a,ar0,00150$
-	sjmp	00106$
-00150$:
-	mov	dptr,#_main_res_65536_57
-	clr	a
-	movx	@dptr,a
-00108$:
-;	main.c:30: if(res)
-	mov	dptr,#_main_res_65536_57
-	movx	a,@dptr
-	jz	00110$
-;	main.c:32: P1 = 0x03;
-	mov	_P1,#0x03
-;	main.c:33: sysEnterNormalMode();
+00104$:
+	C$main.c$81$2_0$28 ==.
+;	main.c:81: sysEnterNormalMode();
 	mov	dptr,#0xff70
 	clr	a
 	movx	@dptr,a
-;	main.c:35: ledTest();
-	mov	r0,#_ledTest
-	mov	r1,#(_ledTest >> 8)
-	mov	r2,#(_ledTest >> 16)
-	lcall	__sdcc_banked_call
-;	main.c:39: P1 = 0x04;
-	mov	_P1,#0x04
-;	main.c:42: P1 = 0x05;
-	mov	_P1,#0x05
-;	main.c:45: P1 = 0x06;
-	mov	_P1,#0x06
-;	main.c:73: P1 = 0x10;
-	mov	_P1,#0x10
-;	main.c:76: P1 = 0x11;
-	mov	_P1,#0x11
-;	main.c:79: P1 = 0x12;
-	mov	_P1,#0x12
-;	main.c:82: P1 = 0x13;
-	mov	_P1,#0x13
-;	main.c:83: sioInit(0);
+	C$main.c$83$2_0$28 ==.
+;	main.c:83: ledTest();
+	lcall	_ledTest
+	C$main.c$97$2_0$28 ==.
+;	main.c:97: cfTest(0);
 	mov	dpl,#0x00
-	mov	r0,#_sioInit
-	mov	r1,#(_sioInit >> 8)
-	mov	r2,#(_sioInit >> 16)
-	lcall	__sdcc_banked_call
-;	main.c:85: P1 = 0x14;
-	mov	_P1,#0x14
-;	main.c:87: cfTest(0, buf);
-	mov	dptr,#_cfTest_PARM_2
-	mov	a,#_buf
-	movx	@dptr,a
-	mov	a,#(_buf >> 8)
-	inc	dptr
-	movx	@dptr,a
-	clr	a
-	inc	dptr
-	movx	@dptr,a
+	lcall	_cfTest
+	C$main.c$99$2_0$28 ==.
+;	main.c:99: FATTest(0);
 	mov	dpl,#0x00
-	mov	r0,#_cfTest
-	mov	r1,#(_cfTest >> 8)
-	mov	r2,#(_cfTest >> 16)
-	lcall	__sdcc_banked_call
-;	main.c:89: P1 = 0x15;
-	mov	_P1,#0x15
-;	main.c:93: P1 = 0x16;
-	mov	_P1,#0x16
-;	main.c:98: P1 = 0x17;
-	mov	_P1,#0x17
-	sjmp	00113$
-00110$:
-;	main.c:105: P1 = 0x82;
-	mov	_P1,#0x82
-;	main.c:108: while(1);
-00113$:
-;	main.c:109: }
-	sjmp	00113$
+	lcall	_FATTest
+	C$main.c$110$1_0$26 ==.
+;	main.c:110: while(1);
+00108$:
+	sjmp	00108$
+	C$main.c$111$1_0$26 ==.
+;	main.c:111: }
+	mov	sp,_bp
+	pop	_bp
+	C$main.c$111$1_0$26 ==.
+	XG$main$0$0 ==.
+	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area XINIT   (CODE)
-__xinit__PSBANK:
-	.db #0x00	; 0
 	.area CABS    (ABS,CODE)

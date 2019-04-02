@@ -8,7 +8,7 @@ extern "C"
 {
 #endif
 
-extern void ledTest();
+extern void ledInit();
 
 #ifdef __cplusplus
 };

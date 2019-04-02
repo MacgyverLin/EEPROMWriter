@@ -13,19 +13,19 @@
 				<Option type="5" />
 				<Option compiler="sdcc" />
 				<Compiler>
-					<Add option="-mz80" />
-					<Add option="--opt-code-size" />
-					<Add option="--std-sdcc99" />
+					<Add option="--model-large" />
+					<Add option="--std-c99" />
 					<Add option="--stack-auto" />
-					<Add directory="FATFS/src" />
-					<Add directory="FATFS/option" />
+					<Add option="--debug" />
+					<Add directory="pff3a" />
 					<Add directory="../Test8051" />
 				</Compiler>
 				<Linker>
-					<Add option="--xram-loc 0xA000" />
-					<Add option="--xram-size 0x5F00" />
+					<Add option="--xram-loc 0x8000" />
+					<Add option="--xram-size 0x7F00" />
 					<Add option="--code-loc 0x0000" />
-					<Add option="--code-size 0xA000" />
+					<Add option="--code-size 0x8000" />
+					<Add directory="C:/Program Files (x86)/SDCC/lib/large-stack-auto" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -35,19 +35,29 @@
 				<Option type="5" />
 				<Option compiler="sdcc" />
 				<Compiler>
+					<Add option="--model-large" />
 					<Add option="--opt-code-size" />
+					<Add option="--std-c99" />
+					<Add option="--stack-auto" />
+					<Add directory="FATFS/src" />
+					<Add directory="FATFS/option" />
+					<Add directory="../Test8051" />
 				</Compiler>
 				<Linker>
 					<Add option="--xram-loc 0x4000" />
 					<Add option="--xram-size 0xBF00" />
 					<Add option="--code-loc 0x0000" />
 					<Add option="--code-size 0x4000" />
+					<Add directory="C:/Program Files (x86)/SDCC/lib/large-stack-auto" />
 				</Linker>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-mmcs51" />
 			<Add option="--model-huge" />
+			<Add directory="FATFS/src" />
+			<Add directory="FATFS/option" />
+			<Add directory="../Test8051" />
 		</Compiler>
 		<Linker>
 			<Add option="--xram-size 65536" />
@@ -58,21 +68,6 @@
 		<ExtraCommands>
 			<Add after='cmd /c &quot;packihx &lt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).ihx &gt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).hex&quot;' />
 		</ExtraCommands>
-		<Unit filename="FATFS/option/unicode.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="FATFS/src/diskio.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="FATFS/src/diskio.h" />
-		<Unit filename="FATFS/src/exfuns.h" />
-		<Unit filename="FATFS/src/fattester.h" />
-		<Unit filename="FATFS/src/ff.c">
-			<Option compilerVar="CC" />
-		</Unit>
-		<Unit filename="FATFS/src/ff.h" />
-		<Unit filename="FATFS/src/ffconf.h" />
-		<Unit filename="FATFS/src/integer.h" />
 		<Unit filename="compactflash.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -81,9 +76,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="delay.h" />
-		<Unit filename="fat.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="led.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -91,16 +83,33 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pff3a/diskio.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pff3a/diskio.h" />
+		<Unit filename="pff3a/pff.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pff3a/pff.h" />
+		<Unit filename="pff3a/pffconf.h" />
 		<Unit filename="pio.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pio.h" />
 		<Unit filename="sio.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="sio.h" />
+		<Unit filename="sioDisk.h" />
+		<Unit filename="sioFS.h" />
 		<Unit filename="sysctrl.c">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="sysctrl.h" />
+		<Unit filename="test.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="test.h" />
 		<Unit filename="version.h" />
 		<Extensions>
 			<code_completion />

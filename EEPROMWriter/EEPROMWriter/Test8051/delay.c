@@ -9,6 +9,13 @@ void delay_us(unsigned int us)
                     PUSH            ar6
                     PUSH            ar7
 
+                    MOV             A, DPH
+                    INC             A
+                    MOV             DPH, A
+                    MOV             A, DPL
+                    INC             A
+                    MOV             DPL, A
+
                     MOV				R6, DPH
 delay_us_1:   	    MOV				R7, DPL
 delay_us_2:         DJNZ			R7, delay_us_2
@@ -27,6 +34,14 @@ void delay_ms(unsigned int ms)
                     PUSH            ar5
                     PUSH            ar6
                     PUSH            ar7
+
+                    MOV             A, DPH
+                    INC             A
+                    MOV             DPH, A
+                    MOV             A, DPL
+                    INC             A
+                    MOV             DPL, A
+
                     MOV				R4, DPH
 delay_ms_1:			MOV				R5, DPL
 delay_ms_2:		    MOV				R6, #10
