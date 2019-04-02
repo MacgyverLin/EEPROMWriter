@@ -3,12 +3,12 @@
 -M
 -Y
 -I 0x0100
--X 0xbf00
--C 0x4000
+-X 0x7f00
+-C 0x8000
 -y
 -b HOME = 0x0000
--b XSEG = 0x4000
--b PSEG = 0x4000
+-b XSEG = 0x8000
+-b PSEG = 0x8000
 -b ISEG = 0x0000
 -b BSEG = 0x0000
 -k C:\Program Files (x86)\SDCC\lib\large-stack-auto

@@ -8,481 +8,861 @@ Symbol Table
     .__.CPU.                                                    =  000000 L
     .__.H$L.                                                    =  000001 L
     A                                                           =  0000E0 L
- 16 A$compactflashmpactflash$1001                                  00027A GR
- 16 A$compactflashmpactflash$1002                                  00027C GR
- 16 A$compactflashmpactflash$1003                                  00027E GR
- 16 A$compactflashmpactflash$1004                                  000280 GR
- 16 A$compactflashmpactflash$1005                                  000282 GR
- 16 A$compactflashmpactflash$1006                                  000285 GR
- 16 A$compactflashmpactflash$1007                                  000287 GR
- 16 A$compactflashmpactflash$1008                                  000289 GR
- 16 A$compactflashmpactflash$1011                                  00028B GR
- 16 A$compactflashmpactflash$1014                                  00028E GR
- 16 A$compactflashmpactflash$1015                                  000291 GR
- 16 A$compactflashmpactflash$1016                                  000293 GR
- 16 A$compactflashmpactflash$1019                                  000294 GR
- 16 A$compactflashmpactflash$1022                                  000297 GR
- 16 A$compactflashmpactflash$1023                                  000299 GR
- 16 A$compactflashmpactflash$1024                                  00029B GR
- 16 A$compactflashmpactflash$1025                                  00029D GR
- 16 A$compactflashmpactflash$1026                                  00029F GR
- 16 A$compactflashmpactflash$1027                                  0002A2 GR
- 16 A$compactflashmpactflash$1028                                  0002A4 GR
- 16 A$compactflashmpactflash$1029                                  0002A6 GR
- 16 A$compactflashmpactflash$1032                                  0002A8 GR
- 16 A$compactflashmpactflash$1035                                  0002AB GR
- 16 A$compactflashmpactflash$1036                                  0002AE GR
- 16 A$compactflashmpactflash$1041                                  0002AF GR
- 16 A$compactflashmpactflash$1042                                  0002B2 GR
- 16 A$compactflashmpactflash$1045                                  0002B5 GR
- 16 A$compactflashmpactflash$1046                                  0002B7 GR
- 16 A$compactflashmpactflash$1048                                  0002B9 GR
- 16 A$compactflashmpactflash$1049                                  0002BB GR
- 16 A$compactflashmpactflash$1050                                  0002BC GR
- 16 A$compactflashmpactflash$1053                                  0002BE GR
- 16 A$compactflashmpactflash$1054                                  0002C0 GR
- 16 A$compactflashmpactflash$1055                                  0002C2 GR
- 16 A$compactflashmpactflash$1058                                  0002C5 GR
- 16 A$compactflashmpactflash$1059                                  0002C7 GR
- 16 A$compactflashmpactflash$1060                                  0002C9 GR
- 16 A$compactflashmpactflash$1061                                  0002CB GR
- 16 A$compactflashmpactflash$1062                                  0002CD GR
- 16 A$compactflashmpactflash$1063                                  0002CF GR
- 16 A$compactflashmpactflash$1064                                  0002D1 GR
- 16 A$compactflashmpactflash$1065                                  0002D4 GR
- 16 A$compactflashmpactflash$1066                                  0002D6 GR
- 16 A$compactflashmpactflash$1067                                  0002D8 GR
- 16 A$compactflashmpactflash$1068                                  0002DA GR
- 16 A$compactflashmpactflash$1069                                  0002DC GR
- 16 A$compactflashmpactflash$1072                                  0002DE GR
- 16 A$compactflashmpactflash$1075                                  0002E1 GR
- 16 A$compactflashmpactflash$1076                                  0002E3 GR
- 16 A$compactflashmpactflash$1077                                  0002E4 GR
+ 16 A$compactflashmpactflash$1000                                  0002A7 GR
+ 16 A$compactflashmpactflash$1001                                  0002A9 GR
+ 16 A$compactflashmpactflash$1002                                  0002AB GR
+ 16 A$compactflashmpactflash$1003                                  0002AC GR
+ 16 A$compactflashmpactflash$1004                                  0002AD GR
+ 16 A$compactflashmpactflash$1005                                  0002AF GR
+ 16 A$compactflashmpactflash$1006                                  0002B1 GR
+ 16 A$compactflashmpactflash$1007                                  0002B3 GR
+ 16 A$compactflashmpactflash$1010                                  0002B6 GR
+ 16 A$compactflashmpactflash$1011                                  0002B8 GR
+ 16 A$compactflashmpactflash$1012                                  0002BA GR
+ 16 A$compactflashmpactflash$1013                                  0002BB GR
+ 16 A$compactflashmpactflash$1014                                  0002BC GR
+ 16 A$compactflashmpactflash$1015                                  0002BF GR
+ 16 A$compactflashmpactflash$1016                                  0002C0 GR
+ 16 A$compactflashmpactflash$1020                                  0002C1 GR
+ 16 A$compactflashmpactflash$1021                                  0002C4 GR
+ 16 A$compactflashmpactflash$1022                                  0002C6 GR
+ 16 A$compactflashmpactflash$1023                                  0002C8 GR
+ 16 A$compactflashmpactflash$1027                                  0002CA GR
+ 16 A$compactflashmpactflash$1028                                  0002CC GR
+ 16 A$compactflashmpactflash$1029                                  0002CE GR
+ 16 A$compactflashmpactflash$1030                                  0002CF GR
+ 16 A$compactflashmpactflash$1031                                  0002D1 GR
+ 16 A$compactflashmpactflash$1032                                  0002D2 GR
+ 16 A$compactflashmpactflash$1033                                  0002D3 GR
+ 16 A$compactflashmpactflash$1034                                  0002D4 GR
+ 16 A$compactflashmpactflash$1038                                  0002D7 GR
+ 16 A$compactflashmpactflash$1041                                  0002DA GR
+ 16 A$compactflashmpactflash$1042                                  0002DD GR
+ 16 A$compactflashmpactflash$1045                                  0002DF GR
+ 16 A$compactflashmpactflash$1066                                  0002E0 GR
+ 16 A$compactflashmpactflash$1067                                  0002E2 GR
+ 16 A$compactflashmpactflash$1068                                  0002E5 GR
+ 16 A$compactflashmpactflash$1069                                  0002E7 GR
+ 16 A$compactflashmpactflash$1070                                  0002E9 GR
+ 16 A$compactflashmpactflash$1071                                  0002EB GR
+ 16 A$compactflashmpactflash$1074                                  0002ED GR
+ 16 A$compactflashmpactflash$1077                                  0002F0 GR
+ 16 A$compactflashmpactflash$1078                                  0002F2 GR
+ 16 A$compactflashmpactflash$1079                                  0002F3 GR
+ 16 A$compactflashmpactflash$1080                                  0002F5 GR
+ 16 A$compactflashmpactflash$1083                                  0002F8 GR
+ 16 A$compactflashmpactflash$1086                                  0002FB GR
+ 16 A$compactflashmpactflash$1087                                  0002FD GR
+ 16 A$compactflashmpactflash$1088                                  0002FE GR
+ 16 A$compactflashmpactflash$1089                                  000300 GR
+ 16 A$compactflashmpactflash$1090                                  000301 GR
+ 16 A$compactflashmpactflash$1091                                  000302 GR
+ 16 A$compactflashmpactflash$1092                                  000303 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 2.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 A$compactflashmpactflash$1078                                  0002E5 GR
- 16 A$compactflashmpactflash$1079                                  0002E6 GR
- 16 A$compactflashmpactflash$1080                                  0002E7 GR
- 16 A$compactflashmpactflash$1081                                  0002E8 GR
- 16 A$compactflashmpactflash$1082                                  0002E9 GR
- 16 A$compactflashmpactflash$1083                                  0002EA GR
- 16 A$compactflashmpactflash$1084                                  0002EB GR
- 16 A$compactflashmpactflash$1085                                  0002ED GR
- 16 A$compactflashmpactflash$1086                                  0002EF GR
- 16 A$compactflashmpactflash$1087                                  0002F0 GR
- 16 A$compactflashmpactflash$1088                                  0002F1 GR
- 16 A$compactflashmpactflash$1089                                  0002F2 GR
- 16 A$compactflashmpactflash$1090                                  0002F3 GR
- 16 A$compactflashmpactflash$1091                                  0002F4 GR
- 16 A$compactflashmpactflash$1092                                  0002F5 GR
- 16 A$compactflashmpactflash$1093                                  0002F6 GR
- 16 A$compactflashmpactflash$1094                                  0002F7 GR
- 16 A$compactflashmpactflash$1095                                  0002F8 GR
- 16 A$compactflashmpactflash$1096                                  0002FA GR
- 16 A$compactflashmpactflash$1097                                  0002FC GR
- 16 A$compactflashmpactflash$1098                                  0002FE GR
- 16 A$compactflashmpactflash$1099                                  000300 GR
- 16 A$compactflashmpactflash$1100                                  000303 GR
- 16 A$compactflashmpactflash$1101                                  000304 GR
- 16 A$compactflashmpactflash$1102                                  000307 GR
- 16 A$compactflashmpactflash$1105                                  000308 GR
- 16 A$compactflashmpactflash$1106                                  000309 GR
- 16 A$compactflashmpactflash$1107                                  00030C GR
- 16 A$compactflashmpactflash$1111                                  00030D GR
- 16 A$compactflashmpactflash$1112                                  000310 GR
- 16 A$compactflashmpactflash$1113                                  000312 GR
- 16 A$compactflashmpactflash$1114                                  000314 GR
- 16 A$compactflashmpactflash$1118                                  000316 GR
- 16 A$compactflashmpactflash$1119                                  000318 GR
- 16 A$compactflashmpactflash$1120                                  000319 GR
- 16 A$compactflashmpactflash$1121                                  00031B GR
- 16 A$compactflashmpactflash$1122                                  00031C GR
- 16 A$compactflashmpactflash$1123                                  00031D GR
- 16 A$compactflashmpactflash$1124                                  00031E GR
- 16 A$compactflashmpactflash$1128                                  000321 GR
- 16 A$compactflashmpactflash$1131                                  000324 GR
- 16 A$compactflashmpactflash$1132                                  000327 GR
- 16 A$compactflashmpactflash$1135                                  000329 GR
- 16 A$compactflashmpactflash$1150                                  00032A GR
- 16 A$compactflashmpactflash$1151                                  00032D GR
- 16 A$compactflashmpactflash$1152                                  00032E GR
- 16 A$compactflashmpactflash$1157                                  000330 GR
- 16 A$compactflashmpactflash$405                                   000000 GR
- 16 A$compactflashmpactflash$406                                   000002 GR
- 16 A$compactflashmpactflash$407                                   000004 GR
- 16 A$compactflashmpactflash$408                                   000007 GR
- 16 A$compactflashmpactflash$411                                   000009 GR
- 16 A$compactflashmpactflash$412                                   00000C GR
- 16 A$compactflashmpactflash$413                                   00000E GR
- 16 A$compactflashmpactflash$416                                   00000F GR
+ 16 A$compactflashmpactflash$1093                                  000304 GR
+ 16 A$compactflashmpactflash$1094                                  000305 GR
+ 16 A$compactflashmpactflash$1095                                  000306 GR
+ 16 A$compactflashmpactflash$1096                                  000308 GR
+ 16 A$compactflashmpactflash$1097                                  000309 GR
+ 16 A$compactflashmpactflash$1098                                  00030A GR
+ 16 A$compactflashmpactflash$1099                                  00030B GR
+ 16 A$compactflashmpactflash$1100                                  00030D GR
+ 16 A$compactflashmpactflash$1101                                  00030E GR
+ 16 A$compactflashmpactflash$1102                                  00030F GR
+ 16 A$compactflashmpactflash$1103                                  000311 GR
+ 16 A$compactflashmpactflash$1104                                  000312 GR
+ 16 A$compactflashmpactflash$1105                                  000313 GR
+ 16 A$compactflashmpactflash$1106                                  000315 GR
+ 16 A$compactflashmpactflash$1107                                  000317 GR
+ 16 A$compactflashmpactflash$1108                                  000319 GR
+ 16 A$compactflashmpactflash$1111                                  00031A GR
+ 16 A$compactflashmpactflash$1114                                  00031D GR
+ 16 A$compactflashmpactflash$1115                                  00031F GR
+ 16 A$compactflashmpactflash$1116                                  000320 GR
+ 16 A$compactflashmpactflash$1117                                  000322 GR
+ 16 A$compactflashmpactflash$1118                                  000324 GR
+ 16 A$compactflashmpactflash$1119                                  000326 GR
+ 16 A$compactflashmpactflash$1120                                  000329 GR
+ 16 A$compactflashmpactflash$1121                                  00032B GR
+ 16 A$compactflashmpactflash$1124                                  00032D GR
+ 16 A$compactflashmpactflash$1127                                  000330 GR
+ 16 A$compactflashmpactflash$1128                                  000332 GR
+ 16 A$compactflashmpactflash$1129                                  000333 GR
+ 16 A$compactflashmpactflash$1130                                  000334 GR
+ 16 A$compactflashmpactflash$1131                                  000336 GR
+ 16 A$compactflashmpactflash$1132                                  000337 GR
+ 16 A$compactflashmpactflash$1133                                  000338 GR
+ 16 A$compactflashmpactflash$1134                                  00033A GR
+ 16 A$compactflashmpactflash$1135                                  00033C GR
+ 16 A$compactflashmpactflash$1136                                  00033D GR
+ 16 A$compactflashmpactflash$1137                                  00033F GR
+ 16 A$compactflashmpactflash$1138                                  000341 GR
+ 16 A$compactflashmpactflash$1139                                  000343 GR
+ 16 A$compactflashmpactflash$1140                                  000344 GR
+ 16 A$compactflashmpactflash$1143                                  000345 GR
+ 16 A$compactflashmpactflash$1146                                  000348 GR
+ 16 A$compactflashmpactflash$1147                                  00034A GR
+ 16 A$compactflashmpactflash$1148                                  00034B GR
+ 16 A$compactflashmpactflash$1149                                  00034D GR
+ 16 A$compactflashmpactflash$1150                                  00034F GR
+ 16 A$compactflashmpactflash$1151                                  000351 GR
+ 16 A$compactflashmpactflash$1152                                  000354 GR
+ 16 A$compactflashmpactflash$1153                                  000356 GR
+ 16 A$compactflashmpactflash$1156                                  000358 GR
+ 16 A$compactflashmpactflash$1159                                  00035B GR
+ 16 A$compactflashmpactflash$1160                                  00035D GR
+ 16 A$compactflashmpactflash$1161                                  00035E GR
+ 16 A$compactflashmpactflash$1162                                  00035F GR
+ 16 A$compactflashmpactflash$1163                                  000361 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 3.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 A$compactflashmpactflash$417                                   000011 GR
- 16 A$compactflashmpactflash$420                                   000014 GR
- 16 A$compactflashmpactflash$421                                   000017 GR
- 16 A$compactflashmpactflash$422                                   000019 GR
- 16 A$compactflashmpactflash$427                                   00001A GR
- 16 A$compactflashmpactflash$446                                   00001B GR
- 16 A$compactflashmpactflash$447                                   00001E GR
- 16 A$compactflashmpactflash$450                                   00001F GR
- 16 A$compactflashmpactflash$455                                   000022 GR
- 16 A$compactflashmpactflash$474                                   000023 GR
- 16 A$compactflashmpactflash$475                                   000026 GR
- 16 A$compactflashmpactflash$476                                   000027 GR
- 16 A$compactflashmpactflash$479                                   000028 GR
- 16 A$compactflashmpactflash$480                                   00002B GR
- 16 A$compactflashmpactflash$481                                   00002D GR
- 16 A$compactflashmpactflash$482                                   000030 GR
- 16 A$compactflashmpactflash$487                                   000033 GR
- 16 A$compactflashmpactflash$506                                   000034 GR
- 16 A$compactflashmpactflash$507                                   000037 GR
- 16 A$compactflashmpactflash$508                                   000038 GR
- 16 A$compactflashmpactflash$511                                   000039 GR
- 16 A$compactflashmpactflash$512                                   00003C GR
- 16 A$compactflashmpactflash$513                                   00003E GR
- 16 A$compactflashmpactflash$514                                   000041 GR
- 16 A$compactflashmpactflash$519                                   000044 GR
- 16 A$compactflashmpactflash$538                                   000045 GR
- 16 A$compactflashmpactflash$539                                   000047 GR
- 16 A$compactflashmpactflash$540                                   000049 GR
- 16 A$compactflashmpactflash$541                                   00004B GR
- 16 A$compactflashmpactflash$542                                   00004D GR
- 16 A$compactflashmpactflash$547                                   00004F GR
- 16 A$compactflashmpactflash$548                                   000051 GR
- 16 A$compactflashmpactflash$549                                   000054 GR
- 16 A$compactflashmpactflash$550                                   000056 GR
- 16 A$compactflashmpactflash$551                                   000059 GR
- 16 A$compactflashmpactflash$554                                   00005B GR
- 16 A$compactflashmpactflash$557                                   00005E GR
- 16 A$compactflashmpactflash$558                                   000061 GR
- 16 A$compactflashmpactflash$559                                   000063 GR
- 16 A$compactflashmpactflash$562                                   000064 GR
- 16 A$compactflashmpactflash$565                                   000067 GR
- 16 A$compactflashmpactflash$566                                   000069 GR
- 16 A$compactflashmpactflash$567                                   00006B GR
- 16 A$compactflashmpactflash$568                                   00006E GR
- 16 A$compactflashmpactflash$571                                   000070 GR
- 16 A$compactflashmpactflash$574                                   000073 GR
- 16 A$compactflashmpactflash$575                                   000075 GR
- 16 A$compactflashmpactflash$576                                   000077 GR
- 16 A$compactflashmpactflash$577                                   000078 GR
- 16 A$compactflashmpactflash$578                                   00007A GR
- 16 A$compactflashmpactflash$579                                   00007D GR
- 16 A$compactflashmpactflash$580                                   00007E GR
- 16 A$compactflashmpactflash$583                                   00007F GR
- 16 A$compactflashmpactflash$586                                   000082 GR
- 16 A$compactflashmpactflash$587                                   000084 GR
+ 16 A$compactflashmpactflash$1164                                  000362 GR
+ 16 A$compactflashmpactflash$1165                                  000363 GR
+ 16 A$compactflashmpactflash$1166                                  000365 GR
+ 16 A$compactflashmpactflash$1167                                  000367 GR
+ 16 A$compactflashmpactflash$1168                                  000368 GR
+ 16 A$compactflashmpactflash$1169                                  000369 GR
+ 16 A$compactflashmpactflash$1170                                  00036B GR
+ 16 A$compactflashmpactflash$1171                                  00036D GR
+ 16 A$compactflashmpactflash$1172                                  00036F GR
+ 16 A$compactflashmpactflash$1173                                  000370 GR
+ 16 A$compactflashmpactflash$1176                                  000371 GR
+ 16 A$compactflashmpactflash$1179                                  000374 GR
+ 16 A$compactflashmpactflash$1180                                  000376 GR
+ 16 A$compactflashmpactflash$1181                                  000377 GR
+ 16 A$compactflashmpactflash$1182                                  000379 GR
+ 16 A$compactflashmpactflash$1183                                  00037B GR
+ 16 A$compactflashmpactflash$1184                                  00037D GR
+ 16 A$compactflashmpactflash$1185                                  000380 GR
+ 16 A$compactflashmpactflash$1186                                  000382 GR
+ 16 A$compactflashmpactflash$1189                                  000384 GR
+ 16 A$compactflashmpactflash$1192                                  000387 GR
+ 16 A$compactflashmpactflash$1193                                  000389 GR
+ 16 A$compactflashmpactflash$1194                                  00038A GR
+ 16 A$compactflashmpactflash$1195                                  00038B GR
+ 16 A$compactflashmpactflash$1196                                  00038D GR
+ 16 A$compactflashmpactflash$1197                                  00038E GR
+ 16 A$compactflashmpactflash$1198                                  00038F GR
+ 16 A$compactflashmpactflash$1199                                  000391 GR
+ 16 A$compactflashmpactflash$1200                                  000393 GR
+ 16 A$compactflashmpactflash$1201                                  000394 GR
+ 16 A$compactflashmpactflash$1202                                  000395 GR
+ 16 A$compactflashmpactflash$1203                                  000396 GR
+ 16 A$compactflashmpactflash$1204                                  000398 GR
+ 16 A$compactflashmpactflash$1205                                  00039A GR
+ 16 A$compactflashmpactflash$1206                                  00039C GR
+ 16 A$compactflashmpactflash$1207                                  00039D GR
+ 16 A$compactflashmpactflash$1210                                  00039E GR
+ 16 A$compactflashmpactflash$1213                                  0003A1 GR
+ 16 A$compactflashmpactflash$1214                                  0003A3 GR
+ 16 A$compactflashmpactflash$1215                                  0003A4 GR
+ 16 A$compactflashmpactflash$1216                                  0003A6 GR
+ 16 A$compactflashmpactflash$1217                                  0003A8 GR
+ 16 A$compactflashmpactflash$1218                                  0003AA GR
+ 16 A$compactflashmpactflash$1219                                  0003AD GR
+ 16 A$compactflashmpactflash$1220                                  0003AF GR
+ 16 A$compactflashmpactflash$1223                                  0003B1 GR
+ 16 A$compactflashmpactflash$1226                                  0003B4 GR
+ 16 A$compactflashmpactflash$1227                                  0003B6 GR
+ 16 A$compactflashmpactflash$1228                                  0003B7 GR
+ 16 A$compactflashmpactflash$1229                                  0003B8 GR
+ 16 A$compactflashmpactflash$1230                                  0003BA GR
+ 16 A$compactflashmpactflash$1231                                  0003BB GR
+ 16 A$compactflashmpactflash$1232                                  0003BC GR
+ 16 A$compactflashmpactflash$1233                                  0003BE GR
+ 16 A$compactflashmpactflash$1234                                  0003C0 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 4.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 A$compactflashmpactflash$588                                   000086 GR
- 16 A$compactflashmpactflash$589                                   000089 GR
- 16 A$compactflashmpactflash$592                                   00008B GR
- 16 A$compactflashmpactflash$595                                   00008E GR
- 16 A$compactflashmpactflash$596                                   000090 GR
- 16 A$compactflashmpactflash$597                                   000092 GR
- 16 A$compactflashmpactflash$598                                   000093 GR
- 16 A$compactflashmpactflash$599                                   000094 GR
- 16 A$compactflashmpactflash$600                                   000096 GR
- 16 A$compactflashmpactflash$601                                   000099 GR
- 16 A$compactflashmpactflash$602                                   00009A GR
- 16 A$compactflashmpactflash$605                                   00009B GR
- 16 A$compactflashmpactflash$608                                   00009E GR
- 16 A$compactflashmpactflash$609                                   0000A0 GR
- 16 A$compactflashmpactflash$610                                   0000A2 GR
- 16 A$compactflashmpactflash$611                                   0000A5 GR
- 16 A$compactflashmpactflash$614                                   0000A7 GR
- 16 A$compactflashmpactflash$617                                   0000AA GR
- 16 A$compactflashmpactflash$618                                   0000AC GR
- 16 A$compactflashmpactflash$619                                   0000AE GR
- 16 A$compactflashmpactflash$620                                   0000AF GR
- 16 A$compactflashmpactflash$621                                   0000B0 GR
- 16 A$compactflashmpactflash$622                                   0000B1 GR
- 16 A$compactflashmpactflash$623                                   0000B3 GR
- 16 A$compactflashmpactflash$624                                   0000B6 GR
- 16 A$compactflashmpactflash$625                                   0000B7 GR
- 16 A$compactflashmpactflash$628                                   0000B8 GR
- 16 A$compactflashmpactflash$631                                   0000BB GR
- 16 A$compactflashmpactflash$632                                   0000BD GR
- 16 A$compactflashmpactflash$633                                   0000BF GR
- 16 A$compactflashmpactflash$634                                   0000C2 GR
- 16 A$compactflashmpactflash$637                                   0000C4 GR
- 16 A$compactflashmpactflash$640                                   0000C7 GR
- 16 A$compactflashmpactflash$641                                   0000C9 GR
- 16 A$compactflashmpactflash$642                                   0000CB GR
- 16 A$compactflashmpactflash$643                                   0000CC GR
- 16 A$compactflashmpactflash$644                                   0000CD GR
- 16 A$compactflashmpactflash$645                                   0000CE GR
- 16 A$compactflashmpactflash$646                                   0000CF GR
- 16 A$compactflashmpactflash$647                                   0000D1 GR
- 16 A$compactflashmpactflash$648                                   0000D4 GR
- 16 A$compactflashmpactflash$649                                   0000D6 GR
- 16 A$compactflashmpactflash$650                                   0000D9 GR
- 16 A$compactflashmpactflash$651                                   0000DC GR
- 16 A$compactflashmpactflash$652                                   0000DD GR
- 16 A$compactflashmpactflash$655                                   0000DE GR
- 16 A$compactflashmpactflash$656                                   0000E0 GR
- 16 A$compactflashmpactflash$657                                   0000E2 GR
- 16 A$compactflashmpactflash$658                                   0000E3 GR
- 16 A$compactflashmpactflash$659                                   0000E4 GR
- 16 A$compactflashmpactflash$660                                   0000E5 GR
- 16 A$compactflashmpactflash$661                                   0000E6 GR
- 16 A$compactflashmpactflash$662                                   0000E7 GR
- 16 A$compactflashmpactflash$663                                   0000E9 GR
- 16 A$compactflashmpactflash$664                                   0000EB GR
+ 16 A$compactflashmpactflash$1235                                  0003C1 GR
+ 16 A$compactflashmpactflash$1236                                  0003C2 GR
+ 16 A$compactflashmpactflash$1237                                  0003C3 GR
+ 16 A$compactflashmpactflash$1238                                  0003C4 GR
+ 16 A$compactflashmpactflash$1239                                  0003C6 GR
+ 16 A$compactflashmpactflash$1240                                  0003C9 GR
+ 16 A$compactflashmpactflash$1241                                  0003CB GR
+ 16 A$compactflashmpactflash$1242                                  0003CD GR
+ 16 A$compactflashmpactflash$1243                                  0003CE GR
+ 16 A$compactflashmpactflash$1246                                  0003CF GR
+ 16 A$compactflashmpactflash$1247                                  0003D1 GR
+ 16 A$compactflashmpactflash$1248                                  0003D2 GR
+ 16 A$compactflashmpactflash$1249                                  0003D3 GR
+ 16 A$compactflashmpactflash$1250                                  0003D5 GR
+ 16 A$compactflashmpactflash$1251                                  0003D6 GR
+ 16 A$compactflashmpactflash$1252                                  0003D7 GR
+ 16 A$compactflashmpactflash$1253                                  0003D9 GR
+ 16 A$compactflashmpactflash$1254                                  0003DA GR
+ 16 A$compactflashmpactflash$1255                                  0003DB GR
+ 16 A$compactflashmpactflash$1256                                  0003DD GR
+ 16 A$compactflashmpactflash$1257                                  0003DE GR
+ 16 A$compactflashmpactflash$1258                                  0003DF GR
+ 16 A$compactflashmpactflash$1259                                  0003E1 GR
+ 16 A$compactflashmpactflash$1260                                  0003E3 GR
+ 16 A$compactflashmpactflash$1261                                  0003E4 GR
+ 16 A$compactflashmpactflash$1262                                  0003E5 GR
+ 16 A$compactflashmpactflash$1263                                  0003E6 GR
+ 16 A$compactflashmpactflash$1264                                  0003E7 GR
+ 16 A$compactflashmpactflash$1265                                  0003E8 GR
+ 16 A$compactflashmpactflash$1266                                  0003EA GR
+ 16 A$compactflashmpactflash$1267                                  0003EC GR
+ 16 A$compactflashmpactflash$1268                                  0003ED GR
+ 16 A$compactflashmpactflash$1269                                  0003EF GR
+ 16 A$compactflashmpactflash$1270                                  0003F0 GR
+ 16 A$compactflashmpactflash$1271                                  0003F1 GR
+ 16 A$compactflashmpactflash$1272                                  0003F2 GR
+ 16 A$compactflashmpactflash$1273                                  0003F3 GR
+ 16 A$compactflashmpactflash$1274                                  0003F4 GR
+ 16 A$compactflashmpactflash$1275                                  0003F5 GR
+ 16 A$compactflashmpactflash$1276                                  0003F6 GR
+ 16 A$compactflashmpactflash$1278                                  0003F7 GR
+ 16 A$compactflashmpactflash$1279                                  0003F9 GR
+ 16 A$compactflashmpactflash$1280                                  0003FA GR
+ 16 A$compactflashmpactflash$1281                                  0003FB GR
+ 16 A$compactflashmpactflash$1282                                  0003FD GR
+ 16 A$compactflashmpactflash$1283                                  0003FE GR
+ 16 A$compactflashmpactflash$1284                                  000400 GR
+ 16 A$compactflashmpactflash$1285                                  000402 GR
+ 16 A$compactflashmpactflash$1286                                  000403 GR
+ 16 A$compactflashmpactflash$1287                                  000404 GR
+ 16 A$compactflashmpactflash$1288                                  000405 GR
+ 16 A$compactflashmpactflash$1289                                  000408 GR
+ 16 A$compactflashmpactflash$1290                                  000409 GR
+ 16 A$compactflashmpactflash$1292                                  00040A GR
+ 16 A$compactflashmpactflash$1293                                  00040B GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 5.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 A$compactflashmpactflash$665                                   0000EC GR
- 16 A$compactflashmpactflash$666                                   0000EE GR
- 16 A$compactflashmpactflash$667                                   0000EF GR
- 16 A$compactflashmpactflash$669                                   0000F1 GR
- 16 A$compactflashmpactflash$670                                   0000F3 GR
- 16 A$compactflashmpactflash$671                                   0000F5 GR
- 16 A$compactflashmpactflash$672                                   0000F6 GR
- 16 A$compactflashmpactflash$673                                   0000F9 GR
- 16 A$compactflashmpactflash$675                                   0000FA GR
- 16 A$compactflashmpactflash$676                                   0000FB GR
- 16 A$compactflashmpactflash$677                                   0000FC GR
- 16 A$compactflashmpactflash$678                                   0000FE GR
- 16 A$compactflashmpactflash$685                                   000101 GR
- 16 A$compactflashmpactflash$688                                   000104 GR
- 16 A$compactflashmpactflash$689                                   000106 GR
- 16 A$compactflashmpactflash$690                                   000108 GR
- 16 A$compactflashmpactflash$691                                   00010A GR
- 16 A$compactflashmpactflash$692                                   00010C GR
- 16 A$compactflashmpactflash$693                                   00010F GR
- 16 A$compactflashmpactflash$694                                   000111 GR
- 16 A$compactflashmpactflash$695                                   000113 GR
- 16 A$compactflashmpactflash$698                                   000115 GR
- 16 A$compactflashmpactflash$701                                   000118 GR
- 16 A$compactflashmpactflash$702                                   00011B GR
- 16 A$compactflashmpactflash$703                                   00011D GR
- 16 A$compactflashmpactflash$706                                   00011E GR
- 16 A$compactflashmpactflash$709                                   000121 GR
- 16 A$compactflashmpactflash$710                                   000123 GR
- 16 A$compactflashmpactflash$711                                   000125 GR
- 16 A$compactflashmpactflash$712                                   000127 GR
- 16 A$compactflashmpactflash$713                                   000129 GR
- 16 A$compactflashmpactflash$714                                   00012C GR
- 16 A$compactflashmpactflash$715                                   00012E GR
- 16 A$compactflashmpactflash$716                                   000130 GR
- 16 A$compactflashmpactflash$719                                   000132 GR
- 16 A$compactflashmpactflash$722                                   000135 GR
- 16 A$compactflashmpactflash$723                                   000138 GR
- 16 A$compactflashmpactflash$728                                   000139 GR
- 16 A$compactflashmpactflash$729                                   00013A GR
- 16 A$compactflashmpactflash$730                                   00013D GR
- 16 A$compactflashmpactflash$733                                   000140 GR
- 16 A$compactflashmpactflash$734                                   000142 GR
- 16 A$compactflashmpactflash$735                                   000143 GR
- 16 A$compactflashmpactflash$736                                   000144 GR
- 16 A$compactflashmpactflash$737                                   000145 GR
- 16 A$compactflashmpactflash$738                                   000146 GR
- 16 A$compactflashmpactflash$740                                   000147 GR
- 16 A$compactflashmpactflash$741                                   000149 GR
- 16 A$compactflashmpactflash$742                                   00014A GR
- 16 A$compactflashmpactflash$743                                   00014B GR
- 16 A$compactflashmpactflash$744                                   00014C GR
- 16 A$compactflashmpactflash$745                                   00014D GR
- 16 A$compactflashmpactflash$746                                   00014F GR
- 16 A$compactflashmpactflash$749                                   000151 GR
- 16 A$compactflashmpactflash$750                                   000153 GR
+ 16 A$compactflashmpactflash$1294                                  00040C GR
+ 16 A$compactflashmpactflash$1295                                  00040E GR
+ 16 A$compactflashmpactflash$1302                                  000411 GR
+ 16 A$compactflashmpactflash$1305                                  000414 GR
+ 16 A$compactflashmpactflash$1306                                  000416 GR
+ 16 A$compactflashmpactflash$1307                                  000417 GR
+ 16 A$compactflashmpactflash$1308                                  000419 GR
+ 16 A$compactflashmpactflash$1309                                  00041B GR
+ 16 A$compactflashmpactflash$1310                                  00041D GR
+ 16 A$compactflashmpactflash$1311                                  00041F GR
+ 16 A$compactflashmpactflash$1312                                  000421 GR
+ 16 A$compactflashmpactflash$1313                                  000424 GR
+ 16 A$compactflashmpactflash$1314                                  000426 GR
+ 16 A$compactflashmpactflash$1315                                  000428 GR
+ 16 A$compactflashmpactflash$1316                                  00042A GR
+ 16 A$compactflashmpactflash$1319                                  00042C GR
+ 16 A$compactflashmpactflash$1322                                  00042F GR
+ 16 A$compactflashmpactflash$1323                                  000431 GR
+ 16 A$compactflashmpactflash$1324                                  000433 GR
+ 16 A$compactflashmpactflash$1325                                  000435 GR
+ 16 A$compactflashmpactflash$1326                                  000437 GR
+ 16 A$compactflashmpactflash$1327                                  000439 GR
+ 16 A$compactflashmpactflash$1330                                  00043A GR
+ 16 A$compactflashmpactflash$1333                                  00043D GR
+ 16 A$compactflashmpactflash$1334                                  00043F GR
+ 16 A$compactflashmpactflash$1335                                  000440 GR
+ 16 A$compactflashmpactflash$1336                                  000442 GR
+ 16 A$compactflashmpactflash$1337                                  000444 GR
+ 16 A$compactflashmpactflash$1338                                  000446 GR
+ 16 A$compactflashmpactflash$1339                                  000448 GR
+ 16 A$compactflashmpactflash$1340                                  00044A GR
+ 16 A$compactflashmpactflash$1341                                  00044C GR
+ 16 A$compactflashmpactflash$1342                                  00044E GR
+ 16 A$compactflashmpactflash$1343                                  000451 GR
+ 16 A$compactflashmpactflash$1344                                  000453 GR
+ 16 A$compactflashmpactflash$1345                                  000455 GR
+ 16 A$compactflashmpactflash$1346                                  000457 GR
+ 16 A$compactflashmpactflash$1347                                  000459 GR
+ 16 A$compactflashmpactflash$1348                                  00045B GR
+ 16 A$compactflashmpactflash$1351                                  00045D GR
+ 16 A$compactflashmpactflash$1354                                  000460 GR
+ 16 A$compactflashmpactflash$1355                                  000462 GR
+ 16 A$compactflashmpactflash$1356                                  000464 GR
+ 16 A$compactflashmpactflash$1361                                  000465 GR
+ 16 A$compactflashmpactflash$1362                                  000466 GR
+ 16 A$compactflashmpactflash$1363                                  000469 GR
+ 16 A$compactflashmpactflash$1366                                  00046C GR
+ 16 A$compactflashmpactflash$1367                                  00046E GR
+ 16 A$compactflashmpactflash$1368                                  000470 GR
+ 16 A$compactflashmpactflash$1369                                  000471 GR
+ 16 A$compactflashmpactflash$1370                                  000472 GR
+ 16 A$compactflashmpactflash$1371                                  000473 GR
+ 16 A$compactflashmpactflash$1372                                  000474 GR
+ 16 A$compactflashmpactflash$1374                                  000475 GR
+ 16 A$compactflashmpactflash$1375                                  000477 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 6.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 A$compactflashmpactflash$751                                   000155 GR
- 16 A$compactflashmpactflash$754                                   000158 GR
- 16 A$compactflashmpactflash$755                                   00015A GR
- 16 A$compactflashmpactflash$756                                   00015C GR
- 16 A$compactflashmpactflash$757                                   00015E GR
- 16 A$compactflashmpactflash$758                                   000160 GR
- 16 A$compactflashmpactflash$759                                   000163 GR
- 16 A$compactflashmpactflash$760                                   000165 GR
- 16 A$compactflashmpactflash$761                                   000167 GR
- 16 A$compactflashmpactflash$764                                   000169 GR
- 16 A$compactflashmpactflash$767                                   00016C GR
- 16 A$compactflashmpactflash$768                                   00016E GR
- 16 A$compactflashmpactflash$769                                   00016F GR
- 16 A$compactflashmpactflash$770                                   000171 GR
- 16 A$compactflashmpactflash$771                                   000173 GR
- 16 A$compactflashmpactflash$772                                   000174 GR
- 16 A$compactflashmpactflash$773                                   000175 GR
- 16 A$compactflashmpactflash$774                                   000176 GR
- 16 A$compactflashmpactflash$775                                   000177 GR
- 16 A$compactflashmpactflash$776                                   000178 GR
- 16 A$compactflashmpactflash$777                                   000179 GR
- 16 A$compactflashmpactflash$778                                   00017A GR
- 16 A$compactflashmpactflash$779                                   00017B GR
- 16 A$compactflashmpactflash$780                                   00017C GR
- 16 A$compactflashmpactflash$781                                   00017E GR
- 16 A$compactflashmpactflash$782                                   000180 GR
- 16 A$compactflashmpactflash$783                                   000181 GR
- 16 A$compactflashmpactflash$784                                   000182 GR
- 16 A$compactflashmpactflash$785                                   000183 GR
- 16 A$compactflashmpactflash$786                                   000184 GR
- 16 A$compactflashmpactflash$787                                   000185 GR
- 16 A$compactflashmpactflash$788                                   000186 GR
- 16 A$compactflashmpactflash$789                                   000187 GR
- 16 A$compactflashmpactflash$790                                   000188 GR
- 16 A$compactflashmpactflash$791                                   000189 GR
- 16 A$compactflashmpactflash$792                                   00018B GR
- 16 A$compactflashmpactflash$793                                   00018E GR
- 16 A$compactflashmpactflash$794                                   00018F GR
- 16 A$compactflashmpactflash$795                                   000190 GR
- 16 A$compactflashmpactflash$796                                   000192 GR
- 16 A$compactflashmpactflash$797                                   000194 GR
- 16 A$compactflashmpactflash$798                                   000196 GR
- 16 A$compactflashmpactflash$801                                   000199 GR
- 16 A$compactflashmpactflash$802                                   00019B GR
- 16 A$compactflashmpactflash$803                                   00019C GR
- 16 A$compactflashmpactflash$804                                   00019D GR
- 16 A$compactflashmpactflash$805                                   0001A0 GR
- 16 A$compactflashmpactflash$806                                   0001A1 GR
- 16 A$compactflashmpactflash$810                                   0001A2 GR
- 16 A$compactflashmpactflash$811                                   0001A5 GR
- 16 A$compactflashmpactflash$812                                   0001A7 GR
- 16 A$compactflashmpactflash$813                                   0001A9 GR
- 16 A$compactflashmpactflash$817                                   0001AB GR
- 16 A$compactflashmpactflash$818                                   0001AD GR
- 16 A$compactflashmpactflash$819                                   0001AF GR
+ 16 A$compactflashmpactflash$1376                                  000479 GR
+ 16 A$compactflashmpactflash$1377                                  00047A GR
+ 16 A$compactflashmpactflash$1378                                  00047B GR
+ 16 A$compactflashmpactflash$1379                                  00047C GR
+ 16 A$compactflashmpactflash$1380                                  00047D GR
+ 16 A$compactflashmpactflash$1381                                  00047F GR
+ 16 A$compactflashmpactflash$1384                                  000481 GR
+ 16 A$compactflashmpactflash$1385                                  000483 GR
+ 16 A$compactflashmpactflash$1386                                  000485 GR
+ 16 A$compactflashmpactflash$1389                                  000488 GR
+ 16 A$compactflashmpactflash$1390                                  00048A GR
+ 16 A$compactflashmpactflash$1391                                  00048B GR
+ 16 A$compactflashmpactflash$1392                                  00048D GR
+ 16 A$compactflashmpactflash$1393                                  00048F GR
+ 16 A$compactflashmpactflash$1394                                  000491 GR
+ 16 A$compactflashmpactflash$1395                                  000493 GR
+ 16 A$compactflashmpactflash$1396                                  000495 GR
+ 16 A$compactflashmpactflash$1397                                  000498 GR
+ 16 A$compactflashmpactflash$1398                                  00049A GR
+ 16 A$compactflashmpactflash$1399                                  00049C GR
+ 16 A$compactflashmpactflash$1400                                  00049E GR
+ 16 A$compactflashmpactflash$1403                                  0004A0 GR
+ 16 A$compactflashmpactflash$1406                                  0004A3 GR
+ 16 A$compactflashmpactflash$1407                                  0004A5 GR
+ 16 A$compactflashmpactflash$1408                                  0004A7 GR
+ 16 A$compactflashmpactflash$1409                                  0004A8 GR
+ 16 A$compactflashmpactflash$1410                                  0004AA GR
+ 16 A$compactflashmpactflash$1411                                  0004AB GR
+ 16 A$compactflashmpactflash$1412                                  0004AD GR
+ 16 A$compactflashmpactflash$1413                                  0004AF GR
+ 16 A$compactflashmpactflash$1414                                  0004B1 GR
+ 16 A$compactflashmpactflash$1415                                  0004B2 GR
+ 16 A$compactflashmpactflash$1416                                  0004B4 GR
+ 16 A$compactflashmpactflash$1417                                  0004B6 GR
+ 16 A$compactflashmpactflash$1418                                  0004B7 GR
+ 16 A$compactflashmpactflash$1419                                  0004B8 GR
+ 16 A$compactflashmpactflash$1420                                  0004B9 GR
+ 16 A$compactflashmpactflash$1421                                  0004BA GR
+ 16 A$compactflashmpactflash$1422                                  0004BB GR
+ 16 A$compactflashmpactflash$1423                                  0004BC GR
+ 16 A$compactflashmpactflash$1424                                  0004BD GR
+ 16 A$compactflashmpactflash$1425                                  0004BE GR
+ 16 A$compactflashmpactflash$1426                                  0004BF GR
+ 16 A$compactflashmpactflash$1427                                  0004C1 GR
+ 16 A$compactflashmpactflash$1428                                  0004C3 GR
+ 16 A$compactflashmpactflash$1429                                  0004C4 GR
+ 16 A$compactflashmpactflash$1430                                  0004C5 GR
+ 16 A$compactflashmpactflash$1431                                  0004C6 GR
+ 16 A$compactflashmpactflash$1432                                  0004C7 GR
+ 16 A$compactflashmpactflash$1433                                  0004C8 GR
+ 16 A$compactflashmpactflash$1434                                  0004C9 GR
+ 16 A$compactflashmpactflash$1435                                  0004CA GR
+ 16 A$compactflashmpactflash$1436                                  0004CB GR
+ 16 A$compactflashmpactflash$1437                                  0004CC GR
+ 16 A$compactflashmpactflash$1438                                  0004CE GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 7.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 A$compactflashmpactflash$820                                   0001B0 GR
- 16 A$compactflashmpactflash$821                                   0001B2 GR
- 16 A$compactflashmpactflash$822                                   0001B3 GR
- 16 A$compactflashmpactflash$823                                   0001B4 GR
- 16 A$compactflashmpactflash$824                                   0001B5 GR
- 16 A$compactflashmpactflash$828                                   0001B8 GR
- 16 A$compactflashmpactflash$831                                   0001BB GR
- 16 A$compactflashmpactflash$832                                   0001BE GR
- 16 A$compactflashmpactflash$835                                   0001C0 GR
- 16 A$compactflashmpactflash$854                                   0001C1 GR
- 16 A$compactflashmpactflash$855                                   0001C3 GR
- 16 A$compactflashmpactflash$856                                   0001C6 GR
- 16 A$compactflashmpactflash$857                                   0001C8 GR
- 16 A$compactflashmpactflash$862                                   0001CA GR
- 16 A$compactflashmpactflash$863                                   0001CC GR
- 16 A$compactflashmpactflash$864                                   0001CF GR
- 16 A$compactflashmpactflash$865                                   0001D1 GR
- 16 A$compactflashmpactflash$866                                   0001D4 GR
- 16 A$compactflashmpactflash$869                                   0001D6 GR
- 16 A$compactflashmpactflash$872                                   0001D9 GR
- 16 A$compactflashmpactflash$873                                   0001DC GR
- 16 A$compactflashmpactflash$874                                   0001DE GR
- 16 A$compactflashmpactflash$877                                   0001DF GR
- 16 A$compactflashmpactflash$880                                   0001E2 GR
- 16 A$compactflashmpactflash$881                                   0001E4 GR
- 16 A$compactflashmpactflash$882                                   0001E6 GR
- 16 A$compactflashmpactflash$883                                   0001E9 GR
- 16 A$compactflashmpactflash$886                                   0001EB GR
- 16 A$compactflashmpactflash$889                                   0001EE GR
- 16 A$compactflashmpactflash$890                                   0001F0 GR
- 16 A$compactflashmpactflash$891                                   0001F2 GR
- 16 A$compactflashmpactflash$892                                   0001F3 GR
- 16 A$compactflashmpactflash$893                                   0001F5 GR
- 16 A$compactflashmpactflash$894                                   0001F8 GR
- 16 A$compactflashmpactflash$895                                   0001F9 GR
- 16 A$compactflashmpactflash$898                                   0001FA GR
- 16 A$compactflashmpactflash$901                                   0001FD GR
- 16 A$compactflashmpactflash$902                                   0001FF GR
- 16 A$compactflashmpactflash$903                                   000201 GR
- 16 A$compactflashmpactflash$904                                   000204 GR
- 16 A$compactflashmpactflash$907                                   000206 GR
- 16 A$compactflashmpactflash$910                                   000209 GR
- 16 A$compactflashmpactflash$911                                   00020B GR
- 16 A$compactflashmpactflash$912                                   00020D GR
- 16 A$compactflashmpactflash$913                                   00020E GR
- 16 A$compactflashmpactflash$914                                   00020F GR
- 16 A$compactflashmpactflash$915                                   000211 GR
- 16 A$compactflashmpactflash$916                                   000214 GR
- 16 A$compactflashmpactflash$917                                   000215 GR
- 16 A$compactflashmpactflash$920                                   000216 GR
- 16 A$compactflashmpactflash$923                                   000219 GR
- 16 A$compactflashmpactflash$924                                   00021B GR
- 16 A$compactflashmpactflash$925                                   00021D GR
- 16 A$compactflashmpactflash$926                                   000220 GR
- 16 A$compactflashmpactflash$929                                   000222 GR
+ 16 A$compactflashmpactflash$1439                                  0004D0 GR
+ 16 A$compactflashmpactflash$1440                                  0004D2 GR
+ 16 A$compactflashmpactflash$1441                                  0004D4 GR
+ 16 A$compactflashmpactflash$1442                                  0004D7 GR
+ 16 A$compactflashmpactflash$1443                                  0004D8 GR
+ 16 A$compactflashmpactflash$1444                                  0004DA GR
+ 16 A$compactflashmpactflash$1445                                  0004DC GR
+ 16 A$compactflashmpactflash$1446                                  0004DD GR
+ 16 A$compactflashmpactflash$1447                                  0004DF GR
+ 16 A$compactflashmpactflash$1448                                  0004E0 GR
+ 16 A$compactflashmpactflash$1449                                  0004E2 GR
+ 16 A$compactflashmpactflash$1450                                  0004E3 GR
+ 16 A$compactflashmpactflash$1453                                  0004E4 GR
+ 16 A$compactflashmpactflash$1454                                  0004E6 GR
+ 16 A$compactflashmpactflash$1455                                  0004E8 GR
+ 16 A$compactflashmpactflash$1456                                  0004E9 GR
+ 16 A$compactflashmpactflash$1457                                  0004EA GR
+ 16 A$compactflashmpactflash$1458                                  0004ED GR
+ 16 A$compactflashmpactflash$1459                                  0004EE GR
+ 16 A$compactflashmpactflash$1463                                  0004EF GR
+ 16 A$compactflashmpactflash$1464                                  0004F2 GR
+ 16 A$compactflashmpactflash$1465                                  0004F4 GR
+ 16 A$compactflashmpactflash$1466                                  0004F6 GR
+ 16 A$compactflashmpactflash$1470                                  0004F9 GR
+ 16 A$compactflashmpactflash$1471                                  0004FB GR
+ 16 A$compactflashmpactflash$1472                                  0004FD GR
+ 16 A$compactflashmpactflash$1473                                  0004FE GR
+ 16 A$compactflashmpactflash$1474                                  000500 GR
+ 16 A$compactflashmpactflash$1475                                  000501 GR
+ 16 A$compactflashmpactflash$1476                                  000502 GR
+ 16 A$compactflashmpactflash$1477                                  000503 GR
+ 16 A$compactflashmpactflash$1481                                  000506 GR
+ 16 A$compactflashmpactflash$1484                                  000509 GR
+ 16 A$compactflashmpactflash$1485                                  00050C GR
+ 16 A$compactflashmpactflash$1488                                  00050E GR
+ 16 A$compactflashmpactflash$1503                                  00050F GR
+ 16 A$compactflashmpactflash$1504                                  000512 GR
+ 16 A$compactflashmpactflash$1505                                  000513 GR
+ 16 A$compactflashmpactflash$1510                                  000515 GR
+ 16 A$compactflashmpactflash$405                                   000000 GR
+ 16 A$compactflashmpactflash$406                                   000002 GR
+ 16 A$compactflashmpactflash$407                                   000004 GR
+ 16 A$compactflashmpactflash$408                                   000007 GR
+ 16 A$compactflashmpactflash$411                                   000009 GR
+ 16 A$compactflashmpactflash$412                                   00000B GR
+ 16 A$compactflashmpactflash$413                                   00000C GR
+ 16 A$compactflashmpactflash$414                                   00000D GR
+ 16 A$compactflashmpactflash$415                                   00000F GR
+ 16 A$compactflashmpactflash$416                                   000010 GR
+ 16 A$compactflashmpactflash$417                                   000011 GR
+ 16 A$compactflashmpactflash$418                                   000012 GR
+ 16 A$compactflashmpactflash$419                                   000013 GR
+ 16 A$compactflashmpactflash$420                                   000014 GR
+ 16 A$compactflashmpactflash$421                                   000016 GR
+ 16 A$compactflashmpactflash$422                                   000017 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 8.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 A$compactflashmpactflash$932                                   000225 GR
- 16 A$compactflashmpactflash$933                                   000227 GR
- 16 A$compactflashmpactflash$934                                   000229 GR
- 16 A$compactflashmpactflash$935                                   00022A GR
- 16 A$compactflashmpactflash$936                                   00022B GR
- 16 A$compactflashmpactflash$937                                   00022C GR
- 16 A$compactflashmpactflash$938                                   00022E GR
- 16 A$compactflashmpactflash$939                                   000231 GR
- 16 A$compactflashmpactflash$940                                   000232 GR
- 16 A$compactflashmpactflash$943                                   000233 GR
- 16 A$compactflashmpactflash$946                                   000236 GR
- 16 A$compactflashmpactflash$947                                   000238 GR
- 16 A$compactflashmpactflash$948                                   00023A GR
- 16 A$compactflashmpactflash$949                                   00023D GR
- 16 A$compactflashmpactflash$952                                   00023F GR
- 16 A$compactflashmpactflash$955                                   000242 GR
- 16 A$compactflashmpactflash$956                                   000244 GR
- 16 A$compactflashmpactflash$957                                   000246 GR
- 16 A$compactflashmpactflash$958                                   000247 GR
- 16 A$compactflashmpactflash$959                                   000248 GR
- 16 A$compactflashmpactflash$960                                   000249 GR
- 16 A$compactflashmpactflash$961                                   00024A GR
- 16 A$compactflashmpactflash$962                                   00024C GR
- 16 A$compactflashmpactflash$963                                   00024E GR
- 16 A$compactflashmpactflash$964                                   000251 GR
- 16 A$compactflashmpactflash$965                                   000254 GR
- 16 A$compactflashmpactflash$966                                   000255 GR
- 16 A$compactflashmpactflash$969                                   000256 GR
- 16 A$compactflashmpactflash$970                                   000258 GR
- 16 A$compactflashmpactflash$971                                   000259 GR
- 16 A$compactflashmpactflash$972                                   00025A GR
- 16 A$compactflashmpactflash$973                                   00025B GR
- 16 A$compactflashmpactflash$974                                   00025C GR
- 16 A$compactflashmpactflash$975                                   00025D GR
- 16 A$compactflashmpactflash$976                                   00025F GR
- 16 A$compactflashmpactflash$977                                   000261 GR
- 16 A$compactflashmpactflash$978                                   000262 GR
- 16 A$compactflashmpactflash$979                                   000264 GR
- 16 A$compactflashmpactflash$980                                   000265 GR
- 16 A$compactflashmpactflash$982                                   000267 GR
- 16 A$compactflashmpactflash$983                                   000269 GR
- 16 A$compactflashmpactflash$984                                   00026B GR
- 16 A$compactflashmpactflash$985                                   00026C GR
- 16 A$compactflashmpactflash$986                                   00026F GR
- 16 A$compactflashmpactflash$988                                   000270 GR
- 16 A$compactflashmpactflash$989                                   000271 GR
- 16 A$compactflashmpactflash$990                                   000272 GR
- 16 A$compactflashmpactflash$991                                   000274 GR
- 16 A$compactflashmpactflash$998                                   000277 GR
+ 16 A$compactflashmpactflash$423                                   000018 GR
+ 16 A$compactflashmpactflash$424                                   000019 GR
+ 16 A$compactflashmpactflash$425                                   00001B GR
+ 16 A$compactflashmpactflash$426                                   00001C GR
+ 16 A$compactflashmpactflash$427                                   00001D GR
+ 16 A$compactflashmpactflash$428                                   00001F GR
+ 16 A$compactflashmpactflash$429                                   000020 GR
+ 16 A$compactflashmpactflash$430                                   000021 GR
+ 16 A$compactflashmpactflash$431                                   000023 GR
+ 16 A$compactflashmpactflash$432                                   000025 GR
+ 16 A$compactflashmpactflash$433                                   000027 GR
+ 16 A$compactflashmpactflash$436                                   000028 GR
+ 16 A$compactflashmpactflash$437                                   00002A GR
+ 16 A$compactflashmpactflash$438                                   00002C GR
+ 16 A$compactflashmpactflash$439                                   00002E GR
+ 16 A$compactflashmpactflash$440                                   000031 GR
+ 16 A$compactflashmpactflash$441                                   000033 GR
+ 16 A$compactflashmpactflash$444                                   000035 GR
+ 16 A$compactflashmpactflash$445                                   000037 GR
+ 16 A$compactflashmpactflash$446                                   000038 GR
+ 16 A$compactflashmpactflash$447                                   000039 GR
+ 16 A$compactflashmpactflash$448                                   00003B GR
+ 16 A$compactflashmpactflash$449                                   00003C GR
+ 16 A$compactflashmpactflash$450                                   00003D GR
+ 16 A$compactflashmpactflash$451                                   00003F GR
+ 16 A$compactflashmpactflash$452                                   000041 GR
+ 16 A$compactflashmpactflash$453                                   000043 GR
+ 16 A$compactflashmpactflash$458                                   000044 GR
+ 16 A$compactflashmpactflash$472                                   000045 GR
+ 16 A$compactflashmpactflash$478                                   000047 GR
+ 16 A$compactflashmpactflash$479                                   000049 GR
+ 16 A$compactflashmpactflash$480                                   00004A GR
+ 16 A$compactflashmpactflash$481                                   00004B GR
+ 16 A$compactflashmpactflash$482                                   00004D GR
+ 16 A$compactflashmpactflash$483                                   00004E GR
+ 16 A$compactflashmpactflash$484                                   00004F GR
+ 16 A$compactflashmpactflash$485                                   000050 GR
+ 16 A$compactflashmpactflash$486                                   000051 GR
+ 16 A$compactflashmpactflash$487                                   000052 GR
+ 16 A$compactflashmpactflash$488                                   000054 GR
+ 16 A$compactflashmpactflash$489                                   000055 GR
+ 16 A$compactflashmpactflash$490                                   000056 GR
+ 16 A$compactflashmpactflash$491                                   000057 GR
+ 16 A$compactflashmpactflash$492                                   000059 GR
+ 16 A$compactflashmpactflash$493                                   00005A GR
+ 16 A$compactflashmpactflash$494                                   00005B GR
+ 16 A$compactflashmpactflash$495                                   00005D GR
+ 16 A$compactflashmpactflash$496                                   00005E GR
+ 16 A$compactflashmpactflash$497                                   00005F GR
+ 16 A$compactflashmpactflash$498                                   000061 GR
+ 16 A$compactflashmpactflash$499                                   000063 GR
+ 16 A$compactflashmpactflash$502                                   000064 GR
+ 16 A$compactflashmpactflash$507                                   000067 GR
+ 16 A$compactflashmpactflash$521                                   000068 GR
+ 16 A$compactflashmpactflash$527                                   00006A GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 9.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+ 16 A$compactflashmpactflash$528                                   00006C GR
+ 16 A$compactflashmpactflash$529                                   00006D GR
+ 16 A$compactflashmpactflash$530                                   00006E GR
+ 16 A$compactflashmpactflash$531                                   000070 GR
+ 16 A$compactflashmpactflash$532                                   000071 GR
+ 16 A$compactflashmpactflash$533                                   000072 GR
+ 16 A$compactflashmpactflash$534                                   000073 GR
+ 16 A$compactflashmpactflash$535                                   000074 GR
+ 16 A$compactflashmpactflash$536                                   000075 GR
+ 16 A$compactflashmpactflash$537                                   000077 GR
+ 16 A$compactflashmpactflash$538                                   000078 GR
+ 16 A$compactflashmpactflash$539                                   000079 GR
+ 16 A$compactflashmpactflash$540                                   00007A GR
+ 16 A$compactflashmpactflash$541                                   00007C GR
+ 16 A$compactflashmpactflash$542                                   00007D GR
+ 16 A$compactflashmpactflash$543                                   00007E GR
+ 16 A$compactflashmpactflash$544                                   000080 GR
+ 16 A$compactflashmpactflash$545                                   000081 GR
+ 16 A$compactflashmpactflash$546                                   000082 GR
+ 16 A$compactflashmpactflash$547                                   000084 GR
+ 16 A$compactflashmpactflash$548                                   000086 GR
+ 16 A$compactflashmpactflash$549                                   000087 GR
+ 16 A$compactflashmpactflash$552                                   000088 GR
+ 16 A$compactflashmpactflash$553                                   00008B GR
+ 16 A$compactflashmpactflash$554                                   00008D GR
+ 16 A$compactflashmpactflash$555                                   000090 GR
+ 16 A$compactflashmpactflash$560                                   000093 GR
+ 16 A$compactflashmpactflash$574                                   000094 GR
+ 16 A$compactflashmpactflash$580                                   000096 GR
+ 16 A$compactflashmpactflash$581                                   000098 GR
+ 16 A$compactflashmpactflash$582                                   000099 GR
+ 16 A$compactflashmpactflash$583                                   00009A GR
+ 16 A$compactflashmpactflash$584                                   00009C GR
+ 16 A$compactflashmpactflash$585                                   00009D GR
+ 16 A$compactflashmpactflash$586                                   00009E GR
+ 16 A$compactflashmpactflash$587                                   00009F GR
+ 16 A$compactflashmpactflash$588                                   0000A0 GR
+ 16 A$compactflashmpactflash$589                                   0000A1 GR
+ 16 A$compactflashmpactflash$590                                   0000A3 GR
+ 16 A$compactflashmpactflash$591                                   0000A4 GR
+ 16 A$compactflashmpactflash$592                                   0000A5 GR
+ 16 A$compactflashmpactflash$593                                   0000A6 GR
+ 16 A$compactflashmpactflash$594                                   0000A8 GR
+ 16 A$compactflashmpactflash$595                                   0000A9 GR
+ 16 A$compactflashmpactflash$596                                   0000AA GR
+ 16 A$compactflashmpactflash$597                                   0000AC GR
+ 16 A$compactflashmpactflash$598                                   0000AD GR
+ 16 A$compactflashmpactflash$599                                   0000AE GR
+ 16 A$compactflashmpactflash$600                                   0000B0 GR
+ 16 A$compactflashmpactflash$601                                   0000B2 GR
+ 16 A$compactflashmpactflash$602                                   0000B3 GR
+ 16 A$compactflashmpactflash$605                                   0000B4 GR
+ 16 A$compactflashmpactflash$606                                   0000B7 GR
+ 16 A$compactflashmpactflash$607                                   0000B9 GR
+ 16 A$compactflashmpactflash$608                                   0000BC GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 10.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+ 16 A$compactflashmpactflash$613                                   0000BF GR
+ 16 A$compactflashmpactflash$633                                   0000C0 GR
+ 16 A$compactflashmpactflash$634                                   0000C2 GR
+ 16 A$compactflashmpactflash$635                                   0000C5 GR
+ 16 A$compactflashmpactflash$636                                   0000C7 GR
+ 16 A$compactflashmpactflash$637                                   0000C9 GR
+ 16 A$compactflashmpactflash$638                                   0000CB GR
+ 16 A$compactflashmpactflash$641                                   0000CD GR
+ 16 A$compactflashmpactflash$644                                   0000D0 GR
+ 16 A$compactflashmpactflash$645                                   0000D2 GR
+ 16 A$compactflashmpactflash$646                                   0000D3 GR
+ 16 A$compactflashmpactflash$647                                   0000D5 GR
+ 16 A$compactflashmpactflash$650                                   0000D8 GR
+ 16 A$compactflashmpactflash$653                                   0000DB GR
+ 16 A$compactflashmpactflash$654                                   0000DD GR
+ 16 A$compactflashmpactflash$655                                   0000DE GR
+ 16 A$compactflashmpactflash$656                                   0000E0 GR
+ 16 A$compactflashmpactflash$657                                   0000E1 GR
+ 16 A$compactflashmpactflash$658                                   0000E2 GR
+ 16 A$compactflashmpactflash$659                                   0000E3 GR
+ 16 A$compactflashmpactflash$660                                   0000E4 GR
+ 16 A$compactflashmpactflash$661                                   0000E5 GR
+ 16 A$compactflashmpactflash$662                                   0000E6 GR
+ 16 A$compactflashmpactflash$663                                   0000E8 GR
+ 16 A$compactflashmpactflash$664                                   0000E9 GR
+ 16 A$compactflashmpactflash$665                                   0000EA GR
+ 16 A$compactflashmpactflash$666                                   0000EB GR
+ 16 A$compactflashmpactflash$667                                   0000ED GR
+ 16 A$compactflashmpactflash$668                                   0000EE GR
+ 16 A$compactflashmpactflash$669                                   0000EF GR
+ 16 A$compactflashmpactflash$670                                   0000F1 GR
+ 16 A$compactflashmpactflash$671                                   0000F2 GR
+ 16 A$compactflashmpactflash$672                                   0000F3 GR
+ 16 A$compactflashmpactflash$673                                   0000F5 GR
+ 16 A$compactflashmpactflash$674                                   0000F7 GR
+ 16 A$compactflashmpactflash$675                                   0000F9 GR
+ 16 A$compactflashmpactflash$678                                   0000FA GR
+ 16 A$compactflashmpactflash$681                                   0000FD GR
+ 16 A$compactflashmpactflash$682                                   0000FF GR
+ 16 A$compactflashmpactflash$683                                   000100 GR
+ 16 A$compactflashmpactflash$684                                   000102 GR
+ 16 A$compactflashmpactflash$685                                   000104 GR
+ 16 A$compactflashmpactflash$686                                   000106 GR
+ 16 A$compactflashmpactflash$687                                   000109 GR
+ 16 A$compactflashmpactflash$688                                   00010B GR
+ 16 A$compactflashmpactflash$691                                   00010D GR
+ 16 A$compactflashmpactflash$694                                   000110 GR
+ 16 A$compactflashmpactflash$695                                   000112 GR
+ 16 A$compactflashmpactflash$696                                   000113 GR
+ 16 A$compactflashmpactflash$697                                   000114 GR
+ 16 A$compactflashmpactflash$698                                   000116 GR
+ 16 A$compactflashmpactflash$699                                   000117 GR
+ 16 A$compactflashmpactflash$700                                   000118 GR
+ 16 A$compactflashmpactflash$701                                   00011A GR
+ 16 A$compactflashmpactflash$702                                   00011C GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 11.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+ 16 A$compactflashmpactflash$703                                   00011D GR
+ 16 A$compactflashmpactflash$704                                   00011F GR
+ 16 A$compactflashmpactflash$705                                   000121 GR
+ 16 A$compactflashmpactflash$706                                   000123 GR
+ 16 A$compactflashmpactflash$707                                   000124 GR
+ 16 A$compactflashmpactflash$710                                   000125 GR
+ 16 A$compactflashmpactflash$713                                   000128 GR
+ 16 A$compactflashmpactflash$714                                   00012A GR
+ 16 A$compactflashmpactflash$715                                   00012B GR
+ 16 A$compactflashmpactflash$716                                   00012D GR
+ 16 A$compactflashmpactflash$717                                   00012F GR
+ 16 A$compactflashmpactflash$718                                   000131 GR
+ 16 A$compactflashmpactflash$719                                   000134 GR
+ 16 A$compactflashmpactflash$720                                   000136 GR
+ 16 A$compactflashmpactflash$723                                   000138 GR
+ 16 A$compactflashmpactflash$726                                   00013B GR
+ 16 A$compactflashmpactflash$727                                   00013D GR
+ 16 A$compactflashmpactflash$728                                   00013E GR
+ 16 A$compactflashmpactflash$729                                   00013F GR
+ 16 A$compactflashmpactflash$730                                   000141 GR
+ 16 A$compactflashmpactflash$731                                   000142 GR
+ 16 A$compactflashmpactflash$732                                   000143 GR
+ 16 A$compactflashmpactflash$733                                   000145 GR
+ 16 A$compactflashmpactflash$734                                   000147 GR
+ 16 A$compactflashmpactflash$735                                   000148 GR
+ 16 A$compactflashmpactflash$736                                   000149 GR
+ 16 A$compactflashmpactflash$737                                   00014B GR
+ 16 A$compactflashmpactflash$738                                   00014D GR
+ 16 A$compactflashmpactflash$739                                   00014F GR
+ 16 A$compactflashmpactflash$740                                   000150 GR
+ 16 A$compactflashmpactflash$743                                   000151 GR
+ 16 A$compactflashmpactflash$746                                   000154 GR
+ 16 A$compactflashmpactflash$747                                   000156 GR
+ 16 A$compactflashmpactflash$748                                   000157 GR
+ 16 A$compactflashmpactflash$749                                   000159 GR
+ 16 A$compactflashmpactflash$750                                   00015B GR
+ 16 A$compactflashmpactflash$751                                   00015D GR
+ 16 A$compactflashmpactflash$752                                   000160 GR
+ 16 A$compactflashmpactflash$753                                   000162 GR
+ 16 A$compactflashmpactflash$756                                   000164 GR
+ 16 A$compactflashmpactflash$759                                   000167 GR
+ 16 A$compactflashmpactflash$760                                   000169 GR
+ 16 A$compactflashmpactflash$761                                   00016A GR
+ 16 A$compactflashmpactflash$762                                   00016B GR
+ 16 A$compactflashmpactflash$763                                   00016D GR
+ 16 A$compactflashmpactflash$764                                   00016E GR
+ 16 A$compactflashmpactflash$765                                   00016F GR
+ 16 A$compactflashmpactflash$766                                   000171 GR
+ 16 A$compactflashmpactflash$767                                   000173 GR
+ 16 A$compactflashmpactflash$768                                   000174 GR
+ 16 A$compactflashmpactflash$769                                   000175 GR
+ 16 A$compactflashmpactflash$770                                   000176 GR
+ 16 A$compactflashmpactflash$771                                   000178 GR
+ 16 A$compactflashmpactflash$772                                   00017A GR
+ 16 A$compactflashmpactflash$773                                   00017C GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 12.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+ 16 A$compactflashmpactflash$774                                   00017D GR
+ 16 A$compactflashmpactflash$777                                   00017E GR
+ 16 A$compactflashmpactflash$780                                   000181 GR
+ 16 A$compactflashmpactflash$781                                   000183 GR
+ 16 A$compactflashmpactflash$782                                   000184 GR
+ 16 A$compactflashmpactflash$783                                   000186 GR
+ 16 A$compactflashmpactflash$784                                   000188 GR
+ 16 A$compactflashmpactflash$785                                   00018A GR
+ 16 A$compactflashmpactflash$786                                   00018D GR
+ 16 A$compactflashmpactflash$787                                   00018F GR
+ 16 A$compactflashmpactflash$790                                   000191 GR
+ 16 A$compactflashmpactflash$793                                   000194 GR
+ 16 A$compactflashmpactflash$794                                   000196 GR
+ 16 A$compactflashmpactflash$795                                   000197 GR
+ 16 A$compactflashmpactflash$796                                   000198 GR
+ 16 A$compactflashmpactflash$797                                   00019A GR
+ 16 A$compactflashmpactflash$798                                   00019B GR
+ 16 A$compactflashmpactflash$799                                   00019C GR
+ 16 A$compactflashmpactflash$800                                   00019E GR
+ 16 A$compactflashmpactflash$801                                   0001A0 GR
+ 16 A$compactflashmpactflash$802                                   0001A1 GR
+ 16 A$compactflashmpactflash$803                                   0001A2 GR
+ 16 A$compactflashmpactflash$804                                   0001A3 GR
+ 16 A$compactflashmpactflash$805                                   0001A4 GR
+ 16 A$compactflashmpactflash$806                                   0001A6 GR
+ 16 A$compactflashmpactflash$807                                   0001A9 GR
+ 16 A$compactflashmpactflash$808                                   0001AC GR
+ 16 A$compactflashmpactflash$809                                   0001AE GR
+ 16 A$compactflashmpactflash$810                                   0001B0 GR
+ 16 A$compactflashmpactflash$811                                   0001B1 GR
+ 16 A$compactflashmpactflash$814                                   0001B2 GR
+ 16 A$compactflashmpactflash$815                                   0001B4 GR
+ 16 A$compactflashmpactflash$816                                   0001B5 GR
+ 16 A$compactflashmpactflash$817                                   0001B6 GR
+ 16 A$compactflashmpactflash$818                                   0001B8 GR
+ 16 A$compactflashmpactflash$819                                   0001B9 GR
+ 16 A$compactflashmpactflash$820                                   0001BA GR
+ 16 A$compactflashmpactflash$821                                   0001BC GR
+ 16 A$compactflashmpactflash$822                                   0001BD GR
+ 16 A$compactflashmpactflash$823                                   0001BE GR
+ 16 A$compactflashmpactflash$824                                   0001C0 GR
+ 16 A$compactflashmpactflash$825                                   0001C1 GR
+ 16 A$compactflashmpactflash$826                                   0001C2 GR
+ 16 A$compactflashmpactflash$827                                   0001C4 GR
+ 16 A$compactflashmpactflash$828                                   0001C6 GR
+ 16 A$compactflashmpactflash$829                                   0001C7 GR
+ 16 A$compactflashmpactflash$830                                   0001C8 GR
+ 16 A$compactflashmpactflash$831                                   0001C9 GR
+ 16 A$compactflashmpactflash$832                                   0001CA GR
+ 16 A$compactflashmpactflash$833                                   0001CB GR
+ 16 A$compactflashmpactflash$834                                   0001CD GR
+ 16 A$compactflashmpactflash$835                                   0001CF GR
+ 16 A$compactflashmpactflash$836                                   0001D0 GR
+ 16 A$compactflashmpactflash$837                                   0001D2 GR
+ 16 A$compactflashmpactflash$838                                   0001D3 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 13.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+ 16 A$compactflashmpactflash$839                                   0001D4 GR
+ 16 A$compactflashmpactflash$840                                   0001D5 GR
+ 16 A$compactflashmpactflash$841                                   0001D6 GR
+ 16 A$compactflashmpactflash$842                                   0001D7 GR
+ 16 A$compactflashmpactflash$843                                   0001D8 GR
+ 16 A$compactflashmpactflash$844                                   0001D9 GR
+ 16 A$compactflashmpactflash$846                                   0001DA GR
+ 16 A$compactflashmpactflash$847                                   0001DC GR
+ 16 A$compactflashmpactflash$848                                   0001DD GR
+ 16 A$compactflashmpactflash$849                                   0001DE GR
+ 16 A$compactflashmpactflash$850                                   0001E0 GR
+ 16 A$compactflashmpactflash$851                                   0001E1 GR
+ 16 A$compactflashmpactflash$852                                   0001E3 GR
+ 16 A$compactflashmpactflash$853                                   0001E5 GR
+ 16 A$compactflashmpactflash$854                                   0001E6 GR
+ 16 A$compactflashmpactflash$855                                   0001E7 GR
+ 16 A$compactflashmpactflash$856                                   0001E8 GR
+ 16 A$compactflashmpactflash$857                                   0001EB GR
+ 16 A$compactflashmpactflash$858                                   0001EC GR
+ 16 A$compactflashmpactflash$860                                   0001ED GR
+ 16 A$compactflashmpactflash$861                                   0001EE GR
+ 16 A$compactflashmpactflash$862                                   0001EF GR
+ 16 A$compactflashmpactflash$863                                   0001F1 GR
+ 16 A$compactflashmpactflash$870                                   0001F4 GR
+ 16 A$compactflashmpactflash$873                                   0001F7 GR
+ 16 A$compactflashmpactflash$874                                   0001F9 GR
+ 16 A$compactflashmpactflash$875                                   0001FA GR
+ 16 A$compactflashmpactflash$876                                   0001FC GR
+ 16 A$compactflashmpactflash$877                                   0001FE GR
+ 16 A$compactflashmpactflash$878                                   000200 GR
+ 16 A$compactflashmpactflash$879                                   000202 GR
+ 16 A$compactflashmpactflash$880                                   000204 GR
+ 16 A$compactflashmpactflash$881                                   000207 GR
+ 16 A$compactflashmpactflash$882                                   000209 GR
+ 16 A$compactflashmpactflash$883                                   00020B GR
+ 16 A$compactflashmpactflash$884                                   00020D GR
+ 16 A$compactflashmpactflash$887                                   00020F GR
+ 16 A$compactflashmpactflash$890                                   000212 GR
+ 16 A$compactflashmpactflash$891                                   000214 GR
+ 16 A$compactflashmpactflash$892                                   000216 GR
+ 16 A$compactflashmpactflash$893                                   000218 GR
+ 16 A$compactflashmpactflash$894                                   00021A GR
+ 16 A$compactflashmpactflash$895                                   00021C GR
+ 16 A$compactflashmpactflash$898                                   00021D GR
+ 16 A$compactflashmpactflash$901                                   000220 GR
+ 16 A$compactflashmpactflash$902                                   000222 GR
+ 16 A$compactflashmpactflash$903                                   000223 GR
+ 16 A$compactflashmpactflash$904                                   000225 GR
+ 16 A$compactflashmpactflash$905                                   000227 GR
+ 16 A$compactflashmpactflash$906                                   000229 GR
+ 16 A$compactflashmpactflash$907                                   00022B GR
+ 16 A$compactflashmpactflash$908                                   00022D GR
+ 16 A$compactflashmpactflash$909                                   00022F GR
+ 16 A$compactflashmpactflash$910                                   000231 GR
+ 16 A$compactflashmpactflash$911                                   000234 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 14.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+ 16 A$compactflashmpactflash$912                                   000236 GR
+ 16 A$compactflashmpactflash$913                                   000238 GR
+ 16 A$compactflashmpactflash$914                                   00023A GR
+ 16 A$compactflashmpactflash$915                                   00023C GR
+ 16 A$compactflashmpactflash$916                                   00023E GR
+ 16 A$compactflashmpactflash$919                                   000240 GR
+ 16 A$compactflashmpactflash$922                                   000243 GR
+ 16 A$compactflashmpactflash$923                                   000245 GR
+ 16 A$compactflashmpactflash$924                                   000247 GR
+ 16 A$compactflashmpactflash$929                                   000248 GR
+ 16 A$compactflashmpactflash$930                                   000249 GR
+ 16 A$compactflashmpactflash$931                                   00024C GR
+ 16 A$compactflashmpactflash$934                                   00024F GR
+ 16 A$compactflashmpactflash$935                                   000251 GR
+ 16 A$compactflashmpactflash$936                                   000253 GR
+ 16 A$compactflashmpactflash$937                                   000254 GR
+ 16 A$compactflashmpactflash$938                                   000255 GR
+ 16 A$compactflashmpactflash$939                                   000256 GR
+ 16 A$compactflashmpactflash$940                                   000257 GR
+ 16 A$compactflashmpactflash$942                                   000258 GR
+ 16 A$compactflashmpactflash$943                                   00025A GR
+ 16 A$compactflashmpactflash$944                                   00025C GR
+ 16 A$compactflashmpactflash$945                                   00025D GR
+ 16 A$compactflashmpactflash$946                                   00025E GR
+ 16 A$compactflashmpactflash$947                                   00025F GR
+ 16 A$compactflashmpactflash$948                                   000260 GR
+ 16 A$compactflashmpactflash$949                                   000262 GR
+ 16 A$compactflashmpactflash$952                                   000264 GR
+ 16 A$compactflashmpactflash$953                                   000266 GR
+ 16 A$compactflashmpactflash$954                                   000268 GR
+ 16 A$compactflashmpactflash$957                                   00026B GR
+ 16 A$compactflashmpactflash$958                                   00026D GR
+ 16 A$compactflashmpactflash$959                                   00026E GR
+ 16 A$compactflashmpactflash$960                                   000270 GR
+ 16 A$compactflashmpactflash$961                                   000272 GR
+ 16 A$compactflashmpactflash$962                                   000274 GR
+ 16 A$compactflashmpactflash$963                                   000276 GR
+ 16 A$compactflashmpactflash$964                                   000278 GR
+ 16 A$compactflashmpactflash$965                                   00027B GR
+ 16 A$compactflashmpactflash$966                                   00027D GR
+ 16 A$compactflashmpactflash$967                                   00027F GR
+ 16 A$compactflashmpactflash$968                                   000281 GR
+ 16 A$compactflashmpactflash$971                                   000283 GR
+ 16 A$compactflashmpactflash$974                                   000286 GR
+ 16 A$compactflashmpactflash$975                                   000288 GR
+ 16 A$compactflashmpactflash$976                                   00028A GR
+ 16 A$compactflashmpactflash$977                                   00028B GR
+ 16 A$compactflashmpactflash$978                                   00028D GR
+ 16 A$compactflashmpactflash$979                                   00028F GR
+ 16 A$compactflashmpactflash$980                                   000290 GR
+ 16 A$compactflashmpactflash$981                                   000291 GR
+ 16 A$compactflashmpactflash$982                                   000292 GR
+ 16 A$compactflashmpactflash$983                                   000293 GR
+ 16 A$compactflashmpactflash$984                                   000294 GR
+ 16 A$compactflashmpactflash$985                                   000295 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 15.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
+ 16 A$compactflashmpactflash$986                                   000296 GR
+ 16 A$compactflashmpactflash$987                                   000297 GR
+ 16 A$compactflashmpactflash$988                                   000298 GR
+ 16 A$compactflashmpactflash$989                                   00029A GR
+ 16 A$compactflashmpactflash$990                                   00029C GR
+ 16 A$compactflashmpactflash$991                                   00029D GR
+ 16 A$compactflashmpactflash$992                                   00029E GR
+ 16 A$compactflashmpactflash$993                                   00029F GR
+ 16 A$compactflashmpactflash$994                                   0002A0 GR
+ 16 A$compactflashmpactflash$995                                   0002A1 GR
+ 16 A$compactflashmpactflash$996                                   0002A2 GR
+ 16 A$compactflashmpactflash$997                                   0002A3 GR
+ 16 A$compactflashmpactflash$998                                   0002A4 GR
+ 16 A$compactflashmpactflash$999                                   0002A5 GR
     A.0                                                         =  0000E0 L
     A.1                                                         =  0000E1 L
     A.2                                                         =  0000E2 L
     A.3                                                         =  0000E3 L
     A.4                                                         =  0000E4 L
     A.5                                                         =  0000E5 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 9.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     A.6                                                         =  0000E6 L
     A.7                                                         =  0000E7 L
     AC                                                          =  0000D6 L
@@ -504,126 +884,126 @@ Symbol Table
     B.5                                                         =  0000F5 L
     B.6                                                         =  0000F6 L
     B.7                                                         =  0000F7 L
- 16 C$compactflash.c$100$3_0$22                                 =  000139 GR
- 16 C$compactflash.c$102$2_0$21                                 =  000139 GR
- 16 C$compactflash.c$105$1_0$20                                 =  000140 GR
- 16 C$compactflash.c$107$1_0$20                                 =  000151 GR
- 16 C$compactflash.c$108$3_0$23                                 =  000158 GR
- 16 C$compactflash.c$11$1_0$9                                   =  000014 GR
- 16 C$compactflash.c$110$3_0$23                                 =  000169 GR
- 16 C$compactflash.c$111$3_0$23                                 =  00016C GR
- 16 C$compactflash.c$113$3_0$23                                 =  000199 GR
- 16 C$compactflash.c$115$3_0$23                                 =  0001A2 GR
- 16 C$compactflash.c$117$2_0$21                                 =  0001AB GR
- 16 C$compactflash.c$12$1_0$9                                   =  00001A GR
- 16 C$compactflash.c$120$1_0$20                                 =  0001B8 GR
- 16 C$compactflash.c$121$1_0$20                                 =  0001C0 GR
- 16 C$compactflash.c$123$1_0$25                                 =  0001C1 GR
- 16 C$compactflash.c$131$1_0$25                                 =  0001CA GR
- 16 C$compactflash.c$132$1_0$25                                 =  0001CA GR
- 16 C$compactflash.c$134$1_0$25                                 =  0001D6 GR
- 16 C$compactflash.c$135$1_0$25                                 =  0001D9 GR
- 16 C$compactflash.c$137$1_0$25                                 =  0001DF GR
- 16 C$compactflash.c$138$1_0$25                                 =  0001E2 GR
- 16 C$compactflash.c$14$1_0$11                                  =  00001B GR
- 16 C$compactflash.c$140$1_0$25                                 =  0001EB GR
- 16 C$compactflash.c$141$1_0$25                                 =  0001EE GR
- 16 C$compactflash.c$143$1_0$25                                 =  0001FA GR
- 16 C$compactflash.c$144$1_0$25                                 =  0001FD GR
- 16 C$compactflash.c$146$1_0$25                                 =  000206 GR
- 16 C$compactflash.c$147$1_0$25                                 =  000209 GR
- 16 C$compactflash.c$149$1_0$25                                 =  000216 GR
- 16 C$compactflash.c$150$1_0$25                                 =  000219 GR
- 16 C$compactflash.c$152$1_0$25                                 =  000222 GR
- 16 C$compactflash.c$153$1_0$25                                 =  000225 GR
- 16 C$compactflash.c$155$1_0$25                                 =  000233 GR
- 16 C$compactflash.c$156$1_0$25                                 =  000236 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 10.
+ 16 C$compactflash.c$100$3_0$22                                 =  000248 GR
+ 16 C$compactflash.c$102$2_0$21                                 =  000248 GR
+ 16 C$compactflash.c$105$1_0$20                                 =  00024F GR
+ 16 C$compactflash.c$107$1_0$20                                 =  000264 GR
+ 16 C$compactflash.c$108$3_0$23                                 =  00026B GR
+ 16 C$compactflash.c$11$1_0$9                                   =  000035 GR
+ 16 C$compactflash.c$110$3_0$23                                 =  000283 GR
+ 16 C$compactflash.c$111$3_0$23                                 =  000286 GR
+ 16 C$compactflash.c$113$3_0$23                                 =  0002B6 GR
+ 16 C$compactflash.c$115$3_0$23                                 =  0002C1 GR
+ 16 C$compactflash.c$117$2_0$21                                 =  0002CA GR
+ 16 C$compactflash.c$12$1_0$9                                   =  000044 GR
+ 16 C$compactflash.c$120$1_0$20                                 =  0002D7 GR
+ 16 C$compactflash.c$121$1_0$20                                 =  0002DF GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 16.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 C$compactflash.c$158$1_0$25                                 =  00023F GR
- 16 C$compactflash.c$159$1_0$25                                 =  000242 GR
- 16 C$compactflash.c$162$1_0$25                                 =  000256 GR
- 16 C$compactflash.c$164$2_0$26                                 =  000277 GR
- 16 C$compactflash.c$166$3_0$27                                 =  000277 GR
- 16 C$compactflash.c$167$3_0$27                                 =  00027A GR
- 16 C$compactflash.c$169$3_0$27                                 =  00028B GR
- 16 C$compactflash.c$17$1_0$11                                  =  00001B GR
- 16 C$compactflash.c$170$3_0$27                                 =  00028E GR
- 16 C$compactflash.c$172$3_0$27                                 =  000294 GR
- 16 C$compactflash.c$173$3_0$27                                 =  000297 GR
- 16 C$compactflash.c$175$3_0$27                                 =  0002A8 GR
- 16 C$compactflash.c$176$3_0$27                                 =  0002AB GR
- 16 C$compactflash.c$178$3_0$27                                 =  0002AF GR
- 16 C$compactflash.c$180$2_0$26                                 =  0002AF GR
- 16 C$compactflash.c$183$1_0$25                                 =  0002B5 GR
- 16 C$compactflash.c$185$1_0$25                                 =  0002BE GR
- 16 C$compactflash.c$186$3_0$28                                 =  0002C5 GR
- 16 C$compactflash.c$188$3_0$28                                 =  0002DE GR
- 16 C$compactflash.c$189$3_0$28                                 =  0002E1 GR
- 16 C$compactflash.c$19$2_0$12                                  =  00001B GR
- 16 C$compactflash.c$191$3_0$28                                 =  000308 GR
- 16 C$compactflash.c$193$3_0$28                                 =  00030D GR
- 16 C$compactflash.c$195$2_0$26                                 =  000316 GR
- 16 C$compactflash.c$198$1_0$25                                 =  000321 GR
- 16 C$compactflash.c$199$1_0$25                                 =  000329 GR
- 16 C$compactflash.c$201$1_0$30                                 =  00032A GR
- 16 C$compactflash.c$203$1_0$30                                 =  00032A GR
- 16 C$compactflash.c$204$1_0$30                                 =  000330 GR
- 16 C$compactflash.c$21$1_0$11                                  =  00001F GR
- 16 C$compactflash.c$22$1_0$11                                  =  000022 GR
- 16 C$compactflash.c$24$1_0$14                                  =  000023 GR
- 16 C$compactflash.c$28$1_0$14                                  =  000023 GR
+ 16 C$compactflash.c$123$1_0$25                                 =  0002E0 GR
+ 16 C$compactflash.c$131$1_0$25                                 =  0002ED GR
+ 16 C$compactflash.c$132$1_0$25                                 =  0002F0 GR
+ 16 C$compactflash.c$134$1_0$25                                 =  0002F8 GR
+ 16 C$compactflash.c$135$1_0$25                                 =  0002FB GR
+ 16 C$compactflash.c$137$1_0$25                                 =  00031A GR
+ 16 C$compactflash.c$138$1_0$25                                 =  00031D GR
+ 16 C$compactflash.c$14$1_0$11                                  =  000045 GR
+ 16 C$compactflash.c$140$1_0$25                                 =  00032D GR
+ 16 C$compactflash.c$141$1_0$25                                 =  000330 GR
+ 16 C$compactflash.c$143$1_0$25                                 =  000345 GR
+ 16 C$compactflash.c$144$1_0$25                                 =  000348 GR
+ 16 C$compactflash.c$146$1_0$25                                 =  000358 GR
+ 16 C$compactflash.c$147$1_0$25                                 =  00035B GR
+ 16 C$compactflash.c$149$1_0$25                                 =  000371 GR
+ 16 C$compactflash.c$150$1_0$25                                 =  000374 GR
+ 16 C$compactflash.c$152$1_0$25                                 =  000384 GR
+ 16 C$compactflash.c$153$1_0$25                                 =  000387 GR
+ 16 C$compactflash.c$155$1_0$25                                 =  00039E GR
+ 16 C$compactflash.c$156$1_0$25                                 =  0003A1 GR
+ 16 C$compactflash.c$158$1_0$25                                 =  0003B1 GR
+ 16 C$compactflash.c$159$1_0$25                                 =  0003B4 GR
+ 16 C$compactflash.c$162$3_0$27                                 =  0003CF GR
+ 16 C$compactflash.c$164$2_0$26                                 =  000411 GR
+ 16 C$compactflash.c$166$3_0$27                                 =  000411 GR
+ 16 C$compactflash.c$167$3_0$27                                 =  000414 GR
+ 16 C$compactflash.c$169$3_0$27                                 =  00042C GR
+ 16 C$compactflash.c$17$1_0$11                                  =  000047 GR
+ 16 C$compactflash.c$170$3_0$27                                 =  00042F GR
+ 16 C$compactflash.c$172$3_0$27                                 =  00043A GR
+ 16 C$compactflash.c$173$3_0$27                                 =  00043D GR
+ 16 C$compactflash.c$175$3_0$27                                 =  00045D GR
+ 16 C$compactflash.c$176$3_0$27                                 =  000460 GR
+ 16 C$compactflash.c$178$3_0$27                                 =  000465 GR
+ 16 C$compactflash.c$180$2_0$26                                 =  000465 GR
+ 16 C$compactflash.c$183$1_0$25                                 =  00046C GR
+ 16 C$compactflash.c$185$1_0$25                                 =  000481 GR
+ 16 C$compactflash.c$186$3_0$28                                 =  000488 GR
+ 16 C$compactflash.c$188$3_0$28                                 =  0004A0 GR
+ 16 C$compactflash.c$189$3_0$28                                 =  0004A3 GR
+ 16 C$compactflash.c$19$2_0$12                                  =  000047 GR
+ 16 C$compactflash.c$191$3_0$28                                 =  0004E4 GR
+ 16 C$compactflash.c$193$3_0$28                                 =  0004EF GR
+ 16 C$compactflash.c$195$2_0$26                                 =  0004F9 GR
+ 16 C$compactflash.c$198$1_0$25                                 =  000506 GR
+ 16 C$compactflash.c$199$1_0$25                                 =  00050E GR
+ 16 C$compactflash.c$201$1_0$30                                 =  00050F GR
+ 16 C$compactflash.c$203$1_0$30                                 =  00050F GR
+ 16 C$compactflash.c$204$1_0$30                                 =  000515 GR
+ 16 C$compactflash.c$21$1_0$11                                  =  000064 GR
+ 16 C$compactflash.c$22$1_0$11                                  =  000067 GR
+ 16 C$compactflash.c$24$1_0$14                                  =  000068 GR
+ 16 C$compactflash.c$28$1_0$14                                  =  00006A GR
  16 C$compactflash.c$3$0_0$9                                    =  000000 GR
- 16 C$compactflash.c$30$2_0$15                                  =  000023 GR
- 16 C$compactflash.c$32$1_0$14                                  =  000028 GR
- 16 C$compactflash.c$33$1_0$14                                  =  000033 GR
- 16 C$compactflash.c$35$1_0$17                                  =  000034 GR
- 16 C$compactflash.c$38$1_0$17                                  =  000034 GR
- 16 C$compactflash.c$40$2_0$18                                  =  000034 GR
- 16 C$compactflash.c$42$1_0$17                                  =  000039 GR
- 16 C$compactflash.c$43$1_0$17                                  =  000044 GR
- 16 C$compactflash.c$45$1_0$20                                  =  000045 GR
- 16 C$compactflash.c$5$1_0$9                                    =  000000 GR
- 16 C$compactflash.c$53$1_0$20                                  =  00004F GR
- 16 C$compactflash.c$54$1_0$20                                  =  00004F GR
- 16 C$compactflash.c$56$1_0$20                                  =  00005B GR
- 16 C$compactflash.c$57$1_0$20                                  =  00005E GR
- 16 C$compactflash.c$59$1_0$20                                  =  000064 GR
- 16 C$compactflash.c$60$1_0$20                                  =  000067 GR
- 16 C$compactflash.c$62$1_0$20                                  =  000070 GR
- 16 C$compactflash.c$63$1_0$20                                  =  000073 GR
- 16 C$compactflash.c$65$1_0$20                                  =  00007F GR
- 16 C$compactflash.c$66$1_0$20                                  =  000082 GR
- 16 C$compactflash.c$68$1_0$20                                  =  00008B GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 11.
+ 16 C$compactflash.c$30$2_0$15                                  =  00006A GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 17.
 Hexadecimal [24-Bits]
 
 Symbol Table
 
- 16 C$compactflash.c$69$1_0$20                                  =  00008E GR
+ 16 C$compactflash.c$32$1_0$14                                  =  000088 GR
+ 16 C$compactflash.c$33$1_0$14                                  =  000093 GR
+ 16 C$compactflash.c$35$1_0$17                                  =  000094 GR
+ 16 C$compactflash.c$38$1_0$17                                  =  000096 GR
+ 16 C$compactflash.c$40$2_0$18                                  =  000096 GR
+ 16 C$compactflash.c$42$1_0$17                                  =  0000B4 GR
+ 16 C$compactflash.c$43$1_0$17                                  =  0000BF GR
+ 16 C$compactflash.c$45$1_0$20                                  =  0000C0 GR
+ 16 C$compactflash.c$5$1_0$9                                    =  000000 GR
+ 16 C$compactflash.c$53$1_0$20                                  =  0000CD GR
+ 16 C$compactflash.c$54$1_0$20                                  =  0000D0 GR
+ 16 C$compactflash.c$56$1_0$20                                  =  0000D8 GR
+ 16 C$compactflash.c$57$1_0$20                                  =  0000DB GR
+ 16 C$compactflash.c$59$1_0$20                                  =  0000FA GR
+ 16 C$compactflash.c$60$1_0$20                                  =  0000FD GR
+ 16 C$compactflash.c$62$1_0$20                                  =  00010D GR
+ 16 C$compactflash.c$63$1_0$20                                  =  000110 GR
+ 16 C$compactflash.c$65$1_0$20                                  =  000125 GR
+ 16 C$compactflash.c$66$1_0$20                                  =  000128 GR
+ 16 C$compactflash.c$68$1_0$20                                  =  000138 GR
+ 16 C$compactflash.c$69$1_0$20                                  =  00013B GR
  16 C$compactflash.c$7$1_0$9                                    =  000009 GR
- 16 C$compactflash.c$71$1_0$20                                  =  00009B GR
- 16 C$compactflash.c$72$1_0$20                                  =  00009E GR
- 16 C$compactflash.c$74$1_0$20                                  =  0000A7 GR
- 16 C$compactflash.c$75$1_0$20                                  =  0000AA GR
- 16 C$compactflash.c$77$1_0$20                                  =  0000B8 GR
- 16 C$compactflash.c$78$1_0$20                                  =  0000BB GR
- 16 C$compactflash.c$80$1_0$20                                  =  0000C4 GR
- 16 C$compactflash.c$81$1_0$20                                  =  0000C7 GR
- 16 C$compactflash.c$84$1_0$20                                  =  0000DE GR
- 16 C$compactflash.c$86$2_0$21                                  =  000101 GR
- 16 C$compactflash.c$88$3_0$22                                  =  000101 GR
- 16 C$compactflash.c$89$3_0$22                                  =  000104 GR
- 16 C$compactflash.c$9$1_0$9                                    =  00000F GR
- 16 C$compactflash.c$91$3_0$22                                  =  000115 GR
- 16 C$compactflash.c$92$3_0$22                                  =  000118 GR
- 16 C$compactflash.c$94$3_0$22                                  =  00011E GR
- 16 C$compactflash.c$95$3_0$22                                  =  000121 GR
- 16 C$compactflash.c$97$3_0$22                                  =  000132 GR
- 16 C$compactflash.c$98$3_0$22                                  =  000135 GR
+ 16 C$compactflash.c$71$1_0$20                                  =  000151 GR
+ 16 C$compactflash.c$72$1_0$20                                  =  000154 GR
+ 16 C$compactflash.c$74$1_0$20                                  =  000164 GR
+ 16 C$compactflash.c$75$1_0$20                                  =  000167 GR
+ 16 C$compactflash.c$77$1_0$20                                  =  00017E GR
+ 16 C$compactflash.c$78$1_0$20                                  =  000181 GR
+ 16 C$compactflash.c$80$1_0$20                                  =  000191 GR
+ 16 C$compactflash.c$81$1_0$20                                  =  000194 GR
+ 16 C$compactflash.c$84$3_0$22                                  =  0001B2 GR
+ 16 C$compactflash.c$86$2_0$21                                  =  0001F4 GR
+ 16 C$compactflash.c$88$3_0$22                                  =  0001F4 GR
+ 16 C$compactflash.c$89$3_0$22                                  =  0001F7 GR
+ 16 C$compactflash.c$9$1_0$9                                    =  000028 GR
+ 16 C$compactflash.c$91$3_0$22                                  =  00020F GR
+ 16 C$compactflash.c$92$3_0$22                                  =  000212 GR
+ 16 C$compactflash.c$94$3_0$22                                  =  00021D GR
+ 16 C$compactflash.c$95$3_0$22                                  =  000220 GR
+ 16 C$compactflash.c$97$3_0$22                                  =  000240 GR
+ 16 C$compactflash.c$98$3_0$22                                  =  000243 GR
     CPRL2                                                       =  0000C8 L
     CT2                                                         =  0000C9 L
     CY                                                          =  0000D7 L
@@ -638,6 +1018,11 @@ Symbol Table
     EX1                                                         =  0000AA L
     EXEN2                                                       =  0000CB L
     EXF2                                                        =  0000CE L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 18.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     F0                                                          =  0000D5 L
     G$AC$0_0$0                                                  =  0000D6 G
     G$ACC$0_0$0                                                 =  0000E0 G
@@ -658,11 +1043,6 @@ Symbol Table
     G$IE1$0_0$0                                                 =  00008B G
     G$INT0$0_0$0                                                =  0000B2 G
     G$INT1$0_0$0                                                =  0000B3 G
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 12.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     G$IP$0_0$0                                                  =  0000B8 G
     G$IT0$0_0$0                                                 =  000088 G
     G$IT1$0_0$0                                                 =  00008A G
@@ -698,6 +1078,11 @@ Symbol Table
     G$P3$0_0$0                                                  =  0000B0 G
     G$P3_0$0_0$0                                                =  0000B0 G
     G$P3_1$0_0$0                                                =  0000B1 G
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 19.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     G$P3_2$0_0$0                                                =  0000B2 G
     G$P3_3$0_0$0                                                =  0000B3 G
     G$P3_4$0_0$0                                                =  0000B4 G
@@ -718,11 +1103,6 @@ Symbol Table
     G$RS0$0_0$0                                                 =  0000D3 G
     G$RS1$0_0$0                                                 =  0000D4 G
     G$RXD$0_0$0                                                 =  0000B0 G
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 13.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     G$SBUF$0_0$0                                                =  000099 G
     G$SCON$0_0$0                                                =  000098 G
     G$SM0$0_0$0                                                 =  00009F G
@@ -745,19 +1125,24 @@ Symbol Table
     G$TR1$0_0$0                                                 =  00008E G
     G$TXD$0_0$0                                                 =  0000B1 G
     G$WR$0_0$0                                                  =  0000B6 G
- 16 G$cfDiskGetSectorCount$0$0                                  =  00032A GR
+ 16 G$cfDiskGetSectorCount$0$0                                  =  00050F GR
  16 G$cfInit$0$0                                                =  000000 GR
- 16 G$cfReadSector$0$0                                          =  000045 GR
- 16 G$cfWaitCommandReady$0$0                                    =  000023 GR
- 16 G$cfWaitDataReady$0$0                                       =  000034 GR
- 16 G$cfWaitIdle$0$0                                            =  00001B GR
- 16 G$cfWriteSector$0$0                                         =  0001C1 GR
+ 16 G$cfReadSector$0$0                                          =  0000C0 GR
+ 16 G$cfWaitCommandReady$0$0                                    =  000068 GR
+ 16 G$cfWaitDataReady$0$0                                       =  000094 GR
+ 16 G$cfWaitIdle$0$0                                            =  000045 GR
+ 16 G$cfWriteSector$0$0                                         =  0002E0 GR
     IE                                                          =  0000A8 L
     IE.0                                                        =  0000A8 L
     IE.1                                                        =  0000A9 L
     IE.2                                                        =  0000AA L
     IE.3                                                        =  0000AB L
     IE.4                                                        =  0000AC L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 20.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     IE.5                                                        =  0000AD L
     IE.7                                                        =  0000AF L
     IE0                                                         =  000089 L
@@ -778,11 +1163,6 @@ Symbol Table
     P0                                                          =  000080 L
     P0.0                                                        =  000080 L
     P0.1                                                        =  000081 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 14.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     P0.2                                                        =  000082 L
     P0.3                                                        =  000083 L
     P0.4                                                        =  000084 L
@@ -818,6 +1198,11 @@ Symbol Table
     P3.7                                                        =  0000B7 L
     PCON                                                        =  000087 L
     PS                                                          =  0000BC L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 21.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     PSW                                                         =  0000D0 L
     PSW.0                                                       =  0000D0 L
     PSW.1                                                       =  0000D1 L
@@ -838,11 +1223,6 @@ Symbol Table
     RCLK                                                        =  0000CD L
     REN                                                         =  00009C L
     RI                                                          =  000098 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 15.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     RS0                                                         =  0000D3 L
     RS1                                                         =  0000D4 L
     RXD                                                         =  0000B0 L
@@ -878,6 +1258,11 @@ Symbol Table
     TCON.3                                                      =  00008B L
     TCON.4                                                      =  00008C L
     TCON.5                                                      =  00008D L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 22.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     TCON.6                                                      =  00008E L
     TCON.7                                                      =  00008F L
     TF0                                                         =  00008D L
@@ -895,18 +1280,13 @@ Symbol Table
     TR1                                                         =  00008E L
     TR2                                                         =  0000CA L
     TXD                                                         =  0000B1 L
- 16 XG$cfDiskGetSectorCount$0$0                                 =  000330 GR
- 16 XG$cfInit$0$0                                               =  00001A GR
- 16 XG$cfReadSector$0$0                                         =  0001C0 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 16.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
- 16 XG$cfWaitCommandReady$0$0                                   =  000033 GR
- 16 XG$cfWaitDataReady$0$0                                      =  000044 GR
- 16 XG$cfWaitIdle$0$0                                           =  000022 GR
- 16 XG$cfWriteSector$0$0                                        =  000329 GR
+ 16 XG$cfDiskGetSectorCount$0$0                                 =  000515 GR
+ 16 XG$cfInit$0$0                                               =  000044 GR
+ 16 XG$cfReadSector$0$0                                         =  0002DF GR
+ 16 XG$cfWaitCommandReady$0$0                                   =  000093 GR
+ 16 XG$cfWaitDataReady$0$0                                      =  0000BF GR
+ 16 XG$cfWaitIdle$0$0                                           =  000067 GR
+ 16 XG$cfWriteSector$0$0                                        =  00050E GR
     _AC                                                         =  0000D6 G
     _ACC                                                        =  0000E0 G
     _B                                                          =  0000F0 G
@@ -938,6 +1318,11 @@ Symbol Table
     _P0_3                                                       =  000083 G
     _P0_4                                                       =  000084 G
     _P0_5                                                       =  000085 G
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 23.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     _P0_6                                                       =  000086 G
     _P0_7                                                       =  000087 G
     _P1                                                         =  000090 G
@@ -958,11 +1343,6 @@ Symbol Table
     _P2_5                                                       =  0000A5 G
     _P2_6                                                       =  0000A6 G
     _P2_7                                                       =  0000A7 G
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 17.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     _P3                                                         =  0000B0 G
     _P3_0                                                       =  0000B0 G
     _P3_1                                                       =  0000B1 G
@@ -998,6 +1378,11 @@ Symbol Table
     _TCON                                                       =  000088 G
     _TF0                                                        =  00008D G
     _TF1                                                        =  00008F G
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 24.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     _TH0                                                        =  00008C G
     _TH1                                                        =  00008D G
     _TI                                                         =  000099 G
@@ -1011,18 +1396,13 @@ Symbol Table
     __gptrget                                                      ****** GX
     __gptrput                                                      ****** GX
     _bp                                                            ****** GX
- 16 _cfDiskGetSectorCount                                          00032A GR
+ 16 _cfDiskGetSectorCount                                          00050F GR
  16 _cfInit                                                        000000 GR
- 16 _cfReadSector                                                  000045 GR
- 16 _cfWaitCommandReady                                            000023 GR
- 16 _cfWaitDataReady                                               000034 GR
- 16 _cfWaitIdle                                                    00001B GR
- 16 _cfWriteSector                                                 0001C1 GR
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 18.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
+ 16 _cfReadSector                                                  0000C0 GR
+ 16 _cfWaitCommandReady                                            000068 GR
+ 16 _cfWaitDataReady                                               000094 GR
+ 16 _cfWaitIdle                                                    000045 GR
+ 16 _cfWriteSector                                                 0002E0 GR
     a                                                           =  0000E0 L
     a.0                                                         =  0000E0 L
     a.1                                                         =  0000E1 L
@@ -1058,6 +1438,11 @@ Symbol Table
     b.4                                                         =  0000F4 L
     b.5                                                         =  0000F5 L
     b.6                                                         =  0000F6 L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 25.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     b.7                                                         =  0000F7 L
     cprl2                                                       =  0000C8 L
     ct2                                                         =  0000C9 L
@@ -1078,11 +1463,6 @@ Symbol Table
     ie.0                                                        =  0000A8 L
     ie.1                                                        =  0000A9 L
     ie.2                                                        =  0000AA L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 19.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     ie.3                                                        =  0000AB L
     ie.4                                                        =  0000AC L
     ie.5                                                        =  0000AD L
@@ -1118,6 +1498,11 @@ Symbol Table
     p1.3                                                        =  000093 L
     p1.4                                                        =  000094 L
     p1.5                                                        =  000095 L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 26.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     p1.6                                                        =  000096 L
     p1.7                                                        =  000097 L
     p2                                                          =  0000A0 L
@@ -1138,11 +1523,6 @@ Symbol Table
     p3.5                                                        =  0000B5 L
     p3.6                                                        =  0000B6 L
     p3.7                                                        =  0000B7 L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 20.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     pcon                                                        =  000087 L
     ps                                                          =  0000BC L
     psw                                                         =  0000D0 L
@@ -1178,6 +1558,11 @@ Symbol Table
     scon.5                                                      =  00009D L
     scon.6                                                      =  00009E L
     scon.7                                                      =  00009F L
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 27.
+Hexadecimal [24-Bits]
+
+Symbol Table
+
     sm0                                                         =  00009F L
     sm1                                                         =  00009E L
     sm2                                                         =  00009D L
@@ -1198,11 +1583,6 @@ Symbol Table
     tcon.1                                                      =  000089 L
     tcon.2                                                      =  00008A L
     tcon.3                                                      =  00008B L
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 21.
-Hexadecimal [24-Bits]
-
-Symbol Table
-
     tcon.4                                                      =  00008C L
     tcon.5                                                      =  00008D L
     tcon.6                                                      =  00008E L
@@ -1223,7 +1603,8 @@ Symbol Table
     tr2                                                         =  0000CA L
     txd                                                         =  0000B1 L
 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 22.
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Intel 8051), page 28.
 Hexadecimal [24-Bits]
 
 Area Table
@@ -1250,7 +1631,7 @@ Area Table
   13 GSINIT5                                    size      0   flags   20
   14 GSINIT                                     size      0   flags   20
   15 GSFINAL                                    size      0   flags   20
-  16 CSEG                                       size    331   flags   20
+  16 CSEG                                       size    516   flags   20
   17 CONST                                      size      0   flags   20
   18 XINIT                                      size      0   flags   20
   19 CABS                                       size      0   flags   28

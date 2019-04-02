@@ -396,7 +396,7 @@
                                     396 	.area HOME    (CODE)
                                     397 	.area HOME    (CODE)
       000003                        398 __sdcc_program_startup:
-      000003 02 04 35         [24]  399 	ljmp	_main
+      000003 02 06 1A         [24]  399 	ljmp	_main
                                     400 ;	return from main will return to caller
                                     401 ;--------------------------------------------------------
                                     402 ; code
@@ -411,7 +411,7 @@
                                     411 ;	-----------------------------------------
                                     412 ;	 function sysLoadProgram
                                     413 ;	-----------------------------------------
-      0003DA                        414 _sysLoadProgram:
+      0005BF                        414 _sysLoadProgram:
                            000007   415 	ar7 = 0x07
                            000006   416 	ar6 = 0x06
                            000005   417 	ar5 = 0x05
@@ -422,60 +422,60 @@
                            000000   422 	ar0 = 0x00
                            000000   423 	C$main.c$67$1_0$25 ==.
                                     424 ;	main.c:67: __endasm;
-      0003DA C0 04            [24]  425 	PUSH	ar4
-      0003DC C0 05            [24]  426 	PUSH	ar5
-      0003DE C0 82            [24]  427 	PUSH	DPL
-      0003E0 C0 83            [24]  428 	PUSH	DPH
-      0003E2 75 98 50         [24]  429 	MOV	SCON, #0x50
-      0003E5 75 89 21         [24]  430 	MOV	TMOD, #0x21
-      0003E8 75 87 80         [24]  431 	MOV	PCON, #0x80
-      0003EB 75 8D FA         [24]  432 	MOV	TH1, #0xFA
-      0003EE 75 8B FA         [24]  433 	MOV	TL1, #0xFA
-      0003F1 D2 8E            [12]  434 	SETB	TR1
-      0003F3 05 90            [12]  435 	INC	P1
-      0003F5                        436 	    WAIT_RX1:
-      0003F5 30 98 FD         [24]  437 	JNB	RI, WAIT_RX1
-      0003F8 E5 99            [12]  438 	MOV	A, SBUF
-      0003FA FC               [12]  439 	MOV	R4, A
-      0003FB C2 98            [12]  440 	CLR	RI
-      0003FD 05 90            [12]  441 	INC	P1
-      0003FF                        442 	    WAIT_RX2:
-      0003FF 30 98 FD         [24]  443 	JNB	RI, WAIT_RX2
-      000402 E5 99            [12]  444 	MOV	A, SBUF
-      000404 FD               [12]  445 	MOV	R5, A
-      000405 C2 98            [12]  446 	CLR	RI
-      000407 05 90            [12]  447 	INC	P1
-      000409 90 00 00         [24]  448 	MOV	DPTR, #0x0000
-      00040C                        449 	    sysLoadProgram_LP:
-      00040C E4               [12]  450 	CLR	A
-      00040D C3               [12]  451 	CLR	C
-      00040E                        452 	    WAIT_RX3:
-      00040E 30 98 FD         [24]  453 	JNB	RI, WAIT_RX3
-      000411 E5 99            [12]  454 	MOV	A, SBUF
-      000413 C2 98            [12]  455 	CLR	RI
-      000415 05 90            [12]  456 	INC	P1
-      000417 F0               [24]  457 	MOVX	@DPTR, A
-      000418 A3               [24]  458 	INC	DPTR
-      000419 E5 82            [12]  459 	MOV	A, DPL
-      00041B 9C               [12]  460 	SUBB	A, R4
-      00041C 70 EE            [24]  461 	JNZ	sysLoadProgram_LP
-      00041E E5 83            [12]  462 	MOV	A, DPH
-      000420 9D               [12]  463 	SUBB	A, R5
-      000421 70 E9            [24]  464 	JNZ	sysLoadProgram_LP
-      000423 D0 83            [24]  465 	POP	DPH
-      000425 D0 82            [24]  466 	POP	DPL
-      000427 D0 05            [24]  467 	POP	ar5
-      000429 D0 04            [24]  468 	POP	ar4
-      00042B 90 FF 70         [24]  469 	MOV	DPTR, #0xFF70
-      00042E E0               [24]  470 	MOVX	A, @DPTR
-      00042F 90 00 00         [24]  471 	MOV	DPTR, #0x0000
-      000432 E4               [12]  472 	CLR	A
-      000433 73               [24]  473 	JMP	@A+DPTR
+      0005BF C0 04            [24]  425 	PUSH	ar4
+      0005C1 C0 05            [24]  426 	PUSH	ar5
+      0005C3 C0 82            [24]  427 	PUSH	DPL
+      0005C5 C0 83            [24]  428 	PUSH	DPH
+      0005C7 75 98 50         [24]  429 	MOV	SCON, #0x50
+      0005CA 75 89 21         [24]  430 	MOV	TMOD, #0x21
+      0005CD 75 87 80         [24]  431 	MOV	PCON, #0x80
+      0005D0 75 8D FA         [24]  432 	MOV	TH1, #0xFA
+      0005D3 75 8B FA         [24]  433 	MOV	TL1, #0xFA
+      0005D6 D2 8E            [12]  434 	SETB	TR1
+      0005D8 05 90            [12]  435 	INC	P1
+      0005DA                        436 	    WAIT_RX1:
+      0005DA 30 98 FD         [24]  437 	JNB	RI, WAIT_RX1
+      0005DD E5 99            [12]  438 	MOV	A, SBUF
+      0005DF FC               [12]  439 	MOV	R4, A
+      0005E0 C2 98            [12]  440 	CLR	RI
+      0005E2 05 90            [12]  441 	INC	P1
+      0005E4                        442 	    WAIT_RX2:
+      0005E4 30 98 FD         [24]  443 	JNB	RI, WAIT_RX2
+      0005E7 E5 99            [12]  444 	MOV	A, SBUF
+      0005E9 FD               [12]  445 	MOV	R5, A
+      0005EA C2 98            [12]  446 	CLR	RI
+      0005EC 05 90            [12]  447 	INC	P1
+      0005EE 90 00 00         [24]  448 	MOV	DPTR, #0x0000
+      0005F1                        449 	    sysLoadProgram_LP:
+      0005F1 E4               [12]  450 	CLR	A
+      0005F2 C3               [12]  451 	CLR	C
+      0005F3                        452 	    WAIT_RX3:
+      0005F3 30 98 FD         [24]  453 	JNB	RI, WAIT_RX3
+      0005F6 E5 99            [12]  454 	MOV	A, SBUF
+      0005F8 C2 98            [12]  455 	CLR	RI
+      0005FA 05 90            [12]  456 	INC	P1
+      0005FC F0               [24]  457 	MOVX	@DPTR, A
+      0005FD A3               [24]  458 	INC	DPTR
+      0005FE E5 82            [12]  459 	MOV	A, DPL
+      000600 9C               [12]  460 	SUBB	A, R4
+      000601 70 EE            [24]  461 	JNZ	sysLoadProgram_LP
+      000603 E5 83            [12]  462 	MOV	A, DPH
+      000605 9D               [12]  463 	SUBB	A, R5
+      000606 70 E9            [24]  464 	JNZ	sysLoadProgram_LP
+      000608 D0 83            [24]  465 	POP	DPH
+      00060A D0 82            [24]  466 	POP	DPL
+      00060C D0 05            [24]  467 	POP	ar5
+      00060E D0 04            [24]  468 	POP	ar4
+      000610 90 FF 70         [24]  469 	MOV	DPTR, #0xFF70
+      000613 E0               [24]  470 	MOVX	A, @DPTR
+      000614 90 00 00         [24]  471 	MOV	DPTR, #0x0000
+      000617 E4               [12]  472 	CLR	A
+      000618 73               [24]  473 	JMP	@A+DPTR
                            00005A   474 	C$main.c$68$1_0$25 ==.
                                     475 ;	main.c:68: }
                            00005A   476 	C$main.c$68$1_0$25 ==.
                            00005A   477 	XG$sysLoadProgram$0$0 ==.
-      000434 22               [24]  478 	ret
+      000619 22               [24]  478 	ret
                                     479 ;------------------------------------------------------------
                                     480 ;Allocation info for local variables in function 'main'
                                     481 ;------------------------------------------------------------
@@ -491,83 +491,83 @@
                                     491 ;	-----------------------------------------
                                     492 ;	 function main
                                     493 ;	-----------------------------------------
-      000435                        494 _main:
-      000435 C0 08            [24]  495 	push	_bp
-      000437 85 81 08         [24]  496 	mov	_bp,sp
-      00043A 05 81            [12]  497 	inc	sp
-      00043C 05 81            [12]  498 	inc	sp
+      00061A                        494 _main:
+      00061A C0 08            [24]  495 	push	_bp
+      00061C 85 81 08         [24]  496 	mov	_bp,sp
+      00061F 05 81            [12]  497 	inc	sp
+      000621 05 81            [12]  498 	inc	sp
                            000064   499 	C$main.c$75$1_0$26 ==.
                                     500 ;	main.c:75: P1 = 0x01;
-      00043E 75 90 01         [24]  501 	mov	_P1,#0x01
+      000623 75 90 01         [24]  501 	mov	_P1,#0x01
                            000067   502 	C$main.c$76$2_0$27 ==.
                                     503 ;	main.c:76: sysCopyBIOS(0x0000, 0x0000, 0x8000);
-      000441 90 00 00         [24]  504 	mov	dptr,#0x0000
-      000444 E4               [12]  505 	clr	a
-      000445 93               [24]  506 	movc	a,@a+dptr
-      000446 FE               [12]  507 	mov	r6,a
-      000447 7F 00            [12]  508 	mov	r7,#0x00
-      000449 90 00 00         [24]  509 	mov	dptr,#0x0000
-      00044C E0               [24]  510 	movx	a,@dptr
-      00044D FC               [12]  511 	mov	r4,a
-      00044E 7D 00            [12]  512 	mov	r5,#0x00
-      000450 7A 00            [12]  513 	mov	r2,#0x00
-      000452 7B 80            [12]  514 	mov	r3,#0x80
-      000454                        515 00101$:
-      000454 8A 00            [24]  516 	mov	ar0,r2
-      000456 8B 01            [24]  517 	mov	ar1,r3
-      000458 1A               [12]  518 	dec	r2
-      000459 BA FF 01         [24]  519 	cjne	r2,#0xff,00125$
-      00045C 1B               [12]  520 	dec	r3
-      00045D                        521 00125$:
-      00045D E8               [12]  522 	mov	a,r0
-      00045E 49               [12]  523 	orl	a,r1
-      00045F 60 19            [24]  524 	jz	00104$
-      000461 8E 82            [24]  525 	mov	dpl,r6
-      000463 8F 83            [24]  526 	mov	dph,r7
-      000465 E4               [12]  527 	clr	a
-      000466 93               [24]  528 	movc	a,@a+dptr
-      000467 F9               [12]  529 	mov	r1,a
-      000468 A3               [24]  530 	inc	dptr
-      000469 AE 82            [24]  531 	mov	r6,dpl
-      00046B AF 83            [24]  532 	mov	r7,dph
-      00046D 8C 82            [24]  533 	mov	dpl,r4
-      00046F 8D 83            [24]  534 	mov	dph,r5
-      000471 E9               [12]  535 	mov	a,r1
-      000472 F0               [24]  536 	movx	@dptr,a
-      000473 A3               [24]  537 	inc	dptr
-      000474 AC 82            [24]  538 	mov	r4,dpl
-      000476 AD 83            [24]  539 	mov	r5,dph
+      000626 90 00 00         [24]  504 	mov	dptr,#0x0000
+      000629 E4               [12]  505 	clr	a
+      00062A 93               [24]  506 	movc	a,@a+dptr
+      00062B FE               [12]  507 	mov	r6,a
+      00062C 7F 00            [12]  508 	mov	r7,#0x00
+      00062E 90 00 00         [24]  509 	mov	dptr,#0x0000
+      000631 E0               [24]  510 	movx	a,@dptr
+      000632 FC               [12]  511 	mov	r4,a
+      000633 7D 00            [12]  512 	mov	r5,#0x00
+      000635 7A 00            [12]  513 	mov	r2,#0x00
+      000637 7B 80            [12]  514 	mov	r3,#0x80
+      000639                        515 00101$:
+      000639 8A 00            [24]  516 	mov	ar0,r2
+      00063B 8B 01            [24]  517 	mov	ar1,r3
+      00063D 1A               [12]  518 	dec	r2
+      00063E BA FF 01         [24]  519 	cjne	r2,#0xff,00125$
+      000641 1B               [12]  520 	dec	r3
+      000642                        521 00125$:
+      000642 E8               [12]  522 	mov	a,r0
+      000643 49               [12]  523 	orl	a,r1
+      000644 60 19            [24]  524 	jz	00104$
+      000646 8E 82            [24]  525 	mov	dpl,r6
+      000648 8F 83            [24]  526 	mov	dph,r7
+      00064A E4               [12]  527 	clr	a
+      00064B 93               [24]  528 	movc	a,@a+dptr
+      00064C F9               [12]  529 	mov	r1,a
+      00064D A3               [24]  530 	inc	dptr
+      00064E AE 82            [24]  531 	mov	r6,dpl
+      000650 AF 83            [24]  532 	mov	r7,dph
+      000652 8C 82            [24]  533 	mov	dpl,r4
+      000654 8D 83            [24]  534 	mov	dph,r5
+      000656 E9               [12]  535 	mov	a,r1
+      000657 F0               [24]  536 	movx	@dptr,a
+      000658 A3               [24]  537 	inc	dptr
+      000659 AC 82            [24]  538 	mov	r4,dpl
+      00065B AD 83            [24]  539 	mov	r5,dph
                            00009E   540 	C$main.c$79$1_0$26 ==.
                                     541 ;	main.c:79: if(1)
-      000478 80 DA            [24]  542 	sjmp	00101$
-      00047A                        543 00104$:
+      00065D 80 DA            [24]  542 	sjmp	00101$
+      00065F                        543 00104$:
                            0000A0   544 	C$main.c$81$2_0$28 ==.
                                     545 ;	main.c:81: sysEnterNormalMode();
-      00047A 90 FF 70         [24]  546 	mov	dptr,#0xff70
-      00047D E4               [12]  547 	clr	a
-      00047E F0               [24]  548 	movx	@dptr,a
+      00065F 90 FF 70         [24]  546 	mov	dptr,#0xff70
+      000662 E4               [12]  547 	clr	a
+      000663 F0               [24]  548 	movx	@dptr,a
                            0000A5   549 	C$main.c$83$2_0$28 ==.
                                     550 ;	main.c:83: ledTest();
-      00047F 12 35 D1         [24]  551 	lcall	_ledTest
+      000664 12 37 B0         [24]  551 	lcall	_ledTest
                            0000A8   552 	C$main.c$97$2_0$28 ==.
                                     553 ;	main.c:97: cfTest(0);
-      000482 75 82 00         [24]  554 	mov	dpl,#0x00
-      000485 12 37 55         [24]  555 	lcall	_cfTest
+      000667 75 82 00         [24]  554 	mov	dpl,#0x00
+      00066A 12 39 34         [24]  555 	lcall	_cfTest
                            0000AE   556 	C$main.c$99$2_0$28 ==.
                                     557 ;	main.c:99: FATTest(0);
-      000488 75 82 00         [24]  558 	mov	dpl,#0x00
-      00048B 12 37 F7         [24]  559 	lcall	_FATTest
+      00066D 75 82 00         [24]  558 	mov	dpl,#0x00
+      000670 12 39 D6         [24]  559 	lcall	_FATTest
                            0000B4   560 	C$main.c$110$1_0$26 ==.
                                     561 ;	main.c:110: while(1);
-      00048E                        562 00108$:
-      00048E 80 FE            [24]  563 	sjmp	00108$
+      000673                        562 00108$:
+      000673 80 FE            [24]  563 	sjmp	00108$
                            0000B6   564 	C$main.c$111$1_0$26 ==.
                                     565 ;	main.c:111: }
-      000490 85 08 81         [24]  566 	mov	sp,_bp
-      000493 D0 08            [24]  567 	pop	_bp
+      000675 85 08 81         [24]  566 	mov	sp,_bp
+      000678 D0 08            [24]  567 	pop	_bp
                            0000BB   568 	C$main.c$111$1_0$26 ==.
                            0000BB   569 	XG$main$0$0 ==.
-      000495 22               [24]  570 	ret
+      00067A 22               [24]  570 	ret
                                     571 	.area CSEG    (CODE)
                                     572 	.area CONST   (CODE)
                                     573 	.area XINIT   (CODE)
