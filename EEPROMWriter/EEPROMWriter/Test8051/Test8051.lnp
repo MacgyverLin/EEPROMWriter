@@ -1,0 +1,15 @@
+"STARTUP.obj",
+"compactflash.obj",
+"delay.obj",
+"led.obj",
+"main.obj",
+"sysctrl.obj",
+"test.obj",
+"sio.obj",
+"ISD51.obj",
+"diskio.obj",
+"pff.obj" 
+TO "Test8051" 
+RAMSIZE(256) 
+CODE( 0X0000-0X7FFF )
+XDATA( 0X8000-0XFEFF )
