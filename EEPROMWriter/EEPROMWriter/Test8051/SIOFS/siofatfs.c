@@ -42,7 +42,6 @@
 
 #define VALID_ACK(cmd, ack) (((cmd.msgType) & SIOF_MSG_MASK)==ack.msgType)
 
-#pragma pack (1)
 typedef struct
 {
     BYTE msgType;

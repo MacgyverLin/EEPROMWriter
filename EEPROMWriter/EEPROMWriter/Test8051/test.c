@@ -1,43 +1,40 @@
 #include "test.h"
-#include "compactflash.h"
-#include "pio.h"
-#include "sio.h"
 #include "delay.h"
-
-#define TEST_PFF
-#ifdef TEST_PFF
+#include "pio.h"
+#include "compactflash.h"
 #include "pff.h"
-#endif
-
+#ifdef TEST_SIO
+#include "sio.h"
 #include "sioFATFS.h"
+#endif
 
 //////////////////////////////////////////////////////////////////////////////
 //
 void ledTest()
 {
     P1 = (unsigned char)(~0x01);
-    delay_ms(100);
+    //delay_ms(100);
 
     P1 = (unsigned char)(~0x02);
-    delay_ms(100);
+    //delay_ms(100);
 
     P1 = (unsigned char)(~0x04);
-    delay_ms(100);
+    //delay_ms(100);
 
     P1 = (unsigned char)(~0x08);
-    delay_ms(100);
+    //delay_ms(100);
 
     P1 = (unsigned char)(~0x10);
-    delay_ms(100);
+    //delay_ms(100);
 
     P1 = (unsigned char)(~0x20);
-    delay_ms(100);
+    //delay_ms(100);
 
     P1 = (unsigned char)(~0x40);
-    delay_ms(100);
+    //delay_ms(100);
 
     P1 = (unsigned char)(~0x80);
-    delay_ms(100);
+    //delay_ms(100);
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -71,102 +68,66 @@ void pioTest(char device)
 
 //////////////////////////////////////////////////////////////////////////////
 //
-void sioTest1(char device)
-{
-	sioInit(device);
-    while(1)
-    {
-		sioTX(device, sioRX(device));
-    };
-}
-
-const char data[] =
-{
-    'a','b','c','d','e','f','g','h',
-    'i','j','k','l','m','n','o','p',
-    'q','r','s','t','u','v','w','x','y','z',
-    'A','B','C','D','E','F','G','H',
-    'I','J','K','L','M','N','O','P',
-    'Q','R','S','T','U','V','W','X','Y','Z'
-};
-void sioTest2(char device)
-{
-	sioInit(device);
-    while(1)
-    {
-        sioTXStr(device, "sioTXStr Test!!!!\r\n");
-        sioTXBuf(device, data, 26*2);
-    };
-}
-
-void sioTest3(char device)
-{
-    sioInit(device);
-}
-
-char buf[CF_SECTOR_SIZE];
-//////////////////////////////////////////////////////////////////////////////
-//
+char cfTestBuf[CF_SECTOR_SIZE];
 void cfTest(char device)
 {
-    sioInit(0);
-
-    sioTXStr(0, "cfTest1\r\n");
     cfInit(device);
 
-    sioTXStr(0, "cfTest2\r\n");
-    cfReadSector(device, buf, 0, 1);
+    cfReadSector(device, cfTestBuf, 0, 1);
 
-    sioTXStr(0, "cfTest3\r\n");
-    sioTXBuf(0, buf, CF_SECTOR_SIZE);
-
-    sioTXStr(0, "cfTest4\r\n");
-    cfReadSector(device, buf, 1, 1);
-
-    sioTXBuf(0, buf, CF_SECTOR_SIZE);
+    cfReadSector(device, cfTestBuf, 1, 1);
 }
 
-#ifdef TEST_PFF
-FATFS fs;
-DIR dj;
-FILINFO filInfo;
+//////////////////////////////////////////////////////////////////////////////
+//
 void FATTest(char device)
 {
-    unsigned char res;
-    unsigned char br;
-    unsigned char bw;
+	FATFS fs;
+	DIR dj;
+	FILINFO filInfo;
+	unsigned char res;
+    UINT br;
+    UINT bw;
 
+	#if USE_KEIL_ISD
+	#else
     sioInit(0);
+	#endif
 
-    sioTXStr(0, "FATTest1\n");
+	//sioTXStr(0, "FATTest1\n");
     pf_mount(&fs);
+	//sioTXStr(0, "FATTest1.1\n");
     if(res!=FR_OK)
     {
-        sioTXStr(0, "FATTest2\n");
+		//sioTXStr(0, "FATTest1.2\n");
         return;
     }
 
-    sioTXStr(0, "FATTest3\n");
+	//sioTXStr(0, "FATTest2\n");
     res = pf_open("1.txt");
+	//sioTXStr(0, "FATTest2.1\n");
     if(res!=FR_OK)
     {
-        sioTXStr(0, "FATTest4\n");
+		//sioTXStr(0, "FATTest2.2\n");
         return;
     }
 
 #if PF_USE_READ
-    sioTXStr(0, "FATTest5\n");
-    pf_read(buf, CF_SECTOR_SIZE, &br);
+	//sioTXStr(0, "FATTest3\n");
+    pf_read(cfTestBuf, CF_SECTOR_SIZE, &br);
+	//sioTXStr(0, "FATTest3.1\n");
     if(res!=FR_OK)
     {
-        sioTXStr(0, "FATTest6\n");
+		//sioTXStr(0, "FATTest3.2\n");
         return;
     }
-
-    sioTXStr(0, "FATTest7\n");
-    sioTXBuf(0, buf, br);
-
-    sioTXStr(0, "FATTest8\n");
+	
+	//sioTXStr(0, "FATTest4\n");
+	#if USE_KEIL_ISD
+	#else
+	sioTXBuf(0, cfTestBuf, br);
+	#endif
+	//sioTXStr(0, "FATTest4\n");
 #endif
 
 #if PF_USE_LSEEK
@@ -176,7 +137,7 @@ void FATTest(char device)
 #endif
 
 #if PF_USE_READ
-    pf_read(buf, CF_SECTOR_SIZE, &br);
+    pf_read(cfTestBuf, CF_SECTOR_SIZE, &br);
     if(res!=FR_OK)
         return;
 #endif
@@ -192,56 +153,85 @@ void FATTest(char device)
 #endif
 
 #if PF_USE_WRITE
-    pf_write(buf, CF_SECTOR_SIZE, &bw);
+    pf_write(cfTestBuf, CF_SECTOR_SIZE, &bw);
 #endif
+	// sioTXStr(0, "FATTest 10\n");
 }
 
+//////////////////////////////////////////////////////////////////////////////
+//
+#ifdef TEST_SIO
+void sioTest1(char device)
+{
+	sioInit(device);
+    while(1)
+    {
+		sioTX(device, sioRX(device));
+    };
+}
+
+const char testdata[] =
+{
+    'a','b','c','d','e','f','g','h',
+    'i','j','k','l','m','n','o','p',
+    'q','r','s','t','u','v','w','x','y','z',
+    'A','B','C','D','E','F','G','H',
+    'I','J','K','L','M','N','O','P',
+    'Q','R','S','T','U','V','W','X','Y','Z'
+};
+void sioTest2(char device)
+{
+	sioInit(device);
+    while(1)
+    {
+        sioTXStr(device, "sioTXStr Test!!!!\r\n");
+        sioTXBuf(device, testdata, 26*2);
+    };
+}
+
+void sioTest3(char device)
+{
+    sioInit(device);
+}
 #endif
 
-SIOFATFS siofs;
-SIOFILE siofile;
-SIODIR siodir;
+#if 0
 void SIOFATFSTest(char device)
 {
+	SIOFATFS siofs;
+	SIOFILE siofile;
+	SIODIR siodir;	
     unsigned char res;
     unsigned char br;
     unsigned char bw;
 
     sioInit(device);
 
-    P1 = 0xd1;
     siof_mount(&siofs, "0:", 0);
     if(res!=FR_OK)
     {
-        P1 = 0xd2;
         return;
     }
 
-    P1 = 0xd3;
     res = siof_open(&siofile, "1.txt", 0);
     if(res!=FR_OK)
     {
-        P1 = 0xd4;
         return;
     }
 
-    P1 = 0xd5;
-    res = siof_read(&siofile, buf, CF_SECTOR_SIZE, &br);
+    res = siof_read(&cfTestBuf, cfTestBuf, CF_SECTOR_SIZE, &br);
     if(res!=FR_OK)
     {
-        P1 = 0xd6;
         return;
     }
 
-    P1 = 0xd7;
-    sioTXBuf(0, buf, br);
+    sioTXBuf(0, cfTestBuf, br);
 
-    P1 = 0xd8;
     res = siof_lseek(&siofile, 10);
     if(res!=FR_OK)
         return;
 
-    res = siof_read(&siofile, buf, CF_SECTOR_SIZE, &br);
+    res = siof_read(&siofile, cfTestBuf, CF_SECTOR_SIZE, &br);
     if(res!=FR_OK)
         return;
 
@@ -254,7 +244,8 @@ void SIOFATFSTest(char device)
     if(res!=FR_OK)
         return;
 */
-    res = siof_write(&siofile, buf, CF_SECTOR_SIZE, &bw);
+    res = siof_write(&siofile, cfTestBuf, CF_SECTOR_SIZE, &bw);
     if(res!=FR_OK)
         return;
 }
+#endif

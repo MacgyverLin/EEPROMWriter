@@ -7,7 +7,7 @@ void sioInit(char device)
     device;
 
     SCON = 0x50;
-    TMOD = (TMOD & T0_MASK) | 0x21;
+    TMOD = 0x21;
     PCON = 0x80;
     // ES = 1;
     // EA = 1;
@@ -23,8 +23,8 @@ void sioClose(char device)
     device;
 
     SCON = 0x00;
-    TMOD = (TMOD & T0_MASK);
-    PCON &= ~SMOD;
+    TMOD = 0x00;
+    PCON = 0x00;
     TR1 = 0;
 }
 

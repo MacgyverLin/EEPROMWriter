@@ -1,7 +1,6 @@
-#ifndef _SIODISK_H_
-#define _SIODISK_H_
+#ifndef _SIOFS_H_
+#define _SIOFS_H_
 
-#include <mcs51/8051.h>
 #include "sysctrl.h"
 
 #ifdef __cplusplus

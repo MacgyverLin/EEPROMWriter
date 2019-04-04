@@ -1,7 +1,14 @@
 #ifndef _SYSCTRL_h_
 #define _SYSCTRL_h_
 
+// #define SDCC
+
+#ifdef SDCC
 #include <mcs51/8051.h>
+#else
+#define USE_KEIL_ISD 0
+#include <reg52.h>
+#endif
 
 #ifdef __cplusplus
 extern "C"
@@ -38,8 +45,13 @@ __bit __at (0x02) bvar;
 
 //////////////////////////////////////////////////////////////////////////////
 //
+#ifdef SDCC
 #define IOWRITE(a, d) (*((volatile __xdata unsigned char *)(a))) = (d)
 #define IOREAD(a)     (*((volatile __xdata unsigned char *)(a)))
+#else
+#define IOWRITE(a, d) (*((volatile unsigned char xdata *)(a))) = (d)
+#define IOREAD(a)     (*((volatile unsigned char xdata *)(a)))
+#endif
 
 //////////////////////////////////////////////////////////////////////////////
 //

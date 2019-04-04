@@ -1,7 +1,13 @@
 #include "delay.h"
+#ifdef SDCC
+#else
+#include <intrins.h>
+#endif
+
 
 //////////////////////////////////////////////////////////////////////////////
 //
+#ifdef SDCC
 void delay_us(unsigned int us)
 {
     us;
@@ -25,7 +31,16 @@ delay_us_2:         DJNZ			R7, delay_us_2
                     POP             ar6
     __endasm;
 }
+#else
+void delay_us(unsigned int us)
+{
+	while(us--);
+}
+#endif
 
+//////////////////////////////////////////////////////////////////////////////
+//
+#ifdef SDCC
 void delay_ms(unsigned int ms)
 {
     ms;
@@ -56,3 +71,12 @@ delay_ms_4:	    	DJNZ			R7, delay_ms_4
 					POP             ar4
     __endasm;
 }
+#else
+void delay_ms(unsigned int ms)
+{
+	while(ms--)
+	{
+		delay_us(500);
+	}
+}
+#endif

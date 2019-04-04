@@ -1,7 +1,6 @@
 #ifndef _FAT_h_
 #define _FAT_h_
 
-#include <mcs51/8051.h>
 #include "ff.h"
 
 #ifdef __cplusplus

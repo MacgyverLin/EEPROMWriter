@@ -37,7 +37,8 @@
 
 #include "pff.h"		/* Petit FatFs configurations and declarations */
 #include "diskio.h"		/* Declarations of low level disk I/O functions */
-#include "sysctrl.h"
+
+
 
 /*--------------------------------------------------------------------------
 
@@ -822,7 +823,9 @@ FRESULT pf_mount (
 	BYTE fmt, buf[36];
 	DWORD bsect, fsize, tsect, mclst;
 
+
 	FatFs = 0;
+
 	if (disk_initialize() & STA_NOINIT) {	/* Check if the drive is ready or not */
 		return FR_NOT_READY;
 	}
@@ -830,80 +833,47 @@ FRESULT pf_mount (
 	/* Search FAT partition on the drive */
 	bsect = 0;
 	fmt = check_fs(buf, bsect);			/* Check sector 0 as an SFD format */
-	if (fmt == 1)
-    {
-        /* Not an FAT boot record, it may be FDISK format */
+	if (fmt == 1) {						/* Not an FAT boot record, it may be FDISK format */
 		/* Check a partition listed in top of the partition table */
-		if (disk_readp(buf, bsect, MBR_Table, 16))
-		{
-		    /* 1st partition entry */
+		if (disk_readp(buf, bsect, MBR_Table, 16)) {	/* 1st partition entry */
 			fmt = 3;
-		}
-        else
-        {
-			if (buf[4])
-            {
-                /* Is the partition existing? */
+		} else {
+			if (buf[4]) {					/* Is the partition existing? */
 				bsect = ld_dword(&buf[8]);	/* Partition offset in LBA */
-
 				fmt = check_fs(buf, bsect);	/* Check the partition */
 			}
 		}
 	}
-	if (fmt == 3)
-	{
-        return FR_DISK_ERR;
-	}
-	if (fmt)
-	{
-        return FR_NO_FILESYSTEM;	/* No valid FAT patition is found */
-	}
+	if (fmt == 3) return FR_DISK_ERR;
+	if (fmt) return FR_NO_FILESYSTEM;	/* No valid FAT patition is found */
 
 	/* Initialize the file system object */
-	if (disk_readp(buf, bsect, 13, sizeof (buf)))
-	{
-        return FR_DISK_ERR;
-	}
+	if (disk_readp(buf, bsect, 13, sizeof (buf))) return FR_DISK_ERR;
 
 	fsize = ld_word(buf+BPB_FATSz16-13);				/* Number of sectors per FAT */
-	if (!fsize)
-    {
-        fsize = ld_dword(buf+BPB_FATSz32-13);
-    }
+	if (!fsize) fsize = ld_dword(buf+BPB_FATSz32-13);
 
 	fsize *= buf[BPB_NumFATs-13];						/* Number of sectors in FAT area */
 	fs->fatbase = bsect + ld_word(buf+BPB_RsvdSecCnt-13); /* FAT start sector (lba) */
 	fs->csize = buf[BPB_SecPerClus-13];					/* Number of sectors per cluster */
 	fs->n_rootdir = ld_word(buf+BPB_RootEntCnt-13);		/* Nmuber of root directory entries */
 	tsect = ld_word(buf+BPB_TotSec16-13);				/* Number of sectors on the file system */
-	if (!tsect)
-	{
-        tsect = ld_dword(buf+BPB_TotSec32-13);
-	}
+	if (!tsect) tsect = ld_dword(buf+BPB_TotSec32-13);
 	mclst = (tsect						/* Last cluster# + 1 */
 		- ld_word(buf+BPB_RsvdSecCnt-13) - fsize - fs->n_rootdir / 16
 		) / fs->csize + 2;
 	fs->n_fatent = (CLUST)mclst;
 
 	fmt = 0;							/* Determine the FAT sub type */
-	if (PF_FS_FAT12 && mclst < 0xFF7)
-        fmt = FS_FAT12;
-	if (PF_FS_FAT16 && mclst >= 0xFF8 && mclst < 0xFFF7)
-        fmt = FS_FAT16;
-	if (PF_FS_FAT32 && mclst >= 0xFFF7)
-        fmt = FS_FAT32;
-	if (!fmt)
-    {
-        return FR_NO_FILESYSTEM;
-    }
+	if (PF_FS_FAT12 && mclst < 0xFF7) fmt = FS_FAT12;
+	if (PF_FS_FAT16 && mclst >= 0xFF8 && mclst < 0xFFF7) fmt = FS_FAT16;
+	if (PF_FS_FAT32 && mclst >= 0xFFF7) fmt = FS_FAT32;
+	if (!fmt) return FR_NO_FILESYSTEM;
 	fs->fs_type = fmt;
 
-	if (_FS_32ONLY || (PF_FS_FAT32 && fmt == FS_FAT32))
-    {
+	if (_FS_32ONLY || (PF_FS_FAT32 && fmt == FS_FAT32)) {
 		fs->dirbase = ld_dword(buf+(BPB_RootClus-13));	/* Root directory start cluster */
-	}
-	else
-    {
+	} else {
 		fs->dirbase = fs->fatbase + fsize;				/* Root directory start sector (lba) */
 	}
 	fs->database = fs->fatbase + fsize + fs->n_rootdir / 16;	/* Data start sector (lba) */
@@ -930,33 +900,25 @@ FRESULT pf_open (
 	BYTE sp[12], dir[32];
 	FATFS *fs = FatFs;
 
-	if (!fs)
-    {
-        return FR_NOT_ENABLED;		/* Check file system */
-    }
+
+	if (!fs) return FR_NOT_ENABLED;		/* Check file system */
 
 	fs->flag = 0;
 	dj.fn = sp;
 	res = follow_path(&dj, dir, path);	/* Follow the file path */
-	if (res != FR_OK)
-    {
-        return res;		/* Follow failed */
-    }
-	if (!dir[0] || (dir[DIR_Attr] & AM_DIR))
-	{
-        return FR_NO_FILE;	/* It is a directory */
-	}
+	if (res != FR_OK) return res;		/* Follow failed */
+	if (!dir[0] || (dir[DIR_Attr] & AM_DIR)) return FR_NO_FILE;	/* It is a directory */
 
 	fs->org_clust = get_clust(dir);		/* File start cluster */
-
 	fs->fsize = ld_dword(dir+DIR_FileSize);	/* File size */
-
 	fs->fptr = 0;						/* File pointer */
-
 	fs->flag = FA_OPENED;
 
 	return FR_OK;
 }
+
+
+
 
 /*-----------------------------------------------------------------------*/
 /* Read File                                                             */
