@@ -19,8 +19,11 @@ extern void pioTest(char device);
 extern void sioTest1(char device);
 extern void sioTest2(char device);
 extern void sioTest3(char device);
-extern void FATTest(char device);
-extern void SIOFATFSTest(char device);
+#ifdef USE_PFF
+extern void pffTest(char device);
+#else
+extern void fatfsTest(char device);
+#endif
 
 #ifdef __cplusplus
 };

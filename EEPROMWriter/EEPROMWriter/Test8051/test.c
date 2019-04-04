@@ -2,10 +2,16 @@
 #include "delay.h"
 #include "pio.h"
 #include "compactflash.h"
+
+#ifdef USE_PFF
 #include "pff.h"
-#ifdef TEST_SIO
+#else
+#include "ff.h"
+#endif
+
+#ifdef USE_KEIL_ISD
+#else
 #include "sio.h"
-#include "sioFATFS.h"
 #endif
 
 //////////////////////////////////////////////////////////////////////////////
@@ -78,9 +84,10 @@ void cfTest(char device)
     cfReadSector(device, cfTestBuf, 1, 1);
 }
 
+#ifdef USE_PFF
 //////////////////////////////////////////////////////////////////////////////
 //
-void FATTest(char device)
+void pffTest(char device)
 {
 	FATFS fs;
 	DIR dj;
@@ -94,40 +101,36 @@ void FATTest(char device)
     sioInit(0);
 	#endif
 
-	//sioTXStr(0, "FATTest1\n");
+	sioTXStr(0, "pffTest1\n");
     pf_mount(&fs);
-	//sioTXStr(0, "FATTest1.1\n");
+	sioTXStr(0, "pffTest1.1\n");
     if(res!=FR_OK)
     {
-		//sioTXStr(0, "FATTest1.2\n");
+		sioTXStr(0, "pffTest1.2\n");
         return;
     }
 
-	//sioTXStr(0, "FATTest2\n");
+	sioTXStr(0, "pffTest2\n");
     res = pf_open("1.txt");
-	//sioTXStr(0, "FATTest2.1\n");
+	sioTXStr(0, "pffTest2.1\n");
     if(res!=FR_OK)
     {
-		//sioTXStr(0, "FATTest2.2\n");
+		sioTXStr(0, "pffTest2.2\n");
         return;
     }
 
 #if PF_USE_READ
-	//sioTXStr(0, "FATTest3\n");
+	sioTXStr(0, "pffTest3\n");
     pf_read(cfTestBuf, CF_SECTOR_SIZE, &br);
-	//sioTXStr(0, "FATTest3.1\n");
+	sioTXStr(0, "pffTest3.1\n");
     if(res!=FR_OK)
     {
-		//sioTXStr(0, "FATTest3.2\n");
+		sioTXStr(0, "pffTest3.2\n");
         return;
     }
-	
-	//sioTXStr(0, "FATTest4\n");
-	#if USE_KEIL_ISD
-	#else
+
+	sioTXStr(0, "pffTest4\n");
 	sioTXBuf(0, cfTestBuf, br);
-	#endif
-	//sioTXStr(0, "FATTest4\n");
 #endif
 
 #if PF_USE_LSEEK
@@ -155,12 +158,89 @@ void FATTest(char device)
 #if PF_USE_WRITE
     pf_write(cfTestBuf, CF_SECTOR_SIZE, &bw);
 #endif
-	// sioTXStr(0, "FATTest 10\n");
+
+	sioTXStr(0, "pffTest10\n");
 }
+
+#else
+
+void fatfsTest(char device)
+{
+	FATFS fs;
+	FIL fp;
+	DIR dj;
+	FILINFO filInfo;
+	unsigned char res;
+    UINT br;
+    UINT bw;
+
+	#if USE_KEIL_ISD
+	#else
+    sioInit(0);
+	#endif
+
+	sioTXStr(0, "fatfsTest1\n");
+	res = f_mount(&fs, "0:", 0); /* Mount/Unmount a logical drive */
+	sioTXStr(0, "fatfsTest1.1\n");
+    if(res!=FR_OK)
+	{
+		sioTXStr(0, "fatfsTest1.2\n");
+        return;
+	}
+
+	sioTXStr(0, "fatfsTest2\n");
+	res = f_open(&fp, "0:/1.txt", FA_READ | FA_OPEN_EXISTING);	/* Open or create a file */
+	sioTXStr(0, "fatfsTest2.1\n");
+    if(res!=FR_OK)
+	{
+		sioTXStr(0, "fatfsTest2.2\n");
+        return;
+	}
+
+	sioTXStr(0, "fatfsTest3\n");
+	res = f_read (&fp, cfTestBuf, CF_SECTOR_SIZE, &br);			/* Read data from the file */
+	sioTXStr(0, "fatfsTest3.1\n");
+    if(res!=FR_OK)
+	{
+		sioTXStr(0, "fatfsTest3.2\n");
+        return;
+	}
+	sioTXBuf(0, cfTestBuf, br);
+
+	sioTXStr(0, "fatfsTest4\n");
+    f_lseek(10);
+	sioTXStr(0, "fatfsTest4.1\n");
+    if(res!=FR_OK)
+	{
+		sioTXStr(0, "fatfsTest4.2\n");
+        return;
+	}
+
+	sioTXStr(0, "fatfsTest5\n");
+	res = f_read (&fp, cfTestBuf, CF_SECTOR_SIZE, &br);			/* Read data from the file */
+	sioTXStr(0, "fatfsTest5.1\n");
+    if(res!=FR_OK)
+	{
+		sioTXStr(0, "fatfsTest5.2\n");
+        return;
+	}
+	sioTXBuf(0, cfTestBuf, br);
+
+	sioTXStr(0, "fatfsTest6\n");
+	res = f_close(&fp);	/* Close an open file object */
+	sioTXStr(0, "fatfsTest6.1\n");
+    if(res!=FR_OK)
+	{
+		sioTXStr(0, "fatfsTest6.2\n");
+        return;
+	}
+}
+#endif
 
 //////////////////////////////////////////////////////////////////////////////
 //
-#ifdef TEST_SIO
+#ifdef USE_KEIL_ISD
+#else
 void sioTest1(char device)
 {
 	sioInit(device);
@@ -192,60 +272,5 @@ void sioTest2(char device)
 void sioTest3(char device)
 {
     sioInit(device);
-}
-#endif
-
-#if 0
-void SIOFATFSTest(char device)
-{
-	SIOFATFS siofs;
-	SIOFILE siofile;
-	SIODIR siodir;	
-    unsigned char res;
-    unsigned char br;
-    unsigned char bw;
-
-    sioInit(device);
-
-    siof_mount(&siofs, "0:", 0);
-    if(res!=FR_OK)
-    {
-        return;
-    }
-
-    res = siof_open(&siofile, "1.txt", 0);
-    if(res!=FR_OK)
-    {
-        return;
-    }
-
-    res = siof_read(&cfTestBuf, cfTestBuf, CF_SECTOR_SIZE, &br);
-    if(res!=FR_OK)
-    {
-        return;
-    }
-
-    sioTXBuf(0, cfTestBuf, br);
-
-    res = siof_lseek(&siofile, 10);
-    if(res!=FR_OK)
-        return;
-
-    res = siof_read(&siofile, cfTestBuf, CF_SECTOR_SIZE, &br);
-    if(res!=FR_OK)
-        return;
-
-/*
-    res = siof_opendir(&siodir, "test");
-    if(res!=FR_OK)
-        return;
-
-    res = siof_readdir(&siodir, &filInfo);
-    if(res!=FR_OK)
-        return;
-*/
-    res = siof_write(&siofile, cfTestBuf, CF_SECTOR_SIZE, &bw);
-    if(res!=FR_OK)
-        return;
 }
 #endif

@@ -8,8 +8,14 @@
 "sio.obj",
 "ISD51.obj",
 "diskio.obj",
-"pff.obj" 
-TO "Test8051" 
+"ff.obj",
+"ffsystem.obj",
+"cfdiskio.obj",
+"dvddiskio.obj",
+"ffunicode.obj",
+"ramdiskio.obj",
+"sddiskio.obj" 
+TO "Test8051" REGFILE (.\Test8051.ORC) 
 RAMSIZE(256) 
 CODE( 0X0000-0X7FFF )
 XDATA( 0X8000-0XFEFF )

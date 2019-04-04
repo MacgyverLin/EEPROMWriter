@@ -14,9 +14,10 @@
 				<Option compiler="sdcc" />
 				<Compiler>
 					<Add option="--model-large" />
-					<Add option="--std-c99" />
 					<Add option="--stack-auto" />
 					<Add option="--debug" />
+					<Add option="-DUSE_SDCC" />
+					<Add option="-DUSE_PFF" />
 					<Add directory="pff3a" />
 					<Add directory="../Test8051" />
 					<Add directory="SIOFS" />
@@ -68,10 +69,12 @@
 		<ExtraCommands>
 			<Add after='cmd /c &quot;packihx &lt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).ihx &gt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).hex&quot;' />
 		</ExtraCommands>
-		<Unit filename="SIOFS/siofatfs.c">
+		<Unit filename="SIO.C">
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="SIOFS/siofatfs.h" />
+		<Unit filename="SYSCTRL.H" />
+		<Unit filename="TEST.H" />
 		<Unit filename="compactflash.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -87,10 +90,10 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="pff3a/DISKIO.H" />
 		<Unit filename="pff3a/diskio.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="pff3a/diskio.h" />
 		<Unit filename="pff3a/pff.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -100,20 +103,15 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="pio.h" />
-		<Unit filename="sio.c">
-			<Option compilerVar="CC" />
-		</Unit>
 		<Unit filename="sio.h" />
 		<Unit filename="sioDisk.h" />
 		<Unit filename="sioFS.h" />
 		<Unit filename="sysctrl.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="sysctrl.h" />
 		<Unit filename="test.c">
 			<Option compilerVar="CC" />
 		</Unit>
-		<Unit filename="test.h" />
 		<Unit filename="version.h" />
 		<Extensions>
 			<code_completion />

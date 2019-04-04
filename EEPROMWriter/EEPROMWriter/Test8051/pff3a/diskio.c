@@ -1,3 +1,5 @@
+#ifdef USE_PFF
+
 /*-----------------------------------------------------------------------*/
 /* Low level disk I/O module skeleton for Petit FatFs (C)ChaN, 2014      */
 /*-----------------------------------------------------------------------*/
@@ -115,3 +117,5 @@ DRESULT disk_writep (
 	return res;
 	*/
 }
+
+#endif

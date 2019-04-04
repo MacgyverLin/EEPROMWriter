@@ -1,9 +1,7 @@
 #ifndef _SYSCTRL_h_
 #define _SYSCTRL_h_
 
-// #define SDCC
-
-#ifdef SDCC
+#ifdef USE_SDCC
 #include <mcs51/8051.h>
 #else
 #define USE_KEIL_ISD 0
@@ -45,16 +43,6 @@ __bit __at (0x02) bvar;
 
 //////////////////////////////////////////////////////////////////////////////
 //
-#ifdef SDCC
-#define IOWRITE(a, d) (*((volatile __xdata unsigned char *)(a))) = (d)
-#define IOREAD(a)     (*((volatile __xdata unsigned char *)(a)))
-#else
-#define IOWRITE(a, d) (*((volatile unsigned char xdata *)(a))) = (d)
-#define IOREAD(a)     (*((volatile unsigned char xdata *)(a)))
-#endif
-
-//////////////////////////////////////////////////////////////////////////////
-//
 #define SYS_BASE          0xFF70
 #define SYS_PORT_0        (SYS_BASE+0)
 #define SYS_PORT_1        (SYS_BASE+1)
@@ -64,6 +52,16 @@ __bit __at (0x02) bvar;
 #define SYS_PORT_5        (SYS_BASE+5)
 #define SYS_PORT_6        (SYS_BASE+6)
 #define SYS_PORT_7        (SYS_BASE+7)
+
+#ifdef USE_SDCC
+#define IOWRITE(a, d) (*((volatile __xdata unsigned char *)(a))) = (d)
+#define IOREAD(a)     (*((volatile __xdata unsigned char *)(a)))
+#else
+#define IOWRITE(a, d) (*((volatile unsigned char xdata *)(a))) = (d)
+#define IOREAD(a)     (*((volatile unsigned char xdata *)(a)))
+#endif
+
+#ifdef USE_SDCC
 #define sysCopyBIOS(srcAddr, dstAddr, size)\
 {\
     __code unsigned char *src = *((__code unsigned char *)srcAddr);\
@@ -96,14 +94,44 @@ __bit __at (0x02) bvar;
         *dst++ = 0;\
     }\
 }
+#else
+#define sysCopyBIOS(srcAddr, dstAddr, size)\
+{\
+    unsigned char code *src = *((unsigned char code *)srcAddr);\
+    volatile unsigned char xdata *dst = *((volatile unsigned char xdata*)dstAddr);\
+    unsigned int count = size;\
+    while(count--)\
+        *dst++ = *src++;\
+}
+#define sysCheckBIOS(ok, srcAddr, dstAddr, size)\
+{\
+    unsigned char code* src = *((unsigned char code* )srcAddr);\
+    volatile unsigned char xdata* dst = *((volatile unsigned char xdata* )dstAddr);\
+    unsigned int count = size;\
+    ok = 1;\
+    while(count--)\
+    {\
+        if(*dst++ != *src++)\
+        {\
+        ok = 0;\
+        break;\
+        }\
+    }\
+}
+#define sysClearMemory(address, size)\
+{\
+    volatile unsigned char xdata* dst = *((volatile unsigned char xdata *)address);\
+    unsigned int count = size;\
+    while(count--)\
+    {\
+        *dst++ = 0;\
+    }\
+}
+#endif
 
-#define SYS_PORT_ENTER_NORMAL_MODE SYS_PORT_0
-#define SYS_PORT_ENTER_ISP_MODE SYS_PORT_1
-#define SYS_PORT_COLD_BOOT SYS_PORT_2
-
-#define sysEnterNormalMode() IOWRITE(SYS_PORT_ENTER_NORMAL_MODE, 0)
-#define sysEnterISPMode() IOWRITE(SYS_PORT_ENTER_ISP_MODE, 0)
-#define sysColdBoot()     IOWRITE(SYS_PORT_COLD_BOOT, 0)
+#define sysEnterNormalMode() IOWRITE(SYS_PORT_0, 0)
+#define sysEnterISPMode() IOWRITE(SYS_PORT_1, 0)
+#define sysColdBoot()     IOWRITE(SYS_PORT_2, 0)
 
 #ifdef __cplusplus
 };

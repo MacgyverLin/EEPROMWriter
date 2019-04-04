@@ -1,5 +1,5 @@
 #include "delay.h"
-#ifdef SDCC
+#ifdef USE_SDCC
 #else
 #include <intrins.h>
 #endif
@@ -7,7 +7,7 @@
 
 //////////////////////////////////////////////////////////////////////////////
 //
-#ifdef SDCC
+#ifdef USE_SDCC
 void delay_us(unsigned int us)
 {
     us;
@@ -40,7 +40,7 @@ void delay_us(unsigned int us)
 
 //////////////////////////////////////////////////////////////////////////////
 //
-#ifdef SDCC
+#ifdef USE_SDCC
 void delay_ms(unsigned int ms)
 {
     ms;

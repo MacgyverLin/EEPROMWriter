@@ -33,7 +33,7 @@ void main()
 	
     P1 = 0x01;
     // sysLoadProgram();
-    // sysCopyBIOS(0x0000, 0x0000, 0x8000);
+    //sysCopyBIOS(0x0000, 0x0000, 0x8000);
     // res = 0;
     if(1)
     {
@@ -57,11 +57,11 @@ void main()
         //sioTest3(0);
 
         // cfTest(0);
-
-        FATTest(0);
-
-        //SIOFATFSTest(0);
-
+#ifdef USE_PFF
+		pffTest(0);
+#else
+        fatfsTest(0);
+#endif
         //P1 = 0x81;
     }
     else

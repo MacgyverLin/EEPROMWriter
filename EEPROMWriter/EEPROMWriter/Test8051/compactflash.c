@@ -1,6 +1,7 @@
 #include "compactflash.h"
 #include <stdio.h>
-#ifdef TEST_SIO
+#ifdef USE_KEIL_ISD
+#else
 #include "sio.h"
 #endif
 
