@@ -111,12 +111,16 @@ void cfTest(char device)
 {
     sioInit(0);
 
+    sioTXStr(0, "cfTest1\r\n");
     cfInit(device);
 
+    sioTXStr(0, "cfTest2\r\n");
     cfReadSector(device, buf, 0, 1);
 
+    sioTXStr(0, "cfTest3\r\n");
     sioTXBuf(0, buf, CF_SECTOR_SIZE);
 
+    sioTXStr(0, "cfTest4\r\n");
     cfReadSector(device, buf, 1, 1);
 
     sioTXBuf(0, buf, CF_SECTOR_SIZE);
@@ -132,34 +136,37 @@ void FATTest(char device)
     unsigned char br;
     unsigned char bw;
 
-    P1 = 0xd1;
+    sioInit(0);
+
+    sioTXStr(0, "FATTest1\n");
     pf_mount(&fs);
     if(res!=FR_OK)
     {
-        P1 = 0xd2;
+        sioTXStr(0, "FATTest2\n");
         return;
     }
 
-    P1 = 0xd3;
+    sioTXStr(0, "FATTest3\n");
     res = pf_open("1.txt");
     if(res!=FR_OK)
     {
-        P1 = 0xd4;
+        sioTXStr(0, "FATTest4\n");
         return;
     }
 
 #if PF_USE_READ
-    P1 = 0xd5;
+    sioTXStr(0, "FATTest5\n");
     pf_read(buf, CF_SECTOR_SIZE, &br);
     if(res!=FR_OK)
     {
-        P1 = 0xd6;
+        sioTXStr(0, "FATTest6\n");
         return;
     }
 
-    P1 = 0xd7;
+    sioTXStr(0, "FATTest7\n");
     sioTXBuf(0, buf, br);
-    P1 = 0xd8;
+
+    sioTXStr(0, "FATTest8\n");
 #endif
 
 #if PF_USE_LSEEK

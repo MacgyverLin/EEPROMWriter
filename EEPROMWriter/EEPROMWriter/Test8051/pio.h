@@ -1,7 +1,6 @@
 #ifndef _PIO_H_
 #define _PIO_H_
 
-#include <mcs51/8051.h>
 #include "sysctrl.h"
 
 #ifdef __cplusplus

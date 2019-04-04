@@ -1,8 +1,6 @@
 #ifndef _TEST_h_
 #define _TEST_h_
 
-#include <mcs51/8051.h>
-
 #ifdef __cplusplus
 extern "C"
 {

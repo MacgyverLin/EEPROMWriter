@@ -1,7 +1,7 @@
 #ifndef _DELAY_h_
 #define _DELAY_h_
 
-#include <mcs51/8051.h>
+#include "sysctrl.h"
 
 #ifdef __cplusplus
 extern "C"

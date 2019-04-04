@@ -59,7 +59,7 @@ DRESULT disk_readp (
 /*-----------------------------------------------------------------------*/
 unsigned long writingSector;
 DRESULT disk_writep (
-	BYTE* buff,		/* Pointer to the data to be written, NULL:Initiate/Finalize write operation */
+	const BYTE* buff,		/* Pointer to the data to be written, NULL:Initiate/Finalize write operation */
 	DWORD sc		/* Sector number (LBA) or Number of bytes to send */
 )
 {
@@ -71,23 +71,24 @@ DRESULT disk_writep (
 		if (sc)
 		{
 			// Initiate write process
-			cfReadSector(0, diskioCacheBuf, sc, 1);
+			//cfReadSector(0, diskioCacheBuf, sc, 1);
 			writingSector = sc;
             res = RES_OK;
 		}
 		else
 		{
 			// Finalize write process
-			cfWriteSector(0, diskioCacheBuf, writingSector, 1);
+			//cfWriteSector(0, diskioCacheBuf, writingSector, 1);
             res = RES_OK;
 		}
 	}
 	else
     {
 		// Send data to the disk
+		/*
 		for(i=0; i<sc; i++)
             diskioCacheBuf[i] = buff[i];
-
+        */
         res = RES_OK;
 	}
 

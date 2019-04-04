@@ -1,7 +1,7 @@
 #ifndef _LED_h_
 #define _LED_h_
 
-#include <mcs51/8051.h>
+#include "sysctrl.h"
 
 #ifdef __cplusplus
 extern "C"

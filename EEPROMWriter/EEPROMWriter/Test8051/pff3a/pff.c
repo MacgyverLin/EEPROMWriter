@@ -37,8 +37,7 @@
 
 #include "pff.h"		/* Petit FatFs configurations and declarations */
 #include "diskio.h"		/* Declarations of low level disk I/O functions */
-
-#include <mcs51/8051.h>
+#include "sysctrl.h"
 
 /*--------------------------------------------------------------------------
 
@@ -823,63 +822,49 @@ FRESULT pf_mount (
 	BYTE fmt, buf[36];
 	DWORD bsect, fsize, tsect, mclst;
 
-    P1 = 0xa1;
 	FatFs = 0;
-
 	if (disk_initialize() & STA_NOINIT) {	/* Check if the drive is ready or not */
-        P1 = 0xa2;
 		return FR_NOT_READY;
 	}
 
 	/* Search FAT partition on the drive */
 	bsect = 0;
-	P1 = 0xa3;
 	fmt = check_fs(buf, bsect);			/* Check sector 0 as an SFD format */
 	if (fmt == 1)
     {
-        P1 = 0xa4;
         /* Not an FAT boot record, it may be FDISK format */
 		/* Check a partition listed in top of the partition table */
 		if (disk_readp(buf, bsect, MBR_Table, 16))
 		{
 		    /* 1st partition entry */
-		    P1 = 0xa5;
 			fmt = 3;
 		}
         else
         {
 			if (buf[4])
             {
-                P1 = 0xa6;
                 /* Is the partition existing? */
 				bsect = ld_dword(&buf[8]);	/* Partition offset in LBA */
 
-                P1 = 0xa7;
 				fmt = check_fs(buf, bsect);	/* Check the partition */
-
-				P1 = 0xa8;
 			}
 		}
 	}
 	if (fmt == 3)
 	{
-	    P1 = 0xa9;
         return FR_DISK_ERR;
 	}
 	if (fmt)
 	{
-	    P1 = 0xaa;
         return FR_NO_FILESYSTEM;	/* No valid FAT patition is found */
 	}
 
 	/* Initialize the file system object */
 	if (disk_readp(buf, bsect, 13, sizeof (buf)))
 	{
-	    P1 = 0xab;
         return FR_DISK_ERR;
 	}
 
-	P1 = 0xac;
 	fsize = ld_word(buf+BPB_FATSz16-13);				/* Number of sectors per FAT */
 	if (!fsize)
     {
@@ -893,7 +878,6 @@ FRESULT pf_mount (
 	tsect = ld_word(buf+BPB_TotSec16-13);				/* Number of sectors on the file system */
 	if (!tsect)
 	{
-	    P1 = 0xad;
         tsect = ld_dword(buf+BPB_TotSec32-13);
 	}
 	mclst = (tsect						/* Last cluster# + 1 */
@@ -910,7 +894,6 @@ FRESULT pf_mount (
         fmt = FS_FAT32;
 	if (!fmt)
     {
-        P1 = 0xae;
         return FR_NO_FILESYSTEM;
     }
 	fs->fs_type = fmt;
@@ -928,7 +911,6 @@ FRESULT pf_mount (
 	fs->flag = 0;
 	FatFs = fs;
 
-	P1 = 0xaf;
 	return FR_OK;
 }
 
@@ -948,45 +930,31 @@ FRESULT pf_open (
 	BYTE sp[12], dir[32];
 	FATFS *fs = FatFs;
 
-    P1 = 0xb1;
 	if (!fs)
     {
-        P1 = 0xb2;
         return FR_NOT_ENABLED;		/* Check file system */
     }
 
-    P1 = 0xb3;
 	fs->flag = 0;
-	P1 = 0xb4;
 	dj.fn = sp;
-	P1 = 0xb5;
 	res = follow_path(&dj, dir, path);	/* Follow the file path */
-	P1 = 0xb6;
 	if (res != FR_OK)
     {
-        P1 = 0xb7;
         return res;		/* Follow failed */
     }
-    P1 = 0xb8;
 	if (!dir[0] || (dir[DIR_Attr] & AM_DIR))
 	{
-	    P1 = 0xb9;
         return FR_NO_FILE;	/* It is a directory */
 	}
 
-	P1 = 0xba;
 	fs->org_clust = get_clust(dir);		/* File start cluster */
 
-	P1 = 0xbb;
 	fs->fsize = ld_dword(dir+DIR_FileSize);	/* File size */
 
-	P1 = 0xbc;
 	fs->fptr = 0;						/* File pointer */
 
-	P1 = 0xbd;
 	fs->flag = FA_OPENED;
 
-	P1 = 0xbe;
 	return FR_OK;
 }
 

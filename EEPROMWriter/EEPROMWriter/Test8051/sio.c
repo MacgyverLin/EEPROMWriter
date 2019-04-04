@@ -11,8 +11,8 @@ void sioInit(char device)
     PCON = 0x80;
     // ES = 1;
     // EA = 1;
-    TH1 = 0xFA;
-    TL1 = 0xFA;
+    TH1 = 0xFD;
+    TL1 = 0xFD;
     TR1 = 1;
     //TI = 1;
     //RI = 1;
