@@ -416,11 +416,11 @@ _sioInit:
 ;	sio.c:11: PCON = 0x80;
 	mov	_PCON,#0x80
 	C$sio.c$14$1_0$12 ==.
-;	sio.c:14: TH1 = 0xFA;
-	mov	_TH1,#0xfa
+;	sio.c:14: TH1 = 0xFD;
+	mov	_TH1,#0xfd
 	C$sio.c$15$1_0$12 ==.
-;	sio.c:15: TL1 = 0xFA;
-	mov	_TL1,#0xfa
+;	sio.c:15: TL1 = 0xFD;
+	mov	_TL1,#0xfd
 	C$sio.c$16$1_0$12 ==.
 ;	sio.c:16: TR1 = 1;
 ;	assignBit

@@ -386,7 +386,7 @@
                                     386 ;	-----------------------------------------
                                     387 ;	 function delay_us
                                     388 ;	-----------------------------------------
-      000578                        389 _delay_us:
+      00045C                        389 _delay_us:
                            000007   390 	ar7 = 0x07
                            000006   391 	ar6 = 0x06
                            000005   392 	ar5 = 0x05
@@ -397,27 +397,27 @@
                            000000   397 	ar0 = 0x00
                            000000   398 	C$delay.c$26$1_0$4 ==.
                                     399 ;	delay.c:26: __endasm;
-      000578 C0 06            [24]  400 	PUSH	ar6
-      00057A C0 07            [24]  401 	PUSH	ar7
-      00057C E5 83            [12]  402 	MOV	A, DPH
-      00057E 04               [12]  403 	INC	A
-      00057F F5 83            [12]  404 	MOV	DPH, A
-      000581 E5 82            [12]  405 	MOV	A, DPL
-      000583 04               [12]  406 	INC	A
-      000584 F5 82            [12]  407 	MOV	DPL, A
-      000586 AE 83            [24]  408 	MOV	R6, DPH
-      000588                        409 	delay_us_1:
-      000588 AF 82            [24]  410 	MOV R7, DPL
-      00058A                        411 	delay_us_2:
-      00058A DF FE            [24]  412 	DJNZ R7, delay_us_2
-      00058C DE FA            [24]  413 	DJNZ	R6, delay_us_1
-      00058E D0 07            [24]  414 	POP	ar7
-      000590 D0 06            [24]  415 	POP	ar6
+      00045C C0 06            [24]  400 	PUSH	ar6
+      00045E C0 07            [24]  401 	PUSH	ar7
+      000460 E5 83            [12]  402 	MOV	A, DPH
+      000462 04               [12]  403 	INC	A
+      000463 F5 83            [12]  404 	MOV	DPH, A
+      000465 E5 82            [12]  405 	MOV	A, DPL
+      000467 04               [12]  406 	INC	A
+      000468 F5 82            [12]  407 	MOV	DPL, A
+      00046A AE 83            [24]  408 	MOV	R6, DPH
+      00046C                        409 	delay_us_1:
+      00046C AF 82            [24]  410 	MOV R7, DPL
+      00046E                        411 	delay_us_2:
+      00046E DF FE            [24]  412 	DJNZ R7, delay_us_2
+      000470 DE FA            [24]  413 	DJNZ	R6, delay_us_1
+      000472 D0 07            [24]  414 	POP	ar7
+      000474 D0 06            [24]  415 	POP	ar6
                            00001A   416 	C$delay.c$27$1_0$4 ==.
                                     417 ;	delay.c:27: }
                            00001A   418 	C$delay.c$27$1_0$4 ==.
                            00001A   419 	XG$delay_us$0$0 ==.
-      000592 22               [24]  420 	ret
+      000476 22               [24]  420 	ret
                                     421 ;------------------------------------------------------------
                                     422 ;Allocation info for local variables in function 'delay_ms'
                                     423 ;------------------------------------------------------------
@@ -429,40 +429,40 @@
                                     429 ;	-----------------------------------------
                                     430 ;	 function delay_ms
                                     431 ;	-----------------------------------------
-      000593                        432 _delay_ms:
+      000477                        432 _delay_ms:
                            00001B   433 	C$delay.c$57$1_0$6 ==.
                                     434 ;	delay.c:57: __endasm;
-      000593 C0 04            [24]  435 	PUSH	ar4
-      000595 C0 05            [24]  436 	PUSH	ar5
-      000597 C0 06            [24]  437 	PUSH	ar6
-      000599 C0 07            [24]  438 	PUSH	ar7
-      00059B E5 83            [12]  439 	MOV	A, DPH
-      00059D 04               [12]  440 	INC	A
-      00059E F5 83            [12]  441 	MOV	DPH, A
-      0005A0 E5 82            [12]  442 	MOV	A, DPL
-      0005A2 04               [12]  443 	INC	A
-      0005A3 F5 82            [12]  444 	MOV	DPL, A
-      0005A5 AC 83            [24]  445 	MOV	R4, DPH
-      0005A7                        446 	delay_ms_1:
-      0005A7 AD 82            [24]  447 	MOV R5, DPL
-      0005A9                        448 	delay_ms_2:
-      0005A9 7E 0A            [12]  449 	MOV R6, #10
-      0005AB                        450 	delay_ms_3:
-      0005AB 7F 64            [12]  451 	MOV R7, #100
-      0005AD                        452 	delay_ms_4:
-      0005AD DF FE            [24]  453 	DJNZ R7, delay_ms_4
-      0005AF DE FA            [24]  454 	DJNZ	R6, delay_ms_3
-      0005B1 DD F6            [24]  455 	DJNZ	R5, delay_ms_2
-      0005B3 DC F2            [24]  456 	DJNZ	R4, delay_ms_1
-      0005B5 D0 07            [24]  457 	POP	ar7
-      0005B7 D0 06            [24]  458 	POP	ar6
-      0005B9 D0 05            [24]  459 	POP	ar5
-      0005BB D0 04            [24]  460 	POP	ar4
+      000477 C0 04            [24]  435 	PUSH	ar4
+      000479 C0 05            [24]  436 	PUSH	ar5
+      00047B C0 06            [24]  437 	PUSH	ar6
+      00047D C0 07            [24]  438 	PUSH	ar7
+      00047F E5 83            [12]  439 	MOV	A, DPH
+      000481 04               [12]  440 	INC	A
+      000482 F5 83            [12]  441 	MOV	DPH, A
+      000484 E5 82            [12]  442 	MOV	A, DPL
+      000486 04               [12]  443 	INC	A
+      000487 F5 82            [12]  444 	MOV	DPL, A
+      000489 AC 83            [24]  445 	MOV	R4, DPH
+      00048B                        446 	delay_ms_1:
+      00048B AD 82            [24]  447 	MOV R5, DPL
+      00048D                        448 	delay_ms_2:
+      00048D 7E 0A            [12]  449 	MOV R6, #10
+      00048F                        450 	delay_ms_3:
+      00048F 7F 64            [12]  451 	MOV R7, #100
+      000491                        452 	delay_ms_4:
+      000491 DF FE            [24]  453 	DJNZ R7, delay_ms_4
+      000493 DE FA            [24]  454 	DJNZ	R6, delay_ms_3
+      000495 DD F6            [24]  455 	DJNZ	R5, delay_ms_2
+      000497 DC F2            [24]  456 	DJNZ	R4, delay_ms_1
+      000499 D0 07            [24]  457 	POP	ar7
+      00049B D0 06            [24]  458 	POP	ar6
+      00049D D0 05            [24]  459 	POP	ar5
+      00049F D0 04            [24]  460 	POP	ar4
                            000045   461 	C$delay.c$58$1_0$6 ==.
                                     462 ;	delay.c:58: }
                            000045   463 	C$delay.c$58$1_0$6 ==.
                            000045   464 	XG$delay_ms$0$0 ==.
-      0005BD 22               [24]  465 	ret
+      0004A1 22               [24]  465 	ret
                                     466 	.area CSEG    (CODE)
                                     467 	.area CONST   (CODE)
                                     468 	.area XINIT   (CODE)

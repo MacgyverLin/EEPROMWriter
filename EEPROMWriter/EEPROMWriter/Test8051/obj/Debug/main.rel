@@ -1,6 +1,6 @@
 ;!FILE obj\Debug\main.asm
 XH3
-H 1B areas 143 global symbols
+H 1B areas E2 global symbols
 M main
 O -mmcs51 --model-large
 S G$DPL$0_0$0 Def000082
@@ -14,7 +14,6 @@ S __mcs51_genRAMCLEAR Ref000000
 S G$OV$0_0$0 Def0000D2
 S G$REN$0_0$0 Def00009C
 S _WR Def0000B6
-S _cfTest Ref000000
 S G$WR$0_0$0 Def0000B6
 S __mcs51_genXINIT Ref000000
 S _RXD Def0000B0
@@ -101,7 +100,6 @@ S _P0_2 Def000082
 S _P1_1 Def000091
 S _SM1 Def00009E
 S _P2_0 Def0000A0
-S _bp Ref000000
 S G$P0_0$0_0$0 Def000080
 S _P0_3 Def000083
 S _P1_2 Def000092
@@ -218,11 +216,13 @@ A BSEG size 0 flags 80 addr 0
 A PSEG size 0 flags 50 addr 0
 A XSEG size 0 flags 40 addr 0
 A XABS size 0 flags 48 addr 0
-A XISEG size 0 flags 40 addr 0
+A XISEG size 1 flags 40 addr 0
+S _PSBANK Def000000
+S G$PSBANK$0_0$0 Def000000
 A HOME size 6 flags 20 addr 0
 S __sdcc_program_startup Def000003
-S A$mainDebug\main$377 Def000000
-S A$mainDebug\main$399 Def000003
+S A$mainDebug\main$401 Def000003
+S A$mainDebug\main$379 Def000000
 A GSINIT0 size 0 flags 20 addr 0
 A GSINIT1 size 0 flags 20 addr 0
 A GSINIT2 size 0 flags 20 addr 0
@@ -231,127 +231,30 @@ A GSINIT4 size 0 flags 20 addr 0
 A GSINIT5 size 0 flags 20 addr 0
 A GSINIT size 0 flags 20 addr 0
 A GSFINAL size 3 flags 20 addr 0
-S A$mainDebug\main$392 Def000000
-A CSEG size BC flags 20 addr 0
-S C$main.c$110$1_0$26 Def0000B4
-S C$main.c$111$1_0$26 Def0000BB
-S _main Def00005B
-S G$sysLoadProgram$0$0 Def000000
-S XG$main$0$0 Def0000BB
-S _sysLoadProgram Def000000
-S C$main.c$70$1_0$26 Def00005B
-S C$main.c$81$2_0$28 Def0000A0
-S C$main.c$75$1_0$26 Def000064
-S C$main.c$67$1_0$25 Def000000
-S C$main.c$68$1_0$25 Def00005A
-S C$main.c$83$2_0$28 Def0000A5
-S C$main.c$76$2_0$27 Def000067
-S C$main.c$79$1_0$26 Def00009E
-S XG$sysLoadProgram$0$0 Def00005A
-S C$main.c$4$0_0$25 Def000000
-S C$main.c$97$2_0$28 Def0000A8
-S C$main.c$99$2_0$28 Def0000AE
-S A$mainDebug\main$510 Def000072
-S A$mainDebug\main$501 Def000064
-S A$mainDebug\main$520 Def000082
-S A$mainDebug\main$511 Def000073
-S A$mainDebug\main$430 Def00000B
-S A$mainDebug\main$530 Def00008E
-S A$mainDebug\main$512 Def000074
-S A$mainDebug\main$440 Def000021
-S A$mainDebug\main$431 Def00000E
-S A$mainDebug\main$531 Def00008F
-S A$mainDebug\main$522 Def000083
-S A$mainDebug\main$513 Def000076
-S A$mainDebug\main$504 Def000067
-S A$mainDebug\main$450 Def000032
-S A$mainDebug\main$441 Def000023
-S A$mainDebug\main$432 Def000011
-S A$mainDebug\main$532 Def000091
-S A$mainDebug\main$523 Def000084
-S A$mainDebug\main$514 Def000078
-S A$mainDebug\main$505 Def00006A
-S A$mainDebug\main$460 Def000041
-S A$mainDebug\main$451 Def000033
-S A$mainDebug\main$433 Def000014
-S A$mainDebug\main$551 Def0000A5
-S A$mainDebug\main$542 Def00009E
-S A$mainDebug\main$533 Def000093
-S A$mainDebug\main$524 Def000085
-S A$mainDebug\main$506 Def00006B
-S A$mainDebug\main$470 Def000054
-S A$mainDebug\main$461 Def000042
-S A$mainDebug\main$443 Def000025
-S A$mainDebug\main$434 Def000017
-S A$mainDebug\main$425 Def000000
-S A$mainDebug\main$570 Def0000BB
-S A$mainDebug\main$534 Def000095
-S A$mainDebug\main$525 Def000087
-S A$mainDebug\main$516 Def00007A
-S A$mainDebug\main$507 Def00006C
-S A$mainDebug\main$471 Def000055
-S A$mainDebug\main$462 Def000044
-S A$mainDebug\main$453 Def000034
-S A$mainDebug\main$444 Def000028
-S A$mainDebug\main$435 Def000019
-S A$mainDebug\main$426 Def000002
-S A$mainDebug\main$535 Def000097
-S A$mainDebug\main$526 Def000089
-S A$mainDebug\main$517 Def00007C
-S A$mainDebug\main$508 Def00006D
-S A$mainDebug\main$472 Def000058
-S A$mainDebug\main$463 Def000046
-S A$mainDebug\main$454 Def000037
-S A$mainDebug\main$445 Def00002A
-S A$mainDebug\main$427 Def000004
-S A$mainDebug\main$563 Def0000B4
-S A$mainDebug\main$554 Def0000A8
-S A$mainDebug\main$536 Def000098
-S A$mainDebug\main$527 Def00008B
-S A$mainDebug\main$518 Def00007E
-S A$mainDebug\main$509 Def00006F
-S A$mainDebug\main$473 Def000059
-S A$mainDebug\main$464 Def000047
-S A$mainDebug\main$455 Def000039
-S A$mainDebug\main$446 Def00002B
-S A$mainDebug\main$437 Def00001B
-S A$mainDebug\main$428 Def000006
-S A$mainDebug\main$555 Def0000AB
-S A$mainDebug\main$546 Def0000A0
-S A$mainDebug\main$537 Def000099
-S A$mainDebug\main$528 Def00008C
-S A$mainDebug\main$519 Def00007F
-S A$mainDebug\main$465 Def000049
-S A$mainDebug\main$456 Def00003B
-S A$mainDebug\main$447 Def00002D
-S A$mainDebug\main$438 Def00001E
-S A$mainDebug\main$429 Def000008
-S A$mainDebug\main$547 Def0000A3
-S A$mainDebug\main$538 Def00009A
-S A$mainDebug\main$529 Def00008D
-S A$mainDebug\main$466 Def00004B
-S A$mainDebug\main$457 Def00003D
-S A$mainDebug\main$448 Def00002F
-S A$mainDebug\main$439 Def000020
-S A$mainDebug\main$566 Def0000B6
-S A$mainDebug\main$548 Def0000A4
-S A$mainDebug\main$539 Def00009C
-S A$mainDebug\main$467 Def00004D
-S A$mainDebug\main$458 Def00003E
-S A$mainDebug\main$567 Def0000B9
-S A$mainDebug\main$558 Def0000AE
-S A$mainDebug\main$495 Def00005B
-S A$mainDebug\main$468 Def00004F
-S A$mainDebug\main$459 Def00003F
-S G$main$0$0 Def00005B
-S A$mainDebug\main$559 Def0000B1
-S A$mainDebug\main$496 Def00005D
-S A$mainDebug\main$478 Def00005A
-S A$mainDebug\main$469 Def000051
-S A$mainDebug\main$497 Def000060
-S A$mainDebug\main$498 Def000062
+S A$mainDebug\main$394 Def000000
+A CSEG size 14 flags 20 addr 0
+S _main Def000000
+S XG$main$0$0 Def000013
+S C$main.c$20$2_0$26 Def000003
+S C$main.c$13$1_0$25 Def000000
+S C$main.c$50$1_0$25 Def000011
+S C$main.c$51$1_0$25 Def000013
+S C$main.c$22$2_0$26 Def000008
+S C$main.c$38$2_0$26 Def00000B
+S C$main.c$7$0_0$25 Def000000
+S A$mainDebug\main$430 Def000000
+S A$mainDebug\main$441 Def00000B
+S A$mainDebug\main$451 Def000013
+S A$mainDebug\main$442 Def00000E
+S A$mainDebug\main$433 Def000003
+S A$mainDebug\main$434 Def000006
+S A$mainDebug\main$435 Def000007
+S A$mainDebug\main$446 Def000011
+S A$mainDebug\main$438 Def000008
+S G$main$0$0 Def000000
 A CONST size 0 flags 20 addr 0
-A XINIT size 0 flags 20 addr 0
+A XINIT size 1 flags 20 addr 0
+S Fmain$__xinit_PSBANK$0_0$0 Def000000
 A CABS size 0 flags 28 addr 0
 T 00 00 00
 R 00 00 00 02
@@ -364,70 +267,30 @@ R 00 00 00 06
 T 00 00 00
 R 00 00 00 06
 T 00 00 00
+R 00 00 00 0D
+T 00 00 00
+R 00 00 00 0D
+T 00 00 00
 R 00 00 00 0E
 T 00 00 00 02 00 00
-R 00 00 00 0E 02 04 00 B4
+R 00 00 00 0E 02 04 00 B2
 T 00 00 00 02 00 03
 R 00 00 00 16 00 04 00 0E
 T 00 00 03
 R 00 00 00 0E
-T 00 00 03 02 00 5B
+T 00 00 03 02 00 00
 R 00 00 00 0E 00 04 00 17
 T 00 00 00
 R 00 00 00 17
-T 00 00 00 C0 04 C0 05 C0 82 C0 83 75 98 50 75 89
+T 00 00 00 75 90 01 90 FF 70 E4 F0 12 00 00 75 82
+R 00 00 00 17 02 0C 00 85
+T 00 00 0D 00 12 00 00
+R 00 00 00 17 02 05 00 20
+T 00 00 11
 R 00 00 00 17
-T 00 00 0D 21 75 87 80 75 8D FA 75 8B FA D2 8E 05
+T 00 00 11 80 FE 22
 R 00 00 00 17
-T 00 00 1A 90
-R 00 00 00 17
-T 00 00 1B
-R 00 00 00 17
-T 00 00 1B 30 98 FD E5 99 FC C2 98 05 90
-R 00 00 00 17
-T 00 00 25
-R 00 00 00 17
-T 00 00 25 30 98 FD E5 99 FD C2 98 05 90 90 00 00
-R 00 00 00 17
-T 00 00 32
-R 00 00 00 17
-T 00 00 32 E4 C3
-R 00 00 00 17
-T 00 00 34
-R 00 00 00 17
-T 00 00 34 30 98 FD E5 99 C2 98 05 90 F0 A3 E5 82
-R 00 00 00 17
-T 00 00 41 9C 70 EE E5 83 9D 70 E9 D0 83 D0 82 D0
-R 00 00 00 17
-T 00 00 4E 05 D0 04 90 FF 70 E0 90 00 00 E4 73 22
-R 00 00 00 17
-T 00 00 5B
-R 00 00 00 17
-T 00 00 5B C0 00 00 00 85 81 00 00 00 05 81 05 81
-R 00 00 00 17 F1 23 04 00 62 F1 23 09 00 62
-T 00 00 64 75 90 01 90 00 00 E4 93 FE 7F 00 90
-R 00 00 00 17
-T 00 00 70 00 00 E0 FC 7D 00 7A 00 7B 80
-R 00 00 00 17
-T 00 00 7A
-R 00 00 00 17
-T 00 00 7A 8A 00 8B 01 1A BA FF 01 1B
-R 00 00 00 17
-T 00 00 83
-R 00 00 00 17
-T 00 00 83 E8 49 60 19 8E 82 8F 83 E4 93 F9 A3 AE
-R 00 00 00 17
-T 00 00 90 82 AF 83 8C 82 8D 83 E9 F0 A3 AC 82 AD
-R 00 00 00 17
-T 00 00 9D 83 80 DA
-R 00 00 00 17
-T 00 00 A0
-R 00 00 00 17
-T 00 00 A0 90 FF 70 E4 F0 12 00 00 75 82 00 12
-R 00 00 00 17 02 09 00 87
-T 00 00 AC 00 00 75 82 00 12 00 00
-R 00 00 00 17 02 03 00 0B 02 09 00 21
-T 00 00 B4
-R 00 00 00 17
-T 00 00 B4 80 FE 85 00 00 00 81 D0 00 00 00 22
-R 00 00 00 17 F1 23 06 00 62 F1 23 0B 00 62
+T 00 00 00
+R 00 00 00 19
+T 00 00 00 00
+R 00 00 00 19

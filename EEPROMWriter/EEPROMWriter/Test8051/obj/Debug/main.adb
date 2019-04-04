@@ -1,11 +1,8 @@
 M:main
-F:G$sysLoadProgram$0_0$0({2}DF,SV:S),C,0,0,0,0,0
-F:G$main$0_0$0({2}DF,SV:S),C,0,2,0,0,0
-S:Lmain.main$res$1_0$26({1}SC:U),B,1,1
-S:Lmain.main$br$1_0$26({2}SI:U),B,1,2
-S:Lmain.main$src$2_0$27({2}DC,SC:U),R,0,0,[]
-S:Lmain.main$dst$2_0$27({2}DX,SC:U),B,1,1
-S:Lmain.main$count$2_0$27({2}SI:U),R,0,0,[r2,r3]
+F:G$main$0_0$0({2}DF,SV:S),C,0,0,0,0,0
+S:Lmain.main$res$1_0$25({1}SC:U),B,1,1
+S:Lmain.main$br$1_0$25({2}SI:U),B,1,2
+S:G$PSBANK$0_0$0({1}SC:U),F,0,0
 S:G$P0$0_0$0({1}SC:U),I,0,0
 S:G$SP$0_0$0({1}SC:U),I,0,0
 S:G$DPL$0_0$0({1}SC:U),I,0,0
@@ -127,5 +124,5 @@ S:G$sioTest2$0_0$0({2}DF,SV:S),C,0,0
 S:G$sioTest3$0_0$0({2}DF,SV:S),C,0,0
 S:G$FATTest$0_0$0({2}DF,SV:S),C,0,0
 S:G$SIOFATFSTest$0_0$0({2}DF,SV:S),C,0,0
-S:G$sysLoadProgram$0_0$0({2}DF,SV:S),C,0,0
-S:G$main$0_0$0({2}DF,SV:S),C,0,2
+S:G$main$0_0$0({2}DF,SV:S),C,0,0
+S:Fmain$__xinit_PSBANK$0_0$0({1}SC:U),C,0,0

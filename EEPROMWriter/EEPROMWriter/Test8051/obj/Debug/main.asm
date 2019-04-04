@@ -9,9 +9,7 @@
 ; Public variables in this module
 ;--------------------------------------------------------
 	.globl _main
-	.globl _sysLoadProgram
 	.globl _FATTest
-	.globl _cfTest
 	.globl _ledTest
 	.globl _CY
 	.globl _AC
@@ -109,6 +107,7 @@
 	.globl _DPL
 	.globl _SP
 	.globl _P0
+	.globl _PSBANK
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -359,6 +358,9 @@ __start__stack:
 ; external initialized ram data
 ;--------------------------------------------------------
 	.area XISEG   (XDATA)
+G$PSBANK$0_0$0==.
+_PSBANK::
+	.ds 1
 	.area HOME    (CODE)
 	.area GSINIT0 (CODE)
 	.area GSINIT1 (CODE)
@@ -403,15 +405,18 @@ __sdcc_program_startup:
 ;--------------------------------------------------------
 	.area CSEG    (CODE)
 ;------------------------------------------------------------
-;Allocation info for local variables in function 'sysLoadProgram'
+;Allocation info for local variables in function 'main'
 ;------------------------------------------------------------
-	G$sysLoadProgram$0$0 ==.
-	C$main.c$4$0_0$25 ==.
-;	main.c:4: void sysLoadProgram()
+;res                       Allocated to stack - _bp +1
+;br                        Allocated to stack - _bp +2
+;------------------------------------------------------------
+	G$main$0$0 ==.
+	C$main.c$7$0_0$25 ==.
+;	main.c:7: void main()
 ;	-----------------------------------------
-;	 function sysLoadProgram
+;	 function main
 ;	-----------------------------------------
-_sysLoadProgram:
+_main:
 	ar7 = 0x07
 	ar6 = 0x06
 	ar5 = 0x05
@@ -420,155 +425,34 @@ _sysLoadProgram:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-	C$main.c$67$1_0$25 ==.
-;	main.c:67: __endasm;
-	PUSH	ar4
-	PUSH	ar5
-	PUSH	DPL
-	PUSH	DPH
-	MOV	SCON, #0x50
-	MOV	TMOD, #0x21
-	MOV	PCON, #0x80
-	MOV	TH1, #0xFA
-	MOV	TL1, #0xFA
-	SETB	TR1
-	INC	P1
-	    WAIT_RX1:
-	JNB	RI, WAIT_RX1
-	MOV	A, SBUF
-	MOV	R4, A
-	CLR	RI
-	INC	P1
-	    WAIT_RX2:
-	JNB	RI, WAIT_RX2
-	MOV	A, SBUF
-	MOV	R5, A
-	CLR	RI
-	INC	P1
-	MOV	DPTR, #0x0000
-	    sysLoadProgram_LP:
-	CLR	A
-	CLR	C
-	    WAIT_RX3:
-	JNB	RI, WAIT_RX3
-	MOV	A, SBUF
-	CLR	RI
-	INC	P1
-	MOVX	@DPTR, A
-	INC	DPTR
-	MOV	A, DPL
-	SUBB	A, R4
-	JNZ	sysLoadProgram_LP
-	MOV	A, DPH
-	SUBB	A, R5
-	JNZ	sysLoadProgram_LP
-	POP	DPH
-	POP	DPL
-	POP	ar5
-	POP	ar4
-	MOV	DPTR, #0xFF70
-	MOVX	A, @DPTR
-	MOV	DPTR, #0x0000
-	CLR	A
-	JMP	@A+DPTR
-	C$main.c$68$1_0$25 ==.
-;	main.c:68: }
-	C$main.c$68$1_0$25 ==.
-	XG$sysLoadProgram$0$0 ==.
-	ret
-;------------------------------------------------------------
-;Allocation info for local variables in function 'main'
-;------------------------------------------------------------
-;res                       Allocated to stack - _bp +1
-;br                        Allocated to stack - _bp +2
-;src                       Allocated to registers 
-;dst                       Allocated to stack - _bp +1
-;count                     Allocated to registers r2 r3 
-;------------------------------------------------------------
-	G$main$0$0 ==.
-	C$main.c$70$1_0$26 ==.
-;	main.c:70: void main()
-;	-----------------------------------------
-;	 function main
-;	-----------------------------------------
-_main:
-	push	_bp
-	mov	_bp,sp
-	inc	sp
-	inc	sp
-	C$main.c$75$1_0$26 ==.
-;	main.c:75: P1 = 0x01;
+	C$main.c$13$1_0$25 ==.
+;	main.c:13: P1 = 0x01;
 	mov	_P1,#0x01
-	C$main.c$76$2_0$27 ==.
-;	main.c:76: sysCopyBIOS(0x0000, 0x0000, 0x8000);
-	mov	dptr,#0x0000
-	clr	a
-	movc	a,@a+dptr
-	mov	r6,a
-	mov	r7,#0x00
-	mov	dptr,#0x0000
-	movx	a,@dptr
-	mov	r4,a
-	mov	r5,#0x00
-	mov	r2,#0x00
-	mov	r3,#0x80
-00101$:
-	mov	ar0,r2
-	mov	ar1,r3
-	dec	r2
-	cjne	r2,#0xff,00125$
-	dec	r3
-00125$:
-	mov	a,r0
-	orl	a,r1
-	jz	00104$
-	mov	dpl,r6
-	mov	dph,r7
-	clr	a
-	movc	a,@a+dptr
-	mov	r1,a
-	inc	dptr
-	mov	r6,dpl
-	mov	r7,dph
-	mov	dpl,r4
-	mov	dph,r5
-	mov	a,r1
-	movx	@dptr,a
-	inc	dptr
-	mov	r4,dpl
-	mov	r5,dph
-	C$main.c$79$1_0$26 ==.
-;	main.c:79: if(1)
-	sjmp	00101$
-00104$:
-	C$main.c$81$2_0$28 ==.
-;	main.c:81: sysEnterNormalMode();
+	C$main.c$20$2_0$26 ==.
+;	main.c:20: sysEnterNormalMode();
 	mov	dptr,#0xff70
 	clr	a
 	movx	@dptr,a
-	C$main.c$83$2_0$28 ==.
-;	main.c:83: ledTest();
+	C$main.c$22$2_0$26 ==.
+;	main.c:22: ledTest();
 	lcall	_ledTest
-	C$main.c$97$2_0$28 ==.
-;	main.c:97: cfTest(0);
-	mov	dpl,#0x00
-	lcall	_cfTest
-	C$main.c$99$2_0$28 ==.
-;	main.c:99: FATTest(0);
+	C$main.c$38$2_0$26 ==.
+;	main.c:38: FATTest(0);
 	mov	dpl,#0x00
 	lcall	_FATTest
-	C$main.c$110$1_0$26 ==.
-;	main.c:110: while(1);
-00108$:
-	sjmp	00108$
-	C$main.c$111$1_0$26 ==.
-;	main.c:111: }
-	mov	sp,_bp
-	pop	_bp
-	C$main.c$111$1_0$26 ==.
+	C$main.c$50$1_0$25 ==.
+;	main.c:50: while(1);
+00105$:
+	sjmp	00105$
+	C$main.c$51$1_0$25 ==.
+;	main.c:51: }
+	C$main.c$51$1_0$25 ==.
 	XG$main$0$0 ==.
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
 	.area XINIT   (CODE)
+Fmain$__xinit_PSBANK$0_0$0 == .
+__xinit__PSBANK:
+	.db #0x00	; 0
 	.area CABS    (ABS,CODE)

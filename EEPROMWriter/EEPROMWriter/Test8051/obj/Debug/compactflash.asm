@@ -8,6 +8,7 @@
 ;--------------------------------------------------------
 ; Public variables in this module
 ;--------------------------------------------------------
+	.globl _sioTXStr
 	.globl _CY
 	.globl _AC
 	.globl _F0
@@ -386,8 +387,8 @@ _CY	=	0x00d7
 ;device                    Allocated to registers r7 
 ;------------------------------------------------------------
 	G$cfInit$0$0 ==.
-	C$compactflash.c$3$0_0$9 ==.
-;	compactflash.c:3: void cfInit(char device)
+	C$compactflash.c$5$0_0$33 ==.
+;	compactflash.c:5: void cfInit(char device)
 ;	-----------------------------------------
 ;	 function cfInit
 ;	-----------------------------------------
@@ -400,215 +401,106 @@ _cfInit:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-	C$compactflash.c$5$1_0$9 ==.
-;	compactflash.c:5: cfWaitIdle(device);
+	C$compactflash.c$7$1_0$33 ==.
+;	compactflash.c:7: cfWaitIdle(device);
 	mov  r7,dpl
 	push	ar7
 	lcall	_cfWaitIdle
 	pop	ar7
-	C$compactflash.c$7$1_0$9 ==.
-;	compactflash.c:7: cfWriteFeatures(device, 0x01); //  set 8 bit mode to features port
-	mov	ar5,r7
-	clr	a
-	swap	a
-	anl	a,#0xf0
-	xch	a,r5
-	swap	a
-	xch	a,r5
-	xrl	a,r5
-	xch	a,r5
-	anl	a,#0xf0
-	xch	a,r5
-	xrl	a,r5
-	mov	r6,a
-	mov	a,#0x21
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
-	mov	dpl,r3
-	mov	dph,r4
+	C$compactflash.c$9$1_0$33 ==.
+;	compactflash.c:9: cfWriteFeatures(device, 0x01); //  set 8 bit mode to features port
+	mov	dptr,#0xff21
 	mov	a,#0x01
 	movx	@dptr,a
-	C$compactflash.c$9$1_0$9 ==.
-;	compactflash.c:9: cfWaitIdle(device);
+	C$compactflash.c$11$1_0$33 ==.
+;	compactflash.c:11: cfWaitCommandReady(device);
 	mov	dpl,r7
-	push	ar6
-	push	ar5
-	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$11$1_0$9 ==.
-;	compactflash.c:11: cfWriteCommand(device, 0xef);  // command 'set features'
-	mov	a,#0x27
-	add	a,r5
-	mov	r5,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r6,a
-	mov	dpl,r5
-	mov	dph,r6
+	lcall	_cfWaitCommandReady
+	C$compactflash.c$13$1_0$33 ==.
+;	compactflash.c:13: cfWriteCommand(device, 0xef);  // command 'set features'
+	mov	dptr,#0xff27
 	mov	a,#0xef
 	movx	@dptr,a
-	C$compactflash.c$12$1_0$9 ==.
-;	compactflash.c:12: }
-	C$compactflash.c$12$1_0$9 ==.
+	C$compactflash.c$14$1_0$33 ==.
+;	compactflash.c:14: }
+	C$compactflash.c$14$1_0$33 ==.
 	XG$cfInit$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'cfWaitIdle'
 ;------------------------------------------------------------
-;device                    Allocated to registers r7 
-;status                    Allocated to registers r6 
+;device                    Allocated to registers 
 ;------------------------------------------------------------
 	G$cfWaitIdle$0$0 ==.
-	C$compactflash.c$14$1_0$11 ==.
-;	compactflash.c:14: void cfWaitIdle(char device)
+	C$compactflash.c$16$1_0$35 ==.
+;	compactflash.c:16: void cfWaitIdle(char device)
 ;	-----------------------------------------
 ;	 function cfWaitIdle
 ;	-----------------------------------------
 _cfWaitIdle:
-	mov	r7,dpl
-	C$compactflash.c$17$1_0$11 ==.
-;	compactflash.c:17: do
+	C$compactflash.c$18$1_0$35 ==.
+;	compactflash.c:18: while( (cfReadStatus(device) & 0x80) != 0 );
 00101$:
-	C$compactflash.c$19$2_0$12 ==.
-;	compactflash.c:19: status = cfReadStatus(device);
-	mov	ar5,r7
-	clr	a
-	swap	a
-	anl	a,#0xf0
-	xch	a,r5
-	swap	a
-	xch	a,r5
-	xrl	a,r5
-	xch	a,r5
-	anl	a,#0xf0
-	xch	a,r5
-	xrl	a,r5
-	mov	r6,a
-	mov	a,#0x27
-	add	a,r5
-	mov	r5,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r6,a
-	mov	dpl,r5
-	mov	dph,r6
+	mov	dptr,#0xff27
 	movx	a,@dptr
-	C$compactflash.c$21$1_0$11 ==.
-;	compactflash.c:21: while((status & 0x80)!=0);
 	jb	acc.7,00101$
-	C$compactflash.c$22$1_0$11 ==.
-;	compactflash.c:22: }
-	C$compactflash.c$22$1_0$11 ==.
+	C$compactflash.c$19$1_0$35 ==.
+;	compactflash.c:19: }
+	C$compactflash.c$19$1_0$35 ==.
 	XG$cfWaitIdle$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'cfWaitCommandReady'
 ;------------------------------------------------------------
-;device                    Allocated to registers r7 
-;status                    Allocated to registers r6 
+;device                    Allocated to registers 
 ;------------------------------------------------------------
 	G$cfWaitCommandReady$0$0 ==.
-	C$compactflash.c$24$1_0$14 ==.
-;	compactflash.c:24: void cfWaitCommandReady(char device)
+	C$compactflash.c$21$1_0$37 ==.
+;	compactflash.c:21: void cfWaitCommandReady(char device)
 ;	-----------------------------------------
 ;	 function cfWaitCommandReady
 ;	-----------------------------------------
 _cfWaitCommandReady:
-	mov	r7,dpl
-	C$compactflash.c$28$1_0$14 ==.
-;	compactflash.c:28: do
+	C$compactflash.c$23$1_0$37 ==.
+;	compactflash.c:23: while( (cfReadStatus(device) & 0xc0) != 0x40 );
 00101$:
-	C$compactflash.c$30$2_0$15 ==.
-;	compactflash.c:30: status = cfReadStatus(device);
-	mov	ar5,r7
-	clr	a
-	swap	a
-	anl	a,#0xf0
-	xch	a,r5
-	swap	a
-	xch	a,r5
-	xrl	a,r5
-	xch	a,r5
-	anl	a,#0xf0
-	xch	a,r5
-	xrl	a,r5
-	mov	r6,a
-	mov	a,#0x27
-	add	a,r5
-	mov	r5,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r6,a
-	mov	dpl,r5
-	mov	dph,r6
+	mov	dptr,#0xff27
 	movx	a,@dptr
-	mov	r6,a
-	C$compactflash.c$32$1_0$14 ==.
-;	compactflash.c:32: while((status & 0xc0)!=0x40);
-	anl	ar6,#0xc0
-	mov	r5,#0x00
-	cjne	r6,#0x40,00101$
-	cjne	r5,#0x00,00101$
-	C$compactflash.c$33$1_0$14 ==.
-;	compactflash.c:33: }
-	C$compactflash.c$33$1_0$14 ==.
+	mov	r7,a
+	anl	ar7,#0xc0
+	mov	r6,#0x00
+	cjne	r7,#0x40,00101$
+	cjne	r6,#0x00,00101$
+	C$compactflash.c$24$1_0$37 ==.
+;	compactflash.c:24: }
+	C$compactflash.c$24$1_0$37 ==.
 	XG$cfWaitCommandReady$0$0 ==.
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'cfWaitDataReady'
 ;------------------------------------------------------------
-;device                    Allocated to registers r7 
-;status                    Allocated to registers r6 
+;device                    Allocated to registers 
 ;------------------------------------------------------------
 	G$cfWaitDataReady$0$0 ==.
-	C$compactflash.c$35$1_0$17 ==.
-;	compactflash.c:35: void cfWaitDataReady(char device)
+	C$compactflash.c$26$1_0$39 ==.
+;	compactflash.c:26: void cfWaitDataReady(char device)
 ;	-----------------------------------------
 ;	 function cfWaitDataReady
 ;	-----------------------------------------
 _cfWaitDataReady:
-	mov	r7,dpl
-	C$compactflash.c$38$1_0$17 ==.
-;	compactflash.c:38: do
+	C$compactflash.c$28$1_0$39 ==.
+;	compactflash.c:28: while( (cfReadStatus(device) & 0x88) != 0x08 );
 00101$:
-	C$compactflash.c$40$2_0$18 ==.
-;	compactflash.c:40: status = cfReadStatus(device);
-	mov	ar5,r7
-	clr	a
-	swap	a
-	anl	a,#0xf0
-	xch	a,r5
-	swap	a
-	xch	a,r5
-	xrl	a,r5
-	xch	a,r5
-	anl	a,#0xf0
-	xch	a,r5
-	xrl	a,r5
-	mov	r6,a
-	mov	a,#0x27
-	add	a,r5
-	mov	r5,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r6,a
-	mov	dpl,r5
-	mov	dph,r6
+	mov	dptr,#0xff27
 	movx	a,@dptr
-	mov	r6,a
-	C$compactflash.c$42$1_0$17 ==.
-;	compactflash.c:42: while((status & 0x88)!=0x08);
-	anl	ar6,#0x88
-	mov	r5,#0x00
-	cjne	r6,#0x08,00101$
-	cjne	r5,#0x00,00101$
-	C$compactflash.c$43$1_0$17 ==.
-;	compactflash.c:43: }
-	C$compactflash.c$43$1_0$17 ==.
+	mov	r7,a
+	anl	ar7,#0x88
+	mov	r6,#0x00
+	cjne	r7,#0x08,00101$
+	cjne	r6,#0x00,00101$
+	C$compactflash.c$29$1_0$39 ==.
+;	compactflash.c:29: }
+	C$compactflash.c$29$1_0$39 ==.
 	XG$cfWaitDataReady$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -617,214 +509,127 @@ _cfWaitDataReady:
 ;buf                       Allocated to stack - _bp -5
 ;LBA                       Allocated to stack - _bp -9
 ;sectorCount               Allocated to stack - _bp -11
-;device                    Allocated to stack - _bp +1
-;status                    Allocated to registers r2 
-;i                         Allocated to stack - _bp +4
-;idx                       Allocated to stack - _bp +6
-;sloc0                     Allocated to stack - _bp +2
+;device                    Allocated to registers r7 
+;status                    Allocated to registers r6 
+;i                         Allocated to stack - _bp +1
+;idx                       Allocated to stack - _bp +3
 ;------------------------------------------------------------
 	G$cfReadSector$0$0 ==.
-	C$compactflash.c$45$1_0$20 ==.
-;	compactflash.c:45: void cfReadSector(char device, char* buf, unsigned long LBA, unsigned int sectorCount)
+	C$compactflash.c$31$1_0$41 ==.
+;	compactflash.c:31: void cfReadSector(char device, char* buf, unsigned long LBA, unsigned int sectorCount)
 ;	-----------------------------------------
 ;	 function cfReadSector
 ;	-----------------------------------------
 _cfReadSector:
 	push	_bp
-	mov	_bp,sp
-	push	dpl
 	mov	a,sp
-	add	a,#0x06
+	mov	_bp,a
+	add	a,#0x04
 	mov	sp,a
-	C$compactflash.c$53$1_0$20 ==.
-;	compactflash.c:53: P1 = 0xe1;
-	mov	_P1,#0xe1
-	C$compactflash.c$54$1_0$20 ==.
-;	compactflash.c:54: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	lcall	_cfWaitIdle
-	C$compactflash.c$56$1_0$20 ==.
-;	compactflash.c:56: P1 = 0xe2;
-	mov	_P1,#0xe2
-	C$compactflash.c$57$1_0$20 ==.
-;	compactflash.c:57: cfWriteSectorCount(device, 0x01);
-	mov	r0,_bp
-	inc	r0
-	mov	ar5,@r0
-	clr	a
-	xch	a,r5
-	swap	a
-	xch	a,r5
-	xrl	a,r5
-	xch	a,r5
-	anl	a,#0xf0
-	xch	a,r5
-	xrl	a,r5
-	mov	r6,a
-	mov	a,#0x22
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
-	mov	dpl,r3
-	mov	dph,r4
+	mov	r7,dpl
+	C$compactflash.c$37$1_0$41 ==.
+;	compactflash.c:37: cfWriteSectorCount(device, 0x01);
+	mov	dptr,#0xff22
 	mov	a,#0x01
 	movx	@dptr,a
-	C$compactflash.c$59$1_0$20 ==.
-;	compactflash.c:59: P1 = 0xe3;
-	mov	_P1,#0xe3
-	C$compactflash.c$60$1_0$20 ==.
-;	compactflash.c:60: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	push	ar6
-	push	ar5
+	C$compactflash.c$39$1_0$41 ==.
+;	compactflash.c:39: cfWaitIdle(device);
+	mov	dpl,r7
+	push	ar7
 	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$62$1_0$20 ==.
-;	compactflash.c:62: P1 = 0xe4;
-	mov	_P1,#0xe4
-	C$compactflash.c$63$1_0$20 ==.
-;	compactflash.c:63: cfWriteLBA0(device, ((LBA   ) & 0xff) );
-	mov	a,#0x23
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
+	pop	ar7
+	C$compactflash.c$41$1_0$41 ==.
+;	compactflash.c:41: cfWriteLBA0(device, ((LBA   ) & 0xff) );
 	mov	a,_bp
 	add	a,#0xf7
 	mov	r0,a
-	mov	ar2,@r0
-	mov	dpl,r3
-	mov	dph,r4
-	mov	a,r2
+	mov	ar6,@r0
+	mov	dptr,#0xff23
+	mov	a,r6
 	movx	@dptr,a
-	C$compactflash.c$65$1_0$20 ==.
-;	compactflash.c:65: P1 = 0xe5;
-	mov	_P1,#0xe5
-	C$compactflash.c$66$1_0$20 ==.
-;	compactflash.c:66: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	push	ar6
-	push	ar5
+	C$compactflash.c$43$1_0$41 ==.
+;	compactflash.c:43: cfWaitIdle(device);
+	mov	dpl,r7
+	push	ar7
 	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$68$1_0$20 ==.
-;	compactflash.c:68: P1 = 0xe6;
-	mov	_P1,#0xe6
-	C$compactflash.c$69$1_0$20 ==.
-;	compactflash.c:69: cfWriteLBA1(device, ((LBA>>8) & 0xff) );
-	mov	a,#0x24
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
+	C$compactflash.c$45$1_0$41 ==.
+;	compactflash.c:45: cfWriteLBA1(device, ((LBA>>8) & 0xff) );
 	mov	a,_bp
 	add	a,#0xf7
 	mov	r0,a
 	inc	r0
-	mov	ar2,@r0
-	mov	dpl,r3
-	mov	dph,r4
-	mov	a,r2
+	mov	ar6,@r0
+	mov	dptr,#0xff24
+	mov	a,r6
 	movx	@dptr,a
-	C$compactflash.c$71$1_0$20 ==.
-;	compactflash.c:71: P1 = 0xe7;
-	mov	_P1,#0xe7
-	C$compactflash.c$72$1_0$20 ==.
-;	compactflash.c:72: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	push	ar6
-	push	ar5
+	C$compactflash.c$47$1_0$41 ==.
+;	compactflash.c:47: sioTXStr(0, "cfReadSector3\n");
+	mov	a,#___str_0
+	push	acc
+	mov	a,#(___str_0 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar7
+	C$compactflash.c$48$1_0$41 ==.
+;	compactflash.c:48: cfWaitIdle(device);
+	mov	dpl,r7
+	push	ar7
 	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$74$1_0$20 ==.
-;	compactflash.c:74: P1 = 0xe8;
-	mov	_P1,#0xe8
-	C$compactflash.c$75$1_0$20 ==.
-;	compactflash.c:75: cfWriteLBA2(device, ((LBA>>16) & 0xff) );
-	mov	a,#0x25
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
+	pop	ar7
+	C$compactflash.c$50$1_0$41 ==.
+;	compactflash.c:50: cfWriteLBA2(device, ((LBA>>16) & 0xff) );
 	mov	a,_bp
 	add	a,#0xf7
 	mov	r0,a
 	inc	r0
 	inc	r0
-	mov	ar2,@r0
-	mov	dpl,r3
-	mov	dph,r4
-	mov	a,r2
+	mov	ar6,@r0
+	mov	dptr,#0xff25
+	mov	a,r6
 	movx	@dptr,a
-	C$compactflash.c$77$1_0$20 ==.
-;	compactflash.c:77: P1 = 0xe9;
-	mov	_P1,#0xe9
-	C$compactflash.c$78$1_0$20 ==.
-;	compactflash.c:78: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	push	ar6
-	push	ar5
+	C$compactflash.c$52$1_0$41 ==.
+;	compactflash.c:52: cfWaitIdle(device);
+	mov	dpl,r7
+	push	ar7
 	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$80$1_0$20 ==.
-;	compactflash.c:80: P1 = 0xea;
-	mov	_P1,#0xea
-	C$compactflash.c$81$1_0$20 ==.
-;	compactflash.c:81: cfWriteLBA3(device, (( ((LBA>>24) & 0x1f) | 0xe0)) );
-	mov	a,#0x26
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
+	C$compactflash.c$54$1_0$41 ==.
+;	compactflash.c:54: cfWriteLBA3(device, (( ((LBA>>24) & 0x1f) | 0xe0)) );
 	mov	a,_bp
 	add	a,#0xf7
 	mov	r0,a
 	inc	r0
 	inc	r0
 	inc	r0
-	mov	ar2,@r0
-	anl	ar2,#0x1f
-	orl	ar2,#0xe0
-	mov	dpl,r3
-	mov	dph,r4
-	mov	a,r2
+	mov	ar6,@r0
+	anl	ar6,#0x1f
+	orl	ar6,#0xe0
+	mov	dptr,#0xff26
+	mov	a,r6
 	movx	@dptr,a
-	C$compactflash.c$84$3_0$22 ==.
-;	compactflash.c:84: while(sectorCount--)
-	mov	a,#0x27
-	add	a,r5
-	mov	r4,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r7,a
-	mov	a,#0x20
-	add	a,r5
-	mov	r5,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r6,a
+	C$compactflash.c$56$1_0$41 ==.
+;	compactflash.c:56: sioTXStr(0, "cfReadSector4\n");
+	mov	a,#___str_1
+	push	acc
+	mov	a,#(___str_1 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar7
+	C$compactflash.c$58$2_0$42 ==.
+;	compactflash.c:58: while(sectorCount--)
 	mov	a,_bp
-	add	a,#0x06
+	add	a,#0x03
 	mov	r0,a
 	clr	a
 	mov	@r0,a
@@ -833,214 +638,265 @@ _cfReadSector:
 	mov	a,_bp
 	add	a,#0xf5
 	mov	r0,a
-	mov	r1,_bp
-	inc	r1
-	inc	r1
-	mov	a,@r0
-	mov	@r1,a
-	inc	r0
-	inc	r1
-	mov	a,@r0
-	mov	@r1,a
-00107$:
-	mov	r0,_bp
-	inc	r0
-	inc	r0
-	mov	ar2,@r0
-	inc	r0
 	mov	ar3,@r0
-	mov	r0,_bp
 	inc	r0
-	inc	r0
-	dec	@r0
-	cjne	@r0,#0xff,00134$
-	inc	r0
-	dec	@r0
-00134$:
+	mov	ar4,@r0
+00107$:
+	mov	ar2,r3
+	mov	ar6,r4
+	dec	r3
+	cjne	r3,#0xff,00138$
+	dec	r4
+00138$:
 	mov	a,r2
-	orl	a,r3
-	jnz	00135$
+	orl	a,r6
+	jnz	00139$
 	ljmp	00109$
-00135$:
-	C$compactflash.c$86$2_0$21 ==.
-;	compactflash.c:86: do
-00101$:
-	C$compactflash.c$88$3_0$22 ==.
-;	compactflash.c:88: P1 = 0xeb;
-	mov	_P1,#0xeb
-	C$compactflash.c$89$3_0$22 ==.
-;	compactflash.c:89: cfWaitCommandReady(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
+00139$:
+	C$compactflash.c$60$2_0$42 ==.
+;	compactflash.c:60: sioTXStr(0, "cfReadSector5\n");
 	push	ar7
-	push	ar6
-	push	ar5
-	push	ar4
-	lcall	_cfWaitCommandReady
-	pop	ar4
-	pop	ar5
-	pop	ar6
-	pop	ar7
-	C$compactflash.c$91$3_0$22 ==.
-;	compactflash.c:91: P1 = 0xec;
-	mov	_P1,#0xec
-	C$compactflash.c$92$3_0$22 ==.
-;	compactflash.c:92: cfWriteCommand(device, 0x20);
-	mov	ar2,r4
-	mov	ar3,r7
-	mov	dpl,r2
-	mov	dph,r3
-	mov	a,#0x20
-	movx	@dptr,a
-	C$compactflash.c$94$3_0$22 ==.
-;	compactflash.c:94: P1 = 0xed;
-	mov	_P1,#0xed
-	C$compactflash.c$95$3_0$22 ==.
-;	compactflash.c:95: cfWaitDataReady(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	push	ar7
-	push	ar6
-	push	ar5
 	push	ar4
 	push	ar3
-	push	ar2
-	lcall	_cfWaitDataReady
-	pop	ar2
+	mov	a,#___str_2
+	push	acc
+	mov	a,#(___str_2 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
 	pop	ar3
 	pop	ar4
-	pop	ar5
-	pop	ar6
 	pop	ar7
-	C$compactflash.c$97$3_0$22 ==.
-;	compactflash.c:97: P1 = 0xee;
-	mov	_P1,#0xee
-	C$compactflash.c$98$3_0$22 ==.
-;	compactflash.c:98: status = cfReadStatus(device);
-	mov	dpl,r2
-	mov	dph,r3
+	C$compactflash.c$61$2_0$42 ==.
+;	compactflash.c:61: do
+00101$:
+	C$compactflash.c$63$3_0$43 ==.
+;	compactflash.c:63: sioTXStr(0, "cfReadSector7\n");
+	push	ar7
+	push	ar4
+	push	ar3
+	mov	a,#___str_3
+	push	acc
+	mov	a,#(___str_3 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar3
+	pop	ar4
+	pop	ar7
+	C$compactflash.c$64$3_0$43 ==.
+;	compactflash.c:64: cfWaitCommandReady(device);
+	mov	dpl,r7
+	push	ar7
+	push	ar4
+	push	ar3
+	lcall	_cfWaitCommandReady
+	C$compactflash.c$66$3_0$43 ==.
+;	compactflash.c:66: sioTXStr(0, "cfReadSector8\n");
+	mov	a,#___str_4
+	push	acc
+	mov	a,#(___str_4 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
+	C$compactflash.c$67$3_0$43 ==.
+;	compactflash.c:67: cfWriteCommand(device, 0x20);
+	mov	dptr,#0xff27
+	mov	a,#0x20
+	movx	@dptr,a
+	C$compactflash.c$69$3_0$43 ==.
+;	compactflash.c:69: sioTXStr(0, "cfReadSector9\n");
+	mov	a,#___str_5
+	push	acc
+	mov	a,#(___str_5 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar3
+	pop	ar4
+	pop	ar7
+	C$compactflash.c$70$3_0$43 ==.
+;	compactflash.c:70: cfWaitDataReady(device);
+	mov	dpl,r7
+	push	ar7
+	push	ar4
+	push	ar3
+	lcall	_cfWaitDataReady
+	pop	ar3
+	pop	ar4
+	pop	ar7
+	C$compactflash.c$72$3_0$43 ==.
+;	compactflash.c:72: status = cfReadStatus(device);
+	mov	dptr,#0xff27
 	movx	a,@dptr
-	C$compactflash.c$100$3_0$22 ==.
-;	compactflash.c:100: P1 = 0xef;
-	C$compactflash.c$102$2_0$21 ==.
-;	compactflash.c:102: while((status & 0x01)!=0);
-	mov	r2,a
-	mov	_P1,#0xef
-	jb	acc.0,00101$
-	C$compactflash.c$105$1_0$20 ==.
-;	compactflash.c:105: while(i < CF_SECTOR_SIZE)
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
+	C$compactflash.c$74$2_0$42 ==.
+;	compactflash.c:74: while((status & 0x01)!=0);
+	mov	r6,a
+	jnb	acc.0,00140$
+	ljmp	00101$
+00140$:
+	C$compactflash.c$76$2_0$42 ==.
+;	compactflash.c:76: sioTXStr(0, "cfReadSector8\n");
+	push	ar7
+	push	ar4
+	push	ar3
+	mov	a,#___str_4
+	push	acc
+	mov	a,#(___str_4 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar3
+	pop	ar4
+	pop	ar7
+	C$compactflash.c$78$1_0$41 ==.
+;	compactflash.c:78: while(i < CF_SECTOR_SIZE)
+	mov	r0,_bp
+	inc	r0
 	clr	a
 	mov	@r0,a
 	inc	r0
 	mov	@r0,a
 00104$:
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
+	mov	r0,_bp
+	inc	r0
 	clr	c
 	inc	r0
 	mov	a,@r0
 	subb	a,#0x02
 	jnc	00106$
-	C$compactflash.c$107$1_0$20 ==.
-;	compactflash.c:107: P1 = 0xf0;
+	C$compactflash.c$80$1_0$41 ==.
+;	compactflash.c:80: cfWaitDataReady(device);
+	push	ar3
 	push	ar4
+	mov	dpl,r7
 	push	ar7
-	mov	_P1,#0xf0
-	C$compactflash.c$108$3_0$23 ==.
-;	compactflash.c:108: cfWaitDataReady(device);
+	push	ar4
+	push	ar3
+	lcall	_cfWaitDataReady
+	pop	ar3
+	pop	ar4
+	pop	ar7
+	C$compactflash.c$82$3_0$44 ==.
+;	compactflash.c:82: buf[i+idx] = cfReadData(device);
 	mov	r0,_bp
 	inc	r0
-	mov	dpl,@r0
-	push	ar7
-	push	ar6
-	push	ar5
-	push	ar4
-	lcall	_cfWaitDataReady
-	pop	ar4
-	pop	ar5
-	pop	ar6
-	pop	ar7
-	C$compactflash.c$110$3_0$23 ==.
-;	compactflash.c:110: P1 = 0xf1;
-	mov	_P1,#0xf1
-	C$compactflash.c$111$3_0$23 ==.
-;	compactflash.c:111: buf[i+idx] = cfReadData(device);
 	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
-	mov	a,_bp
-	add	a,#0x06
+	add	a,#0x03
 	mov	r1,a
 	mov	a,@r1
 	add	a,@r0
-	mov	r4,a
+	mov	r2,a
 	inc	r1
 	mov	a,@r1
 	inc	r0
 	addc	a,@r0
-	mov	r7,a
+	mov	r4,a
 	mov	a,_bp
 	add	a,#0xfb
 	mov	r0,a
-	mov	a,r4
+	mov	a,r2
 	add	a,@r0
-	mov	r4,a
-	mov	a,r7
+	mov	r2,a
+	mov	a,r4
 	inc	r0
 	addc	a,@r0
-	mov	r3,a
+	mov	r4,a
 	inc	r0
-	mov	ar7,@r0
-	mov	dpl,r5
-	mov	dph,r6
+	mov	ar3,@r0
+	mov	dptr,#0xff20
 	movx	a,@dptr
-	mov	r2,a
-	mov	dpl,r4
-	mov	dph,r3
-	mov	b,r7
+	mov	r6,a
+	mov	dpl,r2
+	mov	dph,r4
+	mov	b,r3
 	lcall	__gptrput
-	C$compactflash.c$113$3_0$23 ==.
-;	compactflash.c:113: i++;
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
-	inc	@r0
-	cjne	@r0,#0x00,00138$
+	C$compactflash.c$84$3_0$44 ==.
+;	compactflash.c:84: i++;
+	mov	r0,_bp
 	inc	r0
 	inc	@r0
-00138$:
-	C$compactflash.c$115$3_0$23 ==.
-;	compactflash.c:115: P1 = 0xf2;
-	mov	_P1,#0xf2
-	pop	ar7
+	cjne	@r0,#0x00,00142$
+	inc	r0
+	inc	@r0
+00142$:
 	pop	ar4
+	pop	ar3
 	sjmp	00104$
 00106$:
-	C$compactflash.c$117$2_0$21 ==.
-;	compactflash.c:117: idx += CF_SECTOR_SIZE;
+	C$compactflash.c$86$2_0$42 ==.
+;	compactflash.c:86: idx += CF_SECTOR_SIZE;
 	mov	a,_bp
-	add	a,#0x06
+	add	a,#0x03
 	mov	r0,a
 	mov	a,#0x02
 	inc	r0
 	add	a,@r0
 	mov	@r0,a
+	C$compactflash.c$87$2_0$42 ==.
+;	compactflash.c:87: sioTXStr(0, "cfReadSector9\n");
+	push	ar7
+	push	ar4
+	push	ar3
+	mov	a,#___str_5
+	push	acc
+	mov	a,#(___str_5 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
+	pop	ar3
+	pop	ar4
+	pop	ar7
 	ljmp	00107$
 00109$:
-	C$compactflash.c$120$1_0$20 ==.
-;	compactflash.c:120: P1 = 0xf3;
-	mov	_P1,#0xf3
-	C$compactflash.c$121$1_0$20 ==.
-;	compactflash.c:121: }
+	C$compactflash.c$90$1_0$41 ==.
+;	compactflash.c:90: sioTXStr(0, "cfReadSector10\n");
+	mov	a,#___str_6
+	push	acc
+	mov	a,#(___str_6 >> 8)
+	push	acc
+	mov	a,#0x80
+	push	acc
+	mov	dpl,#0x00
+	lcall	_sioTXStr
+	dec	sp
+	dec	sp
+	dec	sp
+	C$compactflash.c$91$1_0$41 ==.
+;	compactflash.c:91: }
 	mov	sp,_bp
 	pop	_bp
-	C$compactflash.c$121$1_0$20 ==.
+	C$compactflash.c$91$1_0$41 ==.
 	XG$cfReadSector$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -1049,215 +905,135 @@ _cfReadSector:
 ;buf                       Allocated to stack - _bp -5
 ;LBA                       Allocated to stack - _bp -9
 ;sectorCount               Allocated to stack - _bp -11
-;device                    Allocated to stack - _bp +1
-;status                    Allocated to registers r2 
-;i                         Allocated to stack - _bp +8
-;idx                       Allocated to stack - _bp +6
-;sloc0                     Allocated to stack - _bp +2
-;sloc1                     Allocated to stack - _bp +4
+;device                    Allocated to registers r7 
+;status                    Allocated to registers r6 
+;i                         Allocated to registers r5 r6 
+;idx                       Allocated to stack - _bp +1
 ;------------------------------------------------------------
 	G$cfWriteSector$0$0 ==.
-	C$compactflash.c$123$1_0$25 ==.
-;	compactflash.c:123: void cfWriteSector(char device, const char* buf, unsigned long LBA, unsigned int sectorCount)
+	C$compactflash.c$93$1_0$46 ==.
+;	compactflash.c:93: void cfWriteSector(char device, const char* buf, unsigned long LBA, unsigned int sectorCount)
 ;	-----------------------------------------
 ;	 function cfWriteSector
 ;	-----------------------------------------
 _cfWriteSector:
 	push	_bp
 	mov	_bp,sp
-	push	dpl
-	mov	a,sp
-	add	a,#0x08
-	mov	sp,a
-	C$compactflash.c$131$1_0$25 ==.
-;	compactflash.c:131: P1 = 0xe1;
+	inc	sp
+	inc	sp
+	C$compactflash.c$99$1_0$46 ==.
+;	compactflash.c:99: P1 = 0xe1;
+	C$compactflash.c$100$1_0$46 ==.
+;	compactflash.c:100: cfWaitIdle(device);
+	mov	r7,dpl
 	mov	_P1,#0xe1
-	C$compactflash.c$132$1_0$25 ==.
-;	compactflash.c:132: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
+	push	ar7
 	lcall	_cfWaitIdle
-	C$compactflash.c$134$1_0$25 ==.
-;	compactflash.c:134: P1 = 0xe2;
+	pop	ar7
+	C$compactflash.c$102$1_0$46 ==.
+;	compactflash.c:102: P1 = 0xe2;
 	mov	_P1,#0xe2
-	C$compactflash.c$135$1_0$25 ==.
-;	compactflash.c:135: cfWriteSectorCount(device, 0x01);
-	mov	r0,_bp
-	inc	r0
-	mov	ar5,@r0
-	clr	a
-	xch	a,r5
-	swap	a
-	xch	a,r5
-	xrl	a,r5
-	xch	a,r5
-	anl	a,#0xf0
-	xch	a,r5
-	xrl	a,r5
-	mov	r6,a
-	mov	a,#0x22
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
-	mov	dpl,r3
-	mov	dph,r4
+	C$compactflash.c$103$1_0$46 ==.
+;	compactflash.c:103: cfWriteSectorCount(device, 0x01);
+	mov	dptr,#0xff22
 	mov	a,#0x01
 	movx	@dptr,a
-	C$compactflash.c$137$1_0$25 ==.
-;	compactflash.c:137: P1 = 0xe3;
+	C$compactflash.c$105$1_0$46 ==.
+;	compactflash.c:105: P1 = 0xe3;
 	mov	_P1,#0xe3
-	C$compactflash.c$138$1_0$25 ==.
-;	compactflash.c:138: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	push	ar6
-	push	ar5
+	C$compactflash.c$106$1_0$46 ==.
+;	compactflash.c:106: cfWaitIdle(device);
+	mov	dpl,r7
+	push	ar7
 	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$140$1_0$25 ==.
-;	compactflash.c:140: P1 = 0xe4;
+	pop	ar7
+	C$compactflash.c$108$1_0$46 ==.
+;	compactflash.c:108: P1 = 0xe4;
 	mov	_P1,#0xe4
-	C$compactflash.c$141$1_0$25 ==.
-;	compactflash.c:141: cfWriteLBA0(device, ((LBA   ) & 0xff) );
-	mov	a,#0x23
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
+	C$compactflash.c$109$1_0$46 ==.
+;	compactflash.c:109: cfWriteLBA0(device, ((LBA   ) & 0xff) );
 	mov	a,_bp
 	add	a,#0xf7
 	mov	r0,a
-	mov	ar2,@r0
-	mov	dpl,r3
-	mov	dph,r4
-	mov	a,r2
+	mov	ar6,@r0
+	mov	dptr,#0xff23
+	mov	a,r6
 	movx	@dptr,a
-	C$compactflash.c$143$1_0$25 ==.
-;	compactflash.c:143: P1 = 0xe5;
+	C$compactflash.c$111$1_0$46 ==.
+;	compactflash.c:111: P1 = 0xe5;
 	mov	_P1,#0xe5
-	C$compactflash.c$144$1_0$25 ==.
-;	compactflash.c:144: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	push	ar6
-	push	ar5
+	C$compactflash.c$112$1_0$46 ==.
+;	compactflash.c:112: cfWaitIdle(device);
+	mov	dpl,r7
+	push	ar7
 	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$146$1_0$25 ==.
-;	compactflash.c:146: P1 = 0xe6;
+	pop	ar7
+	C$compactflash.c$114$1_0$46 ==.
+;	compactflash.c:114: P1 = 0xe6;
 	mov	_P1,#0xe6
-	C$compactflash.c$147$1_0$25 ==.
-;	compactflash.c:147: cfWriteLBA1(device, ((LBA>>8) & 0xff) );
-	mov	a,#0x24
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
+	C$compactflash.c$115$1_0$46 ==.
+;	compactflash.c:115: cfWriteLBA1(device, ((LBA>>8) & 0xff) );
 	mov	a,_bp
 	add	a,#0xf7
 	mov	r0,a
 	inc	r0
-	mov	ar2,@r0
-	mov	dpl,r3
-	mov	dph,r4
-	mov	a,r2
+	mov	ar6,@r0
+	mov	dptr,#0xff24
+	mov	a,r6
 	movx	@dptr,a
-	C$compactflash.c$149$1_0$25 ==.
-;	compactflash.c:149: P1 = 0xe7;
+	C$compactflash.c$117$1_0$46 ==.
+;	compactflash.c:117: P1 = 0xe7;
 	mov	_P1,#0xe7
-	C$compactflash.c$150$1_0$25 ==.
-;	compactflash.c:150: cfWaitIdle(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
-	push	ar6
-	push	ar5
+	C$compactflash.c$118$1_0$46 ==.
+;	compactflash.c:118: cfWaitIdle(device);
+	mov	dpl,r7
+	push	ar7
 	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$152$1_0$25 ==.
-;	compactflash.c:152: P1 = 0xe8;
+	pop	ar7
+	C$compactflash.c$120$1_0$46 ==.
+;	compactflash.c:120: P1 = 0xe8;
 	mov	_P1,#0xe8
-	C$compactflash.c$153$1_0$25 ==.
-;	compactflash.c:153: cfWriteLBA2(device, ((LBA>>16) & 0xff) );
-	mov	a,#0x25
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
+	C$compactflash.c$121$1_0$46 ==.
+;	compactflash.c:121: cfWriteLBA2(device, ((LBA>>16) & 0xff) );
 	mov	a,_bp
 	add	a,#0xf7
 	mov	r0,a
 	inc	r0
 	inc	r0
-	mov	ar2,@r0
-	mov	dpl,r3
-	mov	dph,r4
-	mov	a,r2
+	mov	ar6,@r0
+	mov	dptr,#0xff25
+	mov	a,r6
 	movx	@dptr,a
-	C$compactflash.c$155$1_0$25 ==.
-;	compactflash.c:155: P1 = 0xe9;
+	C$compactflash.c$123$1_0$46 ==.
+;	compactflash.c:123: P1 = 0xe9;
 	mov	_P1,#0xe9
-	C$compactflash.c$156$1_0$25 ==.
-;	compactflash.c:156: cfWaitIdle(device);
+	C$compactflash.c$124$1_0$46 ==.
+;	compactflash.c:124: cfWaitIdle(device);
+	mov	dpl,r7
+	push	ar7
+	lcall	_cfWaitIdle
+	pop	ar7
+	C$compactflash.c$126$1_0$46 ==.
+;	compactflash.c:126: P1 = 0xea;
+	mov	_P1,#0xea
+	C$compactflash.c$127$1_0$46 ==.
+;	compactflash.c:127: cfWriteLBA3(device, (((LBA>>24) | 0xe0) & 0xff) );
+	mov	a,_bp
+	add	a,#0xf7
+	mov	r0,a
+	inc	r0
+	inc	r0
+	inc	r0
+	mov	ar6,@r0
+	mov	r5,#0x00
+	orl	ar6,#0xe0
+	mov	dptr,#0xff26
+	mov	a,r6
+	movx	@dptr,a
+	C$compactflash.c$130$1_0$46 ==.
+;	compactflash.c:130: while(sectorCount--)
 	mov	r0,_bp
 	inc	r0
-	mov	dpl,@r0
-	push	ar6
-	push	ar5
-	lcall	_cfWaitIdle
-	pop	ar5
-	pop	ar6
-	C$compactflash.c$158$1_0$25 ==.
-;	compactflash.c:158: P1 = 0xea;
-	mov	_P1,#0xea
-	C$compactflash.c$159$1_0$25 ==.
-;	compactflash.c:159: cfWriteLBA3(device, (((LBA>>24) | 0xe0) & 0xff) );
-	mov	a,#0x26
-	add	a,r5
-	mov	r3,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r4,a
-	mov	a,_bp
-	add	a,#0xf7
-	mov	r0,a
-	inc	r0
-	inc	r0
-	inc	r0
-	mov	ar2,@r0
-	orl	ar2,#0xe0
-	mov	dpl,r3
-	mov	dph,r4
-	mov	a,r2
-	movx	@dptr,a
-	C$compactflash.c$162$3_0$27 ==.
-;	compactflash.c:162: while(sectorCount--)
-	mov	a,#0x27
-	add	a,r5
-	mov	r4,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r7,a
-	mov	a,#0x20
-	add	a,r5
-	mov	r5,a
-	mov	a,#0xff
-	addc	a,r6
-	mov	r6,a
-	mov	a,_bp
-	add	a,#0x06
-	mov	r0,a
 	clr	a
 	mov	@r0,a
 	inc	r0
@@ -1265,225 +1041,162 @@ _cfWriteSector:
 	mov	a,_bp
 	add	a,#0xf5
 	mov	r0,a
-	mov	r1,_bp
-	inc	r1
-	inc	r1
-	mov	a,@r0
-	mov	@r1,a
-	inc	r0
-	inc	r1
-	mov	a,@r0
-	mov	@r1,a
-00107$:
-	mov	r0,_bp
-	inc	r0
-	inc	r0
-	mov	ar2,@r0
-	inc	r0
 	mov	ar3,@r0
-	mov	r0,_bp
 	inc	r0
-	inc	r0
-	dec	@r0
-	cjne	@r0,#0xff,00134$
-	inc	r0
-	dec	@r0
+	mov	ar4,@r0
+00107$:
+	mov	ar2,r3
+	mov	ar6,r4
+	dec	r3
+	cjne	r3,#0xff,00134$
+	dec	r4
 00134$:
 	mov	a,r2
-	orl	a,r3
+	orl	a,r6
 	jnz	00135$
 	ljmp	00109$
 00135$:
-	C$compactflash.c$164$2_0$26 ==.
-;	compactflash.c:164: do
+	C$compactflash.c$132$2_0$47 ==.
+;	compactflash.c:132: do
 00101$:
-	C$compactflash.c$166$3_0$27 ==.
-;	compactflash.c:166: P1 = 0xeb;
+	C$compactflash.c$134$3_0$48 ==.
+;	compactflash.c:134: P1 = 0xeb;
 	mov	_P1,#0xeb
-	C$compactflash.c$167$3_0$27 ==.
-;	compactflash.c:167: cfWaitCommandReady(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
+	C$compactflash.c$135$3_0$48 ==.
+;	compactflash.c:135: cfWaitCommandReady(device);
+	mov	dpl,r7
 	push	ar7
-	push	ar6
-	push	ar5
 	push	ar4
+	push	ar3
 	lcall	_cfWaitCommandReady
+	pop	ar3
 	pop	ar4
-	pop	ar5
-	pop	ar6
 	pop	ar7
-	C$compactflash.c$169$3_0$27 ==.
-;	compactflash.c:169: P1 = 0xec;
+	C$compactflash.c$137$3_0$48 ==.
+;	compactflash.c:137: P1 = 0xec;
 	mov	_P1,#0xec
-	C$compactflash.c$170$3_0$27 ==.
-;	compactflash.c:170: cfWriteCommand(device, 0x30);
-	mov	ar2,r4
-	mov	ar3,r7
-	mov	dpl,r2
-	mov	dph,r3
+	C$compactflash.c$138$3_0$48 ==.
+;	compactflash.c:138: cfWriteCommand(device, 0x30);
+	mov	dptr,#0xff27
 	mov	a,#0x30
 	movx	@dptr,a
-	C$compactflash.c$172$3_0$27 ==.
-;	compactflash.c:172: P1 = 0xed;
+	C$compactflash.c$140$3_0$48 ==.
+;	compactflash.c:140: P1 = 0xed;
 	mov	_P1,#0xed
-	C$compactflash.c$173$3_0$27 ==.
-;	compactflash.c:173: cfWaitDataReady(device);
-	mov	r0,_bp
-	inc	r0
-	mov	dpl,@r0
+	C$compactflash.c$141$3_0$48 ==.
+;	compactflash.c:141: cfWaitDataReady(device);
+	mov	dpl,r7
+	push	ar7
+	push	ar4
+	push	ar3
+	lcall	_cfWaitDataReady
+	pop	ar3
+	pop	ar4
+	pop	ar7
+	C$compactflash.c$143$3_0$48 ==.
+;	compactflash.c:143: P1 = 0xee;
+	mov	_P1,#0xee
+	C$compactflash.c$144$3_0$48 ==.
+;	compactflash.c:144: status = cfReadStatus(device);
+	mov	dptr,#0xff27
+	movx	a,@dptr
+	C$compactflash.c$146$3_0$48 ==.
+;	compactflash.c:146: P1 = 0xef;
+	C$compactflash.c$148$2_0$47 ==.
+;	compactflash.c:148: while((status & 0x01)!=0);
+	mov	_P1,#0xef
+	jb	acc.0,00101$
+	C$compactflash.c$151$1_0$46 ==.
+;	compactflash.c:151: while(i < CF_SECTOR_SIZE)
+	mov	r5,#0x00
+	mov	r6,#0x00
+00104$:
+	mov	a,#0x100 - 0x02
+	add	a,r6
+	jc	00106$
+	C$compactflash.c$153$1_0$46 ==.
+;	compactflash.c:153: P1 = 0xf0;
+	push	ar3
+	push	ar4
+	mov	_P1,#0xf0
+	C$compactflash.c$154$3_0$49 ==.
+;	compactflash.c:154: cfWaitDataReady(device);
+	mov	dpl,r7
 	push	ar7
 	push	ar6
 	push	ar5
 	push	ar4
 	push	ar3
-	push	ar2
 	lcall	_cfWaitDataReady
-	pop	ar2
 	pop	ar3
 	pop	ar4
 	pop	ar5
 	pop	ar6
 	pop	ar7
-	C$compactflash.c$175$3_0$27 ==.
-;	compactflash.c:175: P1 = 0xee;
-	mov	_P1,#0xee
-	C$compactflash.c$176$3_0$27 ==.
-;	compactflash.c:176: status = cfReadStatus(device);
-	mov	dpl,r2
-	mov	dph,r3
-	movx	a,@dptr
-	C$compactflash.c$178$3_0$27 ==.
-;	compactflash.c:178: P1 = 0xef;
-	C$compactflash.c$180$2_0$26 ==.
-;	compactflash.c:180: while((status & 0x01)!=0);
-	mov	r2,a
-	mov	_P1,#0xef
-	jb	acc.0,00101$
-	C$compactflash.c$183$1_0$25 ==.
-;	compactflash.c:183: while(i < CF_SECTOR_SIZE)
-	mov	a,_bp
-	add	a,#0x08
-	mov	r0,a
-	clr	a
-	mov	@r0,a
-	inc	r0
-	mov	@r0,a
-00104$:
-	mov	a,_bp
-	add	a,#0x08
-	mov	r0,a
-	clr	c
-	inc	r0
-	mov	a,@r0
-	subb	a,#0x02
-	jnc	00106$
-	C$compactflash.c$185$1_0$25 ==.
-;	compactflash.c:185: P1 = 0xf0;
-	push	ar4
-	push	ar7
-	mov	_P1,#0xf0
-	C$compactflash.c$186$3_0$28 ==.
-;	compactflash.c:186: cfWaitDataReady(device);
+	C$compactflash.c$156$3_0$49 ==.
+;	compactflash.c:156: P1 = 0xf1;
+	mov	_P1,#0xf1
+	C$compactflash.c$157$3_0$49 ==.
+;	compactflash.c:157: cfWriteData(device, buf[i+idx]);
 	mov	r0,_bp
 	inc	r0
-	mov	dpl,@r0
-	push	ar7
-	push	ar6
-	push	ar5
-	push	ar4
-	lcall	_cfWaitDataReady
-	pop	ar4
-	pop	ar5
-	pop	ar6
-	pop	ar7
-	C$compactflash.c$188$3_0$28 ==.
-;	compactflash.c:188: P1 = 0xf1;
-	mov	_P1,#0xf1
-	C$compactflash.c$189$3_0$28 ==.
-;	compactflash.c:189: cfWriteData(device, buf[i+idx]);
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
-	mov	@r0,ar5
-	inc	r0
-	mov	@r0,ar6
-	mov	a,_bp
-	add	a,#0x08
-	mov	r0,a
-	mov	a,_bp
-	add	a,#0x06
-	mov	r1,a
-	mov	a,@r1
-	add	a,@r0
+	mov	a,@r0
+	add	a,r5
 	mov	r2,a
-	inc	r1
-	mov	a,@r1
 	inc	r0
-	addc	a,@r0
-	mov	r3,a
+	mov	a,@r0
+	addc	a,r6
+	mov	r4,a
 	mov	a,_bp
 	add	a,#0xfb
 	mov	r0,a
 	mov	a,r2
 	add	a,@r0
 	mov	r2,a
-	mov	a,r3
+	mov	a,r4
 	inc	r0
 	addc	a,@r0
-	mov	r3,a
+	mov	r4,a
 	inc	r0
-	mov	ar7,@r0
+	mov	ar3,@r0
 	mov	dpl,r2
-	mov	dph,r3
-	mov	b,r7
+	mov	dph,r4
+	mov	b,r3
 	lcall	__gptrget
 	mov	r2,a
-	mov	a,_bp
-	add	a,#0x04
-	mov	r0,a
-	mov	dpl,@r0
-	inc	r0
-	mov	dph,@r0
-	mov	a,r2
+	mov	dptr,#0xff20
 	movx	@dptr,a
-	C$compactflash.c$191$3_0$28 ==.
-;	compactflash.c:191: i++;
-	mov	a,_bp
-	add	a,#0x08
-	mov	r0,a
-	inc	@r0
-	cjne	@r0,#0x00,00138$
-	inc	r0
-	inc	@r0
+	C$compactflash.c$159$3_0$49 ==.
+;	compactflash.c:159: i++;
+	inc	r5
+	cjne	r5,#0x00,00138$
+	inc	r6
 00138$:
-	C$compactflash.c$193$3_0$28 ==.
-;	compactflash.c:193: P1 = 0xf2;
+	C$compactflash.c$161$3_0$49 ==.
+;	compactflash.c:161: P1 = 0xf2;
 	mov	_P1,#0xf2
-	pop	ar7
 	pop	ar4
-	ljmp	00104$
+	pop	ar3
+	sjmp	00104$
 00106$:
-	C$compactflash.c$195$2_0$26 ==.
-;	compactflash.c:195: idx += CF_SECTOR_SIZE;
-	mov	a,_bp
-	add	a,#0x06
-	mov	r0,a
+	C$compactflash.c$163$2_0$47 ==.
+;	compactflash.c:163: idx += CF_SECTOR_SIZE;
+	mov	r0,_bp
+	inc	r0
 	mov	a,#0x02
 	inc	r0
 	add	a,@r0
 	mov	@r0,a
 	ljmp	00107$
 00109$:
-	C$compactflash.c$198$1_0$25 ==.
-;	compactflash.c:198: P1 = 0xf3;
+	C$compactflash.c$166$1_0$46 ==.
+;	compactflash.c:166: P1 = 0xf3;
 	mov	_P1,#0xf3
-	C$compactflash.c$199$1_0$25 ==.
-;	compactflash.c:199: }
+	C$compactflash.c$167$1_0$46 ==.
+;	compactflash.c:167: }
 	mov	sp,_bp
 	pop	_bp
-	C$compactflash.c$199$1_0$25 ==.
+	C$compactflash.c$167$1_0$46 ==.
 	XG$cfWriteSector$0$0 ==.
 	ret
 ;------------------------------------------------------------
@@ -1492,23 +1205,58 @@ _cfWriteSector:
 ;device                    Allocated to registers 
 ;------------------------------------------------------------
 	G$cfDiskGetSectorCount$0$0 ==.
-	C$compactflash.c$201$1_0$30 ==.
-;	compactflash.c:201: unsigned long cfDiskGetSectorCount(char device)
+	C$compactflash.c$169$1_0$51 ==.
+;	compactflash.c:169: unsigned long cfDiskGetSectorCount(char device)
 ;	-----------------------------------------
 ;	 function cfDiskGetSectorCount
 ;	-----------------------------------------
 _cfDiskGetSectorCount:
-	C$compactflash.c$203$1_0$30 ==.
-;	compactflash.c:203: return 10000;
+	C$compactflash.c$171$1_0$51 ==.
+;	compactflash.c:171: return 10000;
 	mov	dptr,#0x2710
 	clr	a
 	mov	b,a
-	C$compactflash.c$204$1_0$30 ==.
-;	compactflash.c:204: }
-	C$compactflash.c$204$1_0$30 ==.
+	C$compactflash.c$172$1_0$51 ==.
+;	compactflash.c:172: }
+	C$compactflash.c$172$1_0$51 ==.
 	XG$cfDiskGetSectorCount$0$0 ==.
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)
+Fcompactflash$__str_0$0_0$0 == .
+___str_0:
+	.ascii "cfReadSector3"
+	.db 0x0a
+	.db 0x00
+Fcompactflash$__str_1$0_0$0 == .
+___str_1:
+	.ascii "cfReadSector4"
+	.db 0x0a
+	.db 0x00
+Fcompactflash$__str_2$0_0$0 == .
+___str_2:
+	.ascii "cfReadSector5"
+	.db 0x0a
+	.db 0x00
+Fcompactflash$__str_3$0_0$0 == .
+___str_3:
+	.ascii "cfReadSector7"
+	.db 0x0a
+	.db 0x00
+Fcompactflash$__str_4$0_0$0 == .
+___str_4:
+	.ascii "cfReadSector8"
+	.db 0x0a
+	.db 0x00
+Fcompactflash$__str_5$0_0$0 == .
+___str_5:
+	.ascii "cfReadSector9"
+	.db 0x0a
+	.db 0x00
+Fcompactflash$__str_6$0_0$0 == .
+___str_6:
+	.ascii "cfReadSector10"
+	.db 0x0a
+	.db 0x00
 	.area XINIT   (CODE)
 	.area CABS    (ABS,CODE)

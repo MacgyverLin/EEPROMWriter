@@ -416,11 +416,11 @@
                                     416 ;	sio.c:11: PCON = 0x80;
       00000D 75 87 80         [24]  417 	mov	_PCON,#0x80
                            000010   418 	C$sio.c$14$1_0$12 ==.
-                                    419 ;	sio.c:14: TH1 = 0xFA;
-      000010 75 8D FA         [24]  420 	mov	_TH1,#0xfa
+                                    419 ;	sio.c:14: TH1 = 0xFD;
+      000010 75 8D FD         [24]  420 	mov	_TH1,#0xfd
                            000013   421 	C$sio.c$15$1_0$12 ==.
-                                    422 ;	sio.c:15: TL1 = 0xFA;
-      000013 75 8B FA         [24]  423 	mov	_TL1,#0xfa
+                                    422 ;	sio.c:15: TL1 = 0xFD;
+      000013 75 8B FD         [24]  423 	mov	_TL1,#0xfd
                            000016   424 	C$sio.c$16$1_0$12 ==.
                                     425 ;	sio.c:16: TR1 = 1;
                                     426 ;	assignBit

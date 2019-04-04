@@ -11,7 +11,6 @@
 -b PSEG = 0x8000
 -b ISEG = 0x0000
 -b BSEG = 0x0000
--k C:\Program Files (x86)\SDCC\lib\large-stack-auto
 -k C:\Program Files (x86)\SDCC\lib
 -k C:\Program Files (x86)\SDCC\bin\..\lib\large-stack-auto
 -l mcs51

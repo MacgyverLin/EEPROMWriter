@@ -15,20 +15,17 @@
 				<Compiler>
 					<Add option="--model-large" />
 					<Add option="--std-c99" />
+					<Add option="--stack-auto" />
 					<Add option="--debug" />
 					<Add directory="pff3a" />
 					<Add directory="../Test8051" />
 					<Add directory="SIOFS" />
 				</Compiler>
 				<Linker>
-					<Add option="--xstack" />
-					<Add option="--iram-size 0x40" />
 					<Add option="--xram-loc 0x8000" />
 					<Add option="--xram-size 0x7F00" />
 					<Add option="--code-loc 0x0000" />
 					<Add option="--code-size 0x8000" />
-					<Add option="--stack-size 0x100" />
-					<Add directory="C:/Program Files (x86)/SDCC/lib/large" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -71,6 +68,10 @@
 		<ExtraCommands>
 			<Add after='cmd /c &quot;packihx &lt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).ihx &gt;$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).hex&quot;' />
 		</ExtraCommands>
+		<Unit filename="SIOFS/siofatfs.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="SIOFS/siofatfs.h" />
 		<Unit filename="compactflash.c">
 			<Option compilerVar="CC" />
 		</Unit>
