@@ -1,10 +1,10 @@
-C51 COMPILER V9.01   TEST                                                                  04/05/2019 02:35:53 PAGE 1   
+C51 COMPILER V9.01   TEST                                                                  04/05/2019 05:18:05 PAGE 1   
 
 
 C51 COMPILER V9.01, COMPILATION OF MODULE TEST
 OBJECT MODULE PLACED IN test.OBJ
-COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE test.c LARGE BROWSE INCDIR(.\pff3a;.\SIOFS;C:\Keil\C51\ISD51) DEBUG OBJECTE
-                    -XTEND
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE test.c LARGE OPTIMIZE(9,SIZE) REGFILE(.\Test8051.ORC) BROWSE ORDER INCDIR(.
+                    -\SIOFS;C:\Keil\C51\ISD51;.\FATFS) DEBUG OBJECTEXTEND
 
 line level    source
 
@@ -12,151 +12,154 @@ line level    source
    2          #include "delay.h"
    3          #include "pio.h"
    4          #include "compactflash.h"
-   5          #include "pff.h"
-   6          #ifdef TEST_SIO
+   5          
+   6          #ifdef USE_PFF
+              #include "pff.h"
+              #else
+   9          #include "ff.h"
+  10          #endif
+  11          
+  12          #ifdef USE_KEIL_ISD
+  13          #else
               #include "sio.h"
-              #include "sioFATFS.h"
               #endif
-  10          
-  11          //////////////////////////////////////////////////////////////////////////////
-  12          //
-  13          void ledTest()
-  14          {
-  15   1          P1 = (unsigned char)(~0x01);
-  16   1          //delay_ms(100);
-  17   1      
-  18   1          P1 = (unsigned char)(~0x02);
-  19   1          //delay_ms(100);
-  20   1      
-  21   1          P1 = (unsigned char)(~0x04);
+  16          
+  17          //////////////////////////////////////////////////////////////////////////////
+  18          //
+  19          void ledTest()
+  20          {
+  21   1          P1 = (unsigned char)(~0x01);
   22   1          //delay_ms(100);
   23   1      
-  24   1          P1 = (unsigned char)(~0x08);
+  24   1          P1 = (unsigned char)(~0x02);
   25   1          //delay_ms(100);
   26   1      
-  27   1          P1 = (unsigned char)(~0x10);
+  27   1          P1 = (unsigned char)(~0x04);
   28   1          //delay_ms(100);
   29   1      
-  30   1          P1 = (unsigned char)(~0x20);
+  30   1          P1 = (unsigned char)(~0x08);
   31   1          //delay_ms(100);
   32   1      
-  33   1          P1 = (unsigned char)(~0x40);
+  33   1          P1 = (unsigned char)(~0x10);
   34   1          //delay_ms(100);
   35   1      
-  36   1          P1 = (unsigned char)(~0x80);
+  36   1          P1 = (unsigned char)(~0x20);
   37   1          //delay_ms(100);
-  38   1      }
-  39          
-  40          //////////////////////////////////////////////////////////////////////////////
-  41          //
-  42          void pioTest(char device)
-  43          {
-  44   1          char v;
-  45   1          pioWriteCtrl(device, 0x80);
-  46   1      
-  47   1          v = 255;
-  48   1          do
-  49   1          {
-  50   2              delay_ms(50);
-  51   2              pioWritePortA(device, v);
-  52   2          }while(v--);
-  53   1      
-  54   1          v = 255;
-C51 COMPILER V9.01   TEST                                                                  04/05/2019 02:35:53 PAGE 2   
+  38   1      
+  39   1          P1 = (unsigned char)(~0x40);
+  40   1          //delay_ms(100);
+  41   1      
+  42   1          P1 = (unsigned char)(~0x80);
+  43   1          //delay_ms(100);
+  44   1      }
+  45          
+  46          //////////////////////////////////////////////////////////////////////////////
+  47          //
+  48          void pioTest(char device)
+  49          {
+  50   1          char v;
+  51   1          pioWriteCtrl(device, 0x80);
+  52   1      
+  53   1          v = 255;
+  54   1          do
+C51 COMPILER V9.01   TEST                                                                  04/05/2019 05:18:05 PAGE 2   
 
-  55   1          do
-  56   1          {
-  57   2              delay_ms(50);
-  58   2              pioWritePortB(device, v);
-  59   2          }while(v--);
-  60   1      
-  61   1          v = 255;
-  62   1          do
-  63   1          {
-  64   2              delay_ms(50);
-  65   2              pioWritePortC(device, v);
-  66   2          }while(v--);
-  67   1      }
-  68          
-  69          //////////////////////////////////////////////////////////////////////////////
-  70          //
-  71          char cfTestBuf[CF_SECTOR_SIZE];
-  72          void cfTest(char device)
-  73          {
-  74   1          cfInit(device);
-  75   1      
-  76   1          cfReadSector(device, cfTestBuf, 0, 1);
-  77   1      
-  78   1          cfReadSector(device, cfTestBuf, 1, 1);
-  79   1      }
-  80          
-  81          //////////////////////////////////////////////////////////////////////////////
-  82          //
-  83          void FATTest(char device)
-  84          {
-  85   1              FATFS fs;
-  86   1              DIR dj;
-  87   1              FILINFO filInfo;
-  88   1              unsigned char res;
-  89   1          UINT br;
-  90   1          UINT bw;
-  91   1      
-  92   1              #if USE_KEIL_ISD
+  55   1          {
+  56   2              delay_ms(50);
+  57   2              pioWritePortA(device, v);
+  58   2          }while(v--);
+  59   1      
+  60   1          v = 255;
+  61   1          do
+  62   1          {
+  63   2              delay_ms(50);
+  64   2              pioWritePortB(device, v);
+  65   2          }while(v--);
+  66   1      
+  67   1          v = 255;
+  68   1          do
+  69   1          {
+  70   2              delay_ms(50);
+  71   2              pioWritePortC(device, v);
+  72   2          }while(v--);
+  73   1      }
+  74          
+  75          //////////////////////////////////////////////////////////////////////////////
+  76          //
+  77          char cfTestBuf[CF_SECTOR_SIZE];
+  78          void cfTest(char device)
+  79          {
+  80   1          cfInit(device);
+  81   1      
+  82   1          cfReadSector(device, cfTestBuf, 0, 1);
+  83   1      
+  84   1          cfReadSector(device, cfTestBuf, 1, 1);
+  85   1      }
+  86          
+  87          #ifdef USE_PFF
+              //////////////////////////////////////////////////////////////////////////////
+              //
+              void pffTest(char device)
+              {
+                      FATFS fs;
+                      DIR dj;
+                      FILINFO filInfo;
+                      unsigned char res;
+                  UINT br;
+                  UINT bw;
+              
+                      #if USE_KEIL_ISD
                       #else
-  94   1          sioInit(0);
-  95   1              #endif
-  96   1      
-  97   1              //sioTXStr(0, "FATTest1\n");
-  98   1          pf_mount(&fs);
-  99   1              //sioTXStr(0, "FATTest1.1\n");
- 100   1          if(res!=FR_OK)
- 101   1          {
- 102   2                      //sioTXStr(0, "FATTest1.2\n");
- 103   2              return;
- 104   2          }
- 105   1      
- 106   1              //sioTXStr(0, "FATTest2\n");
- 107   1          res = pf_open("1.txt");
- 108   1              //sioTXStr(0, "FATTest2.1\n");
- 109   1          if(res!=FR_OK)
- 110   1          {
- 111   2                      //sioTXStr(0, "FATTest2.2\n");
- 112   2              return;
- 113   2          }
- 114   1      
- 115   1      #if PF_USE_READ
- 116   1              //sioTXStr(0, "FATTest3\n");
-C51 COMPILER V9.01   TEST                                                                  04/05/2019 02:35:53 PAGE 3   
+                  sioInit(0);
+                      #endif
+              
+                      sioTXStr(0, "pffTest1\n");
+                  pf_mount(&fs);
+                      sioTXStr(0, "pffTest1.1\n");
+                  if(res!=FR_OK)
+                  {
+                              sioTXStr(0, "pffTest1.2\n");
+                      return;
+                  }
+              
+                      sioTXStr(0, "pffTest2\n");
+                  res = pf_open("1.txt");
+                      sioTXStr(0, "pffTest2.1\n");
+                  if(res!=FR_OK)
+C51 COMPILER V9.01   TEST                                                                  04/05/2019 05:18:05 PAGE 3   
 
- 117   1          pf_read(cfTestBuf, CF_SECTOR_SIZE, &br);
- 118   1              //sioTXStr(0, "FATTest3.1\n");
- 119   1          if(res!=FR_OK)
- 120   1          {
- 121   2                      //sioTXStr(0, "FATTest3.2\n");
- 122   2              return;
- 123   2          }
- 124   1              
- 125   1              //sioTXStr(0, "FATTest4\n");
- 126   1              #if USE_KEIL_ISD
-                      #else
- 128   1              sioTXBuf(0, cfTestBuf, br);
- 129   1              #endif
- 130   1              //sioTXStr(0, "FATTest4\n");
- 131   1      #endif
- 132   1      
- 133   1      #if PF_USE_LSEEK
+                  {
+                              sioTXStr(0, "pffTest2.2\n");
+                      return;
+                  }
+              
+              #if PF_USE_READ
+                      sioTXStr(0, "pffTest3\n");
+                  pf_read(cfTestBuf, CF_SECTOR_SIZE, &br);
+                      sioTXStr(0, "pffTest3.1\n");
+                  if(res!=FR_OK)
+                  {
+                              sioTXStr(0, "pffTest3.2\n");
+                      return;
+                  }
+              
+                      sioTXStr(0, "pffTest4\n");
+                      sioTXBuf(0, cfTestBuf, br);
+              #endif
+              
+              #if PF_USE_LSEEK
                   pf_lseek(10);
                   if(res!=FR_OK)
                       return;
               #endif
- 138   1      
- 139   1      #if PF_USE_READ
- 140   1          pf_read(cfTestBuf, CF_SECTOR_SIZE, &br);
- 141   1          if(res!=FR_OK)
- 142   1              return;
- 143   1      #endif
- 144   1      
- 145   1      #if PF_USE_DIR
+              
+              #if PF_USE_READ
+                  pf_read(cfTestBuf, CF_SECTOR_SIZE, &br);
+                  if(res!=FR_OK)
+                      return;
+              #endif
+              
+              #if PF_USE_DIR
                   pf_opendir(&dj, "test");
                   if(res!=FR_OK)
                       return;
@@ -165,20 +168,102 @@ line level    source
                   if(res!=FR_OK)
                       return;
               #endif
- 154   1      
- 155   1      #if PF_USE_WRITE
+              
+              #if PF_USE_WRITE
                   pf_write(cfTestBuf, CF_SECTOR_SIZE, &bw);
               #endif
- 158   1              // sioTXStr(0, "FATTest 10\n");
- 159   1      }
-*** WARNING C280 IN LINE 83 OF TEST.C: 'device': unreferenced local variable
-*** WARNING C280 IN LINE 86 OF TEST.C: 'dj': unreferenced local variable
-*** WARNING C280 IN LINE 87 OF TEST.C: 'filInfo': unreferenced local variable
-*** WARNING C280 IN LINE 90 OF TEST.C: 'bw': unreferenced local variable
- 160          
- 161          //////////////////////////////////////////////////////////////////////////////
- 162          //
- 163          #ifdef TEST_SIO
+              
+                      sioTXStr(0, "pffTest10\n");
+              }
+              
+              #else
+ 166          
+ 167          void fatfsTest(char device)
+ 168          {
+ 169   1              FATFS fs;
+ 170   1              FIL fp;
+ 171   1              DIR dj;
+ 172   1              FILINFO filInfo;
+ 173   1              unsigned char res;
+ 174   1          UINT br;
+ 175   1          UINT bw;
+ 176   1      
+ 177   1              #if USE_KEIL_ISD
+                      #else
+C51 COMPILER V9.01   TEST                                                                  04/05/2019 05:18:05 PAGE 4   
+
+ 179   1          sioInit(0);
+ 180   1              #endif
+ 181   1      
+ 182   1              sioTXStr(0, "fatfsTest1\n");
+ 183   1              res = f_mount(&fs, "0:", 0); /* Mount/Unmount a logical drive */
+ 184   1              sioTXStr(0, "fatfsTest1.1\n");
+ 185   1          if(res!=FR_OK)
+ 186   1              {
+ 187   2                      sioTXStr(0, "fatfsTest1.2\n");
+ 188   2              return;
+ 189   2              }
+ 190   1      
+ 191   1              sioTXStr(0, "fatfsTest2\n");
+ 192   1              res = f_open(&fp, "0:/1.txt", FA_READ | FA_OPEN_EXISTING);      /* Open or create a file */
+ 193   1              sioTXStr(0, "fatfsTest2.1\n");
+ 194   1          if(res!=FR_OK)
+ 195   1              {
+ 196   2                      sioTXStr(0, "fatfsTest2.2\n");
+ 197   2              return;
+ 198   2              }
+ 199   1      
+ 200   1              sioTXStr(0, "fatfsTest3\n");
+ 201   1              res = f_read (&fp, cfTestBuf, CF_SECTOR_SIZE, &br);                     /* Read data from the file */
+ 202   1              sioTXStr(0, "fatfsTest3.1\n");
+ 203   1          if(res!=FR_OK)
+ 204   1              {
+ 205   2                      sioTXStr(0, "fatfsTest3.2\n");
+ 206   2              return;
+ 207   2              }
+ 208   1              sioTXBuf(0, cfTestBuf, br);
+ 209   1      
+ 210   1              sioTXStr(0, "fatfsTest4\n");
+ 211   1          f_lseek(10);
+*** WARNING C209 IN LINE 211 OF TEST.C: '_f_lseek': too few actual parameters
+ 212   1              sioTXStr(0, "fatfsTest4.1\n");
+ 213   1          if(res!=FR_OK)
+ 214   1              {
+ 215   2                      sioTXStr(0, "fatfsTest4.2\n");
+ 216   2              return;
+ 217   2              }
+ 218   1      
+ 219   1              sioTXStr(0, "fatfsTest5\n");
+ 220   1              res = f_read (&fp, cfTestBuf, CF_SECTOR_SIZE, &br);                     /* Read data from the file */
+ 221   1              sioTXStr(0, "fatfsTest5.1\n");
+ 222   1          if(res!=FR_OK)
+ 223   1              {
+ 224   2                      sioTXStr(0, "fatfsTest5.2\n");
+ 225   2              return;
+ 226   2              }
+ 227   1              sioTXBuf(0, cfTestBuf, br);
+ 228   1      
+ 229   1              sioTXStr(0, "fatfsTest6\n");
+ 230   1              res = f_close(&fp);     /* Close an open file object */
+ 231   1              sioTXStr(0, "fatfsTest6.1\n");
+ 232   1          if(res!=FR_OK)
+ 233   1              {
+ 234   2                      sioTXStr(0, "fatfsTest6.2\n");
+ 235   2              return;
+ 236   2              }
+ 237   1      }
+*** WARNING C280 IN LINE 167 OF TEST.C: 'device': unreferenced local variable
+*** WARNING C280 IN LINE 171 OF TEST.C: 'dj': unreferenced local variable
+C51 COMPILER V9.01   TEST                                                                  04/05/2019 05:18:05 PAGE 5   
+
+*** WARNING C280 IN LINE 172 OF TEST.C: 'filInfo': unreferenced local variable
+*** WARNING C280 IN LINE 175 OF TEST.C: 'bw': unreferenced local variable
+ 238          #endif
+ 239          
+ 240          //////////////////////////////////////////////////////////////////////////////
+ 241          //
+ 242          #ifdef USE_KEIL_ISD
+ 243          #else
               void sioTest1(char device)
               {
                       sioInit(device);
@@ -190,8 +275,6 @@ line level    source
               
               const char testdata[] =
               {
-C51 COMPILER V9.01   TEST                                                                  04/05/2019 02:35:53 PAGE 4   
-
                   'a','b','c','d','e','f','g','h',
                   'i','j','k','l','m','n','o','p',
                   'q','r','s','t','u','v','w','x','y','z',
@@ -214,69 +297,12 @@ line level    source
                   sioInit(device);
               }
               #endif
- 197          
- 198          #if 0
-              void SIOFATFSTest(char device)
-              {
-                      SIOFATFS siofs;
-                      SIOFILE siofile;
-                      SIODIR siodir;  
-                  unsigned char res;
-                  unsigned char br;
-                  unsigned char bw;
-              
-                  sioInit(device);
-              
-                  siof_mount(&siofs, "0:", 0);
-                  if(res!=FR_OK)
-                  {
-                      return;
-                  }
-              
-                  res = siof_open(&siofile, "1.txt", 0);
-                  if(res!=FR_OK)
-                  {
-                      return;
-                  }
-              
-                  res = siof_read(&cfTestBuf, cfTestBuf, CF_SECTOR_SIZE, &br);
-                  if(res!=FR_OK)
-                  {
-                      return;
-                  }
-              
-                  sioTXBuf(0, cfTestBuf, br);
-              
-                  res = siof_lseek(&siofile, 10);
-                  if(res!=FR_OK)
-                      return;
-              
-                  res = siof_read(&siofile, cfTestBuf, CF_SECTOR_SIZE, &br);
-                  if(res!=FR_OK)
-                      return;
-C51 COMPILER V9.01   TEST                                                                  04/05/2019 02:35:53 PAGE 5   
-
-              
-              /*
-                  res = siof_opendir(&siodir, "test");
-                  if(res!=FR_OK)
-                      return;
-              
-                  res = siof_readdir(&siodir, &filInfo);
-                  if(res!=FR_OK)
-                      return;
-              */
-                  res = siof_write(&siofile, cfTestBuf, CF_SECTOR_SIZE, &bw);
-                  if(res!=FR_OK)
-                      return;
-              }
-              #endif
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    448    ----
-   CONSTANT SIZE    =      6    ----
-   XDATA SIZE       =    512      90
+   CODE SIZE        =    587    ----
+   CONSTANT SIZE    =    252    ----
+   XDATA SIZE       =    512     930
    PDATA SIZE       =   ----    ----
    DATA SIZE        =   ----    ----
    IDATA SIZE       =   ----    ----
@@ -284,4 +310,4 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  4 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  5 WARNING(S),  0 ERROR(S)

@@ -27,6 +27,24 @@ offset_neg: equ -7
 
 ;    try a few cases that have two expressions in the args and
 ;    one is inside ().
+     CP   (HL)
+     CP   (IX+offset)
+     CP   (IY+offset)
+     CP   A
+     CP   B
+     CP   C
+     CP   D
+     CP   E
+     CP   H
+     CP   L
+     CP   imm8
+     CPD  
+     CPDR  
+     CPIR   
+     CPI   
+     CPL   
+
+	 LD   IX, 8000h
      LD   (IX+offset),n+1+4+8-9
      LD   (IX+offset+5),n-1
      LD   (IX+dddd),n
@@ -250,12 +268,12 @@ loop1:
      IN   L,(C)
      IN   A,(port)
 
-     IN0  B,(n)
-     IN0  C,(n)
-     IN0  D,(n)
-     IN0  E,(n)
-     IN0  H,(n)
-     IN0  L,(n)
+     ; IN0  B,(n)
+     ; IN0  C,(n)
+     ; IN0  D,(n)
+     ; IN0  E,(n)
+     ; IN0  H,(n)
+     ; IN0  L,(n)
 
      INC  (HL)
      INC  (IX+offset)
@@ -437,10 +455,10 @@ loop2:
      LDI
      LDIR
 
-     MLT  BC
-     MLT  DE
-     MLT  HL
-     MLT  SP
+     ; MLT  BC
+     ; MLT  DE
+     ; MLT  HL
+     ; MLT  SP
 
      NEG
      NOP
@@ -469,20 +487,20 @@ loop2:
      OUT  (C),L
      OUT  (port),A
 
-     OUT0 (imm8),A
-     OUT0 (imm8),B
-     OUT0 (imm8),C
-     OUT0 (imm8),D
-     OUT0 (imm8),E
-     OUT0 (imm8),H
-     OUT0 (imm8),L
+     ; OUT0 (imm8),A
+     ; OUT0 (imm8),B
+     ; OUT0 (imm8),C
+     ; OUT0 (imm8),D
+     ; OUT0 (imm8),E
+     ; OUT0 (imm8),H
+     ; OUT0 (imm8),L
 
-     OUTD
-     OUTI
-     OTIM
-     OTDM
-     OTIMR
-     OTDMR
+     ; OUTD
+     ; OUTI
+     ; OTIM
+     ; OTDM
+     ; OTIMR
+     ; OTDMR
 
      POP  AF
      POP  BC
@@ -773,7 +791,7 @@ loop2:
      SLA  H
      SLA  L
 
-     SLP
+     ; SLP
 
      SRA  (HL)
      SRA  (IX+offset)
@@ -809,13 +827,13 @@ loop2:
      SUB  L
      SUB  n
 
-     TST  A
-     TST  B
-     TST  C
-     TST  D
-     TST  E
-     TST  (HL)
-     TST  n
+     ; TST  A
+     ; TST  B
+     ; TST  C
+     ; TST  D
+     ; TST  E
+     ; TST  (HL)
+     ; TST  n
 
      XOR  (HL)
      XOR  (IX+offset)
