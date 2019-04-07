@@ -38,10 +38,10 @@
 0038   FE23 20 FA       	JR				NZ, DELAY_LP
 0039   FE25 7C          	LD				A, H
 0040   FE26 D6 00       	SUB				00h
-0041   FE28 20 F5       	JR				NZ, DELAY_LP
+0041   FE28 20 F5       	JR				NZ, DELAY_LP	; delay
 0042   FE2A             
 0043   FE2A 21 00 FF    	LD				HL, 0FF00h
-0044   FE2D 70          	LD				(HL), B
+0044   FE2D 70          	LD				(HL), B			; change LED
 0045   FE2E 04          	INC				B
 0046   FE2F C3 1C FE    	JP				NEXT_LED
 0047   FE32             

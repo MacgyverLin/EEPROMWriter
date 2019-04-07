@@ -7,3 +7,195 @@ C:\Project\EEPROMWriter\EEPROMWriter\EEPROMWriter\Test8051\Test8051.uvproj
 Project File Date:  04/05/2019
 
 <h2>Output:</h2>
+Build target 'Target 1'
+compiling tokenizer.c...
+tokenizer.c(34): error C301: identifier expected
+tokenizer.c(34): error C304: bad macro parameter list
+compiling ubasic.c...
+ubasic.c(36): error C301: identifier expected
+ubasic.c(36): error C304: bad macro parameter list
+compiling use-ubasic.c...
+Target not created
+Build target 'Target 1'
+compiling tokenizer.c...
+tokenizer.c(36): error C301: identifier expected
+tokenizer.c(36): error C304: bad macro parameter list
+compiling ubasic.c...
+ubasic.c(36): error C301: identifier expected
+ubasic.c(36): error C304: bad macro parameter list
+Target not created
+Build target 'Target 1'
+compiling tokenizer.c...
+tokenizer.c(121): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(134): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(139): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(143): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(201): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(219): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(253): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+compiling ubasic.c...
+ubasic.c(36): error C301: identifier expected
+ubasic.c(36): error C304: bad macro parameter list
+Target not created
+Build target 'Target 1'
+compiling tokenizer.c...
+tokenizer.c(134): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(139): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(143): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+tokenizer.c(219): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+compiling ubasic.c...
+ubasic.c(36): error C301: identifier expected
+ubasic.c(36): error C304: bad macro parameter list
+Target not created
+Build target 'Target 1'
+compiling tokenizer.c...
+tokenizer.c(219): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+compiling ubasic.c...
+ubasic.c(36): error C301: identifier expected
+ubasic.c(36): error C304: bad macro parameter list
+Target not created
+Build target 'Target 1'
+compiling tokenizer.c...
+compiling ubasic.c...
+ubasic.c(36): error C301: identifier expected
+ubasic.c(36): error C304: bad macro parameter list
+Target not created
+Build target 'Target 1'
+compiling ubasic.c...
+ubasic.c(111): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+UBASIC.C(113): warning C206: 'exit': missing function-prototype
+UBASIC.C(113): error C267: 'exit': requires ANSI-style prototype
+ubasic.c(123): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(167): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(200): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(235): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+UBASIC.C(301): error C141: syntax error near 'struct'
+UBASIC.C(301): error C202: 'line_index': undefined identifier
+UBASIC.C(303): error C202: 'new_lidx': undefined identifier
+UBASIC.C(304): error C202: 'new_lidx': undefined identifier
+UBASIC.C(305): error C202: 'new_lidx': undefined identifier
+UBASIC.C(306): error C202: 'new_lidx': undefined identifier
+UBASIC.C(309): error C202: 'new_lidx': undefined identifier
+UBASIC.C(312): error C202: 'new_lidx': undefined identifier
+ubasic.c(316): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(363): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(382): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(423): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(441): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(453): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(476): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(502): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(506): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(612): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+Target not created
+Build target 'Target 1'
+compiling ubasic.c...
+UBASIC.C(112): warning C206: 'exit': missing function-prototype
+UBASIC.C(112): error C267: 'exit': requires ANSI-style prototype
+ubasic.c(122): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(166): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(199): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(234): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+UBASIC.C(300): error C141: syntax error near 'struct'
+UBASIC.C(300): error C202: 'line_index': undefined identifier
+UBASIC.C(302): error C202: 'new_lidx': undefined identifier
+UBASIC.C(303): error C202: 'new_lidx': undefined identifier
+UBASIC.C(304): error C202: 'new_lidx': undefined identifier
+UBASIC.C(305): error C202: 'new_lidx': undefined identifier
+UBASIC.C(308): error C202: 'new_lidx': undefined identifier
+UBASIC.C(311): error C202: 'new_lidx': undefined identifier
+ubasic.c(315): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(362): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(381): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(422): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(440): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(452): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(475): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(501): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(505): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(611): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+Target not created
+Build target 'Target 1'
+compiling ubasic.c...
+UBASIC.C(300): error C141: syntax error near 'struct'
+UBASIC.C(300): error C202: 'line_index': undefined identifier
+UBASIC.C(302): error C202: 'new_lidx': undefined identifier
+UBASIC.C(303): error C202: 'new_lidx': undefined identifier
+UBASIC.C(304): error C202: 'new_lidx': undefined identifier
+UBASIC.C(305): error C202: 'new_lidx': undefined identifier
+UBASIC.C(308): error C202: 'new_lidx': undefined identifier
+UBASIC.C(311): error C202: 'new_lidx': undefined identifier
+ubasic.c(315): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(362): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(381): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(422): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(440): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(452): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(475): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(501): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(505): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(611): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+Target not created
+Build target 'Target 1'
+compiling ubasic.c...
+UBASIC.C(300): error C141: syntax error near 'struct'
+UBASIC.C(300): error C202: 'line_index': undefined identifier
+UBASIC.C(302): error C202: 'new_lidx': undefined identifier
+UBASIC.C(303): error C202: 'new_lidx': undefined identifier
+UBASIC.C(304): error C202: 'new_lidx': undefined identifier
+UBASIC.C(305): error C202: 'new_lidx': undefined identifier
+UBASIC.C(308): error C202: 'new_lidx': undefined identifier
+UBASIC.C(311): error C202: 'new_lidx': undefined identifier
+ubasic.c(315): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(362): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(381): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(422): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(440): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(452): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(475): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(501): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(505): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(611): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+Target not created
+Build target 'Target 1'
+compiling ubasic.c...
+UBASIC.C(302): error C141: syntax error near 'struct'
+UBASIC.C(302): error C202: 'line_index': undefined identifier
+UBASIC.C(304): error C202: 'new_lidx': undefined identifier
+UBASIC.C(305): error C202: 'new_lidx': undefined identifier
+UBASIC.C(306): error C202: 'new_lidx': undefined identifier
+UBASIC.C(307): error C202: 'new_lidx': undefined identifier
+UBASIC.C(310): error C202: 'new_lidx': undefined identifier
+UBASIC.C(313): error C202: 'new_lidx': undefined identifier
+ubasic.c(317): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(364): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(383): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(424): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(442): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(454): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(477): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(503): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(507): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(613): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+Target not created
+Build target 'Target 1'
+compiling ubasic.c...
+UBASIC.C(302): error C141: syntax error near 'struct'
+UBASIC.C(302): error C202: 'line_index': undefined identifier
+UBASIC.C(304): error C202: 'new_lidx': undefined identifier
+UBASIC.C(305): error C202: 'new_lidx': undefined identifier
+UBASIC.C(306): error C202: 'new_lidx': undefined identifier
+UBASIC.C(307): error C202: 'new_lidx': undefined identifier
+UBASIC.C(310): error C202: 'new_lidx': undefined identifier
+UBASIC.C(313): error C202: 'new_lidx': undefined identifier
+ubasic.c(317): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(364): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(383): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(424): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(442): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(454): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(477): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(503): warning C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(507): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+ubasic.c(613): error C307: macro 'DEBUG_PRINTF': parameter count mismatch
+Target not created

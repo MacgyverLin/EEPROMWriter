@@ -445,6 +445,26 @@
             </File>
           </Files>
         </Group>
+        <Group>
+          <GroupName>Basic</GroupName>
+          <Files>
+            <File>
+              <FileName>tokenizer.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\tokenizer.c</FilePath>
+            </File>
+            <File>
+              <FileName>ubasic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\ubasic.c</FilePath>
+            </File>
+            <File>
+              <FileName>use-ubasic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\use-ubasic.c</FilePath>
+            </File>
+          </Files>
+        </Group>
       </Groups>
     </Target>
   </Targets>

@@ -1,62 +1,58 @@
-0001   0000                 .ORG			00000h
-0002   0000             PLACEHOLDER:  
-0003   0000 00          	.BYTE			00h
-0004   0001             
-0005   FFFA             	.ORG			0FFFAh
-0006   FFFA             NMI:
-0007   FFFA 40          	RTI
-0008   FFFB             
-0009   FFFC                 .ORG			0FFFCh
-0010   FFFC             RESET
-0011   FFFC 4C 01 FE    	JMP				START
-0012   FFFF             
-0013   FFFE                 .ORG			0FFFEh
-0014   FFFE             IRQ:
-0015   FFFE 40          	RTI
-0016   FFFF             
-0017   FFFF             
-0018   FE00             	.ORG			0FE00h
-0019   FE00             
-0020   FE00 00          B:  .BYTE			00h
-0021   FE01             
-0022   FE01             START:
-0023   FE01             COPY_ROM:
-0024   FE01 A6 00       	LDX				00h
-0025   FE03             COPY_ROM_LP:
-0026   FE03 BD 00 FE    	LDA				0FE00h, X
-0027   FE06 9D 00 FE    	STA				0FE00h, X
-0028   FE09 E8          	INX
-0029   FE0A AA          	TAX				
-0030   FE0B D0 F6       	BNE				COPY_ROM_LP
-0031   FE0D             
-0032   FE0D                 ; normal mode
-0033   FE0D 8D 70 FF    	STA				0FF70h
-0034   FE10             
-0035   FE10             	; Init PORT C
-0036   FE10 A5 80       	LDA				080h
-0037   FE12 8D 03 FF    	STA				0FF03h
-0038   FE15             TEST_LED:
-0039   FE15             NEXT_LED:
-0040   FE15             DELAY:
-0041   FE15 A5 00       	LDA				00h
-0042   FE17 AA          	TAX
-0043   FE18 A8          	TAY
-0044   FE19             DELAY_LP:			
-0045   FE19 E8          	INX
-0046   FE1A 8A          	TXA
-0047   FE1B D0 FC       	BNE				DELAY_LP
-0048   FE1D C8          	INY
-0049   FE1E 98          	TYA
-0050   FE1F D0 F8       	BNE				DELAY_LP
-0051   FE21             
-0052   FE21 AD 00 FE    	LDA				B
-0053   FE24 8D 00 FF    	STA				0FF00h
-0054   FE27             
-0055   FE27 4C 15 FE    	JMP				NEXT_LED
-0056   FE2A             
-0057   FE2A 4C FC FF        JMP             RESET
-0058   FE2D             
-0059   FE2D             	.END
+0001   0000             				.ORG			00000h
+0002   0000 00          PLACEHOLDER:	.BYTE			00h
+0003   0001             
+0004   FFFA             				.ORG			0FFFAh
+0005   FFFA 32 FE       NMI:			.WORD			NMIHANDLER
+0006   FFFC             
+0007   FFFC             				.ORG			0FFFCh
+0008   FFFC 00 FE       RESET:			.WORD			START
+0009   FFFE             
+0010   FFFE             				.ORG			0FFFEh
+0011   FFFE 32 FE       IRQ:			.WORD			IRQHANDLER
+0012   10000             
+0013   FE00             				.ORG			0FE00h
+0014   FE00             START:
+0015   FE00 A2 00       COPY_ROM:		LDX				#00h
+0016   FE02             COPY_ROM_LP:
+0017   FE02 BD 00 FE    				LDA				0FE00h, X
+0018   FE05 9D 00 FE    				STA				0FE00h, X
+0019   FE08 E8          				INX
+0020   FE09 8A          				TXA			
+0021   FE0A D0 F6       				BNE				COPY_ROM_LP
+0022   FE0C             
+0023   FE0C             				; normal mode
+0024   FE0C A9 00       				LDA				#00h
+0025   FE0E 8D 70 FF    				STA				0FF70h
+0026   FE11             
+0027   FE11             				; Init PORT C
+0028   FE11 A9 80       				LDA				#80h
+0029   FE13 8D 03 FF    				STA				0FF03h
+0030   FE16             TEST_LED:
+0031   FE16             NEXT_LED:
+0032   FE16             DELAY:
+0033   FE16 A9 00       				LDA				#00h
+0034   FE18 AA          				TAX
+0035   FE19 A8          				TAY
+0036   FE1A             DELAY_LP:			
+0037   FE1A E8          				INX
+0038   FE1B 8A          				TXA
+0039   FE1C D0 FC       				BNE				DELAY_LP
+0040   FE1E C8          				INY
+0041   FE1F 98          				TYA
+0042   FE20 D0 F8       				BNE				DELAY_LP
+0043   FE22             
+0044   FE22 AD 31 FE    				LDA				B
+0045   FE25 EE 31 FE    				INC             B
+0046   FE28 8D 00 FF    				STA				0FF00h
+0047   FE2B             
+0048   FE2B 4C 16 FE    				JMP				NEXT_LED
+0049   FE2E 4C FC FF    				JMP             RESET
+0050   FE31             
+0051   FE31 00          B:				.BYTE			00h
+0052   FE32             IRQHANDLER:		
+0053   FE32 40          NMIHANDLER:		RTI
+0054   FE33             
+0055   FE33             				.END
 ADDR  00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 -----------------------------------------------------
 0000  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
@@ -4123,10 +4119,10 @@ FDC0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 FDD0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 FDE0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 FDF0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-FE00  00 A6 00 BD 00 FE 9D 00 FE E8 AA D0 F6 8D 70 FF
-FE10  A5 80 8D 03 FF A5 00 AA A8 E8 8A D0 FC C8 98 D0
-FE20  F8 AD 00 FE 8D 00 FF 4C 15 FE 4C FC FF 00 00 00
-FE30  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+FE00  A2 00 BD 00 FE 9D 00 FE E8 8A D0 F6 A9 00 8D 70
+FE10  FF A9 80 8D 03 FF A9 00 AA A8 E8 8A D0 FC C8 98
+FE20  D0 F8 AD 31 FE EE 31 FE 8D 00 FF 4C 16 FE 4C FC
+FE30  FF 00 40 00 00 00 00 00 00 00 00 00 00 00 00 00
 FE40  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 FE50  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 FE60  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
@@ -4154,7 +4150,7 @@ FFB0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 FFC0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 FFD0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
 FFE0  00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
-FFF0  00 00 00 00 00 00 00 00 00 00 40 00 4C 01 40 00
+FFF0  00 00 00 00 00 00 00 00 00 00 32 FE 00 FE 32 FE
 
 
 tasm: Number of errors = 0
